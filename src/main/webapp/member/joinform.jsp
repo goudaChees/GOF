@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-3">아이디</div>
                 <div class="col-9">
-                    <input type="text" id="id" name="id">
+                    <input type="text" id="id" name="id" placeholder="영문,숫자 5~11자">
                 </div>
                 <div class="col-3"></div>
                 <div class="col-9" id="idCheckResult"></div>
@@ -87,7 +87,7 @@
             
             <div class="row">
                 <div class="col-12" style="text-align: center;">
-                    <input type="submit" value="회원가입" id="submitRg">
+                    <input type="submit" value="회원가입" id="join">
                     <input type="reset" value="다시 입력">
                 </div>
             </div>
@@ -96,34 +96,36 @@
     </form>
 
     <script>
-        document.getElementById("search").onclick = function () {
-            new daum.Postcode({
-                oncomplete: function (data) {
-                    var roadAddr = data.roadAddress;
-                    document.getElementById('postcode').value = data.zonecode;
-                    document.getElementById("roadAddress").value = roadAddr;
-                }
-            }).open();
-        }
-		$("#checkId").on("click",function(){
-			if($("#id").val()==""){
-				alert("ID를 입력해주세요");
-				return;
+        let isIdOk = false;
+        
+		$("#id").on("keyup",function(){
+			let id = $("#id").val();
+			if(id==""){
+				$("#idCheckResult").css("color","red");
+				$("#idCheckResult").text("ID는 필수 입력 정보입니다.")
 			}
-			$.ajax({
-				url:"/duplCheck.member",
-				data:{id:$("#id").val()}
-			}).done(function(resp){
-				let div = $("<div>");
-				let result = JSON.parse(resp)
-				if(result){
-					$("#duplCheckResult").css("color","red");
-					$("#duplCheckResult").text("이미 존재하는 아이디입니다.")
-				}else{
-					$("#duplCheckResult").css("color","blue");
-					$("#duplCheckResult").text("사용가능한 아이디입니다.")
-				}
-			})
+            let idRegex = /[a-z0-9_]{5,11}/;
+            let idResult = idRegex.test(id);
+            if (!idResult) {
+            	$("#idCheckResult").css("color","red");
+				$("#idCheckResult").text("영문 소문자, 숫자, 특수기호(_)를 조합하여 5~11자로 작성");
+            }else{
+            	$.ajax({
+    				url:"/duplCheck.member",
+    				data:{id:$("#id").val()}
+    			}).done(function(resp){
+    				let result = JSON.parse(resp)
+    				if(result){
+    					$("#idCheckResult").css("color","red");
+    					$("#idCheckResult").text("이미 존재하는 아이디입니다.")
+    				}else{
+    					$("#idCheckResult").css("color","blue");
+    					$("#idCheckResult").text("사용가능한 아이디입니다.")
+    					isIdOk=true;
+    				}
+    			})
+            }
+			
 		})
         $("#pw2").on("keyup", function () {
             let pw1 = $("#pw1").val();
