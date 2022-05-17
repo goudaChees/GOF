@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -26,7 +27,7 @@ public class Board2DAO {
 		return ds.getConnection();
 	};
 	public int insert(Board2DTO dto) throws Exception {
-		String sql = "insert into board2 values(Board_seq.nextval,?,?,?,default,?,default)";
+		String sql = "insert into board2 values(Board2_seq.nextval,?,?,?,default,?,default)";
 		try (Connection con = this.getConnection();
 				PreparedStatement stat = con.prepareStatement(sql);
 				){
@@ -69,7 +70,7 @@ public class Board2DAO {
 			}
 		}
 		public int update(String title,String contents,String item,int seq) throws Exception{
-			String sql= "update board set title=?,contents=?,item=? where seq=?";
+			String sql= "update board2 set title=?,contents=?,item=? where seq=?";
 			try(Connection con = this.getConnection();
 					PreparedStatement stat = con.prepareStatement(sql);){
 				stat.setString(1, title);
@@ -94,9 +95,125 @@ public class Board2DAO {
 					
 		}
 		// 뷰 카운트
-		
-		
-		
-		
+		private int getRecordTotalCount() throws Exception{
+			String sql="select count(*) from board2";
+			try(Connection con = this.getConnection();
+					PreparedStatement stat = con.prepareStatement(sql);
+					ResultSet rs = stat.executeQuery();){
+				rs.next();
+				return rs.getInt(1);
+			}
+		}
+		public String navi(int currentPage) throws Exception{
+			
+			//현제 페이지 = currentPage
+			int recordTotalCount = this.getRecordTotalCount();
+			// 총 데이터의 갯수 -> 향후 실제 데이터 베이스의 갯수를 세어 와야함
+			int recordCountPerPage = 10;
+			// 한 페이지에 몇개의 게시글을 보여 줄건지
+			int naviCountPerPage = 10; 
+			// 한 페이지에 몇개의 네비를 보여줄건지
+			
+			int pageTotalCount = 0; 
+			// 총 몇개의 페이지가 필요한가?
+			
+			if(recordTotalCount %recordCountPerPage>0) {
+				pageTotalCount = recordTotalCount /recordCountPerPage+1;
+			}else {
+				pageTotalCount = recordTotalCount /recordCountPerPage;
+			};
+
+			if(currentPage < 1) {
+				currentPage=1;
+			}else if (currentPage>pageTotalCount) {
+				currentPage = pageTotalCount;
+			}
+			
+			int startNavi = (currentPage-1)/naviCountPerPage*naviCountPerPage+1;
+			int endNavi = startNavi + naviCountPerPage-1;
+			//네비 시작 과 끝 의 갯수
+			if(endNavi > pageTotalCount) {
+				endNavi = pageTotalCount;
+			}
+			
+			boolean needNext = true;
+			boolean needPrev = true;
+			
+			if(startNavi == 1) {
+				needPrev = false;
+			}
+			if(endNavi == pageTotalCount) {
+				needNext = false;
+			}
+			
+			StringBuilder sb = new StringBuilder();
+			
+			
+			if(needPrev) {
+				sb.append("<a href='list.brd2?cpage="+(startNavi-1)+"'>< </a>");
+			}
+			for(int i = startNavi;i <=endNavi;i++) {
+				if(currentPage == i) {
+					sb.append("<a href='list.brd2?cpage="+i+"'>["+i+"] </a>");
+				}else {
+				sb.append("<a href='list.brd2?cpage="+i+"'>"+i+" </a>");
+				}
+			}
+			if(needNext) {
+				sb.append("<a href='list.brd2>cpage="+(endNavi+1)+"'>></a>");
+			}	
+			return sb.toString();
+		}
+		public int getSeqNaextval() throws Exception{
+			String sql ="select board2_seq.nextval from dual";
+			try(Connection con = this.getConnection();
+					PreparedStatement stat = con.prepareStatement(sql);
+					ResultSet rs = stat.executeQuery();){
+				rs.next();
+				return rs.getInt(1);
+			}
+		}
+		public ArrayList<Board2DTO> selectByPage(int cpage) throws Exception{
+			
+			int start = cpage * 10 - 9;
+			int end = cpage * 10;
+			
+			String sql ="select * from(select row_number() over(order by seq desc) as line,board2.*from board2)where line between ? and ?";
+			ArrayList<Board2DTO> arr = new ArrayList<>();
+			try(Connection con = this.getConnection();
+				PreparedStatement stat = con.prepareStatement(sql);){
+				stat.setInt(1, start);
+				stat.setInt(2, end);
+				try(ResultSet rs = stat.executeQuery();){
+					while(rs.next()) {
+						int seq =rs.getInt("seq");
+						String writer = rs.getString("writer");
+						String title = rs.getString("title");
+						String contents = rs.getString("contents");
+						String date= rs.getString("write_date");
+						String item = rs.getString("item");
+						int count = rs.getInt("view_count");
+						arr.add(new Board2DTO(seq,writer,title,contents,item,date,count));
+					}
+				}
+			}
+			return arr;
+		}
+		public String selectNicknameById(String id)throws Exception {
+			String sql = "select nickname from member where id=?";
+			try(
+					Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);
+						){
+				pstat.setString(1, id);
+
+				try(
+					ResultSet rs = pstat.executeQuery();
+						){
+					rs.next();
+					return rs.getString("nickname");
+				}
+			}
+		}
 		
 }
