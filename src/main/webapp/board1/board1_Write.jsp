@@ -63,6 +63,7 @@
           	<div class="write_Box" style="width:50% ; border: 0px;" >
             	<img src="#" style="width: 200px; height: 200px;">
             	<input type="file" name="file">
+            	<input type="button" id="addFile">
           	</div>
           	<div class="write_Box" style="width:50%; height: 200px; border: 0px;">
             	<input type="text" placeholder="물건명을 입력해주세요" name="item"><br>

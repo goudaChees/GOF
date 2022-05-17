@@ -29,9 +29,10 @@ public class Board1Controller extends HttpServlet {
 			if(uri.equals("/write.brd1")) {
 				//글 업데이트
 				String id = (String)session.getAttribute("loginID");
-	
+				if(id==null) {
+					String writer = "good"; // 요 부분은 나중에 삭제~테스트용!
+				}
 				String writer = dao.selectNicknameById(id);
-	
 				String title = request.getParameter("title");
 				String item = request.getParameter("item");
 				int item_price = Integer.parseInt(request.getParameter("item_price"));
