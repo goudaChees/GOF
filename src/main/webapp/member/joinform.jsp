@@ -20,14 +20,40 @@
 </style>
 </head>
 <body>
-	<form method="post" action="join.member">
-        <div class="container">
-            <div class="row">
+	<div class="container w-100" style="max-width: 100%; padding: 0; margin: 0; position: relative;">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="index.jsp">앞날의 지침</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+					aria-controls="navbarNavDropdown" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-end"
+					id="navbarNavDropdown">
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link active nonMember"
+							aria-current="page" href="#">지출의 참견</a></li>
+						<li class="nav-item"><a class="nav-link active nonMember"
+							aria-current="page" href="list.brd2">선택의 참견</a></li>
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="#">고객센터</a></li>
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="joinform.member">회원가입</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		
+		<div class="row" id="content">
+			<div class="col-12">
+			<form method="post" action="join.member">
+				<div class="row">
                 <div class="col-12">
                     회원 가입 정보 입력
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-3">아이디</div>
                 <div class="col-9">
@@ -93,10 +119,12 @@
                     <input type="reset" value="다시 입력">
                 </div>
             </div>
-
-        </div>
-    </form>
-
+			
+			</form>
+			</div>
+		</div>
+	</div>
+	
     <script>
         let isIdOk = false;
         let isPwOk = false;
@@ -140,7 +168,12 @@
     					$("#idCheckResult").css("color","blue");
     					$("#idCheckResult").text("사용가능한 아이디입니다.")
     					isIdOk=true;
-    					console.log(isIdOk);
+    					
+    					//모든 검증 통과 시 submit 버튼 활성화
+    					if(isIdOk&&isPwOk&&isPw2Ok&&isNameOk&&isPhoneOk&&isEmailOk&&isNNOk){ 
+    			        	$("#join").removeAttr("disabled");
+    			        }
+    					
     				}
     			})
             }
@@ -167,6 +200,11 @@
             	$("#pw1").css("border","1px solid blue");
 				$("#pw1CheckResult").text("");
 				isPwOk=true;
+				
+				//모든 검증 통과 시 submit 버튼 활성화
+				if(isIdOk&&isPwOk&&isPw2Ok&&isNameOk&&isPhoneOk&&isEmailOk&&isNNOk){ 
+		        	$("#join").removeAttr("disabled");
+		        }
             }
 		})
 		
@@ -185,6 +223,11 @@
                 $("#pw2CheckResult").css("color", "blue");
                 $("#pw2CheckResult").text("패스워드가 일치합니다.");
                 isPw2Ok = true;
+                
+              //모든 검증 통과 시 submit 버튼 활성화
+				if(isIdOk&&isPwOk&&isPw2Ok&&isNameOk&&isPhoneOk&&isEmailOk&&isNNOk){ 
+		        	$("#join").removeAttr("disabled");
+		        }
             }else {
             	$("#pw2").css("border","1px solid red");
                 $("#pw2CheckResult").css("color", "red");
@@ -195,8 +238,16 @@
         })
         
         $("#name").on("keyup",function(){ // 이름 검증
+        	let name = $("#name").val();
+        	if(name==""){
+				$("#name").css("border","1px solid red");
+				$("#nameCheckResult").css("color","red");
+				$("#nameCheckResult").text("이름은 필수 입력 정보입니다.")
+				isNameOk=false;
+				return false;
+			}
         	let nameRegex = /^[가-힣]{2,5}$/;
-            let nameResult = nameRegex.test($("#name").val());
+            let nameResult = nameRegex.test(name);
             if (!nameResult) {
             	$("#name").css("border","1px solid red");
             	$("#nameCheckResult").css("color", "red");
@@ -207,6 +258,11 @@
             	$("#name").css("border","1px solid blue");
             	$("#nameCheckResult").text("");
                 isNameOk = true;
+                
+              //모든 검증 통과 시 submit 버튼 활성화
+				if(isIdOk&&isPwOk&&isPw2Ok&&isNameOk&&isPhoneOk&&isEmailOk&&isNNOk){ 
+		        	$("#join").removeAttr("disabled");
+		        }
             }
         })
         
@@ -233,12 +289,25 @@
             	$("#phone3").css("border","1px solid blue");
             	$("#phoneCheckResult").text("");
             	isPhoneOk = true;
+            	
+            	//모든 검증 통과 시 submit 버튼 활성화
+				if(isIdOk&&isPwOk&&isPw2Ok&&isNameOk&&isPhoneOk&&isEmailOk&&isNNOk){ 
+		        	$("#join").removeAttr("disabled");
+		        }
             }
         })
         
         $("#email").on("keyup",function(){ // 이메일 검증
+        	let email = $("#email").val();
+        	if(email==""){
+				$("#email").css("border","1px solid red");
+				$("#emailCheckResult").css("color","red");
+				$("#emailCheckResult").text("이메일은 필수 입력 정보입니다.")
+				isEmailOk=false;
+				return false;
+			}
         	let emailRegex = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/;
-            let emailResult = emailRegex.test($("#email").val());
+            let emailResult = emailRegex.test(email);
             if (!emailResult) {
             	$("#email").css("border","1px solid red");
             	$("#emailCheckResult").css("color", "red");
@@ -249,6 +318,11 @@
             	$("#email").css("border","1px solid blue");
             	$("#emailCheckResult").text("");
             	isEmailOk = true;
+            	
+            	//모든 검증 통과 시 submit 버튼 활성화
+				if(isIdOk&&isPwOk&&isPw2Ok&&isNameOk&&isPhoneOk&&isEmailOk&&isNNOk){ 
+		        	$("#join").removeAttr("disabled");
+		        }
             }
         })
         
