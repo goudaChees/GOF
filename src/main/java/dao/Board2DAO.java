@@ -172,7 +172,32 @@ public class Board2DAO {
 				return rs.getInt(1);
 			}
 		}
-		
+		public ArrayList<Board2DTO> selectByPage(int cpage) throws Exception{
+			
+			int start = cpage * 10 - 9;
+			int end = cpage * 10;
+			
+			String sql ="select * from(select row_number() over(order by seq desc) as line,board2.*from board2)where line between ? and ?";
+			ArrayList<Board2DTO> arr = new ArrayList<>();
+			try(Connection con = this.getConnection();
+				PreparedStatement stat = con.prepareStatement(sql);){
+				stat.setInt(1, start);
+				stat.setInt(2, end);
+				try(ResultSet rs = stat.executeQuery();){
+					while(rs.next()) {
+						int seq =rs.getInt("seq");
+						String writer = rs.getString("writer");
+						String title = rs.getString("title");
+						String contents = rs.getString("contents");
+						String date= rs.getString("write_date");
+						String item = rs.getString("item");
+						int count = rs.getInt("view_count");
+						arr.add(new Board2DTO(seq,writer,title,contents,item,date,count));
+					}
+				}
+			}
+			return arr;
+		}
 		
 		
 }
