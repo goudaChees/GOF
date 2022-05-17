@@ -67,7 +67,7 @@
 			<div class="col-6">	
 			</div>
 			<div class="col-4">
-				<input type="text" id="serch" name="serch">
+				<input type="text" id="serch" name="serch" placeholder="검색하실 내용을 입력하세요">
 			</div>
 			<div class="col-2">
 				<button type="submit" id="submit">검색</button>
@@ -95,6 +95,15 @@
 						작성시간
 					</div>
 				</div>
+				<div class="row">
+			<c:forEach var="i" items="${dto}">
+				<div class="col-2">${i.num}</div>
+				<div class="col-2">${i.title}</div>
+				<div class="col-2">${i.writer}</div>
+				<div class="col-2">${i.limet}</div>
+				<div class="col-2">${i.wrier_date}</div>
+			</c:forEach>
+			</div>
 				<div class="row">
 					<div class="col-1"></div>
 					<div class="col-10">list</div>

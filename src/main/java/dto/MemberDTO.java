@@ -3,6 +3,7 @@ package dto;
 import java.sql.Date;
 
 public class MemberDTO {
+	
 	private int seq;
 	private String id;
 	private String password;
@@ -91,7 +92,5 @@ public class MemberDTO {
 	public void setJoindate(Date joindate) {
 		this.joindate = joindate;
 	}
-	
-	
 	
 }

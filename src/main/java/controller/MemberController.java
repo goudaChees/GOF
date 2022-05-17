@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 import dao.MemberDAO;
 import utils.EncryptUtils;
 
@@ -26,6 +28,7 @@ public class MemberController extends HttpServlet {
 		MemberDAO dao = MemberDAO.getInstance();
 		try {
 			if(uri.equals("/login.member")) {
+				Gson g = new Gson();
 				EncryptUtils eUtil = new EncryptUtils();
 				String id = request.getParameter("id");
 				String pw= request.getParameter("pw");
@@ -36,7 +39,11 @@ public class MemberController extends HttpServlet {
 					session.setAttribute("loginID", id); // 로그인
 				}
 				PrintWriter prw = response.getWriter();
-				prw.append(isLoginOk.toString());
+				prw.append(g.toJson(isLoginOk));
+				
+			}else if(uri.equals("/joinform.member")) {
+				response.sendRedirect("/member/joinform.jsp");
+				
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
