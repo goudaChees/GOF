@@ -11,6 +11,12 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+      	// SDK를 초기화. 사용할 앱의 JavaScript 키
+        Kakao.init('b956cab5ef7dbe5bc1f861614a4b2061');
+        Kakao.isInitialized();
+    </script>
 <style>
     *{
         box-sizing: border-box;
@@ -126,6 +132,9 @@
                     <div class="row">
                         <div class="col-12">
                             <input type="submit" id="login" value="로그인" style="background-color: #dfe7fd; border: 1px solid #cddafd;">
+                            <div class="button-login" align ="center" >
+                            <a id="kakao-login-btn" >
+                            <img src="img/kakao_login_medium_narrow.png"></div>
                         </div>
                     </div>
                 </div>
