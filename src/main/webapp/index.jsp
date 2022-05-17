@@ -129,6 +129,23 @@
     			  }
     			})
     	})
+    	
+    	$("#login").on("click",function(){
+    		$.ajax({
+    			url:"/login.member",
+    			data:{id:$("#id").val(),
+    				pw:$("#pw").val()},
+    			type="POST"
+    		}).done(function(resp){
+    			if(resp==false){
+    				Swal.fire({
+    					  icon: 'error',
+    					  title: 'Oops...',
+    					  text: '입력하신 회원정보가 존재하지 않습니다.'
+    					})
+    			}
+    		})
+    	})
     </script>
 </body>
 </html>
