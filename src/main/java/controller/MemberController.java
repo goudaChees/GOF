@@ -47,7 +47,7 @@ public class MemberController extends HttpServlet {
 			}else if(uri.equals("/duplCheck.member")) {
 				Gson g = new Gson();
 				String id = request.getParameter("id");
-				Boolean duplExist=dao.duplCheck(id);
+				Boolean duplExist=dao.isIdExist(id);
 				PrintWriter pw = response.getWriter();
 				pw.append(g.toJson(duplExist));
 			}

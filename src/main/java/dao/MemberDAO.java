@@ -36,4 +36,16 @@ private static MemberDAO instance = null;
 			}
 		}
 	}
+	
+	public boolean isIdExist(String id) throws Exception {
+		String sql = "select * from member where id=?";
+		
+		try(Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setString(1, id);
+			try(ResultSet rs = pstat.executeQuery();){
+				return rs.next();
+			}
+		}
+	}
 }

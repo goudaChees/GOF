@@ -97,8 +97,9 @@
 
     <script>
         let isIdOk = false;
+        let isPwOk = false;
         
-		$("#id").on("keyup",function(){
+		$("#id").on("keyup",function(){ // 아이디 입력 검증
 			let id = $("#id").val();
 			if(id==""){
 				$("#idCheckResult").css("color","red");
@@ -126,6 +127,36 @@
     			})
             }
 		})
+		
+		$("#pw").on("keyup",function(){ // 비밀번호 입력 검증
+			let pw = $("#pw").val();
+			if(pw==""){
+				$("#pwCheckResult").css("color","red");
+				$("#pwCheckResult").text("패스워드는 필수 입력 정보입니다.")
+			}
+            let idRegex = /[a-z0-9_]{5,11}/;
+            let idResult = idRegex.test(id);
+            if (!idResult) {
+            	$("#idCheckResult").css("color","red");
+				$("#idCheckResult").text("영문 소문자, 숫자, 특수기호(_)를 조합하여 5~11자로 작성");
+            }else{
+            	$.ajax({
+    				url:"/duplCheck.member",
+    				data:{id:$("#id").val()}
+    			}).done(function(resp){
+    				let result = JSON.parse(resp)
+    				if(result){
+    					$("#idCheckResult").css("color","red");
+    					$("#idCheckResult").text("이미 존재하는 아이디입니다.")
+    				}else{
+    					$("#idCheckResult").css("color","blue");
+    					$("#idCheckResult").text("사용가능한 아이디입니다.")
+    					isIdOk=true;
+    				}
+    			})
+            }
+		})
+		
         $("#pw2").on("keyup", function () {
             let pw1 = $("#pw1").val();
             let pw2 = $("#pw2").val();
