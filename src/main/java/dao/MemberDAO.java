@@ -48,4 +48,16 @@ private static MemberDAO instance = null;
 			}
 		}
 	}
+	
+	public boolean isNNExist(String nickname) throws Exception {
+		String sql = "select * from member where nickname=?";
+		
+		try(Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setString(1, nickname);
+			try(ResultSet rs = pstat.executeQuery();){
+				return rs.next();
+			}
+		}
+	}
 }
