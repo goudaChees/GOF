@@ -34,17 +34,43 @@
 	<div id="container">
 		<div class="row">
 			<div class="col-12">
-				navi
+				<div class="row">
+					<div class="col-1">
+						logo
+					</div>
+					<div class="col-3">
+					</div>
+					<div class="col-2">
+						지출의 참견
+					</div>
+					<div class="col-2">
+						선택의 참견
+					</div>
+					<div class="col-2">
+						고객센터
+					</div>
+					<div class="col-2">
+						마이페이지
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-12">
-				title
+				선택의 참견
+			</div>
+			<div class="col-12">
+				최저가를 찾는 자린괴비들의 지침
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-12">
-				serch
+			<div class="col-6">	
+			</div>
+			<div class="col-4">
+				<input type="text" id="serch" name="serch">
+			</div>
+			<div class="col-2">
+				<button type="submit" id="submit">검색</button>
 			</div>
 		</div>
 		<div class="row">
@@ -52,15 +78,41 @@
 				left
 			</div>
 			<div class="col-8">
-				border
+				<div class="row">
+					<div class="col-2">
+						글번호
+					</div>
+					<div class="col-2">
+						제목
+					</div>
+					<div class="col-2">
+						작성자
+					</div>
+					<div class="col-2">
+						제한시간
+					</div>
+					<div class="col-2">
+						작성시간
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-1"></div>
+					<div class="col-10">list</div>
+					<div class="col-1"></div>
+				</div>
 			</div>
 			<div class="col-2">
 				right
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-12">
-				list navi & button
+			<div class="col-2"></div>
+			<div class="col-8">
+				< 1 2 3 4 5 6 7 8 9 10 >
+			</div>
+			<div class="col-2">
+				<button type="button">메인으로</button>
+				<button type="button">작성하기</button>
 			</div>
 		</div>
 		<div class="row">
