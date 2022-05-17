@@ -35,100 +35,110 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="row">
-					<div class="col-1">
-						logo
-					</div>
-					<div class="col-3">
-					</div>
-					<div class="col-2">
-						지출의 참견
-					</div>
-					<div class="col-2">
-						선택의 참견
-					</div>
-					<div class="col-2">
-						고객센터
-					</div>
-					<div class="col-2">
-						마이페이지
-					</div>
+					<div class="col-1">logo</div>
+					<div class="col-3"></div>
+					<div class="col-2">지출의 참견</div>
+					<div class="col-2">선택의 참견</div>
+					<div class="col-2">고객센터</div>
+					<div class="col-2">마이페이지</div>
 				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-12">
-				선택의 참견
-			</div>
-			<div class="col-12">
-				최저가를 찾는 자린괴비들의 지침
-			</div>
+			<div class="col-12">선택의 참견</div>
+			<div class="col-12">최저가를 찾는 자린괴비들의 지침</div>
 		</div>
 		<div class="row">
-			<div class="col-6">	
-			</div>
+			<div class="col-6"></div>
 			<div class="col-4">
-				<input type="text" id="serch" name="serch" placeholder="검색하실 내용을 입력하세요">
+				<input type="text" id="serch" name="serch"
+					placeholder="검색하실 내용을 입력하세요">
 			</div>
 			<div class="col-2">
 				<button type="submit" id="submit">검색</button>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-2">
-				left
-			</div>
+			<div class="col-2">left</div>
 			<div class="col-8">
 				<div class="row">
-					<div class="col-2">
-						글번호
-					</div>
-					<div class="col-2">
-						제목
-					</div>
-					<div class="col-2">
-						작성자
-					</div>
-					<div class="col-2">
-						제한시간
-					</div>
-					<div class="col-2">
-						작성시간
-					</div>
+					<div class="col-2">글번호</div>
+					<div class="col-2">제목</div>
+					<div class="col-2">작성자</div>
+					<div class="col-2">제한시간</div>
+					<div class="col-2">작성시간</div>
 				</div>
 				<div class="row">
-			<c:forEach var="i" items="${dto}">
-				<div class="col-2">${i.num}</div>
-				<div class="col-2">${i.title}</div>
-				<div class="col-2">${i.writer}</div>
-				<div class="col-2">${i.limet}</div>
-				<div class="col-2">${i.wrier_date}</div>
-			</c:forEach>
-			</div>
+					<c:forEach var="i" items="${dto}">
+						<div class="col-2">${i.num}</div>
+						<div class="col-2">${i.title}</div>
+						<div class="col-2">${i.writer}</div>
+						<div class="col-2 limit" id="${i.num}">${i.limit}</div>
+						<div class="col-2">${i.wrier_date}</div>
+					</c:forEach>
+                    
+				</div>
 				<div class="row">
 					<div class="col-1"></div>
 					<div class="col-10">list</div>
 					<div class="col-1"></div>
 				</div>
 			</div>
-			<div class="col-2">
-				right
-			</div>
+			<div class="col-2">right</div>
 		</div>
 		<div class="row">
 			<div class="col-2"></div>
-			<div class="col-8">
-				< 1 2 3 4 5 6 7 8 9 10 >
-			</div>
+			<div class="col-8">< 1 2 3 4 5 6 7 8 9 10 ></div>
 			<div class="col-2">
 				<button type="button">메인으로</button>
 				<button type="button">작성하기</button>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-12">
-				footer
-			</div>
+			<div class="col-12">footer</div>
 		</div>
 	</div>
+	<script>
+	
+	let _second = 1000;
+	let _minute = _second * 60;
+	let _hour = _minute * 60;
+	let _day = _hour * 24;
+	let timer;
+		const countDownTimer = function(id, date) {
+			let _vDate = new Date(date);
+			// 전달 받은 일자 
+			function showRemaining() {
+				let now = new Date();
+				var distDt = _vDate - now;
+				if (distDt < 0) {
+					clearInterval(timer);
+					document.getElementById(id).textContent="종료";
+					return;
+				}
+				let days = Math.floor(distDt / _day);
+				let hours = Math.floor((distDt % _day) / _hour);
+				let minutes = Math.floor((distDt % _hour) / _minute);
+				let seconds = Math.floor((distDt % _minute) / _second);
+				//document.getElementById(id).textContent = date.toLocaleString() + "까지 : ";
+ 				//document.getElementById(id).textContent = days + '일 ';
+				//document.getElementById(id).textContent += hours + '시간 ';
+				document.getElementById(id).textContent = minutes + '분 ';
+				document.getElementById(id).textContent += seconds + '초';
+			}
+			timer = setInterval(showRemaining, 1000);
+		}
+		let dateObj = new Date();
+		dateObj.setMinutes(dateObj.getMinutes() +10);
+        for(let i=0;i<10;i++){
+        let id = $(document.querySelectorAll(".limit")[i]).attr('id');
+		countDownTimer(id, dateObj);
+        }
+		// 내일까지 countDownTimer('sample02', '04/01/2024 00:00 AM'); 
+		// 2024년 4월 1일까지, 시간을 표시하려면 01:00 AM과 같은 형식을 사용한다. 
+// 		countDownTimer('sample03', '04/01/2024');
+		// 2024년 4월 1일까지 countDownTimer('sample04', '04/01/2019');
+		// 2024년 4월 1일까지
+	</script>
 </body>
 </html>
