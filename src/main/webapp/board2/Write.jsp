@@ -23,7 +23,25 @@
 	<div id="container">
 		<div class="row">
 			<div class="col-12">
-				navi
+				<div class="row">
+					<div class="col-1">
+						logo
+					</div>
+					<div class="col-3">
+					</div>
+					<div class="col-2">
+						지출의 참견
+					</div>
+					<div class="col-2">
+						선택의 참견
+					</div>
+					<div class="col-2">
+						고객센터
+					</div>
+					<div class="col-2">
+						마이페이지
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="row">
@@ -43,8 +61,13 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-12">
-				button
+			<div class="col-8">
+			</div>
+			<div class="col-2">
+				작성하기
+			</div>
+			<div class="col-2">
+				취소하기
 			</div>
 		</div>
 		<div class="row">
