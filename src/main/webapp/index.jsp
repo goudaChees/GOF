@@ -62,7 +62,7 @@ div {
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="#">선택의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="#">고객센터</a></li>
+									aria-current="page" href="csmain.cscenter">고객센터</a></li>
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="#">관리자페이지</a></li>
 							</ul>
@@ -93,7 +93,7 @@ div {
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="#">선택의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="#">고객센터</a></li>
+									aria-current="page" href="csmain.cscenter">고객센터</a></li>
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="#">마이페이지</a></li>
 							</ul>
@@ -123,7 +123,7 @@ div {
 								<li class="nav-item"><a class="nav-link active nonMember"
 									aria-current="page" href="#">선택의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="#">고객센터</a></li>
+									aria-current="page" href="csmain.cscenter">고객센터</a></li>
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="joinform.member">회원가입</a></li>
 							</ul>
