@@ -17,7 +17,7 @@
         box-sizing: border-box;
     }
     div{
-        border:1px solid black;
+         border:1px solid black; 
         text-align: center;
     }
 
@@ -114,7 +114,20 @@
     
     <script>
     	$(".nonMember").on("click",function(){
-    		
+    		Swal.fire({
+    			  title: '회원가입 후 이용 가능합니다.',
+    			  text: "회원가입 페이지로 이동합니다.",
+    			  icon: 'warning',
+    			  showCancelButton: true,
+    			  confirmButtonColor: '#3085d6',
+    			  cancelButtonColor: '#d33',
+    			  confirmButtonText: '확인',
+    			  cancelButtonText: '취소',
+    			}).then((result) => {
+    			  if (result.isConfirmed) {
+    			    location.href="join.member"
+    			  }
+    			})
     	})
     </script>
 </body>
