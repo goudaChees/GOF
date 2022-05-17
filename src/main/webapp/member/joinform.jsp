@@ -125,7 +125,6 @@
     				}
     			})
             }
-			
 		})
         $("#pw2").on("keyup", function () {
             let pw1 = $("#pw1").val();

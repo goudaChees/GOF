@@ -44,6 +44,12 @@ public class MemberController extends HttpServlet {
 			}else if(uri.equals("/joinform.member")) {
 				response.sendRedirect("/member/joinform.jsp");
 				
+			}else if(uri.equals("/duplCheck.member")) {
+				Gson g = new Gson();
+				String id = request.getParameter("id");
+				Boolean duplExist=dao.duplCheck(id);
+				PrintWriter pw = response.getWriter();
+				pw.append(g.toJson(duplExist));
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
