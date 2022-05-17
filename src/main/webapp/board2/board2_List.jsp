@@ -20,8 +20,6 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
 	integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
 	crossorigin="anonymous"></script>
-<script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
 * {
 	border: 1px solid black;
@@ -70,11 +68,11 @@
 				</div>
 				<div class="row">
 					<c:forEach var="i" items="${dto}">
-						<div class="col-2">${i.num}</div>
-						<div class="col-2">${i.title}</div>
+						<div class="col-2">${i.seq}</div>
+						<div class="col-2"><a href="/read.board?seq=${i.seq}&count=${i.count}">${i.title}</a></div>
 						<div class="col-2">${i.writer}</div>
-						<div class="col-2 limit" id="${i.num}">${i.limit}</div>
-						<div class="col-2">${i.wrier_date}</div>
+						<div class="col-2 limit" id="${i.seq}">${i.limit}</div>
+						<div class="col-2 time" id="${i.wrier_date}"></div>
 					</c:forEach>
                     
 				</div>
@@ -90,8 +88,8 @@
 			<div class="col-2"></div>
 			<div class="col-8">< 1 2 3 4 5 6 7 8 9 10 ></div>
 			<div class="col-2">
-				<button type="button">메인으로</button>
-				<button type="button">작성하기</button>
+				<a href="/index.jsp"><button id="tomain">main으로</button></a>
+				<a href="/write.brd2"><button id="write">작성하기</button></a>
 			</div>
 		</div>
 		<div class="row">
@@ -99,16 +97,15 @@
 		</div>
 	</div>
 	<script>
-	
-	let _second = 1000;
-	let _minute = _second * 60;
-	let _hour = _minute * 60;
-	let _day = _hour * 24;
-	let timer;
 		const countDownTimer = function(id, date) {
 			let _vDate = new Date(date);
 			// 전달 받은 일자 
-			function showRemaining() {
+			let _second = 1000;
+			let _minute = _second * 60;
+			let _hour = _minute * 60;
+			let _day = _hour * 24;
+			let timer;
+			function showRemaining() {	
 				let now = new Date();
 				var distDt = _vDate - now;
 				if (distDt < 0) {
@@ -128,12 +125,17 @@
 			}
 			timer = setInterval(showRemaining, 1000);
 		}
-		let dateObj = new Date();
-		dateObj.setMinutes(dateObj.getMinutes() +10);
-        for(let i=0;i<10;i++){
-        let id = $(document.querySelectorAll(".limit")[i]).attr('id');
-		countDownTimer(id, dateObj);
-        }
+ 		
+		
+		for(let i=0;i<10;i++){
+	        let id = $(document.querySelectorAll(".limit")[i]).attr('id');
+	        let time = $(document.querySelectorAll(".time")[i]).attr('id');
+	        let dateObj = new Date(time);
+			let wtime = dateObj.getFullYear()+"-"+dateObj.getMonth()+"-"+dateObj.getDate()+" "+dateObj.getHours()+":"+dateObj.getMinutes()+":"+dateObj.getSeconds();
+	        $(document.querySelectorAll(".time")[i]).text(wtime);
+	        dateObj.setMinutes(dateObj.getMinutes() +10);
+			countDownTimer(id, dateObj);
+	        }
 		// 내일까지 countDownTimer('sample02', '04/01/2024 00:00 AM'); 
 		// 2024년 4월 1일까지, 시간을 표시하려면 01:00 AM과 같은 형식을 사용한다. 
 // 		countDownTimer('sample03', '04/01/2024');

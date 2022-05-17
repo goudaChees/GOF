@@ -43,6 +43,18 @@ public class Board2Controller extends HttpServlet {
 			request.setAttribute("navi", pageNavi);
 			request.setAttribute("dto",dto);
 			request.getRequestDispatcher("/board2/board2_List.jsp").forward(request, response);
+			}else if(uri.equals("/write.brd2")) {
+				response.sendRedirect("/board/board2_Write.jsp");
+			}else if(uri.equals("/write2brd2")) {
+				HttpSession session = request.getSession();
+				String id = (String) session.getAttribute("loginID");
+				String nickname= dao.selectNicknameById(id);
+				String title = request.getParameter("title");
+				String contents = request.getParameter("contents");
+				String item = request.getParameter("item");
+				dao.insert(new Board2DTO(0,nickname,title,contents,item,"0",0));
+			}else if(uri.equals("/modi.brd2")) {
+				
 			}
 			}catch (Exception e) {
 			e.printStackTrace();

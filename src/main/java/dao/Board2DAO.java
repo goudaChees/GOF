@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -198,6 +199,21 @@ public class Board2DAO {
 			}
 			return arr;
 		}
-		
+		public String selectNicknameById(String id)throws Exception {
+			String sql = "select nickname from member where id=?";
+			try(
+					Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);
+						){
+				pstat.setString(1, id);
+
+				try(
+					ResultSet rs = pstat.executeQuery();
+						){
+					rs.next();
+					return rs.getString("nickname");
+				}
+			}
+		}
 		
 }

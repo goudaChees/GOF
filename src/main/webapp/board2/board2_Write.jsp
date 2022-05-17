@@ -22,7 +22,7 @@
 </style>
 </head>
 <body>
-	<form action="write.brd2" method="get">
+	<form action="write2.brd2" method="get">
 	<div id="container">
 		<div class="row">
 			<div class="col-12">
@@ -49,18 +49,19 @@
 		</div>
 		<div class="row">
 			<div class="col-12">
-				title
+				<input type="text" name="title" placeholder="제목을 작성해주세요">
 			</div>
+		</div>
+		<div class="col-12">
+			<input type="text" name="item" placeholder="물건의 이름을 작성해주세요">
 		</div>
 		<div class="row">
 			<div class="col-2">
-				left
 			</div>
 			<div class="col-8">
-				<div id="summernote"></div>
+				<div id="summernote" name="contents"></div>
 			</div>
 			<div class="col-2">
-				right
 			</div>
 		</div>
 		<div class="row">
