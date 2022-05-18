@@ -36,6 +36,19 @@ div {
 	border: 1px solid black;
 	text-align: center;
 }
+
+#home>div {
+	float: left;
+	z-index: -10;
+	position: relative;
+}
+
+#receipt {
+	position: absolute;
+	top: 100px;
+	right: 20%;
+	z-index: -5;
+}
 </style>
 
 </head>
@@ -131,6 +144,18 @@ div {
 					</div>
 				</nav>
 			</div>
+
+			<div class="row" id="home">
+				<div class="col-6" style="background-color: #5aa9e6; height: 800px;"></div>
+				<div class="col-6" style="background-color: #7fc8f8; height: 800px;"></div>
+			</div>
+
+			<div class="row" id="receipt">
+				<div class="col-12">
+					<img src="receipt.png" style="width: 100%;">
+				</div>
+			</div>
+
 			<form action="login.member" method="post">
 				<div class="container">
 					<div class="row">
