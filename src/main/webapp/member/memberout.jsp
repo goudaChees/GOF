@@ -16,7 +16,7 @@
 </head>
 
 <body>
-<form action="/memberCheck.member" method="post">
+
   <br>
   <b><font size="5" color="gray">정말 탈퇴하시겠습니까?</font></b>
   <br>
@@ -26,8 +26,8 @@
 
   <input type="text" name="pw" id="pw"><br><br>
   <input type="submit" value="탈퇴하기" id="realout">
-  <input type="button" value="그만두기" >
-</form>
+  <input type="button" value="그만두기" onclick="window.close()">
+
 <script>
 	$("#realout").on("click", function(){
 		if($("#pw").val()==""){
@@ -35,6 +35,21 @@
 			return;
 		}	
 		
+		$.ajax({
+			type:"POST",
+			url: "/memberCheck.member",
+			data: {pw:$("#pw").val()}
+		}).done(function(resp){
+			if(resp == "false"){
+				alert("비밀번호가 올바르지 않습니다.");
+				$("#id").val("");
+				$("#id").focus();
+			} else {
+				window.close();
+				opener.location.href="/realOut.member"
+			}
+
+		})
 	})
 </script>
 </body>

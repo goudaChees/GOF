@@ -89,18 +89,18 @@ public class MemberController extends HttpServlet {
 			
 			} else if(uri.equals("/memberCheck.member")) { // 회원탈퇴 창에서 확인시 
 				EncryptUtils eUtil = new EncryptUtils();
+				Gson g = new Gson();
+				PrintWriter prw = response.getWriter();
 				
 				String id = (String) request.getSession().getAttribute("loginID");
 				String pw = eUtil.SHA512(request.getParameter("pw"));
 				Boolean isLoginOk=dao.IsloginOk(id,pw); // 아이디, 비번 검사				
+				prw.append(g.toJson(isLoginOk));
 				
-				// 비밀번호 확인시 탈퇴 진행
-				if(isLoginOk) {
-					request.getSession().invalidate();
-					response.sendRedirect("/index.jsp");
-				} else {
-					response.sendRedirect("/member/memberout.jsp");
-				}
+			} else if(uri.equals("/realOut.member")) {
+				
+				request.getSession().invalidate();
+				response.sendRedirect("/index.jsp");
 			}
 			
 		}catch(Exception e) {
