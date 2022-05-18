@@ -18,13 +18,7 @@
         border:1px solid black;
         text-align: center;
     }
-
-.write_Box{
-  float: left;
-}
-
 </style>
-
 </head>
 <body>
      <div class="container w-100" style="max-width:100%;padding: 0;margin: 0;position: relative;">
@@ -53,43 +47,11 @@
              </div>
          </nav>
      </div>		        
-
-	<form action="/write.brd1" enctype="multipart/form-data" method="post">
-		<div id=write_container style="text-align: left; width: 50%; margin: auto;">
-			<span style="font-size: 30px;">지출의 참견</span>
-	    	<span>구매가 고민되는 상품의 정보를 입력해주세요.</span><br>
-        <div style="text-align:center">
-          	<input type="text" placeholder="글 제목을 입력해주세요" name="title" size="70" ><br>
-          	<div class="write_Box" style="width:50% ; border: 0px;">
-          		<div id="img_Box">
-            		<img src="#" style="width: 200px; height: 200px;" id="img_section">
-            	</div>
-            	<input type="file" name="file" id="upload_file" accept="image/*">
-          	</div>
-          	<div class="write_Box" style="width:50%; height: 200px; border: 0px;">
-            	<input type="text" placeholder="물건명을 입력해주세요" name="item"><br>
-            	<input type="text" placeholder="가격을 입력해주세요" name="item_price"><br>
-          	</div>
-          	<textarea placeholder="이 물건을 꼭 사야할 이유가 뭔가요" name="contents" rows="10" cols="70"></textarea><br>
-          	<input type="button" value="목록으로">
-          	<input type="submit" vlaue="저장하기">
-        </div>    
-		</div>
+		
 	    <div class="row w-100 m-0" id="footer">
 	        <div class="col-12">Copyright by Phoenix since 2022 05 00</div>
 	    </div>
-	 </form>
-	 <script>
-	 	const reader = new FileReader();
-	 	reader.onload = (readerEvent) =>{
-	 		document.querySelector("#img_section").setAttribute("src",readerEvent.target.result);
-	 	}
 
-     document.querySelector("#upload_file").addEventListener("change",(changeEvent) => {
-       const imgFile = changeEvent.target.files[0];
-       reader.readAsDataURL(imgFile);
-     })
-     
-	 </script>
+
 </body>
 </html>

@@ -92,7 +92,7 @@ div {
 							</c:when>
 							<c:when test="${loginID !=null}">
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="#">마이페이지</a></li>
+									aria-current="page" href="mypage.member">마이페이지</a></li>
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="logout.member"><i class="bi bi-box-arrow-right"></i></a></li>
 							</c:when>
