@@ -72,7 +72,7 @@
           	</div>
           	<textarea placeholder="이 물건을 꼭 사야할 이유가 뭔가요" name="contents" rows="10" cols="70"></textarea><br>
           	<input type="button" value="목록으로">
-          	<input type="submit" vlaue="수정하기">
+          	<input type="submit" vlaue="저장하기">
         </div>    
 		</div>
 	    <div class="row w-100 m-0" id="footer">
@@ -89,6 +89,7 @@
        const imgFile = changeEvent.target.files[0];
        reader.readAsDataURL(imgFile);
      })
+     
 	 </script>
 </body>
 </html>
