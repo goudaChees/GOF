@@ -72,9 +72,7 @@ public class Board1Controller extends HttpServlet {
 				String title = multi.getParameter("title");
 				String item = multi.getParameter("item");
 				int item_price = Integer.parseInt(multi.getParameter("item_price"));
-				
-				System.out.println(multi.getParameter("contents"));
-				
+								
 				String contents = multi.getParameter("contents");
 				
 	
