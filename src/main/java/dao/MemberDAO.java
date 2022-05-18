@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -91,6 +92,29 @@ private static MemberDAO instance = null;
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;
+		}
+	}
+	
+	public MemberDTO selectById(String pid) throws Exception{
+		String sql = "select * from member where id=?";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, pid);
+			MemberDTO dto = null;
+			try(ResultSet rs = pstat.executeQuery();){
+				if(rs.next()) {
+					String id = rs.getString("id");
+					String name = rs.getString("name");
+					String phone = rs.getString("phone");
+					String email = rs.getString("email");
+					String nickname = rs.getString("nickname");
+					Date join_date = rs.getDate("join_date");
+					
+					dto = new MemberDTO(0, id, null ,name, phone, email, nickname, join_date);
+				}
+				return dto;
+			}
 		}
 	}
 }
