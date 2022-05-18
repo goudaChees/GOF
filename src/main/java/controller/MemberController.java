@@ -77,7 +77,12 @@ public class MemberController extends HttpServlet {
 				dao.insert(new MemberDTO(0,id,pw,name,phone,email,nickname,null));
 				response.sendRedirect("/index.jsp");
 				
+			}else if(uri.equals("/logout.member")) { // 로그아웃
+				request.getSession().invalidate();
+				response.sendRedirect("/index.jsp");
+				
 			}
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("error.html");

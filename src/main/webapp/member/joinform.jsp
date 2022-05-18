@@ -92,7 +92,7 @@ div {
 						<div class="col-3">전화번호</div>
 						<div class="col-9">
 							<input type="text" id="phone1" name="phone1">- <input
-								type="text" id="phone2" name="phone3">- <input
+								type="text" id="phone2" name="phone2">- <input
 								type="text" id="phone3" name="phone3">
 						</div>
 						<div class="col-3"></div>

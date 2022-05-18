@@ -22,10 +22,11 @@
 	crossorigin="anonymous"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <script>
       	// SDK를 초기화. 사용할 앱의 JavaScript 키
       	Kakao.init('b956cab5ef7dbe5bc1f861614a4b2061');
-      	console.log(Kakao.isInitialized());
+//       	console.log(Kakao.isInitialized());
 </script>
 <style>
 * {
@@ -46,151 +47,114 @@ div {
 #receipt {
 	position: absolute;
 	top: 100px;
-	right: 20%;
-	z-index: -5;
+	right: 15%;
+	z-index: 0;
+	text-align : center;
+}
+
+#receipt_center {
+	position: absolute;
+	top: 30%;
+	width:75%;
+	left:13%;
+	z-index:2;
 }
 </style>
 
 </head>
 <body>
-	<c:choose>
-		<c:when test="${loginID =='admin'}">
-			<!-- 세션에 관리자 아이디로 로그인시 -->
-			<div class="container w-100"
-				style="max-width: 100%; padding: 0; margin: 0; position: relative;">
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
-					<div class="container-fluid">
-						<a class="navbar-brand" href="index.jsp">앞날의 지침</a>
-						<button class="navbar-toggler" type="button"
-							data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-							aria-controls="navbarNavDropdown" aria-expanded="false"
-							aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-						<div class="collapse navbar-collapse justify-content-end"
-							id="navbarNavDropdown">
-							<ul class="navbar-nav">
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="#">지출의 참견</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="list.brd2">선택의 참견</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="csmain.cscenter">고객센터</a></li>
+	<div class="container w-100" style="max-width: 100%; padding: 0; margin: 0; position: relative;">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="index.jsp">앞날의 지침</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+					aria-controls="navbarNavDropdown" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-end"
+					id="navbarNavDropdown">
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="#">지출의 참견</a></li>
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="list.brd2">선택의 참견</a></li>
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="csmain.cscenter">고객센터</a></li>
+						
+						<c:choose>
+							<c:when test="${loginID =='admin'}">
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="#">관리자페이지</a></li>
-							</ul>
-						</div>
-					</div>
-				</nav>
-			</div>
-		</c:when>
-
-		<c:when test="${loginID !=null}">
-			<!-- 세션에 아이디가 존재할때 -->
-			<div class="container w-100"
-				style="max-width: 100%; padding: 0; margin: 0; position: relative;">
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
-					<div class="container-fluid">
-						<a class="navbar-brand" href="index.jsp">앞날의 지침</a>
-						<button class="navbar-toggler" type="button"
-							data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-							aria-controls="navbarNavDropdown" aria-expanded="false"
-							aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-						<div class="collapse navbar-collapse justify-content-end"
-							id="navbarNavDropdown">
-							<ul class="navbar-nav">
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="#">지출의 참견</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="list.brd2">선택의 참견</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="csmain.cscenter">고객센터</a></li>
+								aria-current="page" href="logout.member"><i class="bi bi-box-arrow-right"></i></a></li>
+							</c:when>
+							<c:when test="${loginID !=null}">
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="#">마이페이지</a></li>
-							</ul>
-						</div>
-					</div>
-				</nav>
-			</div>
-		</c:when>
-		<c:otherwise>
-			<!-- 세션에 아이디가 없을 때 -->
-			<div class="container w-100"
-				style="max-width: 100%; padding: 0; margin: 0; position: relative;">
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
-					<div class="container-fluid">
-						<a class="navbar-brand" href="index.jsp">앞날의 지침</a>
-						<button class="navbar-toggler" type="button"
-							data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-							aria-controls="navbarNavDropdown" aria-expanded="false"
-							aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-						<div class="collapse navbar-collapse justify-content-end"
-							id="navbarNavDropdown">
-							<ul class="navbar-nav">
-								<li class="nav-item"><a class="nav-link active nonMember"
-									aria-current="page" href="#">지출의 참견</a></li>
-								<li class="nav-item"><a class="nav-link active nonMember"
-									aria-current="page" href="list.brd2">선택의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="#">고객센터</a></li>
+									aria-current="page" href="logout.member"><i class="bi bi-box-arrow-right"></i></a></li>
+							</c:when>
+							<c:otherwise>
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="joinform.member">회원가입</a></li>
-							</ul>
-						</div>
-					</div>
-				</nav>
-			</div>
-
-			<div class="row" id="home">
-				<div class="col-6" style="background-color: #5aa9e6; height: 800px;"></div>
-				<div class="col-6" style="background-color: #7fc8f8; height: 800px;"></div>
-			</div>
-
-			<div class="row" id="receipt">
-				<div class="col-12">
-					<img src="receipt.png" style="width: 100%;">
+							</c:otherwise>
+						</c:choose>
+					</ul>
 				</div>
 			</div>
+		</nav>
+		
+		<div class="row" id="home">
+			<div class="col-6" style="background-color: #5aa9e6; height: 800px;"></div>
+			<div class="col-6" style="background-color: #7fc8f8; height: 800px;"></div>
+		</div>
 
-			<form action="login.member" method="post">
-				<div class="container">
-					<div class="row">
-						<div class="col-12">Login</div>
-					</div>
-					<div class="row">
-						<div class="col-4 p-0">아이디 :</div>
-						<div class="col-8 p-0">
-							<input type="text" id="id" name="id" placeholder="input your id">
+		<div class="row" id="receipt">
+			<div class="col-12">
+				<img src="/img/receipt.png" style="width: 80%;">
+			</div>
+			
+			<div class="col-12" id="receipt_center">
+				<c:choose>
+					<c:when test="${loginID !=null}">
+						<div class="row receipt_center">
+							<div class="col-12">${loginNN }님 안녕하세요!</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-4 p-0">패스워드 :</div>
-						<div class="col-8 p-0">
-							<input type="password" id="pw" name="pw"
-								placeholder="input your pw">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-12">
-							<input type="submit" id="login" value="로그인"
-								style="background-color: #dfe7fd; border: 1px solid #cddafd;">
-							<input type="button" id="kakao-login-btn" value="카카오로 로그인"
-								style="background-color: #dfe7fd; border: 1px solid #cddafd;">
-							<input type="button" id="kakao-logout" value="카카오로 로그아웃"
-								style="background-color: #dfe7fd; border: 1px solid #cddafd;">
-						</div>
-					</div>
-				</div>
-			</form>
-		</c:otherwise>
-	</c:choose>
-
-	<div class="row w-100 m-0" id="footer">
-		<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
+					</c:when>
+					<c:otherwise>
+						<form action="login.member" method="post">
+							<div class="row receipt_center">
+								<div class="col-12">Login</div>
+								<div class="col-4 p-0">아이디 :</div>
+								<div class="col-8 p-0">
+									<input type="text" id="id" name="id" placeholder="input your id">
+								</div>
+								<div class="col-4 p-0">패스워드 :</div>
+								<div class="col-8 p-0">
+									<input type="password" id="pw" name="pw"
+										placeholder="input your pw">
+								</div>
+								<div class="col-12">
+									<input type="submit" id="login" value="로그인"
+										style="background-color: #dfe7fd; border: 1px solid #cddafd;">
+									<input type="button" id="kakao-login-btn" value="카카오로 로그인"
+										style="background-color: #dfe7fd; border: 1px solid #cddafd;">
+									<input type="button" id="kakao-logout" value="카카오로 로그아웃"
+										style="background-color: #dfe7fd; border: 1px solid #cddafd;">
+								</div>
+							</div>
+						</form>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</div>
+		
+		<div class="row w-100 m-0" id="footer">
+			<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
+		</div>
+	
 	</div>
 
 	<script>
@@ -216,15 +180,19 @@ div {
     			url:"/login.member",
     			data:{id:$("#id").val(),
     				pw:$("#pw").val()},
-    			type="POST"
+    			type:"POST"
     		}).done(function(resp){
-    			let result = JSON.parse(resp)
+    			location.reload();
+    			let result = JSON.parse(resp);
     			if(!result){
     				Swal.fire({
     					  icon: 'error',
     					  title: 'Oops...',
     					  text: '입력하신 회원정보가 존재하지 않습니다.'
     					})
+    				$("#id").val("");
+    				$("#pw").val("");
+    				$("#id").val().focus();
     			}
     		})
     	})
