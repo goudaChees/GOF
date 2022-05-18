@@ -101,6 +101,7 @@ p {
 	$("#member_out").on("click", function(){
 		window.open("/member/memberout.jsp", "",
 		"top=100,left=200,width=550,height=350");
+		//location.href="/member/memberout.jsp";
 	})
 </script>
 </html>
