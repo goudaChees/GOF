@@ -43,8 +43,25 @@ public class Board2_replyDAO {
 		return ck;
 	}
 	// 댓글 선택 여부 매서드
-	
-	
+	public boolean iswrite(ArrayList<Board2_replyDTO> dto) throws Exception{
+		String sql ="select writer from board2_reply";
+		boolean ck = false;
+		try(Connection con = this.getConnection();
+			PreparedStatement stat = con.prepareStatement(sql);
+			ResultSet rs = stat.executeQuery();){
+				while(rs.next()) {
+					String result = rs.getString("writer");
+					for(Board2_replyDTO adto:dto) {
+					if(result.equals(adto.getNickname())) {
+						ck = true;
+						}
+					}
+				}
+				
+			}
+		return ck;
+	}
+	// 댓글 중복 불가 확인 매서드
 	public int insert(Board2_replyDTO dto) throws Exception {
 		String sql = "insert into board2 values(reply2_seq.nextval,?,?,?,?,default)";
 		try (Connection con = this.getConnection();
