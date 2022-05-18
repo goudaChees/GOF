@@ -54,15 +54,63 @@
 				
 			</div>
 			<div class="col-8">
-				${dto.contents}
+				<div class="row">
+					<div class="col-12">
+					${dto.contents}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-9"></div>
+					<div class="col-3">
+						<button type="button" id="modi">수정하기</button>
+						<button type="button" id="del">삭제하기</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-3">
+						<input type="text" placeholder="가격을 입력해주세요" name="price">
+					</div>
+					<div class="col-8">
+						<input type="text" placeholder="내용을 입력해주세요" name="contents">
+					</div>
+					<div class="col-1">
+						<button type="button">작성</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<c:forEach var="i" items="${rdto}">
+						<div class="row">
+							<div class="col-3">
+								${i.price}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-8">
+								<div class="row">
+									<div class="col-3">
+										${i.nickname}
+									</div>
+									<div class="col-3">
+										${i.wirte_date}
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-12">
+										${i.contents}
+									</div>
+								</div>
+							</div>
+							<div class="col-1">
+								<input type="radio" name="choice" value="선택">
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+		</div>
 			</div>
 			<div class="col-2">
 				
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-12">
-				list
 			</div>
 		</div>
 		<div class="row">
@@ -71,5 +119,21 @@
 			</div>
 		</div>
 	</div>
+	<script>
+	$("#del").on("click",function(){
+		result = window.confirm("정말 삭제하시겟습니까?");
+		if(result){
+			location.href = "/del.brd2?seq="+${dto.seq}
+		}
+		//글 삭제
+	})
+	$("#modi").on("click",function(){
+		result = window.confirm("정말 수정하시겟습니까?");
+		if(result){
+			location.href = "/modi.brd2?seq="+${dto.seq}
+		}
+		//글 수정
+	})
+	</script>
 </body>
 </html>
