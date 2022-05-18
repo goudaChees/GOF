@@ -16,6 +16,7 @@
 </head>
 
 <body>
+<form action="login.member" method="post">
   <br>
   <b><font size="5" color="gray">정말 탈퇴하시겠습니까?</font></b>
   <br>
@@ -24,14 +25,8 @@
   <br><br>
 
   <input type="text" id="pwCheck"><br><br>
-  <input type="button" value="탈퇴하기" id="realout">
+  <input type="submit" value="탈퇴하기" id="realout">
   <input type="button" value="그만두기" onclick="window.close()">
-
-<script>
-  $("#realout").on("click", function(){
-    location.href="/memberOut.member";
-  })
-
-</script>
+</form>
 </body>
 </html>
