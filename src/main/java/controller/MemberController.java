@@ -24,13 +24,13 @@ public class MemberController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("utf8");
+		Gson g = new Gson();
+		EncryptUtils eUtil = new EncryptUtils();
 		
 		String uri = request.getRequestURI();
 		MemberDAO dao = MemberDAO.getInstance();
 		try {
 			if(uri.equals("/login.member")) { // 로그인 버튼 클릭시
-				Gson g = new Gson();
-				EncryptUtils eUtil = new EncryptUtils();
 				String id = request.getParameter("id");
 				String pw= request.getParameter("pw");
 				pw=eUtil.SHA512(pw);
@@ -48,22 +48,18 @@ public class MemberController extends HttpServlet {
 				response.sendRedirect("/member/joinform.jsp");
 				
 			}else if(uri.equals("/idDuplCheck.member")) { // 아이디 중복체크
-				Gson g = new Gson();
 				String id = request.getParameter("id");
 				Boolean isIdExist=dao.isIdExist(id);
 				PrintWriter pw = response.getWriter();
 				pw.append(g.toJson(isIdExist));
 				
 			}else if(uri.equals("/nnDuplCheck.member")) { //닉네임 중복체크
-				Gson g = new Gson();
 				String nickname = request.getParameter("nickname");
 				Boolean isNNExist=dao.isNNExist(nickname);
 				PrintWriter pw = response.getWriter();
 				pw.append(g.toJson(isNNExist));
 				
 			}else if(uri.equals("/member/join.member")) { //회원가입폼 제출시
-				EncryptUtils eUtil = new EncryptUtils();
-				
 				String id= request.getParameter("id");
 				String pw= request.getParameter("pw1");
 				pw=eUtil.SHA512(pw);
@@ -88,8 +84,6 @@ public class MemberController extends HttpServlet {
 				request.getRequestDispatcher("/member/mypage.jsp").forward(request, response);
 			
 			} else if(uri.equals("/memberCheck.member")) { // 회원탈퇴 비밀번호 검사 
-				EncryptUtils eUtil = new EncryptUtils();
-				Gson g = new Gson();
 				PrintWriter prw = response.getWriter();
 				
 				String id = (String) request.getSession().getAttribute("loginID");
