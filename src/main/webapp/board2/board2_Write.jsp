@@ -22,7 +22,7 @@
 </style>
 </head>
 <body>
-	<form action="write2.brd2" method="get">
+	<form action="write2.brd2" method="post">
 	<div id="container">
 		<div class="row">
 			<div class="col-12">
@@ -59,7 +59,7 @@
 			<div class="col-2">
 			</div>
 			<div class="col-8">
-				<div id="summernote" name="contents"></div>
+				<textarea id="summernote" name="contents"></textarea>
 			</div>
 			<div class="col-2">
 			</div>
@@ -83,7 +83,7 @@
 </form>
 	<script>
 		$('#summernote').summernote({
-		  placeholder: 'Hello stand alone ui',
+		  placeholder: '내용을 작성해주세요',
 		  tabsize: 2,
 		  height: 300,
 		  toolbar: [

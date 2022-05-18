@@ -57,7 +57,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-2">left</div>
+			<div class="col-2"></div>
 			<div class="col-8">
 				<div class="row">
 					<div class="col-2">글번호</div>
@@ -69,10 +69,10 @@
 					<c:forEach var="i" items="${dto}">
 					<div class="row">
 						<div class="col-2">${i.seq}</div>
-						<div class="col-2"><a href="/read.brd2?seq=${i.seq}&count=${i.count}">${i.title}</a></div>
-						<div class="col-2">${i.writer}</div>
-						<div class="col-2 limit" id="${i.seq}">${i.limit}</div>
-						<div class="col-2 time" id="${i.wrier_date}"></div>
+						<div class="col-2"><a href="/read.brd2?seq=${i.seq}&count=${i.view_count}">${i.title}</a></div>
+						<div class="col-2">${i.nickname}</div>
+						<div class="col-2 limit" id="${i.seq}"></div>
+						<div class="col-2 time" id="${i.write_date}"></div>
 					</div>
 					</c:forEach>
 				<div class="row">
@@ -81,7 +81,7 @@
 					<div class="col-1"></div>
 				</div>
 			</div>
-			<div class="col-2">right</div>
+			<div class="col-2"></div>
 		</div>
 		<div class="row">
 			<div class="col-2"></div>
