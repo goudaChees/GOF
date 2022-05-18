@@ -36,4 +36,42 @@ private static MemberDAO instance = null;
 			}
 		}
 	}
+	
+	public boolean isIdExist(String id) throws Exception {
+		String sql = "select * from member where id=?";
+		
+		try(Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setString(1, id);
+			try(ResultSet rs = pstat.executeQuery();){
+				return rs.next();
+			}
+		}
+	}
+	
+	public boolean isNNExist(String nickname) throws Exception {
+		String sql = "select * from member where nickname=?";
+		
+		try(Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setString(1, nickname);
+			try(ResultSet rs = pstat.executeQuery();){
+				return rs.next();
+			}
+		}
+	}
+	
+	public String getNickname(String id) throws Exception {
+		String sql = "select nickname from member where id=?";
+		
+		try(Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);){
+			pstat.setString(1, id);
+			try(ResultSet rs = pstat.executeQuery();){
+				rs.next();
+				String nickname = rs.getString(1);
+				return nickname;
+			}
+		}
+	}
 }
