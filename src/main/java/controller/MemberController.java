@@ -77,12 +77,17 @@ public class MemberController extends HttpServlet {
 				dao.insert(new MemberDTO(0,id,pw,name,phone,email,nickname,null));
 				response.sendRedirect("/index.jsp");
 				
+			}else if(uri.equals("/logout.member")) { // 로그아웃
+				request.getSession().invalidate();
+				response.sendRedirect("/index.jsp");
+				
 			} else if(uri.equals("/mypage.member")) {	// 마이페이지 클릭시
 				String id = (String) request.getSession().getAttribute("loginID");
 				MemberDTO dto = dao.selectById(id);
 				request.setAttribute("dto", dto);
 				request.getRequestDispatcher("/member/mypage.jsp").forward(request, response);
 			}
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("error.html");
