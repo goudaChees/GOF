@@ -46,19 +46,19 @@ p {
 									<th>NAME
 									<td>${dto.name }
 								</tr>
-								<th>PHONE
-								<td><input type=text value="${dto.phone }" class="editable"
-									name=phone disabled>
+									<th>PHONE
+									<td id="phoneTD">${dto.phone }</td>
+									<input type=hidden value="phoneInput" name=phone>
 								</tr>
 								<tr>
 									<th>EMAIL
-									<td><input type=text value="${dto.email }"
-										class="editable" name=email disabled>
+									<td id="emailTD">${dto.email }</td>
+									<input type=hidden value="emailInput" name=email>
 								</tr>
 								<tr>
 									<th>NICKNAME
-									<td><input type=text value="${dto.nickname }"
-										class="editable" name=zipcode disabled>
+									<td id="nicknameTD">${dto.nickname }</td>
+									<input type=hidden value="nicknameInput" name=nickname>
 								</tr>
 								<tr>
 									<th>JOIN_DATE
@@ -69,11 +69,9 @@ p {
 								<div class="col-12"><br></div>
 							</div>
 							<div class="row" align=center>
-								<div class="col-12">
-									<button id="pw_modify" type="button">비밀번호 수정</button>
-								
+								<div class="col-12" id="btns">
 									<button id="modify" type="button">수정하기</button>
-								
+									<button id="pw_modify" type="button">비밀번호 수정</button>
 									<button id="member_out" type="button">탈퇴하기</button>
 								</div>
 							</div>
@@ -102,6 +100,29 @@ p {
 		window.open("/member/memberout.jsp", "",
 		"top=100,left=200,width=550,height=350");
 		//location.href="/member/memberout.jsp";
+	})
+	
+	$("#modify").on("click", function(){
+		$("#phoneTD").attr("contenteditable", "true");
+		$("#emailTD").attr("contenteditable", "true");
+		$("#nicknameTD").attr("contenteditable", "true");
+		$("#phoneTD").focus();
+
+		$("#modify").css("display", "none");
+
+		let ok = $("<button>");
+		ok.text("수정완료");
+		//ok.css("margin-right", "5px");
+
+		let cancel = $("<button>");
+		cancel.text("수정취소");
+		cancel.attr("type", "button");
+		cancel.on("click", function() {
+			location.reload();
+		})
+
+		$("#btns").prepend(cancel);
+		$("#btns").prepend(ok);
 	})
 </script>
 </html>
