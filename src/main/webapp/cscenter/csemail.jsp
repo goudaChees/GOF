@@ -145,7 +145,7 @@ div {
 	<div id="container">
 		<div id="title" >
 			<div class="col-6 m-auto">
-				고객 센터 
+				1:1 문의 하기 
 			</div>
 			<div class="col-6 m-auto" id="across">
 				<a href="/cscenter/csemail.jsp">1:1 문의 게시판</a>
