@@ -29,20 +29,20 @@ public class MemberController extends HttpServlet {
 		MemberDAO dao = MemberDAO.getInstance();
 		try {
 			if(uri.equals("/login.member")) { // 로그인 버튼 클릭시
-				Gson g = new Gson();
+				// Gson g = new Gson();
 				EncryptUtils eUtil = new EncryptUtils();
 				String id = request.getParameter("id");
 				String pw= request.getParameter("pw");
 				pw=eUtil.SHA512(pw);
 				Boolean isLoginOk=dao.IsloginOk(id,pw); // 아이디, 비번 검사
+				PrintWriter prw = response.getWriter();
+				prw.append(isLoginOk.toString());
 				if(isLoginOk) {
 					HttpSession session = request.getSession();
 					session.setAttribute("loginID", id); // 로그인
 					String nickname = dao.getNickname(id);
 					session.setAttribute("loginNN", nickname);
 				}
-				PrintWriter prw = response.getWriter();
-				prw.append(g.toJson(isLoginOk));
 				
 			}else if(uri.equals("/joinform.member")) { // 회원가입 클릭시 회원가입폼으로 보냄
 				response.sendRedirect("/member/joinform.jsp");

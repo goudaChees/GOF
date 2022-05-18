@@ -37,6 +37,9 @@ div {
 	border: 1px solid black;
 	text-align: center;
 }
+.navbar{
+	z-index:3;
+}
 
 #home>div {
 	float: left;
@@ -182,17 +185,16 @@ div {
     				pw:$("#pw").val()},
     			type:"POST"
     		}).done(function(resp){
-    			location.reload();
-    			let result = JSON.parse(resp);
-    			if(!result){
+    			if(resp==false){
     				Swal.fire({
     					  icon: 'error',
     					  title: 'Oops...',
     					  text: '입력하신 회원정보가 존재하지 않습니다.'
-    					})
+   					})
     				$("#id").val("");
     				$("#pw").val("");
-    				$("#id").val().focus();
+    			}else{
+    				location.reload();
     			}
     		})
     	})
