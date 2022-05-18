@@ -192,7 +192,7 @@ public class Board2DAO {
 						String date= rs.getString("write_date");
 						String item = rs.getString("item");
 						int count = rs.getInt("view_count");
-						arr.add(new Board2DTO(seq,writer,title,contents,item,date,count));
+						arr.add(new Board2DTO(seq,writer,title,contents,date,item,count));
 					}
 				}
 			}
@@ -215,7 +215,7 @@ public class Board2DAO {
 			}
 		}
 		public Board2DTO contents(int seq) throws Exception{
-			String sql="select * from where seq=?";
+			String sql="select * from board2 where seq=?";
 			Board2DTO dto = new Board2DTO();
 			try(Connection con = this.getConnection();
 				PreparedStatement stat = con.prepareStatement(sql);){

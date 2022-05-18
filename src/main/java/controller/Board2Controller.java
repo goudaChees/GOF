@@ -46,7 +46,7 @@ public class Board2Controller extends HttpServlet {
 			request.getRequestDispatcher("/board2/board2_List.jsp").forward(request, response);
 			}else if(uri.equals("/write.brd2")) {
 				response.sendRedirect("/board2/board2_Write.jsp");
-			}else if(uri.equals("/write2.brd2")) {	
+			}else if(uri.equals("/board2/write2.brd2")) {
 				String id = (String) session.getAttribute("loginID");
 				String nickname= (String)session.getAttribute("loginNN");
 				String title = request.getParameter("title");
@@ -62,7 +62,6 @@ public class Board2Controller extends HttpServlet {
 				dao.count(seq, count);
 				//조회수
 				Board2DTO dto = dao.contents(seq);
-	
 				request.setAttribute("dto",dto);
 				request.getRequestDispatcher("/board2/board2_DetailView.jsp").forward(request, response);
 				
