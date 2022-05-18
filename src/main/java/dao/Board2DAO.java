@@ -53,7 +53,7 @@ public class Board2DAO {
 					String date= rs.getString("write_date");
 					String item = rs.getString("item");
 					int count = rs.getInt("view_count");
-					arr.add(new Board2DTO(seq,writer,title,contents,item,date,0));
+					arr.add(new Board2DTO(seq,writer,title,contents,item,date,count));
 				}
 			}
 			return arr;

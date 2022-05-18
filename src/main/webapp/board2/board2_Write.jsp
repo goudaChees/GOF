@@ -14,7 +14,8 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <style>
 * {
 	text-align: center;
@@ -27,25 +28,43 @@
 	<div id="container">
 		<div class="row">
 			<div class="col-12">
-				<div class="row">
-					<div class="col-1">
-						logo
-					</div>
-					<div class="col-3">
-					</div>
-					<div class="col-2">
-						지출의 참견
-					</div>
-					<div class="col-2">
-						선택의 참견
-					</div>
-					<div class="col-2">
-						고객센터
-					</div>
-					<div class="col-2">
-						마이페이지
-					</div>
+					<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="index.jsp">앞날의 지침</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+					aria-controls="navbarNavDropdown" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-end"
+					id="navbarNavDropdown">
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="#">지출의 참견</a></li>
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="list.brd2">선택의 참견</a></li>
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="csmain.cscenter">고객센터</a></li>
+						
+						<c:choose>
+							<c:when test="${loginID =='admin'}">
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="#">관리자페이지</a></li>
+								<li class="nav-item"><a class="nav-link active"
+								aria-current="page" href="logout.member"><i class="bi bi-box-arrow-right"></i></a></li>
+							</c:when>
+							<c:when test="${loginID !=null}">
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="mypage.member">마이페이지</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="logout.member"><i class="bi bi-box-arrow-right"></i></a></li>
+							</c:when>
+						</c:choose>
+					</ul>
 				</div>
+			</div>
+		</nav>
 			</div>
 		</div>
 		<div class="row">

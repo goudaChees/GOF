@@ -70,17 +70,23 @@ public class Board2Controller extends HttpServlet {
 			}
 			else if (uri.equals("/read.brd2")) {
 				int seq = Integer.parseInt(request.getParameter("seq"));
-				int count = Integer.parseInt(request.getParameter("count"));
 				String loginNN = (String) session.getAttribute("loginNN");
-				dao.count(seq, count);
-				// 조회수
 				Board2DTO dto = dao.contents(seq);
 				request.setAttribute("dto", dto);
 				// 글보기
+				dao.count(seq, dto.getView_count());
+				// 조회수 증가
 				ArrayList<Board2_replyDTO> rdto = rdao.list(seq);
 				request.setAttribute("rdto", rdto);
 				// 댓글보기
 				request.setAttribute("loginNN", loginNN);
+				
+				boolean cck = rdao.ischoice();
+				// 선택체크
+				boolean wck = rdao.iswrite(rdto);
+				// 작성여부 체크
+				request.setAttribute("cck", cck);
+				request.setAttribute("wck", wck);
 				request.getRequestDispatcher("/board2/board2_DetailView.jsp").forward(request, response);
 			} else if (uri.equals("/del.brd2")) {
 				int seq = Integer.parseInt(request.getParameter("seq"));
