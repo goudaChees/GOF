@@ -37,6 +37,8 @@ public class MemberController extends HttpServlet {
 				if(isLoginOk) {
 					HttpSession session = request.getSession();
 					session.setAttribute("loginID", id); // 로그인
+					String nickname = dao.getNickname(id);
+					session.setAttribute("loginNN", nickname);
 				}
 				PrintWriter prw = response.getWriter();
 				prw.append(g.toJson(isLoginOk));
@@ -44,12 +46,19 @@ public class MemberController extends HttpServlet {
 			}else if(uri.equals("/joinform.member")) {
 				response.sendRedirect("/member/joinform.jsp");
 				
-			}else if(uri.equals("/duplCheck.member")) {
+			}else if(uri.equals("/idDuplCheck.member")) {
 				Gson g = new Gson();
 				String id = request.getParameter("id");
-				Boolean duplExist=dao.duplCheck(id);
+				Boolean isIdExist=dao.isIdExist(id);
 				PrintWriter pw = response.getWriter();
-				pw.append(g.toJson(duplExist));
+				pw.append(g.toJson(isIdExist));
+				
+			}else if(uri.equals("/nnDuplCheck.member")) {
+				Gson g = new Gson();
+				String nickname = request.getParameter("nickname");
+				Boolean isNNExist=dao.isNNExist(nickname);
+				PrintWriter pw = response.getWriter();
+				pw.append(g.toJson(isNNExist));
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
