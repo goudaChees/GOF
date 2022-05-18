@@ -131,13 +131,30 @@ div {
 	</div>
 
 	<script>
-		let isIdOk = false;
+		$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업
+			Swal.fire({
+				  title: '회원가입 후 이용 가능합니다.',
+				  text: "회원가입 페이지로 이동합니다.",
+				  icon: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: '확인',
+				  cancelButtonText: '취소',
+				}).then((result) => {
+				  if (result.isConfirmed) {
+				    location.href="/join.member"
+				  }
+				})
+		})
+		
+		let isIdOk = false;     // submit 버튼 활성화용 boolean 변수 선언
 		let isPwOk = false;
 		let isPw2Ok = false;
 		let isNameOk = false;
 		let isPhoneOk = false;
 		let isEmailOk = false;
-		let isNNOk = false;
+		let isNNOk = false;       
 
 		$("#id").on("keyup",function() { // 아이디 입력 검증
 			let id = $("#id").val();
