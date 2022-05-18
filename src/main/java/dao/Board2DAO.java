@@ -40,7 +40,7 @@ public class Board2DAO {
 	}
 	}
 		public ArrayList<Board2DTO> list() throws Exception{
-			String sql = "select * from board order by seq desc";
+			String sql = "select * from board2 order by seq desc";
 			ArrayList<Board2DTO> arr = new ArrayList<>();
 			try(Connection con = this.getConnection();
 				PreparedStatement stat = con.prepareStatement(sql);
@@ -68,14 +68,13 @@ public class Board2DAO {
 				return result;
 			}
 		}
-		public int update(String title,String contents,String item,int seq) throws Exception{
-			String sql= "update board2 set title=?,contents=?,item=? where seq=?";
+		public int update(String title,String contents,int seq) throws Exception{
+			String sql= "update board2 set title=?,contents=? where seq=?";
 			try(Connection con = this.getConnection();
 					PreparedStatement stat = con.prepareStatement(sql);){
 				stat.setString(1, title);
 				stat.setString(2, contents);
-				stat.setString(3, item);
-				stat.setInt(4, seq);
+				stat.setInt(3, seq);
 				int result = stat.executeUpdate();
 				con.commit();
 				return result;
