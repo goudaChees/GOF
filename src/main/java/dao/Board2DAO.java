@@ -3,7 +3,6 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -215,5 +214,23 @@ public class Board2DAO {
 				}
 			}
 		}
-		
+		public Board2DTO contents(int seq) throws Exception{
+			String sql="select * from where seq=?";
+			Board2DTO dto = new Board2DTO();
+			try(Connection con = this.getConnection();
+				PreparedStatement stat = con.prepareStatement(sql);){
+				stat.setInt(1, seq);
+				try(ResultSet rs = stat.executeQuery();){
+					rs.next();
+					dto.setSeq(rs.getInt("seq"));
+					dto.setNickname(rs.getString("writer"));
+					dto.setTitle(rs.getString("title"));
+					dto.setContents(rs.getString("contents"));
+					dto.setWrite_date(rs.getString("write_date"));
+					dto.setItem(rs.getString("item"));
+					dto.setView_count(rs.getInt("view_count"));
+					return dto;
+				}
+			}
+		}
 }

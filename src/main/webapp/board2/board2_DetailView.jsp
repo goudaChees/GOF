@@ -16,7 +16,7 @@
 	border: 1px solid black;
 	box-sizing: border-box;
 	text-align: center;
-}
+  }
 </style>
 </head>
 <body>
@@ -46,18 +46,18 @@
 		</div>
 		<div class="row">
 			<div class="col-12">
-				title
+				${dto.title}
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-2">
-				left
+				
 			</div>
 			<div class="col-8">
-				contents
+				${dto.contents}
 			</div>
 			<div class="col-2">
-				right
+				
 			</div>
 		</div>
 		<div class="row">
@@ -71,6 +71,5 @@
 			</div>
 		</div>
 	</div>
-	
 </body>
 </html>

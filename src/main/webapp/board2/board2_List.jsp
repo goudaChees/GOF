@@ -66,16 +66,15 @@
 					<div class="col-2">제한시간</div>
 					<div class="col-2">작성시간</div>
 				</div>
-				<div class="row">
 					<c:forEach var="i" items="${dto}">
+					<div class="row">
 						<div class="col-2">${i.seq}</div>
-						<div class="col-2"><a href="/read.board?seq=${i.seq}&count=${i.count}">${i.title}</a></div>
+						<div class="col-2"><a href="/read.brd2?seq=${i.seq}&count=${i.count}">${i.title}</a></div>
 						<div class="col-2">${i.writer}</div>
 						<div class="col-2 limit" id="${i.seq}">${i.limit}</div>
 						<div class="col-2 time" id="${i.wrier_date}"></div>
+					</div>
 					</c:forEach>
-                    
-				</div>
 				<div class="row">
 					<div class="col-1"></div>
 					<div class="col-10">list</div>
@@ -86,7 +85,7 @@
 		</div>
 		<div class="row">
 			<div class="col-2"></div>
-			<div class="col-8">< 1 2 3 4 5 6 7 8 9 10 ></div>
+			<div class="col-8">${navi}</div>
 			<div class="col-2">
 				<a href="/index.jsp"><button id="tomain">main으로</button></a>
 				<a href="/write.brd2"><button id="write">작성하기</button></a>
@@ -125,8 +124,7 @@
 			}
 			timer = setInterval(showRemaining, 1000);
 		}
- 		
-		
+
 		for(let i=0;i<10;i++){
 	        let id = $(document.querySelectorAll(".limit")[i]).attr('id');
 	        let time = $(document.querySelectorAll(".time")[i]).attr('id');
