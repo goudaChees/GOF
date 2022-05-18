@@ -148,7 +148,6 @@ div {
 				고객 센터 
 			</div>
 			<div class="col-6 m-auto" id="across">
-				
 				<a href="/cscenter/csemail.jsp">1:1 문의 게시판</a>
 				<a href="/cscenter/csmain.jsp">자주 묻는 질문 게시판</a>
 			</div>

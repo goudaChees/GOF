@@ -26,6 +26,9 @@ div {
 	font-size : xxx-large;
 	text-align : left;
 }
+#across a{
+	font-size : x-large;
+}
 
 </style>    
     
@@ -129,8 +132,9 @@ div {
 			<div class="col-6 m-auto">
 				고객 센터 
 			</div>
-			<div class="col-6 m-auto">
-				자주 묻는 게시판 
+			<div class="col-6 m-auto" id="across">
+				<a href="/cscenter/csmain.jsp">자주 묻는 질문 게시판</a>
+				<a href="/cscenter/csemail.jsp">1:1 문의 게시판</a>
 			</div>
 		</div>
 		<div class="col-6 m-auto" >
@@ -150,7 +154,6 @@ div {
 						aria-labelledby="panelsStayOpen-headingOne">
 						<div class="accordion-body">
 							<strong>앞날의 지침</strong> 에 오신 것을 환영합니다!
-
 						</div>
 					</div>
 				</div>
@@ -227,7 +230,7 @@ div {
 							해결되지 않은 궁금증은 <strong> 이메일 </strong>
 							로 연락해 주세요. <br>
 							<br>
-							<a href ="#">1:1 문의 바로 가기</a>
+							<a href ="/cscenter/csemail.jsp">1:1 문의 바로 가기</a>
 							<br>
 							
 							
