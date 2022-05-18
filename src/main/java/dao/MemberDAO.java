@@ -117,4 +117,24 @@ private static MemberDAO instance = null;
 			}
 		}
 	}
+	
+	public String searchEmail(String id) throws Exception{
+		String sql = "select email from member where id =?";
+		try (
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, id);
+			try (
+					ResultSet rs = pstat.executeQuery();
+					){
+				String useremail = null;
+				if (rs.next()) {
+					String email = rs.getString("email");
+					useremail = email;
+				}
+				return useremail;
+			}
+		}
+	}
 }
