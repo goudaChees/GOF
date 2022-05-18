@@ -16,7 +16,7 @@
 </head>
 
 <body>
-<form action="login.member" method="post">
+<form action="/memberCheck.member" method="post">
   <br>
   <b><font size="5" color="gray">정말 탈퇴하시겠습니까?</font></b>
   <br>
@@ -24,9 +24,18 @@
     <br>그렇다면 비밀번호를 입력해주세요</p>
   <br><br>
 
-  <input type="text" id="pwCheck"><br><br>
+  <input type="text" name="pw" id="pw"><br><br>
   <input type="submit" value="탈퇴하기" id="realout">
-  <input type="button" value="그만두기" onclick="window.close()">
+  <input type="button" value="그만두기" >
 </form>
+<script>
+	$("#realout").on("click", function(){
+		if($("#pw").val()==""){
+			alert("비밀번호를 먼저 입력하세요.");
+			return;
+		}	
+		
+	})
+</script>
 </body>
 </html>
