@@ -77,7 +77,7 @@ public class MemberController extends HttpServlet {
 				dao.insert(new MemberDTO(0,id,pw,name,phone,email,nickname,null));
 				response.sendRedirect("/index.jsp");
 				
-			} else if(uri.equals("mypage.member")) {
+			} else if(uri.equals("/mypage.member")) {	// 마이페이지 클릭시
 				String id = (String) request.getSession().getAttribute("loginID");
 				MemberDTO dto = dao.selectById(id);
 				request.setAttribute("dto", dto);

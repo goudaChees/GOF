@@ -109,9 +109,9 @@ private static MemberDAO instance = null;
 					String phone = rs.getString("phone");
 					String email = rs.getString("email");
 					String nickname = rs.getString("nickname");
-					Date join_date = rs.getDate("join_date");
+					Date joindate = rs.getDate("joindate");
 					
-					dto = new MemberDTO(0, id, null ,name, phone, email, nickname, join_date);
+					dto = new MemberDTO(0, id, null ,name, phone, email, nickname, joindate);
 				}
 				return dto;
 			}
