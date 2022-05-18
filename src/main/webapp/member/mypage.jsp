@@ -74,11 +74,10 @@ p {
 								
 									<button id="modify" type="button">수정하기</button>
 								
-									<button id="out" type="button">탈퇴하기</button>
+									<button id="member_out" type="button">탈퇴하기</button>
 								</div>
 							</div>
-								
-							
+						
 						</form>
 					</div>
 					<div class="tab-pane fade" id="mywrite">
@@ -98,5 +97,10 @@ p {
 	</div>
 
 </body>
-
+<script>
+	$("#member_out").on("click", function(){
+		window.open("/member/memberout.jsp", "",
+		"top=100,left=200,width=550,height=350");
+	})
+</script>
 </html>

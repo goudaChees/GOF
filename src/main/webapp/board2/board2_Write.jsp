@@ -22,7 +22,8 @@
 </style>
 </head>
 <body>
-	<form action="write2.brd2" method="post">
+<c:if test="${seq==null}"><form action="write2.brd2" method="post"></c:if>
+<c:if test="${seq!=null}"><form action="modi2.brd2" method="post"></c:if>
 	<div id="container">
 		<div class="row">
 			<div class="col-12">
@@ -80,6 +81,7 @@
 			</div>
 		</div>
 	</div>
+	<c:if test="${seq!=null}"><input type="text" style="display:none" name="seq" value="${seq}"></c:if>
 </form>
 	<script>
 		$('#summernote').summernote({
