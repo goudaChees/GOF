@@ -189,7 +189,7 @@ div {
 										<div class="col-12" id="btns">
 											<button id="back" type="button">뒤로가기</button>
 											<button id="modify" type="button">수정하기</button>
-											<button id="pw_modify" type="button">비밀번호 수정</button>
+											
 											<button id="member_out" type="button">강제 추방</button>
 										</div>
 									</div>
@@ -212,8 +212,21 @@ div {
 		</div>
 	</div>
 
-
-
-
 </body>
+<script>
+
+	// 뒤로가기 
+	$("#back").on("click", function(){
+		location.href="/adminmain.admin";
+	})
+	
+	// 수정버튼 클릭 시
+	$("#modify").on("click", function(){
+		window.open("/admin/adminPwCheck.jsp", "",
+				"top=100,left=200,width=550,height=350"); //체크창으로 이동.
+	})
+
+
+</script>
+
 </html>

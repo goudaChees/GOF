@@ -305,4 +305,21 @@ private static MemberDAO instance = null;
 		}
 	}
 	
+	public boolean isAdminOk (String pw) throws Exception {
+		String sql = "select * from member where id = 'admin' and password = ?";
+		
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+				pstat.setString(1, pw);
+				
+				try(
+						ResultSet rs = pstat.executeQuery();
+						){
+					return rs.next();
+				}
+			}
+	}
+	
 }
