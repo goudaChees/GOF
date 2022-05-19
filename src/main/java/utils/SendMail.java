@@ -21,7 +21,7 @@ public class SendMail {
 		// 호스트와 계정정보. 보내는 계정(SMTP 설정이 된 계정)
 		String host = "smtp.naver.com";
 		String user = "realishy@naver.com";
-		String password = "london00";
+		String password = "london000";
 				
 		String to = "realishy@naver.com"; //받을 계정정보
 				
