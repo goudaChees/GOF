@@ -79,7 +79,7 @@
 		</div>
 		<div id="list_Middle" style="text-align: right;">
 			<div style="width: 20%">
-			<form action="search">
+			<form action="/search.brd1">
 				<select class="form-select" aria-label="Default select example"
 					name="searchCategory">
 					<option value="0">선택</option>
@@ -89,7 +89,7 @@
 				</select>
 			</div>
 			<div style="width: 40%; text-align: left;">
-				<input type="text" placeholder="검색하실 내용을 입력하세요" name="search" style="width: 70%"> 
+				<input type="text" placeholder="검색하실 내용을 입력하세요" name="searchTarget" style="width: 70%"> 
 				<input type="submit" value="검색">
 			</div>
 			<br>
