@@ -137,4 +137,16 @@ private static MemberDAO instance = null;
 			}
 		}
 	}
+	
+	public int deleteById(String id) throws Exception {
+		String sql = "delete member where id=?";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1,id);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
 }
