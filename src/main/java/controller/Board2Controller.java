@@ -81,10 +81,16 @@ public class Board2Controller extends HttpServlet {
 				// 댓글보기
 				request.setAttribute("loginNN", loginNN);
 				
-				boolean cck = rdao.ischoice();
+				boolean cck = rdao.ischoice(seq);
 				// 선택체크 선택되어 있다면 true
 				boolean wck = rdao.iswrite(rdto);
 				// 작성여부 체크 작성한적이 있다면 true
+				
+				if(cck) {
+					Board2_replyDTO crdto = rdao.choiceReply(seq);
+					request.setAttribute("crdto", crdto);
+				}
+				
 				request.setAttribute("cck", cck);
 				request.setAttribute("wck", wck);
 				request.getRequestDispatcher("/board2/board2_DetailView.jsp").forward(request, response);

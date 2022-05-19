@@ -71,7 +71,7 @@
             	<input type="text" placeholder="가격을 입력해주세요" name="item_price"><br>
           	</div>
           	<textarea placeholder="이 물건을 꼭 사야할 이유가 뭔가요" name="contents" rows="10" cols="70"></textarea><br>
-          	<input type="button" value="목록으로">
+          	<input type="button" value="목록으로" id="goToList">
           	<input type="submit" vlaue="저장하기">
         </div>    
 		</div>
@@ -83,13 +83,17 @@
 	 	const reader = new FileReader();
 	 	reader.onload = (readerEvent) =>{
 	 		document.querySelector("#img_section").setAttribute("src",readerEvent.target.result);
+	 		console.log(readerEvent.target.result);
 	 	}
 
      document.querySelector("#upload_file").addEventListener("change",(changeEvent) => {
        const imgFile = changeEvent.target.files[0];
        reader.readAsDataURL(imgFile);
      })
-     
+     	
+     $("#goToList").on("click",function(){
+       location.href="/list.brd1?cpage=1";
+     })
 	 </script>
 </body>
 </html>

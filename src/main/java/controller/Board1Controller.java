@@ -2,7 +2,9 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -54,14 +56,21 @@ public class Board1Controller extends HttpServlet {
 				int parent_Seq = dao.getBoard1SeqNextval(); //게시판 seq 미리 만들기
 				Enumeration e = multi.getFileNames(); //파일 이름 넣기
 				
+				String fileName = null;
+				
 				while(e.hasMoreElements()) {//파일 insert
 					String name = (String) e.nextElement();
 					String ori_Name = multi.getOriginalFileName(name);
 					String sys_Name = multi.getFilesystemName(name);
 					
 					pdao.insert(new Board1_PicDTO(0,ori_Name,sys_Name,parent_Seq));
+					
+					if(fileName!=null) {
+						
+					}
 				}
-
+				
+				
 				//글 업데이트
 				String id = (String)session.getAttribute("loginID");
 				
@@ -79,7 +88,49 @@ public class Board1Controller extends HttpServlet {
 				dao.insert(new Board1DTO(parent_Seq,writer,title,contents,null,item,item_price,0,0,0));
 	
 				
-				request.getRequestDispatcher("/list.board?cpage=1").forward(request, response);	
+				request.getRequestDispatcher("/list.brd1?cpage=1").forward(request, response);	
+				
+			}else if(uri.equals("/list.brd1")){
+				
+				int cpage = Integer.parseInt(request.getParameter("cpage"));
+				
+				
+				session.setAttribute("cpage", cpage);
+				
+				
+				List<Board1DTO> list = dao.selectByPage(cpage);//한 페이지당 리스트 출력
+				request.setAttribute("list", list);
+				
+				String navi = dao.getNavi(cpage);
+				
+				request.setAttribute("navi", navi);
+				
+				request.getRequestDispatcher("/board1/board1_List.jsp").forward(request, response);	
+				
+			}else if(uri.equals("/search.brd1")) {
+				
+				int searchCategory = Integer.parseInt(request.getParameter("searchCategory"));//검색 카테고리
+				String searchTarget = request.getParameter("searchTarget");//검색어
+				System.out.println(searchCategory);
+				
+				int cpage =1;//cpage는 1로 설정
+				
+				List<Board1DTO> list = new ArrayList<Board1DTO>();
+	
+				
+				if(searchCategory==1) {//작성자로 검색할 경우
+					list = dao.searchByWriter(searchTarget,cpage);
+					System.out.println(searchTarget);
+				}else if(searchCategory==2) {
+					
+				}else if(searchCategory==3) {
+					
+				}
+				
+				request.setAttribute("list", list);
+				request.setAttribute("searchCategory", searchCategory);
+				
+				request.getRequestDispatcher("/board1/board1_List.jsp?cpage=1").forward(request, response);
 				
 			}
 		}catch(Exception e) {
