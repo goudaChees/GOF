@@ -27,14 +27,14 @@ public class Board1_PicDAO {
 	}
 	
 	public int insert(Board1_PicDTO dto)throws Exception {
-		String sql = "insert into Board1_Pic values(board1pic_seq,?,?,?)";
+		String sql = "insert into board1_pic values(board1pic_seq.nextval,?,?,?)";
 		try(
 			Connection con = this.getConnetction();
 			PreparedStatement pstat = con.prepareStatement(sql);
 				){
-			pstat.setString(2, dto.getOri_name());
-			pstat.setString(3, dto.getSys_name());
-			pstat.setInt(4, dto.getParent_seq());
+			pstat.setString(1, dto.getOri_name());
+			pstat.setString(2, dto.getSys_name());
+			pstat.setInt(3, dto.getParent_seq());
 			
 			int result = pstat.executeUpdate();
 			con.commit();
