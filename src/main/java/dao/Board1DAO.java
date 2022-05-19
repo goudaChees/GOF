@@ -186,4 +186,36 @@ public class Board1DAO {
 
 		return sb.toString();
 	}
+	
+	public List<Board1DTO> searchByWriter(String target,int cpage)throws Exception{
+		String sql = "select * from (select row_number() over(order by seq desc) line, board1.* from board1) where line between ? and ? and writer like ?";
+		int startNum = cpage*10-9;
+		int endNum = cpage*10;
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, startNum);
+			pstat.setInt(2, endNum);
+			pstat.setString(3, "%"+target+"%");
+			List<Board1DTO> list = new ArrayList<Board1DTO>();
+			try(ResultSet rs = pstat.executeQuery()){
+				while(rs.next()) {
+					int seq = rs.getInt("seq");
+					String writer = rs.getString("writer");
+					String title = rs.getString("title");
+					String contents = rs.getString("contents");
+					Timestamp write_date = rs.getTimestamp("write_date");
+					String item = rs.getString("item");
+					int item_price = rs.getInt("item_price");
+					int agree_count = rs.getInt("agree_count");
+					int disagree_count = rs.getInt("disagree_count");
+					int view_count =  rs.getInt("view_count");
+
+					list.add(new Board1DTO(seq,writer,title,contents,write_date,item,item_price,agree_count,disagree_count,view_count));
+				}
+			}
+			return list;
+		}
+	}
 }
