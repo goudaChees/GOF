@@ -27,7 +27,7 @@ div {
 		style="max-width: 100%; padding: 0; margin: 0; position: relative;">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="index.jsp">앞날의 지침</a>
+				<a class="navbar-brand" href="/index.jsp">앞날의 지침</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 					aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -44,7 +44,7 @@ div {
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="#">고객센터</a></li>
 						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="joinform.member">회원가입</a></li>
+							aria-current="page" href="/joinform.member">회원가입</a></li>
 					</ul>
 				</div>
 			</div>
@@ -165,7 +165,7 @@ div {
 				isIdOk = false;
 				return false;
 			}
-			let idRegex = /[a-z0-9_]{5,11}/;
+			let idRegex = /^[a-z0-9_]{5,11}$/;
 			let idResult = idRegex.test(id);
 			if (!idResult) {
 				$("#id").css("border", "1px solid red");
@@ -218,7 +218,7 @@ div {
 				isPwOk = false;
 				return false;
 			}
-			let pwRegex = /[a-zA-Z0-9]{8,12}/gm; // 비밀번호 기본 검증
+			let pwRegex = /^[a-zA-Z0-9]{8,12}$/gm; // 비밀번호 기본 검증
 			let pwResult = pwRegex.test(pw);
 			if (!pwResult) {
 				$("#pw1").css("border", "1px solid red");
@@ -301,6 +301,16 @@ div {
 		})
 
 		$("#phone3").on("keyup",function() { // 전화번호 검증
+			if($("#phone1")==""||$("#phone2")==""||$("#phone3")==""){
+				$("#phone1").css("border", "1px solid red");
+				$("#phone2").css("border", "1px solid red");
+				$("#phone3").css("border", "1px solid red");
+				$("#phoneCheckResult").css("color", "red");
+				$("#phoneCheckResult").text("전화번호는 필수 입력 정보입니다.");
+				isPhoneOk = false;
+				return false;
+			}
+			
 			let phoneRegex1 = /01[0-9]{1}/;
 			let phoneRegex2 = /[0-9]{3,4}/;
 			let phoneRegex3 = /[0-9]{4}/;
@@ -373,7 +383,7 @@ div {
 				isNNOk = false;
 				return false;
 			}
-			let nnRegex = /[가-힣A-Za-z0-9_]{3,8}/;
+			let nnRegex = /^[가-힣A-Za-z0-9_]{3,8}$/;
 			let nnResult = nnRegex.test(nickname);
 
 			if (!nnResult) {
