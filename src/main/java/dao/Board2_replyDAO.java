@@ -34,9 +34,13 @@ public class Board2_replyDAO {
 			PreparedStatement stat = con.prepareStatement(sql);
 			ResultSet rs = stat.executeQuery();){
 			while(rs.next()) {
-				String result = rs.getString("choice");
-				if(result.equals("Y")) {
-					ck = true;
+				char result= 'N';
+				if(!(rs.getString("choice")==null)){
+					result = rs.getString("choice").charAt(0);
+					if(result=='Y') {
+						ck = true;
+						return ck;
+					}
 				}
 			}
 		}
@@ -63,7 +67,7 @@ public class Board2_replyDAO {
 	}
 	// 댓글 중복 불가 확인 매서드
 	public int insert(Board2_replyDTO dto) throws Exception {
-		String sql = "insert into board2 values(reply2_seq.nextval,?,?,?,?,default)";
+		String sql = "insert into board2_reply(seq,writer,parent_seq,price,contents,write_date) values(reply2_seq.nextval,?,?,?,?,default)";
 		try (Connection con = this.getConnection();
 			PreparedStatement stat = con.prepareStatement(sql);) {
 			stat.setString(1, dto.getNickname());
@@ -78,19 +82,23 @@ public class Board2_replyDAO {
 
 	public ArrayList<Board2_replyDTO> list(int pseq) throws Exception {
 		String sql = "select * from board2_reply where parent_seq = ? order by seq desc";
+		
 		ArrayList<Board2_replyDTO> arr = new ArrayList<>();
 		try (Connection con = this.getConnection(); 
 				PreparedStatement stat = con.prepareStatement(sql);) {
 			stat.setInt(1, pseq);
 			try (ResultSet rs = stat.executeQuery();) {
 				while (rs.next()) {
+					char check = 'N';
 					int seq = rs.getInt("seq");
 					String writer = rs.getString("writer");
 					int parent_seq = rs.getInt("parent_seq");
 					String contents = rs.getString("contents");
 					int price = rs.getInt("price");
-					String date = rs.getString("wirte_date");
-					char check = rs.getString("choice").charAt(0);
+					String date = rs.getString("write_date");
+					if(!(rs.getString("choice")==null)){
+					check = rs.getString("choice").charAt(0);
+					}
 					arr.add(new Board2_replyDTO(seq, writer, parent_seq, price, contents, date, check));
 				}
 			}

@@ -82,9 +82,9 @@ public class Board2Controller extends HttpServlet {
 				request.setAttribute("loginNN", loginNN);
 				
 				boolean cck = rdao.ischoice();
-				// 선택체크
+				// 선택체크 선택되어 있다면 true
 				boolean wck = rdao.iswrite(rdto);
-				// 작성여부 체크
+				// 작성여부 체크 작성한적이 있다면 true
 				request.setAttribute("cck", cck);
 				request.setAttribute("wck", wck);
 				request.getRequestDispatcher("/board2/board2_DetailView.jsp").forward(request, response);
