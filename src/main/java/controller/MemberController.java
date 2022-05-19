@@ -96,6 +96,9 @@ public class MemberController extends HttpServlet {
 				dao.deleteById(id);
 				request.getSession().invalidate();
 				response.sendRedirect("/index.jsp");
+				
+			} else if(uri.equals("/update.member")) { // 내 정보 수정하기
+				
 			}
 			
 		}catch(Exception e) {
