@@ -140,7 +140,7 @@ div {
 										placeholder="input your pw">
 								</div>
 								<div class="col-12">
-									<input type="submit" id="login" value="로그인"
+									<input type="button" id="login" value="로그인"
 										style="background-color: #dfe7fd; border: 1px solid #cddafd;">
 									<input type="button" id="kakao-login-btn" value="카카오로 로그인"
 										style="background-color: #dfe7fd; border: 1px solid #cddafd;">
