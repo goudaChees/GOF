@@ -121,16 +121,53 @@ public class Board1DAO {
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();
 				){
-			ResultSet rs = pstat.executeQuery();
 			rs.next();
 			return rs.getInt(1);
 		}
 	}
-
-	public String getNavi(int cpage)throws Exception {
-		int recoardTotalCount = this.getRecordTotalCount(); //전체 레코드 수
-		System.out.println(recoardTotalCount);
+	
+	public int getRecordCountBySearch(int searchCategory, String searchTarget)throws Exception {
+		
+		String sql = null;
+		
+		if(searchCategory==1) {
+			sql = "select count(*) from board1 where writer like ?";
+		}else if(searchCategory==2) {
+			sql = "select count(*) from board1 where title like ?";
+		}else if(searchCategory==3) {
+			sql = "select count(*) from board1 where item like ?";
+		}
+		
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);				
+				){
+			pstat.setString(1, "%"+searchTarget+"%");
+			try(
+				ResultSet rs = pstat.executeQuery();
+					){
+				rs.next();
+				System.out.println("rs.getInt(1) : " + rs.getInt(1));
+				return rs.getInt(1);
+			}
+		}
+	}
+	
+	public String getNavi(int cpage,int searchCategory,String searchTarget)throws Exception {
+		int recoardTotalCount = 0;
+		System.out.println(searchCategory);
+		if(searchCategory>0) {
+			recoardTotalCount = this.getRecordCountBySearch(searchCategory,searchTarget);
+		}else {
+			recoardTotalCount = this.getRecordTotalCount();
+		}
+		
+		
+		
+		this.getRecordTotalCount(); //전체 레코드 수
+		System.out.println("recoardTotalCount : "+ recoardTotalCount);
 		int racordPerPage = 10; // 페이지 당 레코드
 		int naviCountPerPage = 10; //페이지 당 네비 수
 		int pageTotalCount =0;// 전체 필요 네비  수
@@ -187,17 +224,34 @@ public class Board1DAO {
 		return sb.toString();
 	}
 	
-	public List<Board1DTO> searchByWriter(String target,int cpage)throws Exception{
-		String sql = "select * from (select row_number() over(order by seq desc) line, board1.* from board1) where line between ? and ? and writer like ?";
+	public List<Board1DTO> search(String target,int searchCategory,int cpage)throws Exception{
+		
+		String sql = null;
+		
+		if(searchCategory==1){
+			sql = "select * from (select row_number() over(order by seq desc) line, board1.* from board1 where writer like ?) where line between ? and ?";
+		}else if(searchCategory==2) {
+			sql = "select * from (select row_number() over(order by seq desc) line, board1.* from board1 where title like ?) where line between ? and ?";
+		}else if(searchCategory==3) {
+			sql = "select * from (select row_number() over(order by seq desc) line, board1.* from board1 where item like ?) where line between ? and ?";
+		}else {
+			sql = "select * from (select row_number() over(order by seq desc) line, board1.* from board1) where line between ? and ?";
+		}
 		int startNum = cpage*10-9;
 		int endNum = cpage*10;
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
-			pstat.setInt(1, startNum);
-			pstat.setInt(2, endNum);
-			pstat.setString(3, "%"+target+"%");
+			if(searchCategory>0) {
+				pstat.setString(1, "%"+target+"%");
+				pstat.setInt(2, startNum);
+				pstat.setInt(3, endNum);				
+			}else {
+				pstat.setInt(1, startNum);
+				pstat.setInt(2, endNum);	
+			}
+
 			List<Board1DTO> list = new ArrayList<Board1DTO>();
 			try(ResultSet rs = pstat.executeQuery()){
 				while(rs.next()) {

@@ -154,7 +154,7 @@
 				let days = Math.floor(distDt / _day);
 				let hours = Math.floor((distDt % _day) / _hour);
 				let minutes = Math.floor((distDt % _hour) / _minute);
-				let seconds = Math.floor((distDt % _minute) / _second);
+				let seconds = Math.floor((distDt % _minute) / _second);x
 				//document.getElementById(id).textContent = date.toLocaleString() + "까지 : ";
  				//document.getElementById(id).textContent = days + '일 ';
 				//document.getElementById(id).textContent += hours + '시간 ';

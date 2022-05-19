@@ -101,7 +101,10 @@ public class Board1Controller extends HttpServlet {
 				List<Board1DTO> list = dao.selectByPage(cpage);//한 페이지당 리스트 출력
 				request.setAttribute("list", list);
 				
-				String navi = dao.getNavi(cpage);
+				int searchCategory = 0;
+				String searchTarget = null;
+				
+				String navi = dao.getNavi(cpage,searchCategory,searchTarget);
 				
 				request.setAttribute("navi", navi);
 				
@@ -111,24 +114,20 @@ public class Board1Controller extends HttpServlet {
 				
 				int searchCategory = Integer.parseInt(request.getParameter("searchCategory"));//검색 카테고리
 				String searchTarget = request.getParameter("searchTarget");//검색어
-				System.out.println(searchCategory);
-				
+
 				int cpage =1;//cpage는 1로 설정
 				
-				List<Board1DTO> list = new ArrayList<Board1DTO>();
+				List<Board1DTO> list = new ArrayList<Board1DTO>();//리스트 출력
+				list = dao.search(searchTarget, searchCategory, cpage);
 	
-				
-				if(searchCategory==1) {//작성자로 검색할 경우
-					list = dao.searchByWriter(searchTarget,cpage);
-					System.out.println(searchTarget);
-				}else if(searchCategory==2) {
 					
-				}else if(searchCategory==3) {
-					
-				}
-				
 				request.setAttribute("list", list);
 				request.setAttribute("searchCategory", searchCategory);
+				request.setAttribute("searchTarget", searchTarget);//리스트 request 넣기
+				
+				String navi = dao.getNavi(cpage,searchCategory,searchTarget);
+				
+				request.setAttribute("navi", navi);//네비 넣기
 				
 				request.getRequestDispatcher("/board1/board1_List.jsp?cpage=1").forward(request, response);
 				
