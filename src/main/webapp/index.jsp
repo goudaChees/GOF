@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>앞날의 지침</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <link
@@ -66,7 +67,7 @@ div {
 
 </head>
 <body>
-	<div class="container w-100" style="max-width: 100%; padding: 0; margin: 0; position: relative;">
+	<div class="container-fluid" style="max-width: 100%; padding: 0; margin: 0; position: relative;">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="index.jsp">앞날의 지침</a>
