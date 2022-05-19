@@ -278,5 +278,32 @@ private static MemberDAO instance = null;
 		}
 	}
 	
+	public int update(MemberDTO dto) throws Exception{
+		String sql = "update member set phone=?, email=?, nickname=? where id=?";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, dto.getPhone());
+			pstat.setString(2, dto.getEmail());
+			pstat.setString(3, dto.getNickname());
+			pstat.setString(4, dto.getId());
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
+	public int updatePw(String newpw, String id) throws Exception{
+		String sql = "update member set newpw=? where id=?";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, newpw);
+			pstat.setString(2, id);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
 	
 }
