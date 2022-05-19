@@ -293,7 +293,7 @@ private static MemberDAO instance = null;
 	}
 	
 	public int updatePw(String newpw, String id) throws Exception{
-		String sql = "update member set newpw=? where id=?";
+		String sql = "update member set password=? where id=?";
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){

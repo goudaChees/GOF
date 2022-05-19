@@ -109,8 +109,8 @@ public class MemberController extends HttpServlet {
 			
 			} else if (uri.equals("/pwChange.member")) {
 				String id = (String) request.getSession().getAttribute("loginID");
-				String newpw = eUtil.SHA512(request.getParameter("newpw"));
-				dao.updatePw(newpw, id);
+				String pw = eUtil.SHA512(request.getParameter("newpw"));
+				dao.updatePw(pw, id);
 				response.sendRedirect("/mypage.member");
 			}
 			
