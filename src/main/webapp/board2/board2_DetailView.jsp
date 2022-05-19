@@ -113,7 +113,6 @@
 										</div>
 										<div class="col-3">
 											<button type="submit" id="btn1">작성</button>
-											<button type="button" id="del">삭제</button>
 										</div>
 									</div>
 								</div>
@@ -134,23 +133,31 @@
 					</div>
 					<div class="col-2">작성자의 선택 댓글</div>
 				</div>
-	</c:if>
+		</c:if>
 				<div class="row">
 					<div class="col-12">
 						<c:forEach var="i" items="${rdto}">
 							<div class="row">
-								<div class="col-2">${i.price}</div>
-								<div class="col-8">
+								<div class="col-2 price">
+								<input type="text" value="${i.price}" class="editable" disabled>
+								</div>
+								<div class="col-8 contents">
 									<div class="row">
 										<div class="col-6">${i.nickname}</div>
 										<div class="col-6">${i.wirte_date}</div>
-										<div class="col-12">${i.contents}</div>
+										<div class="col-12 incontents">
+										<input type="text" value="${i.contents}" class="editable" disabled>
+										</div>
 									</div>
 								</div>
 								<div class="col-2">
 									<c:if test="${loginNN == dto.nickname && cck == false}">
 									선택<input type="radio" name="choice" value="${i.seq}"
 											class="choice">
+									</c:if>
+									<c:if test="${i.nickname == loginNN && cck== false}">
+										<button class="modibtn">수정</button>
+										<button class="delbtn" value="${i.seq}">삭제</button>
 									</c:if>
 								</div>
 							</div>
@@ -181,6 +188,16 @@
 		}
 		//글 수정
 	})
+	$(".delbtn").on("click",function(){
+		$.ajax({
+			url:"/del.brd2_reply",
+			dataType:"json",
+			data:{rseq:$(this).val()}
+		}).done(function(){
+			location.reload();
+		})
+	})
+	//댓글 삭제
 	$(".choice").on("click",function(){
 		result = window.confirm("정말 선택하시겟습니까?");
 		if(result){
@@ -189,11 +206,49 @@
 				dataType:"json",
 				data:{rseq:$(this).val()
 				}
-				}).done(function(){
+				}).always(function(){
 					location.reload();
 				})
 			}
 	})
+	//댓글 선택
+	$(".modibtn").on("click",function(){
+		result = window.confirm("수정 하시겟습니까?");
+		if(result){
+			$(this).parent().siblings(".price").children().removeAttr("disabled");
+			$(this).parent().siblings(".contents").children().children(".incontents").children().removeAttr("disabled");
+			$(this).css("display","none");
+			$(this).siblings().css("display","none");
+			$(".choice").css("disply","none");
+			let ok = $("<button>");
+			ok.attr("type","button");
+			ok.attr("class","modiok");
+			ok.text("수정 완료");
+			
+			let cancel = $("<button>");
+			cancel.text("취소");
+			cancel.attr("type","button");
+			cancel.on("click",function(){
+				location.reload();
+			});
+			$(this).parent().append(ok);
+			$(this).parent().append(cancel);
+			$(".modiok").on("click",function(){
+			$.ajax({
+				url : "/modi.brd2_reply",
+				dataType:"json",
+				data:{
+					rseq:$(this).siblings().val(),
+					price:$(this).parent().siblings(".price").children()[0].value,
+					contents:$(this).parent().siblings(".contents").children().children(".incontents").children()[0].value
+				}
+			}).always(function(){
+				location.reload();
+			})
+			})
+		}
+	})
+	//댓글 수정
 	const countDownTimer = function(id, date) {
 			let _vDate = new Date(date);
 			// 전달 받은 일자 
