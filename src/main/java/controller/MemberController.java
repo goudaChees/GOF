@@ -26,23 +26,23 @@ public class MemberController extends HttpServlet {
 		request.setCharacterEncoding("utf8");
 		Gson g = new Gson();
 		EncryptUtils eUtil = new EncryptUtils();
-		
+		PrintWriter prw = response.getWriter();
 		String uri = request.getRequestURI();
 		MemberDAO dao = MemberDAO.getInstance();
 		try {
 			if(uri.equals("/login.member")) { // 로그인 버튼 클릭시
+
 				String id = request.getParameter("id");
 				String pw= request.getParameter("pw");
 				pw=eUtil.SHA512(pw);
 				Boolean isLoginOk=dao.IsloginOk(id,pw); // 아이디, 비번 검사
+				prw.append(isLoginOk.toString());
 				if(isLoginOk) {
 					HttpSession session = request.getSession();
 					session.setAttribute("loginID", id); // 로그인
 					String nickname = dao.getNickname(id);
 					session.setAttribute("loginNN", nickname);
 				}
-				PrintWriter prw = response.getWriter();
-				prw.append(g.toJson(isLoginOk));
 				
 			}else if(uri.equals("/joinform.member")) { // 회원가입 클릭시 회원가입폼으로 보냄
 				response.sendRedirect("/member/joinform.jsp");
@@ -50,14 +50,12 @@ public class MemberController extends HttpServlet {
 			}else if(uri.equals("/idDuplCheck.member")) { // 아이디 중복체크
 				String id = request.getParameter("id");
 				Boolean isIdExist=dao.isIdExist(id);
-				PrintWriter pw = response.getWriter();
-				pw.append(g.toJson(isIdExist));
+				prw.append(g.toJson(isIdExist));
 				
 			}else if(uri.equals("/nnDuplCheck.member")) { //닉네임 중복체크
 				String nickname = request.getParameter("nickname");
 				Boolean isNNExist=dao.isNNExist(nickname);
-				PrintWriter pw = response.getWriter();
-				pw.append(g.toJson(isNNExist));
+				prw.append(g.toJson(isNNExist));
 				
 			}else if(uri.equals("/member/join.member")) { //회원가입폼 제출시
 				String id= request.getParameter("id");
@@ -84,8 +82,6 @@ public class MemberController extends HttpServlet {
 				request.getRequestDispatcher("/member/mypage.jsp").forward(request, response);
 			
 			} else if(uri.equals("/memberCheck.member")) { // 회원탈퇴 비밀번호 검사 
-				PrintWriter prw = response.getWriter();
-				
 				String id = (String) request.getSession().getAttribute("loginID");
 				String pw = eUtil.SHA512(request.getParameter("pw"));
 				Boolean isLoginOk=dao.IsloginOk(id,pw); // 아이디, 비번 검사				
