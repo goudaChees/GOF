@@ -49,7 +49,7 @@ div {
 									<div class="row">
 										<div class="col">MyPage</div>
 									</div>
-									<div class="row">
+									<div class="row" align=center>
 										<div class="col-3">ID</div>
 										<div class="col-4">${dto.id }</div>
 									</div>
@@ -87,35 +87,6 @@ div {
 						
 								</div>
 							</div>
-							
-							<table align=center>
-								<tr>
-									<th style="text-align: center;">MyPage
-								</tr>
-								<tr>
-									<th>ID
-									<td>${dto.id }
-								</tr>
-								<tr>
-									<th>NAME
-									<td>${dto.name }
-								</tr>
-								
-								<tr>
-									<th>EMAIL
-									<td id="emailTD">${dto.email }</td>
-									<input type=hidden value="emailInput" name=email id="emailInput">
-								</tr>
-								<tr>
-									<th>NICKNAME
-									<td id="nicknameTD">${dto.nickname }</td>
-									<input type=hidden value="nicknameInput" name=nickname id="nicknameInput">
-								</tr>
-								<tr>
-									<th>JOIN_DATE
-									<td>${dto.joindate }
-								</tr>
-							</table>
 							<div class="row">
 								<div class="col-12">
 									<br>
@@ -149,6 +120,15 @@ div {
 
 </body>
 <script>
+	// 비밀번호 변경 버튼 클릭시 비밀번호 입력 창 띄우기
+	$("#pw_modify").on(
+		"click",
+		function() {
+			window.open("/member/modifiypw.jsp", "",
+					"top=100,left=200,width=550,height=350");
+			//location.href="/member/memberout.jsp";
+		})
+
 	// 탈퇴 버튼 클릭시 비밀번호 입력 창 띄우기
 	$("#member_out").on(
 			"click",
