@@ -25,20 +25,20 @@
 	box-sizing: border-box;
 }
 
-div {
-	border: 1px solid black;
-	text-align: center;
-  margin: 0px;
-}
-
+/* div { */
+/* 	border: 1px solid black; */
+/* 	text-align: center; */
+/*   margin: 0px; */
+/* } */
 #list_Middle>div {
 	float: left;
 }
 
-#boardHeader>div{
+#boardHeader>div {
 	float: left;
 }
-.boardList>div{
+
+.boardList>div {
 	float: left;
 }
 </style>
@@ -74,11 +74,12 @@ div {
 	<div id="list_Container" style="width: 70%; margin: auto;">
 		<div id="list_Header">
 			<div style="text-align: left; border: 0px; font-size: 25px;">지출의참견</div>
-			<div style="text-align: left; border: 0px;">살까말까 답정너들을 위한
-				참견러들의 지침</div>
+			<div style="text-align: left; border: 0px;">살까말까 답정너들을 위한 참견러들의
+				지침</div>
 		</div>
 		<div id="list_Middle" style="text-align: right;">
 			<div style="width: 20%">
+			<form action="search">
 				<select class="form-select" aria-label="Default select example"
 					name="searchCategory">
 					<option value="0">선택</option>
@@ -88,32 +89,46 @@ div {
 				</select>
 			</div>
 			<div style="width: 40%; text-align: left;">
-				<input type="text" placeholder="검색하실 내용을 입력하세요" name="search"
-					style="width: 70%"> <input type="button" value="검색">
-			</div><br>
+				<input type="text" placeholder="검색하실 내용을 입력하세요" name="search" style="width: 70%"> 
+				<input type="submit" value="검색">
+			</div>
+			<br>
+			</form>
 		</div>
-    <div id="list_Bottom">
-        <div border="1" align="center" id="wrapper" style="width: 800px; margin:auto;" >
-          <div id="boardHeader" class="d-none d-lg-block col-12">
-              <div align="center" class="col-1">글번호</div>
-              <div align="center" class="col-5">제목</div>
-              <div align="center" class="col-2">작성자</div>
-              <div align="center" class="col-3">날짜</div>
-              <div align="center" class="col-1">조회</div>
-          </div><br>
-          <hr id="topLine" style="border: 2px solid black;">
-          <div width="800" class="boardList" >
-              <div align="center" class="d-none d-lg-block col-1">1</div>
-              <div class="col-12 col-md-5" style="text-align: left"><a href="#">라이언 케이크 후기입니다</a></div>
-              <div align="center" class="d-none d-md-block col-2">작성자1</div>
-              <div align="center" class="d-none d-md-block col-md-3">2022.05.06</div>
-              <div class="col-2 d-md-none" style="text-align: left">작성자1</div>
-              <div class="col-10 d-md-none" style="text-align: left">2022.05.06</div>
-              <div class="d-none d-md-block col-1">2</div>
-          </div><br>
-          <hr>
-        </div>
-    </div>
+		<div id="list_Bottom">
+			<div border="1" align="center" id="wrapper"
+				style="width: 800px; margin: auto;" class="row">
+				<div id="boardHeader" class="d-none d-lg-block col-12">
+					<div align="center" class="col-1">글번호</div>
+					<div align="center" class="col-5">제목</div>
+					<div align="center" class="col-2">작성자</div>
+					<div align="center" class="col-3">날짜</div>
+					<div align="center" class="col-1">조회</div>
+				</div>
+				<br>
+				<hr id="topLine" style="border: 2px solid black;">
+				<c:forEach var="i" items="${list}">
+					<div width="800" class="boardList">
+						<div align="center" class="col-1">${i.seq }</div>
+						<div class="col-5" style="text-align: left; overflow: hidden;">
+							<a href="#">${i.title}</a>
+						</div>
+						<div align="center" class="col-2">${i.writer}</div>
+						<div align="center" class="col-3">${i.write_date}</div>
+						<div class="col-1">{i.view_count}</div>
+					</div>
+					<br>
+					<hr>
+				</c:forEach>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">${navi}</div>
+			<div class="col-2">
+				<input type="button" id="write" value="글쓰기">
+			</div>
+		</div>
 	</div>
 	<div class="row w-100 m-0" id="footer">
 		<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
