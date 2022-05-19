@@ -20,6 +20,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
 	integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
 	crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <style>
 * {
 	border: 1px solid black;
@@ -32,14 +33,43 @@
 	<div id="container">
 		<div class="row">
 			<div class="col-12">
-				<div class="row">
-					<div class="col-1">logo</div>
-					<div class="col-3"></div>
-					<div class="col-2">지출의 참견</div>
-					<div class="col-2">선택의 참견</div>
-					<div class="col-2">고객센터</div>
-					<div class="col-2">마이페이지</div>
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="index.jsp">앞날의 지침</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+					aria-controls="navbarNavDropdown" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-end"
+					id="navbarNavDropdown">
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="#">지출의 참견</a></li>
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="list.brd2">선택의 참견</a></li>
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="csmain.cscenter">고객센터</a></li>
+						
+						<c:choose>
+							<c:when test="${loginID =='admin'}">
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="#">관리자페이지</a></li>
+								<li class="nav-item"><a class="nav-link active"
+								aria-current="page" href="logout.member"><i class="bi bi-box-arrow-right"></i></a></li>
+							</c:when>
+							<c:when test="${loginID !=null}">
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="mypage.member">마이페이지</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="logout.member"><i class="bi bi-box-arrow-right"></i></a></li>
+							</c:when>
+						</c:choose>
+					</ul>
 				</div>
+			</div>
+		</nav>
 			</div>
 		</div>
 		<div class="row">
@@ -69,7 +99,7 @@
 					<c:forEach var="i" items="${dto}">
 					<div class="row">
 						<div class="col-2">${i.seq}</div>
-						<div class="col-2"><a href="/read.brd2?seq=${i.seq}&count=${i.view_count}">${i.title}</a></div>
+						<div class="col-2"><a href="/read.brd2?seq=${i.seq}">${i.title}</a></div>
 						<div class="col-2">${i.nickname}</div>
 						<div class="col-2 limit" id="${i.seq}"></div>
 						<div class="col-2 time" id="${i.write_date}"></div>
