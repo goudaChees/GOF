@@ -84,7 +84,7 @@
 			<div class="col-2"></div>
 			<div class="col-8">
 				<div class="row">
-					<div style="display:none;" id="wtime">${dto.write_date}</div>
+					<div style="display: none;" id="wtime">${dto.write_date}</div>
 					<div class="col-12" id="limit"></div>
 					<div class="col-12">${dto.contents}</div>
 				</div>
@@ -96,50 +96,62 @@
 					</div>
 				</div>
 				<div class="row">
-				<c:if test="${cck == false && wck == false}">
-					<form action="/write.brd2_reply" method="post">
-						<div class="row">
-							<div class="col-12">
-								<div class="row">
-									<div class="col-3">
-										<input type="text" id="writer" value="${loginNN}" style="display: none">
-										<input type="text" placeholder="가격을 입력해주세요" name="price">
-									<input type="hidden" name="pseq" value="${dto.seq}">
-									</div>
-								<div class="col-6">
-										<input type="text" placeholder="내용을 입력해주세요" name="contents">
-									</div>
-									<div class="col-3">
-										<button type="submit" id="btn1">작성</button>
-										<button type="button" id="del">삭제</button>
+					<c:if test="${cck == false && wck == false}">
+						<form action="/write.brd2_reply" method="post">
+							<div class="row">
+								<div class="col-12">
+									<div class="row">
+										<div class="col-3">
+											<input type="text" id="writer" value="${loginNN}"
+												style="display: none"> <input type="text"
+												placeholder="가격을 입력해주세요" name="price"> <input
+												type="text" name="pseq" value="${dto.seq}"
+												style="display: none">
+										</div>
+										<div class="col-6">
+											<input type="text" placeholder="내용을 입력해주세요" name="contents">
+										</div>
+										<div class="col-3">
+											<button type="submit" id="btn1">작성</button>
+											<button type="button" id="del">삭제</button>
+										</div>
 									</div>
 								</div>
-									
-								</div>
-						</div>
-					</form>
-				</c:if>
-<!-- 				댓글 작성 한적이 없거나 선택되지 않았다면 뎃글 작성 가능 -->
-					
+							</div>
+						</form>
+					</c:if>
+					<!-- 				댓글 작성 한적이 없거나 선택되지 않았다면 뎃글 작성 가능 -->
 				</div>
+	<c:if test="${crdto != null}">
+				<div class="row">
+					<div class="col-2">${crdto.price}</div>
+					<div class="col-8">
+						<div class="row">
+							<div class="col-6">${crdto.nickname}</div>
+							<div class="col-6">${crdto.wirte_date}</div>
+							<div class="col-12">${crdto.contents}</div>
+						</div>
+					</div>
+					<div class="col-2">작성자의 선택 댓글</div>
+				</div>
+	</c:if>
 				<div class="row">
 					<div class="col-12">
 						<c:forEach var="i" items="${rdto}">
 							<div class="row">
-								<div class="col-3">${i.price}</div>
-							</div>
-							<div class="row">
+								<div class="col-2">${i.price}</div>
 								<div class="col-8">
 									<div class="row">
-										<div class="col-3">${i.nickname}</div>
-										<div class="col-3">${i.wirte_date}</div>
-									</div>
-									<div class="row">
+										<div class="col-6">${i.nickname}</div>
+										<div class="col-6">${i.wirte_date}</div>
 										<div class="col-12">${i.contents}</div>
 									</div>
 								</div>
-								<div class="col-1">
-									<input type="radio" name="choice" value="선택">
+								<div class="col-2">
+									<c:if test="${loginNN == dto.nickname && cck == false}">
+									선택<input type="radio" name="choice" value="${i.seq}"
+											class="choice">
+									</c:if>
 								</div>
 							</div>
 						</c:forEach>
@@ -152,8 +164,8 @@
 			<div class="col-12">footer</div>
 		</div>
 	</div>
-	
-	
+
+
 	<script>
 	$("#del").on("click",function(){
 		result = window.confirm("정말 삭제하시겟습니까?");
@@ -169,7 +181,19 @@
 		}
 		//글 수정
 	})
-	
+	$(".choice").on("click",function(){
+		result = window.confirm("정말 선택하시겟습니까?");
+		if(result){
+			$.ajax({
+				url:"/choice.brd2_reply",
+				dataType:"json",
+				data:{rseq:$(this).val()
+				}
+				}).done(function(){
+					location.reload();
+				})
+			}
+	})
 	const countDownTimer = function(id, date) {
 			let _vDate = new Date(date);
 			// 전달 받은 일자 

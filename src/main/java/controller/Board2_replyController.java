@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 import dao.Board2_replyDAO;
 import dto.Board2_replyDTO;
 
@@ -24,7 +26,7 @@ public class Board2_replyController extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
-		
+		Gson gs = new Gson();
 		try{
 			if(uri.equals("/write.brd2_reply")) {
 			String nickname = (String) session.getAttribute("loginNN");
@@ -34,6 +36,10 @@ public class Board2_replyController extends HttpServlet {
 			
 			dao.insert(new Board2_replyDTO(0,nickname,pseq,price,contents,"0",'Y'));
 			response.sendRedirect("/read.brd2?seq="+pseq);
+		}else if(uri.equals("/choice.brd2_reply")) {
+			int seq = Integer.parseInt(request.getParameter("rseq"));
+			dao.choice(seq);
+
 		}
 			
 		}catch (Exception e) {
