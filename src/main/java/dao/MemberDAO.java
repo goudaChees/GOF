@@ -240,8 +240,7 @@ private static MemberDAO instance = null;
 		
 	}
 	
-	
-	
+	// 멤버 페이지로 출력 구분
 	
 	public List<MemberDTO> selectByPage(int cpage) throws Exception {
 		

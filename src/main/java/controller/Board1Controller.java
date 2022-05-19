@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -90,9 +91,12 @@ public class Board1Controller extends HttpServlet {
 				request.getRequestDispatcher("/list.brd1?cpage=1").forward(request, response);	
 				
 			}else if(uri.equals("/list.brd1")){
+				
 				int cpage = Integer.parseInt(request.getParameter("cpage"));
 				
+				
 				session.setAttribute("cpage", cpage);
+				
 				
 				List<Board1DTO> list = dao.selectByPage(cpage);//한 페이지당 리스트 출력
 				request.setAttribute("list", list);
@@ -101,7 +105,32 @@ public class Board1Controller extends HttpServlet {
 				
 				request.setAttribute("navi", navi);
 				
-				request.getRequestDispatcher("/board1/board1_List.jsp?cpage=1").forward(request, response);	
+				request.getRequestDispatcher("/board1/board1_List.jsp").forward(request, response);	
+				
+			}else if(uri.equals("/search.brd1")) {
+				
+				int searchCategory = Integer.parseInt(request.getParameter("searchCategory"));//검색 카테고리
+				String searchTarget = request.getParameter("searchTarget");//검색어
+				System.out.println(searchCategory);
+				
+				int cpage =1;//cpage는 1로 설정
+				
+				List<Board1DTO> list = new ArrayList<Board1DTO>();
+	
+				
+				if(searchCategory==1) {//작성자로 검색할 경우
+					list = dao.searchByWriter(searchTarget,cpage);
+					System.out.println(searchTarget);
+				}else if(searchCategory==2) {
+					
+				}else if(searchCategory==3) {
+					
+				}
+				
+				request.setAttribute("list", list);
+				request.setAttribute("searchCategory", searchCategory);
+				
+				request.getRequestDispatcher("/board1/board1_List.jsp?cpage=1").forward(request, response);
 				
 			}
 		}catch(Exception e) {

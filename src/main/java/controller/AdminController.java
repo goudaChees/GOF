@@ -38,7 +38,13 @@ public class AdminController extends HttpServlet {
 				request.setAttribute("list", list);
 				request.setAttribute("pageNavi", pageNavi);
 				request.getRequestDispatcher("/admin/adminmain.jsp").forward(request, response);
+					
+			}else if(uri.equals("/detailViewMember.admin")) {
 				
+				String id = request.getParameter("id");
+				MemberDTO mdto = mdao.selectById(id);
+				request.setAttribute("mdto", mdto);
+				request.getRequestDispatcher("/admin/detailViewMember.jsp").forward(request, response);
 				
 			}
 			
