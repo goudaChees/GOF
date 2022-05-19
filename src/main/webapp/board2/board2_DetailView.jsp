@@ -84,6 +84,8 @@
 			<div class="col-2"></div>
 			<div class="col-8">
 				<div class="row">
+					<div style="display:none;" id="wtime">${dto.write_date}</div>
+					<div class="col-12" id="limit"></div>
 					<div class="col-12">${dto.contents}</div>
 				</div>
 				<div class="row">
@@ -94,29 +96,30 @@
 					</div>
 				</div>
 				<div class="row">
-				<c:if test="${cck == false || wcck == false}">
+				<c:if test="${cck == false && wck == false}">
 					<form action="/write.brd2_reply" method="post">
 						<div class="row">
 							<div class="col-12">
 								<div class="row">
 									<div class="col-3">
-										<input type="text" id="writer" value="${loginNN}" disabled>
+										<input type="text" id="writer" value="${loginNN}" style="display: none">
 										<input type="text" placeholder="가격을 입력해주세요" name="price">
-									</div>
 									<input type="hidden" name="pseq" value="${dto.seq}">
-								</div>
-								<div class="row">
-									<div class="col-7">
+									</div>
+								<div class="col-6">
 										<input type="text" placeholder="내용을 입력해주세요" name="contents">
 									</div>
-									<div class="col-2">
+									<div class="col-3">
 										<button type="submit" id="btn1">작성</button>
+										<button type="button" id="del">삭제</button>
 									</div>
 								</div>
-							</div>
+									
+								</div>
 						</div>
 					</form>
 				</c:if>
+<!-- 				댓글 작성 한적이 없거나 선택되지 않았다면 뎃글 작성 가능 -->
 					
 				</div>
 				<div class="row">
@@ -149,6 +152,8 @@
 			<div class="col-12">footer</div>
 		</div>
 	</div>
+	
+	
 	<script>
 	$("#del").on("click",function(){
 		result = window.confirm("정말 삭제하시겟습니까?");
@@ -164,6 +169,40 @@
 		}
 		//글 수정
 	})
+	
+	const countDownTimer = function(id, date) {
+			let _vDate = new Date(date);
+			// 전달 받은 일자 
+			let _second = 1000;
+			let _minute = _second * 60;
+			let _hour = _minute * 60;
+			let _day = _hour * 24;
+			let timer;
+			function showRemaining() {	
+				let now = new Date();
+				var distDt = _vDate - now;
+				if (distDt < 0) {
+					clearInterval(timer);
+					document.getElementById(id).textContent="종료";
+					return;
+				}
+				let days = Math.floor(distDt / _day);
+				let hours = Math.floor((distDt % _day) / _hour);
+				let minutes = Math.floor((distDt % _hour) / _minute);
+				let seconds = Math.floor((distDt % _minute) / _second);
+				//document.getElementById(id).textContent = date.toLocaleString() + "까지 : ";
+ 				//document.getElementById(id).textContent = days + '일 ';
+				//document.getElementById(id).textContent += hours + '시간 ';
+				document.getElementById(id).textContent = minutes + '분 ';
+				document.getElementById(id).textContent += seconds + '초';
+			}
+			timer = setInterval(showRemaining, 1000);
+		}
+	        let time = $("#wtime").text();
+	        let dateObj = new Date(time);
+	        dateObj.setMinutes(dateObj.getMinutes() +10);
+			countDownTimer("limit", dateObj);
+	        
 	</script>
 </body>
 </html>

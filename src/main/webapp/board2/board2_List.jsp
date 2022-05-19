@@ -99,7 +99,7 @@
 					<c:forEach var="i" items="${dto}">
 					<div class="row">
 						<div class="col-2">${i.seq}</div>
-						<div class="col-2"><a href="/read.brd2?seq=${i.seq}&count=${i.view_count}">${i.title}</a></div>
+						<div class="col-2"><a href="/read.brd2?seq=${i.seq}">${i.title}</a></div>
 						<div class="col-2">${i.nickname}</div>
 						<div class="col-2 limit" id="${i.seq}"></div>
 						<div class="col-2 time" id="${i.write_date}"></div>
