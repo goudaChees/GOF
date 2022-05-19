@@ -37,6 +37,9 @@ div {
 	border: 1px solid black;
 	text-align: center;
 }
+.navbar{
+	z-index:3;
+}
 
 #home>div {
 	float: left;
@@ -137,7 +140,7 @@ div {
 										placeholder="input your pw">
 								</div>
 								<div class="col-12">
-									<input type="submit" id="login" value="로그인"
+									<input type="button" id="login" value="로그인"
 										style="background-color: #dfe7fd; border: 1px solid #cddafd;">
 									<input type="button" id="kakao-login-btn" value="카카오로 로그인"
 										style="background-color: #dfe7fd; border: 1px solid #cddafd;">
@@ -182,17 +185,16 @@ div {
     				pw:$("#pw").val()},
     			type:"POST"
     		}).done(function(resp){
-    			location.reload();
-    			let result = JSON.parse(resp);
-    			if(!result){
+    			if(resp==false){
     				Swal.fire({
     					  icon: 'error',
     					  title: 'Oops...',
     					  text: '입력하신 회원정보가 존재하지 않습니다.'
-    					})
+   					})
     				$("#id").val("");
     				$("#pw").val("");
-    				$("#id").val().focus();
+    			}else{
+    				location.reload();
     			}
     		})
     	})

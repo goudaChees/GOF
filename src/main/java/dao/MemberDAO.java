@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -149,4 +151,132 @@ private static MemberDAO instance = null;
 			return result;
 		}
 	}
+	
+//	관리자 페이지 멤버 출력 메서드
+	
+	//멤버 총 숫자
+	private int getRecordTotalCount() throws Exception {
+		String sql = "select count(*) from member";
+		
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();
+				){
+			rs.next();
+			return rs.getInt(1);
+		}
+		
+	}
+	
+	//멤버 네비
+	public String getPageNavi(int currentPage) throws Exception {
+		int recordTotalCount = this.getRecordTotalCount(); 
+		
+		int recordCountPerPage = 10; // 한 페이지에 몇명의 회원
+		
+		int naviCountPerPage = 10; // 한 페이지에 몇개의 네비를 보여줄 것인지
+		
+		int pageTotalCount = 0; // 총 몇개의 페이지가 필요한가?
+		
+		if(recordTotalCount % recordCountPerPage > 0) {
+			pageTotalCount = recordTotalCount / recordCountPerPage +1;
+		}else {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+
+		if(currentPage < 1) {
+			currentPage= 1;
+		}else if(currentPage > pageTotalCount) {
+			currentPage = pageTotalCount;
+		}
+		
+		int startNavi = (currentPage-1) / naviCountPerPage * naviCountPerPage + 1;
+		// startNavi의 공식 
+		// (currentPage-1) / naviCountPerPage * naviCountPerPage + 1;
+		int endNavi = startNavi + naviCountPerPage - 1;
+		// endNavi의 공식
+		// startNavi + naviCountPerPage - 1;
+		
+		if (endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+			// currentPage = pageTotalcount;
+		}
+		
+		boolean needNext = true;
+		boolean needPrev = true;
+		
+		if (startNavi == 1) {
+			needPrev = false;
+		}
+		
+		if (endNavi == pageTotalCount) {
+			needNext = false;
+		}
+		
+		StringBuilder sb = new StringBuilder();
+
+		
+		if (needPrev) {
+
+			sb.append("<a href='memberlist.admin?cpage="+(startNavi-1)+"'>< </a>");
+		}
+		
+		for (int i = startNavi ; i <= endNavi; i++) {
+			if (currentPage == i) {
+
+				sb.append("<a href=\'memberlist.admin?cpage="+i+"\'>[" + i + "] </a>");
+			}else {
+
+				sb.append("<a href=\'memberlist.admin?cpage="+i+"\'>"+ i +" </a>");
+			}
+		}
+		if (needNext) {
+
+			sb.append("<a href='memberlist.admin?cpage="+(endNavi+1)+"'>> </a>");
+		}
+		
+		return sb.toString();
+		
+	}
+	
+	
+	
+	
+	public List<MemberDTO> selectByPage(int cpage) throws Exception {
+		
+		int startPage = cpage * 10 - 9;
+		int endPage = cpage * 10;
+		
+		String sql = "select * from (select row_number() over(order by seq ) line, member.* from member) where line between ? and ?";
+		
+		try (
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, startPage);
+			pstat.setInt(2, endPage);
+			
+			try (
+					ResultSet rs = pstat.executeQuery();
+					){
+				List<MemberDTO> list = new ArrayList<>();
+				while(rs.next()) {
+					MemberDTO mdto = new MemberDTO();
+					mdto.setId(rs.getString("id"));
+					mdto.setSeq(rs.getInt("seq"));
+					mdto.setPassword(rs.getString("password"));
+					mdto.setName(rs.getString("namge"));
+					mdto.setPhone(rs.getString("phone"));
+					mdto.setEmail(rs.getString("email"));
+					mdto.setNickname(rs.getString("nickname"));
+					mdto.setJoindate(rs.getDate("joindate"));
+					list.add(mdto);
+				}
+				return list;
+			}
+		}
+	}
+	
+	
 }
