@@ -219,21 +219,21 @@ private static MemberDAO instance = null;
 		
 		if (needPrev) {
 
-			sb.append("<a href='memberlist.admin?cpage="+(startNavi-1)+"'>< </a>");
+			sb.append("<a href='adminmain.admin?cpage="+(startNavi-1)+"'>< </a>");
 		}
 		
 		for (int i = startNavi ; i <= endNavi; i++) {
 			if (currentPage == i) {
 
-				sb.append("<a href=\'memberlist.admin?cpage="+i+"\'>[" + i + "] </a>");
+				sb.append("<a href=\'adminmain.admin?cpage="+i+"\'>[" + i + "] </a>");
 			}else {
 
-				sb.append("<a href=\'memberlist.admin?cpage="+i+"\'>"+ i +" </a>");
+				sb.append("<a href=\'adminmain.admin?cpage="+i+"\'>"+ i +" </a>");
 			}
 		}
 		if (needNext) {
 
-			sb.append("<a href='memberlist.admin?cpage="+(endNavi+1)+"'>> </a>");
+			sb.append("<a href='adminmain.admin?cpage="+(endNavi+1)+"'>> </a>");
 		}
 		
 		return sb.toString();
@@ -266,7 +266,7 @@ private static MemberDAO instance = null;
 					mdto.setId(rs.getString("id"));
 					mdto.setSeq(rs.getInt("seq"));
 					mdto.setPassword(rs.getString("password"));
-					mdto.setName(rs.getString("namge"));
+					mdto.setName(rs.getString("name"));
 					mdto.setPhone(rs.getString("phone"));
 					mdto.setEmail(rs.getString("email"));
 					mdto.setNickname(rs.getString("nickname"));
