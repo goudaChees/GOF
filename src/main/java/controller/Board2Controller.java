@@ -98,6 +98,30 @@ public class Board2Controller extends HttpServlet {
 				int seq = Integer.parseInt(request.getParameter("seq"));
 				dao.del(seq);
 				response.sendRedirect("/list.brd2?cpage=1");				
+			}else if (uri.equals("/serch.brd2")) {
+				String category = request.getParameter("category");
+				String serch = request.getParameter("serch");
+				if(category == null) {
+					category = (String)session.getAttribute("category");
+				}
+				if(serch == null) {
+					serch = (String)session.getAttribute("serch");
+				}
+				int cpage = 1;
+				if (request.getParameter("cpage") != null) {
+					cpage = Integer.parseInt(request.getParameter("cpage"));
+				}
+				ArrayList<Board2DTO> dto = dao.serch(category, serch, cpage);
+				
+				String pageNavi = dao.serchNavi(cpage,category,serch);
+				
+				session.setAttribute("cpage", cpage);
+				session.setAttribute("category", category);
+				session.setAttribute("serch", serch);
+				request.setAttribute("navi", pageNavi);
+				request.setAttribute("dto", dto);
+				request.getRequestDispatcher("/board2/board2_List.jsp").forward(request, response);
+				
 			}
 		} 
 		catch (Exception e) {

@@ -22,8 +22,10 @@ public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html; charset=utf-8");
+		response.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("utf-8");
 		
-		request.setCharacterEncoding("utf8");
 		Gson g = new Gson();
 		EncryptUtils eUtil = new EncryptUtils();
 		PrintWriter prw = response.getWriter();
@@ -94,8 +96,26 @@ public class MemberController extends HttpServlet {
 				response.sendRedirect("/index.jsp");
 				
 			} else if(uri.equals("/update.member")) { // 내 정보 수정하기
-				
+				String phone= request.getParameter("phone");
+				String email= request.getParameter("email");
+				String nickname= request.getParameter("nickname");
+				String id = (String) request.getSession().getAttribute("loginID");
+				dao.update(new MemberDTO(0, id, null, null, phone, email, nickname, null));
+				response.sendRedirect("/mypage.member");
+			
+			} else if(uri.equals("/pwCheck.member")) { 
+				String id = (String) request.getSession().getAttribute("loginID");
+				String nowpw = eUtil.SHA512(request.getParameter("nowpw"));
+				Boolean isLoginOk=dao.IsloginOk(id,nowpw); // 아이디, 비번 검사				
+				prw.append(g.toJson(isLoginOk));
+			
+			} else if (uri.equals("/pwChange.member")) {
+				String id = (String) request.getSession().getAttribute("loginID");
+				String pw = eUtil.SHA512(request.getParameter("newpw"));
+				dao.updatePw(pw, id);
+				response.sendRedirect("/mypage.member");
 			}
+			
 			
 		}catch(Exception e) {
 			e.printStackTrace();

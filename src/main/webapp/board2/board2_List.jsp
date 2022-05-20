@@ -76,16 +76,25 @@
 			<div class="col-12">선택의 참견</div>
 			<div class="col-12">최저가를 찾는 자린괴비들의 지침</div>
 		</div>
+	<form action="serch.brd2" method="post">
 		<div class="row">
-			<div class="col-6"></div>
+			<div class="col-4"></div>
+			<div class="col-2">
+			<select class="from-select: aria-label=select" id="select1" name="category">
+				<option class="select" value="title">제목</option>
+				<option class="select" value="writer">작성자</option>
+				<option class="select" value="contents">내용</option>
+    		</select>
+			</div>
 			<div class="col-4">
-				<input type="text" id="serch" name="serch"
+				<input type="search" id="serch" name="serch"
 					placeholder="검색하실 내용을 입력하세요">
 			</div>
 			<div class="col-2">
 				<button type="submit" id="submit">검색</button>
 			</div>
 		</div>
+	</form>	
 		<div class="row">
 			<div class="col-2"></div>
 			<div class="col-8">
@@ -145,7 +154,7 @@
 				let days = Math.floor(distDt / _day);
 				let hours = Math.floor((distDt % _day) / _hour);
 				let minutes = Math.floor((distDt % _hour) / _minute);
-				let seconds = Math.floor((distDt % _minute) / _second);
+				let seconds = Math.floor((distDt % _minute) / _second);x
 				//document.getElementById(id).textContent = date.toLocaleString() + "까지 : ";
  				//document.getElementById(id).textContent = days + '일 ';
 				//document.getElementById(id).textContent += hours + '시간 ';

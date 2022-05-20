@@ -41,6 +41,10 @@
 .boardList>div {
 	float: left;
 }
+
+span{
+	font-weight: bolder;
+}
 </style>
 </head>
 <body>
@@ -97,25 +101,24 @@
 		</div>
 		<div id="list_Bottom">
 			<div border="1" align="center" id="wrapper"
-				style="width: 800px; margin: auto;" class="row">
-				<div id="boardHeader" class="d-none d-lg-block col-12">
-					<div align="center" class="col-1">글번호</div>
-					<div align="center" class="col-5">제목</div>
-					<div align="center" class="col-2">작성자</div>
-					<div align="center" class="col-3">날짜</div>
-					<div align="center" class="col-1">조회</div>
-				</div>
-				<br>
-				<hr id="topLine" style="border: 2px solid black;">
+				style="width: 70%; margin: auto;" class="row">
 				<c:forEach var="i" items="${list}">
-					<div width="800" class="boardList">
-						<div align="center" class="col-1">${i.seq }</div>
-						<div class="col-5" style="text-align: left; overflow: hidden;">
-							<a href="#">${i.title}</a>
+					<div width="100%" class="boardList">
+						<div class="col-4">
+						<img src="#">
 						</div>
-						<div align="center" class="col-2">${i.writer}</div>
-						<div align="center" class="col-3">${i.write_date}</div>
-						<div class="col-1">{i.view_count}</div>
+						<div class="col-7">
+							<div class="row">
+								<input type="hidden" value=${i.seq }>
+								<div class="col-12" style="text-align: left; overflow: hidden;">
+									<a href="#" class="title">${i.title}</a>
+								</div>
+								<div align="center" class="col-5" class="item">${i.item}</div>
+								<div align="center" class="col-7" class="writer">${i.writer}</div>
+								<div align="center" class="col-12">${i.write_date}</div>
+							</div>	
+						</div>
+						<div class="col-">${i.view_count}</div>
 					</div>
 					<br>
 					<hr>
@@ -133,5 +136,6 @@
 	<div class="row w-100 m-0" id="footer">
 		<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
 	</div>
+
 </body>
 </html>
