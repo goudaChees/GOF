@@ -54,7 +54,7 @@ public class Board2Controller extends HttpServlet {
 				String title = request.getParameter("title");
 				String contents = request.getParameter("contents");
 				String item = request.getParameter("item");
-				dao.insert(new Board2DTO(0, nickname, title, contents, item, "0", 0));
+				dao.insert(new Board2DTO(0, nickname, title, contents, item, "0", 0, 0));
 				response.sendRedirect("/list.brd2?cpage=1");
 			} else if (uri.equals("/modi.brd2")) {
 				int seq = Integer.parseInt(request.getParameter("seq"));

@@ -38,7 +38,7 @@
 			<div class="col-12">
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
 					<div class="container-fluid">
-						<a class="navbar-brand" href="index.jsp">앞날의 지침</a>
+						<a class="navbar-brand" href="/index.jsp">앞날의 지침</a>
 						<button class="navbar-toggler" type="button"
 							data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 							aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -78,7 +78,8 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-12">${dto.title}</div>
+			<div class="col-10">${dto.title}</div>
+			<div class="col-2">조회수 : ${dto.view_count}</div>
 		</div>
 		<div class="row">
 			<div class="col-2"></div>
@@ -91,6 +92,9 @@
 				<div class="row">
 					<div class="col-9"></div>
 					<div class="col-3">
+						<button type="button" id="listview">
+						<a href="list.brd2" style="text-decoration:none">게시판으로 돌아가기</a>
+						</button>
 						<button type="button" id="modi">수정하기</button>
 						<button type="button" id="del">삭제하기</button>
 					</div>
@@ -103,10 +107,11 @@
 									<div class="row">
 										<div class="col-3">
 											<input type="text" id="writer" value="${loginNN}"
-												style="display: none"> <input type="text"
-												placeholder="가격을 입력해주세요" name="price"> <input
-												type="text" name="pseq" value="${dto.seq}"
+												style="display: none"> 
+												<input type="text" placeholder="ex)1000" name="price" id="wprice"> 
+												<input type="text" name="pseq" value="${dto.seq}"
 												style="display: none">
+												<div id="wpriceno"></div>
 										</div>
 										<div class="col-6">
 											<input type="text" placeholder="내용을 입력해주세요" name="contents">
@@ -174,6 +179,22 @@
 
 
 	<script>
+	$("#wprice").on("keyup",function(){
+		let priceRegex = /[0-9]{1,20}/;
+		let wprice = priceRegex.test($("#wprice").text());
+		if(!wprice){
+			$("#wprice").css("border", "1px solid red");
+			$("#wpriceno").css("color", "red");
+			$("#wpriceno").text("숫자만 사용하여 1~20자로 작성");
+			return
+			$("#btn1").on("click",function(){
+				if(!wpirce){
+					return	
+				}
+			})
+		}
+		
+	})
 	$("#del").on("click",function(){
 		result = window.confirm("정말 삭제하시겟습니까?");
 		if(result){
@@ -189,13 +210,17 @@
 		//글 수정
 	})
 	$(".delbtn").on("click",function(){
+		reulst = window.confirm("정말 삭제하시겟습니까?");
+		if(reulst){
 		$.ajax({
 			url:"/del.brd2_reply",
 			dataType:"json",
-			data:{rseq:$(this).val()}
-		}).done(function(){
+			data:{rseq:$(this).val(),
+				pseq:${dto.seq}}
+		}).always(function(){
 			location.reload();
 		})
+		}
 	})
 	//댓글 삭제
 	$(".choice").on("click",function(){
