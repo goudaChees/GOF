@@ -28,7 +28,7 @@ public class Board2DAO {
 	};
 
 	public int insert(Board2DTO dto) throws Exception {
-		String sql = "insert into board2 values(Board2_seq.nextval,?,?,?,default,?,default)";
+		String sql = "insert into board2 values(Board2_seq.nextval,?,?,?,default,?,default,default)";
 		try (Connection con = this.getConnection(); PreparedStatement stat = con.prepareStatement(sql);) {
 			stat.setString(1, dto.getNickname());
 			stat.setString(2, dto.getTitle());
@@ -54,7 +54,8 @@ public class Board2DAO {
 				String date = rs.getString("write_date");
 				String item = rs.getString("item");
 				int count = rs.getInt("view_count");
-				arr.add(new Board2DTO(seq, writer, title, contents, item, date, count));
+				int reply = rs.getInt("reply");
+				arr.add(new Board2DTO(seq, writer, title, contents, item, date, count,reply));
 			}
 		}
 		return arr;
@@ -195,7 +196,8 @@ public class Board2DAO {
 					String date = rs.getString("write_date");
 					String item = rs.getString("item");
 					int count = rs.getInt("view_count");
-					arr.add(new Board2DTO(seq, writer, title, contents, date, item, count));
+					int reply = rs.getInt("reply");
+					arr.add(new Board2DTO(seq, writer, title, contents, date, item, count,reply));
 				}
 			}
 		}
@@ -238,19 +240,20 @@ public class Board2DAO {
 		int start = cpage * 10 - 9;
 		int end = cpage * 10;
 
-		String sql = "select * from(select row_number() over(order by seq desc) as line,board2.*from board2)where line between ? and ?";
+		String sql = "select * from (select row_number() over(order by seq desc) line, board2.* from board2 where writer like ?) where line between ? and ?";
 		if (category.equals("writer")) {
-			sql = "select * from(select row_number() over(order by seq desc) as line,board2.*from board2)where line between ? and ? and writer like ?";
+			sql = "select * from (select row_number() over(order by seq desc) line, board2.* from board2 where writer like ?) where line between ? and ?";
 		} else if (category.equals("title")) {
-			sql = "select * from(select row_number() over(order by seq desc) as line,board2.*from board2)where line between ? and ? and title like ?";
+			sql = "select * from (select row_number() over(order by seq desc) line, board2.* from board2 where title like ?) where line between ? and ?";
 		} else if (category.equals("contents")) {
-			sql = "select * from(select row_number() over(order by seq desc) as line,board2.*from board2)where line between ? and ? and contents like ?";
+			sql = "select * from (select row_number() over(order by seq desc) line, board2.* from board2 where contents like ?) where line between ? and ?";
 		}
 		ArrayList<Board2DTO> arr = new ArrayList<>();
 		try (Connection con = this.getConnection(); PreparedStatement stat = con.prepareStatement(sql);) {
-			stat.setInt(1, start);
-			stat.setInt(2, end);
-			stat.setString(3, "%" + serch + "%");
+			stat.setString(1, "%" + serch + "%");
+			stat.setInt(2, start);
+			stat.setInt(3, end);
+			
 			try (ResultSet rs = stat.executeQuery();) {
 				while (rs.next()) {
 					int seq = rs.getInt("seq");
@@ -260,7 +263,8 @@ public class Board2DAO {
 					String date = rs.getString("write_date");
 					String item = rs.getString("item");
 					int count = rs.getInt("view_count");
-					arr.add(new Board2DTO(seq, writer, title, contents, date, item, count));
+					int reply = rs.getInt("reply");
+					arr.add(new Board2DTO(seq, writer, title, contents, date, item, count,reply));
 				}
 			}
 		}
