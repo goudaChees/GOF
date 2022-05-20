@@ -31,19 +31,48 @@ div {
 </head>
 <body>
 	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="/index.jsp">앞날의 지침</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+					aria-controls="navbarNavDropdown" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-end"
+					id="navbarNavDropdown">
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="#">지출의 참견</a></li>
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="/list.brd2">선택의 참견</a></li>
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="/csmain.cscenter">고객센터</a></li>
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="/mypage.member">마이페이지</a></li>
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="/logout.member"><i class="bi bi-box-arrow-right"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
 		<div class="row">
 			<div class="col">
 				<p>My Page</p>
 				<ul class="nav nav-tabs">
-					<li class="nav-item"><a class="nav-link active"
-						data-toggle="tab" href="#mypage">내 정보 보기</a></li>
-					<li class="nav-item"><a class="nav-link" data-toggle="tab"
-						href="#mywrite">내 글 보기</a></li>
-					<li class="nav-item"><a class="nav-link" data-toggle="tab"
-						href="#mycontent">내 댓글 보기</a></li>
+				  <li class="nav-item">
+				    <a class="nav-link active" aria-current="page" href="/mypage.member">내 정보 보기</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" href="/myWriting.member?board=1&page=1">내 글 보기</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" href="/myReply.member?board=1&page=1">내 댓글 보기</a>
+				  </li>
 				</ul>
-				<div class="tab-content">
-					<div class="tab-pane fade show active" id="mypage">
+				<div class="row">
+					<div class="col-12" id="mypage">
 						<form action="update.member" method="post">
 							<div class="row">
 								<div class="col" >
@@ -100,19 +129,7 @@ div {
 									<button id="member_out" type="button">탈퇴하기</button>
 								</div>
 							</div>
-
 						</form>
-					</div>
-					<div class="tab-pane fade" id="mywrite">
-						<p>Nunc vitae turpis id nibh sodales commodo et non augue.
-							Proin fringilla ex nunc. Integer tincidunt risus ut facilisis
-							tristique.</p>
-					</div>
-					<div class="tab-pane fade" id="mycontent">
-						<p>Curabitur dignissim quis nunc vitae laoreet. Etiam ut
-							mattis leo, vel fermentum tellus. Sed sagittis rhoncus venenatis.
-							Quisque commodo consectetur faucibus. Aenean eget ultricies
-							justo.</p>
 					</div>
 				</div>
 			</div>

@@ -69,7 +69,7 @@ div {
 	<div class="container w-100" style="max-width: 100%; padding: 0; margin: 0; position: relative;">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="index.jsp">앞날의 지침</a>
+				<a class="navbar-brand" href="/index.jsp">앞날의 지침</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 					aria-controls="navbarNavDropdown" aria-expanded="false"

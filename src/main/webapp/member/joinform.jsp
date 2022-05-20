@@ -40,7 +40,7 @@ div {
 						<li class="nav-item"><a class="nav-link active nonMember"
 							aria-current="page" href="#">지출의 참견</a></li>
 						<li class="nav-item"><a class="nav-link active nonMember"
-							aria-current="page" href="list.brd2">선택의 참견</a></li>
+							aria-current="page" href="/list.brd2">선택의 참견</a></li>
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="#">고객센터</a></li>
 						<li class="nav-item"><a class="nav-link active"
@@ -311,9 +311,9 @@ div {
 				return false;
 			}
 			
-			let phoneRegex1 = /01[0-9]{1}/;
-			let phoneRegex2 = /[0-9]{3,4}/;
-			let phoneRegex3 = /[0-9]{4}/;
+			let phoneRegex1 = /^01[0-9]{1}$/;
+			let phoneRegex2 = /^[0-9]{3,4}$/;
+			let phoneRegex3 = /^[0-9]{4}$/;
 
 			let phoneResult1 = phoneRegex1.test($("#phone1").val());
 			let phoneResult2 = phoneRegex2.test($("#phone2").val());
