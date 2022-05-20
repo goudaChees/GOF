@@ -99,7 +99,7 @@
 						<button type="button" id="del">삭제하기</button>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row" id="replywriter">
 					<c:if test="${cck == false && wck == false}">
 						<form action="/write.brd2_reply" method="post">
 							<div class="row">
@@ -114,7 +114,7 @@
 												<div id="wpriceno"></div>
 										</div>
 										<div class="col-6">
-											<input type="text" placeholder="내용을 입력해주세요" name="contents">
+											<input type="text" placeholder="내용을 입력해주세요" name="contents" id="contents">
 										</div>
 										<div class="col-3">
 											<button type="submit" id="btn1">작성</button>
@@ -179,22 +179,30 @@
 
 
 	<script>
-	$("#wprice").on("keyup",function(){
-		let priceRegex = /[0-9]{1,20}/;
-		let wprice = priceRegex.test($("#wprice").text());
-		if(!wprice){
-			$("#wprice").css("border", "1px solid red");
-			$("#wpriceno").css("color", "red");
-			$("#wpriceno").text("숫자만 사용하여 1~20자로 작성");
-			return
-			$("#btn1").on("click",function(){
-				if(!wpirce){
-					return	
-				}
-			})
+// 	$("#wprice").on("keyup",function(){
+// 		let priceRegex = /[0-9]{1,20}/;
+// 		let wprice = priceRegex.test($("#wprice").text());
+// 		if(!wprice){
+// 			$("#wprice").css("border", "1px solid red");
+// 			$("#wpriceno").css("color", "red");
+// 			$("#wpriceno").text("숫자만 사용하여 1~20자로 작성");
+// 			return
+// 			$("#btn1").on("click",function(){
+// 				if(!wpirce){
+// 					return	
+// 				}
+// 			})
+// 		}
+// 	})
+	const end = function(text){
+		if($("#limit").text()=='종료'){
+		$("#replywriter").css("display","none");
+		$("#wprice").css("display","none");
+		$("#contents").css("display","none");
+		$("#btn1").css("display","none");
 		}
-		
-	})
+	}
+	setInterval(end, 1000);
 	$("#del").on("click",function(){
 		result = window.confirm("정말 삭제하시겟습니까?");
 		if(result){
