@@ -14,6 +14,20 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	
+<script>
+	function openChild(){
+		window.name = "parentForm";
+		
+		openWin = window.open("/admin/banishMember.jsp", "",
+				"top=100,left=200,width=550,height=350");	
+	}
+// 	function setChildText(){
+// 		openWin.document.getElementById("cBanId").value = ${mdto.id};	
+// 	}
+	
+
+</script>	
 <style>
 p {
 	margin: 20px 0px;
@@ -140,10 +154,11 @@ div {
 								<div class="col">
 									<div class="row">
 										<div class="col">${mdto.id}'s Information</div>
+										<input type="hidden" value="${mdto.id}" id="banId">
 									</div>
 									<div class="row">
 										<div class="col-3">ID</div>
-										<div class="col-4">${mdto.id }</div>
+										<div class="col-4" >${mdto.id }</div>
 									</div>
 									<div class="row">
 										<div class="col-3">NAME</div>
@@ -185,12 +200,13 @@ div {
 											<br>
 										</div>
 									</div>
+									<input type="hidden" value="">
 									<div class="row" align=center>
 										<div class="col-12" id="btns">
+											<input id="adminTF" type="hidden" value="">
 											<button id="back" type="button">뒤로가기</button>
 											<button id="modify" type="button">수정하기</button>
-											
-											<button id="member_out" type="button">강제 추방</button>
+											<button id="banish" type="button">강제 추방</button>
 										</div>
 									</div>
 
@@ -222,8 +238,25 @@ div {
 	
 	// 수정버튼 클릭 시
 	$("#modify").on("click", function(){
+		
 		window.open("/admin/adminPwCheck.jsp", "",
 				"top=100,left=200,width=550,height=350"); //체크창으로 이동.
+
+		if (${loginID =='admin'}) {
+			console.log("success");
+			
+		}else {
+			console.log("failed");
+			console.log($("#adminTF").val());
+		}
+		
+	})
+	
+	$("#banish").on("click", function(){
+		openChild();
+		
+// 		window.open("/admin/banishMember.jsp", "",
+// 		"top=100,left=200,width=550,height=350");
 	})
 
 

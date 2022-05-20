@@ -7,6 +7,14 @@
 <meta charset="UTF-8">
 <title>ADMIN CHECK</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+	function getParentText(){
+		document.getElementById("cBanId").value = opener.document.getElementById("banId").value;
+	}
+	window.onload = function(){
+		getParentText();
+	}
+</script>
 </head>
 <body>
 
@@ -14,35 +22,41 @@
 	<b><font size="5" color="gray">관리자 확인이 필요합니다.</font></b>
 	<br>
 	<p>
-		<br>비밀번호를 입력해주세요
+		<br><input type="text" id="cBanId" disabled>님을 추방하시려면 비밀번호를 입력해주세요
 	</p>
 	<br>
 	<input type="text" name="pw" id="pw">
 	<br>
 	<br>
 
-	<input type="submit" value="확인" id="adminPwCheck">
+	<input type="submit" value="확인" id="banMember">
 	<input type="button" value="취소" onclick="window.close()">
 	<script>
 	// ADMIN Password 체크 페이지
-		$("#adminPwCheck").on("click", function(){			
+		$("#banMember").on("click", function(){			
 			$.ajax({
 				type: "post",
-				url: "/pwCheck.member",
-				data: {nowpw: $("#pw").val()}
+				url: "/adminPwCheck.admin",
+				data: {adminPw : $("#pw").val()}
 			}).done(function(resp){
 				if(resp == "false"){
 					alert("올바른 비밀번호를 입력해주십시오.");
 					$("#pw").val("");
 				}else {
 					let result = confirm("확인 되었습니다.");
-					if (result) {				
-						window.close();	
-					} else {
-
-					}					
-				}
-				
+					if (result) {			
+						$.ajax ({
+							type:"post",
+							url:"/banMember.admin",
+							data: {banId : $("#cBanId").val()}	
+						}).done(function(resp){
+							if(resp){
+								window.close();
+								opener.location.href="/adminmain.admin";
+							}
+						})
+					}				
+				}				
 			})
 		})
 		

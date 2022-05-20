@@ -59,6 +59,14 @@ public class AdminController extends HttpServlet {
 				Boolean isAdminOk = mdao.isAdminOk(adminPw);
 				System.out.println(isAdminOk);
 				prw.append(g.toJson(isAdminOk));
+				
+			}else if(uri.equals("/banMember.admin")) {
+				
+				String banId = request.getParameter("banId");				
+				
+				int result = mdao.deleteById(banId);
+				System.out.println(result);
+				prw.append(g.toJson(result));
 			}
 			
 			
