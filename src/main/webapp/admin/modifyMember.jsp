@@ -157,7 +157,7 @@ div {
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade show active" id="memberManagement">
-						<form action="adminUpdate.admin" method="post">
+						<form action="/adminUpdate.admin" method="post">
 							<div class="row">
 								<div class="col">
 									<div class="row">
@@ -166,7 +166,9 @@ div {
 									</div>
 									<div class="row">
 										<div class="col-3">ID</div>
-										<div class="col-4" name=id >${mdto.id }</div>
+										<div class="col-4">${mdto.id }
+										<input type=hidden value="${mdto.id }" class="editable" name=id id="idTD">
+										</div>
 									</div>
 									<div class="row">
 										<div class="col-3">NAME</div>
