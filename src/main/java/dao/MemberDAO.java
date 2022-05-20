@@ -309,6 +309,7 @@ private static MemberDAO instance = null;
 	}
 	
 
+
 	// 내 글보기 - 페이지별 게시글 선택
 	public List<MyWritingDTO> SelectPage(String nickname,int boardNum, int page) throws Exception{ 
 		int startNum = page*10-9;
@@ -441,7 +442,7 @@ private static MemberDAO instance = null;
 						int seq = rs.getInt(2);
 						int parent_seq = rs.getInt(3);
 						String title = rs.getString(4);
-						Timestamp write_dqte = rs.getTimestamp(5);
+						Timestamp write_dqte = rs.getTimestamp(5);	
 						list.add(new MyReplyDTO(seq,parent_seq,title,write_dqte));
 					}
 					return list;
@@ -517,5 +518,22 @@ private static MemberDAO instance = null;
 			return sb.toString();
 		}
 
+		
+		public boolean isAdminOk (String pw) throws Exception {
+			String sql = "select * from member where id = 'admin' and password = ?";
+	
+			try(
+					Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);
+					){
+				pstat.setString(1, pw);
+			
+				try(
+						ResultSet rs = pstat.executeQuery();
+						){
+					return rs.next();
+				}
+			}
+		}
 
 }

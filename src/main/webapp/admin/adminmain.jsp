@@ -143,7 +143,7 @@ p {
 								<c:forEach var="i" items="${list}">
 									<tr>
 										<td>${i.seq}</td>
-										<td><a href="/detailViewMember.admin?id=${i.id}">${i.id}</td>
+										<td><a href="/detailViewMember.admin?id=${i.id}">${i.id}</td>										
 										<td>${i.nickname}</td>
 										<td>${i.name}</td>
 										<td>${i.joindate}</td>
