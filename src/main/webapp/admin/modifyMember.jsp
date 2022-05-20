@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Detail Member</title>
+<title>Modify Member</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -33,6 +33,7 @@
 	function setChildText(){
 		document.getElementById("adminTF").value = openWin2.document.getElementById("cTF").value;	
 	}
+
 	
 
 </script>	
@@ -142,7 +143,6 @@ div {
 			</div>
 		</c:otherwise>
 	</c:choose>
-
 	<div class="container">
 		<div class="row">
 			<div class="col">
@@ -157,7 +157,7 @@ div {
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade show active" id="memberManagement">
-						<form action="adminUpdate.member" method="post">
+						<form action="adminUpdate.admin" method="post">
 							<div class="row">
 								<div class="col">
 									<div class="row">
@@ -166,20 +166,20 @@ div {
 									</div>
 									<div class="row">
 										<div class="col-3">ID</div>
-										<div class="col-4" >${mdto.id }</div>
+										<div class="col-4" name=id >${mdto.id }</div>
 									</div>
 									<div class="row">
 										<div class="col-3">NAME</div>
 										<div class="col-4">
 											<input type=text value="${mdto.name }" class="editable"
-												name=name id="nameTD" disabled>
+												name=name id="nameTD">
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-3">PHONE</div>
 										<div class="col-4">
 											<input type=text value="${mdto.phone }" class="editable"
-												name=phone id="phoneTD" disabled>
+												name=phone id="phoneTD">
 										</div>
 										<div class="col-5" id="phoneCheckResult"></div>
 									</div>
@@ -187,7 +187,7 @@ div {
 										<div class="col-3">EMAIL</div>
 										<div class="col-4">
 											<input type=text value="${mdto.email }" class="editable"
-												name=email id="emailTD" disabled>
+												name=email id="emailTD">
 										</div>
 										<div class="col-5" id="emailCheckResult"></div>
 									</div>
@@ -195,7 +195,7 @@ div {
 										<div class="col-3">NICKNAME</div>
 										<div class="col-4">
 											<input type=text value="${mdto.nickname }" class="editable"
-												name=nickname id="nicknameTD" disabled>
+												name=nickname id="nicknameTD">
 										</div>
 										<div class="col-5" id="nicknameCheckResult"></div>
 									</div>
@@ -211,9 +211,9 @@ div {
 
 									<div class="row" align=center>
 										<div class="col-12" id="btns">
-
 											<button id="back" type="button">뒤로가기</button>
-											<button id="modify" type="button">수정하기</button>
+											<button id="modifyComplete" type="submit">수정완료</button>
+											<button id="cancel" type="button">취소 </button>
 											<button id="banish" type="button">강제 추방</button>
 										</div>
 									</div>
@@ -244,20 +244,15 @@ div {
 		location.href="/adminmain.admin";
 	})
 	
-	// 수정버튼 클릭 시
-	$("#modify").on("click", function(){
-		openChild2();
-
+	// 취소버튼
+	$("#cancel").on("click", function(){
+		location.href="/adminmain.admin";
 	})
 	
 	$("#banish").on("click", function(){
-		openChild();
-		
+		openChild();	
 	})
 	
-
-
-
+	
 </script>
-
 </html>

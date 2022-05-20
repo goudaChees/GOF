@@ -9,7 +9,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script>
 	function getParentText(){
-		document.getElementById("cBanId").value = opener.document.getElementById("banId").value;
+		document.getElementById("cBanId").value = opener.document.getElementById("userId").value;
 	}
 	window.onload = function(){
 		getParentText();
@@ -29,7 +29,7 @@
 	<br>
 	<br>
 
-	<input type="submit" value="확인" id="banMember">
+	<input type="button" value="확인" id="banMember">
 	<input type="button" value="취소" onclick="window.close()">
 	<script>
 	// ADMIN Password 체크 페이지
@@ -45,7 +45,7 @@
 				}else {
 					//	해당 아이디값을 받아와 삭제 메서드 명령
 					let result = confirm("확인 되었습니다.");
-					if (result) {			
+					if (result) {
 						$.ajax ({
 							type:"post",
 							url:"/banMember.admin",
@@ -56,8 +56,8 @@
 								opener.location.href="/adminmain.admin";
 							}
 						})
-					}				
-				}				
+					}
+				}			
 			})
 		})
 		

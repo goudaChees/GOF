@@ -7,6 +7,19 @@
 <meta charset="UTF-8">
 <title>ADMIN CHECK</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+	function getParentText(){
+		document.getElementById("cUserId").value = opener.document.getElementById("userId").value;
+	}
+	window.onload = function(){
+		getParentText();
+	}	
+// 	function setParentText(){
+// 		opener.document.getElementById("adminTF").value = document.getElementById("cTF").value; 
+// 	}
+
+
+</script>
 </head>
 <body>
 
@@ -14,13 +27,13 @@
 	<b><font size="5" color="gray">관리자 확인이 필요합니다.</font></b>
 	<br>
 	<p>
-		<br>비밀번호를 입력해주세요
+		<br><input type="text" id="cUserId" disabled>님의 정보를 수정하려면 비밀번호를 입력해주세요
 	</p>
 	<br>
 	<input type="text" name="pw" id="pw">
 	<br>
 	<br>
-
+	<input type="hidden" value="" id ="cTF">
 	<input type="submit" value="확인" id="adminPwCheck">
 	<input type="button" value="취소" onclick="window.close()">
 	<script>
@@ -28,18 +41,23 @@
 		$("#adminPwCheck").on("click", function(){			
 			$.ajax({
 				type: "post",
-				url: "/pwCheck.member",
-				data: {nowpw: $("#pw").val()}
+				url: "/adminPwCheck.admin",
+				data: {adminPw: $("#pw").val()}
 			}).done(function(resp){
 				if(resp == "false"){
 					alert("올바른 비밀번호를 입력해주십시오.");
 					$("#pw").val("");
 				}else {
 					let result = confirm("확인 되었습니다.");
-					if (result) {				
+					if (result) {
+// 						$("#cTF").attr("value", " ");
+// 						setParentText();
+// 						console.log($("#cTF").val());
+						
 						window.close();	
+						opener.location.href="/modifyMember.admin?id="+$("#cUserId").val();
 					} else {
-
+						
 					}					
 				}
 				

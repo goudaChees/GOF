@@ -67,6 +67,22 @@ public class AdminController extends HttpServlet {
 				int result = mdao.deleteById(banId);
 				System.out.println(result);
 				prw.append(g.toJson(result));
+			
+			}else if(uri.equals("/modifyMember.admin")) {
+				
+				String id = request.getParameter("id");
+				MemberDTO mdto = mdao.selectById(id);
+				request.setAttribute("mdto", mdto);
+				request.getRequestDispatcher("/admin/modifyMember.jsp").forward(request, response);
+				
+			}else if (uri.equals("/adminUpdate.admin")) {
+				String id = request.getParameter("id");
+				String name = request.getParameter("name");
+				String phone = request.getParameter("phone");
+				String email = request.getParameter("email");
+				String nickname = request.getParameter("nickname");
+				mdao.adminUpdate(new MemberDTO(0, id, null, name, phone, email, nickname, null));
+				response.sendRedirect("/adminmain.admin");
 			}
 			
 			
