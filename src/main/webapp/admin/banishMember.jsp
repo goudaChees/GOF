@@ -43,6 +43,7 @@
 					alert("올바른 비밀번호를 입력해주십시오.");
 					$("#pw").val("");
 				}else {
+					//	해당 아이디값을 받아와 삭제 메서드 명령
 					let result = confirm("확인 되었습니다.");
 					if (result) {			
 						$.ajax ({

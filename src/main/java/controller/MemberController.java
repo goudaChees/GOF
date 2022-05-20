@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,8 @@ import com.google.gson.Gson;
 
 import dao.MemberDAO;
 import dto.MemberDTO;
+import dto.MyReplyDTO;
+import dto.MyWritingDTO;
 import utils.EncryptUtils;
 
 
@@ -114,6 +117,27 @@ public class MemberController extends HttpServlet {
 				String pw = eUtil.SHA512(request.getParameter("newpw"));
 				dao.updatePw(pw, id);
 				response.sendRedirect("/mypage.member");
+			
+			}else if(uri.equals("/myWriting.member")) {	// 내 글 보기 클릭시
+				String nickname = (String) request.getSession().getAttribute("loginNN");
+				int boardNum = Integer.parseInt(request.getParameter("board"));
+				int page=Integer.parseInt(request.getParameter("page"));
+				String pageList = dao.PageList(nickname, boardNum, page);
+				List<MyWritingDTO> list = dao.SelectPage(nickname, boardNum, page);
+				request.setAttribute("list", list);
+				request.setAttribute("pageList", pageList);
+				request.getRequestDispatcher("/member/myWriting.jsp").forward(request, response);
+			
+			}else if(uri.equals("/myReply.member")) {	// 내 댓글 보기 클릭시
+				String nickname = (String) request.getSession().getAttribute("loginNN");
+				int boardNum = Integer.parseInt(request.getParameter("board"));
+				int page=Integer.parseInt(request.getParameter("page"));
+				String pageList = dao.reply_PageList(nickname, boardNum, page);
+				List<MyReplyDTO> replyList = dao.reply_SelectPage(nickname, boardNum, page);
+				request.setAttribute("replyList", replyList);
+				request.setAttribute("pageList", pageList);
+				request.getRequestDispatcher("/member/myReply.jsp").forward(request, response);
+			
 			}
 			
 			

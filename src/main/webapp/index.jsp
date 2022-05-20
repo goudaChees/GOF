@@ -57,7 +57,7 @@ div {
 
 #receipt_center {
 	position: absolute;
-	top: 30%;
+	top: 25%;
 	width:75%;
 	left:13%;
 	z-index:2;
@@ -69,7 +69,7 @@ div {
 	<div class="container w-100" style="max-width: 100%; padding: 0; margin: 0; position: relative;">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="index.jsp">앞날의 지침</a>
+				<a class="navbar-brand" href="/index.jsp">앞날의 지침</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 					aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -82,7 +82,7 @@ div {
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="#">지출의 참견</a></li>
 						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="list.brd2">선택의 참견</a></li>
+							aria-current="page" href="/list.brd2">선택의 참견</a></li>
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="/csmain.cscenter">고객센터</a></li>
 						
@@ -91,17 +91,17 @@ div {
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="/adminmain.admin">관리자페이지</a></li>
 								<li class="nav-item"><a class="nav-link active"
-								aria-current="page" href="logout.member"><i class="bi bi-box-arrow-right"></i></a></li>
+								aria-current="page" href="/logout.member"><i class="bi bi-box-arrow-right"></i></a></li>
 							</c:when>
 							<c:when test="${loginID !=null}">
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="mypage.member">마이페이지</a></li>
+									aria-current="page" href="/mypage.member">마이페이지</a></li>
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="logout.member"><i class="bi bi-box-arrow-right"></i></a></li>
+									aria-current="page" href="/logout.member"><i class="bi bi-box-arrow-right"></i></a></li>
 							</c:when>
 							<c:otherwise>
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="joinform.member">회원가입</a></li>
+									aria-current="page" href="/joinform.member">회원가입</a></li>
 							</c:otherwise>
 						</c:choose>
 					</ul>
@@ -123,7 +123,7 @@ div {
 				<c:choose>
 					<c:when test="${loginID !=null}">
 						<div class="row receipt_center">
-							<div class="col-12">${loginNN }님 안녕하세요!</div>
+							<div class="col-12" style="margin-top:20%">${loginNN }님 안녕하세요!</div>
 						</div>
 					</c:when>
 					<c:otherwise>
@@ -140,12 +140,10 @@ div {
 										placeholder="input your pw">
 								</div>
 								<div class="col-12">
-									<input type="button" id="login" value="로그인"
-										style="background-color: #dfe7fd; border: 1px solid #cddafd;">
-									<input type="button" id="kakao-login-btn" value="카카오로 로그인"
-										style="background-color: #dfe7fd; border: 1px solid #cddafd;">
-									<input type="button" id="kakao-logout" value="카카오로 로그아웃"
-										style="background-color: #dfe7fd; border: 1px solid #cddafd;">
+									<input type="button" id="login" value="로그인">
+									<a href="/joinform.member"><input type="button" value="회원가입"></a><br>
+									<input type="button" id="kakao-login-btn" value="카카오로 로그인"><br>
+									<input type="button" id="kakao-logout" value="카카오로 로그아웃">
 								</div>
 							</div>
 						</form>
