@@ -29,8 +29,8 @@ public class Board1DAO {
 		return ds.getConnection();
 	};
 
-	public int insert(Board1DTO dto)throws Exception {
-		String sql = "insert into board1 values(?,?,?,?,default,?,?,0,0,0)";
+	public int insert(Board1DTO dto)throws Exception {//게시판에 넣기
+		String sql = "insert into board1 values(?,?,?,?,default,?,?,0,0,0,?)";
 
 		try(
 				Connection con = this.getConnection();
@@ -42,6 +42,7 @@ public class Board1DAO {
 			pstat.setString(4, dto.getContents());
 			pstat.setString(5, dto.getItem());
 			pstat.setInt(6, dto.getItem_price());
+			pstat.setString(7,dto.getFileName());
 
 			int result = pstat.executeUpdate();
 			con.commit();
@@ -108,8 +109,9 @@ public class Board1DAO {
 					int agree_count = rs.getInt("agree_count");
 					int disagree_count = rs.getInt("disagree_count");
 					int view_count =  rs.getInt("view_count");
+					String fileName = rs.getString("filename");
 
-					list.add(new Board1DTO(seq,writer,title,contents,write_date,item,item_price,agree_count,disagree_count,view_count));
+					list.add(new Board1DTO(seq,writer,title,contents,write_date,item,item_price,agree_count,disagree_count,view_count,fileName));
 				}
 				return list;
 			}
@@ -265,8 +267,9 @@ public class Board1DAO {
 					int agree_count = rs.getInt("agree_count");
 					int disagree_count = rs.getInt("disagree_count");
 					int view_count =  rs.getInt("view_count");
+					String fileName = rs.getString("filename");
 
-					list.add(new Board1DTO(seq,writer,title,contents,write_date,item,item_price,agree_count,disagree_count,view_count));
+					list.add(new Board1DTO(seq,writer,title,contents,write_date,item,item_price,agree_count,disagree_count,view_count,fileName));
 				}
 			}
 			return list;
@@ -292,8 +295,9 @@ public class Board1DAO {
 				int agree_count= rs.getInt("agree_count");
 				int disagree_count = rs.getInt("disagree_count");
 				int view_count = rs.getInt("view_count");
+				String fileName = rs.getString("filename");
 						
-				return new Board1DTO(seq,writer,title,contents,write_date,item,item_price,agree_count,disagree_count,view_count);
+				return new Board1DTO(seq,writer,title,contents,write_date,item,item_price,agree_count,disagree_count,view_count,fileName);
 			}
 		}
 	}
