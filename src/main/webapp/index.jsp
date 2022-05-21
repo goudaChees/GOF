@@ -5,143 +5,111 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>앞날의 지침</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-	integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-	integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-	crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="/css/index.css">
 <script>
       	// SDK를 초기화. 사용할 앱의 JavaScript 키
       	Kakao.init('b956cab5ef7dbe5bc1f861614a4b2061');
 //       	console.log(Kakao.isInitialized());
 </script>
-<style>
-* {
-	box-sizing: border-box;
-}
-
-div {
-	border: 1px solid black;
-	text-align: center;
-}
-.navbar{
-	z-index:3;
-}
-
-#home>div {
-	float: left;
-	z-index: -10;
-	position: relative;
-}
-
-#receipt {
-	position: absolute;
-	top: 100px;
-	right: 15%;
-	z-index: 0;
-	text-align : center;
-}
-
-#receipt_center {
-	position: absolute;
-	top: 25%;
-	width:75%;
-	left:13%;
-	z-index:2;
-}
-</style>
 
 </head>
 <body>
-	<div class="container w-100" style="max-width: 100%; padding: 0; margin: 0; position: relative;">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="/index.jsp">앞날의 지침</a>
-				<button class="navbar-toggler" type="button"
-					data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-					aria-controls="navbarNavDropdown" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse justify-content-end"
-					id="navbarNavDropdown">
-					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="#">지출의 참견</a></li>
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="/list.brd2">선택의 참견</a></li>
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="/csmain.cscenter">고객센터</a></li>
-						
-						<c:choose>
-							<c:when test="${loginID =='admin'}">
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/adminmain.admin">관리자페이지</a></li>
-								<li class="nav-item"><a class="nav-link active"
-								aria-current="page" href="/logout.member"><i class="bi bi-box-arrow-right"></i></a></li>
-							</c:when>
-							<c:when test="${loginID !=null}">
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/mypage.member">마이페이지</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/logout.member"><i class="bi bi-box-arrow-right"></i></a></li>
-							</c:when>
-							<c:otherwise>
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/joinform.member">회원가입</a></li>
-							</c:otherwise>
-						</c:choose>
-					</ul>
-				</div>
-			</div>
-		</nav>
-		
-		<div class="row" id="home">
-			<div class="col-6" style="background-color: #5aa9e6; height: 800px;"></div>
-			<div class="col-6" style="background-color: #7fc8f8; height: 800px;"></div>
-		</div>
-
-		<div class="row" id="receipt">
+	<div class="container w-100">
+		<div class="row w-100 m-0" id="header">
 			<div class="col-12">
-				<img src="/img/receipt.png" style="width: 80%;">
+				<nav class="navbar navbar-expand-md navbar-light bg-light">
+					<div class="container-fluid">
+						<a class="navbar-brand" href="/index.jsp" style="color:#664E55">앞날의 지침</a>
+						<button class="navbar-toggler" type="button"
+							data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+							aria-controls="navbarNavDropdown" aria-expanded="false"
+							aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse justify-content-end"
+							id="navbarNavDropdown">
+							<ul class="navbar-nav">
+								<c:choose>
+									<c:when test="${loginID =='admin'}">
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="#" style="color:#664E55">지출의 참견</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/list.brd2" style="color:#664E55">선택의 참견</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/adminmain.admin" style="color:#664E55">관리자페이지</a></li>
+										<li class="nav-item"><a class="nav-link active"
+										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
+									</c:when>
+									<c:when test="${loginID !=null}">
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="#" style="color:#664E55">지출의 참견</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/list.brd2" style="color:#664E55">선택의 참견</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/mypage.member" style="color:#664E55">마이페이지</a></li>
+										<li class="nav-item"><a class="nav-link active"
+										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="nav-item nonMember"><a class="nav-link active"
+											aria-current="page" href="#" style="color:#664E55">지출의 참견</a></li>
+										<li class="nav-item nonMember"><a class="nav-link active"
+											aria-current="page" href="#" style="color:#664E55">선택의 참견</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/joinform.member" style="color:#664E55">회원가입</a></li>
+									</c:otherwise>
+								</c:choose>
+							</ul>
+						</div>
+					</div>
+				</nav>
 			</div>
-			
-			<div class="col-12" id="receipt_center">
+		</div>
+		
+		<div class="row w-100 m-0" id="content">
+			<div class="d-none d-lg-block col-12 bills">
+				<img src="/img/tmp_indexL.png" id="billsPic1">
+			</div>
+			<div class="d-none d-lg-block col-12 bills">
+				<img src="/img/tmp_indexW.png" id="billsPic2">
+			</div>
+			<div class="col-12" id="loginArea">
+				<h1>Blah Blah</h1>
 				<c:choose>
 					<c:when test="${loginID !=null}">
-						<div class="row receipt_center">
-							<div class="col-12" style="margin-top:20%">${loginNN }님 안녕하세요!</div>
+						<div class="row">
+							<div class="col-12">${loginNN }님 안녕하세요!</div>
 						</div>
 					</c:when>
 					<c:otherwise>
 						<form action="login.member" method="post">
-							<div class="row receipt_center">
-								<div class="col-12">Login</div>
-								<div class="col-4 p-0">아이디 :</div>
-								<div class="col-8 p-0">
-									<input type="text" id="id" name="id" placeholder="input your id">
+							<div class="row">
+								<div class="col-12 p-0">
+									<input type="text" id="id" name="id" placeholder="아이디 입력">
 								</div>
-								<div class="col-4 p-0">패스워드 :</div>
-								<div class="col-8 p-0">
+								<div class="col-12 p-0">
 									<input type="password" id="pw" name="pw"
-										placeholder="input your pw">
+										placeholder="비밀번호 입력">
 								</div>
 								<div class="col-12">
 									<input type="button" id="login" value="로그인">
-									<a href="/joinform.member"><input type="button" value="회원가입"></a><br>
+									<a href="/joinform.member"><input type="button" value="회원가입" id="joinbtn"></a><br>
 									<input type="button" id="kakao-login-btn" value="카카오로 로그인"><br>
 									<input type="button" id="kakao-logout" value="카카오로 로그아웃">
 								</div>
@@ -150,8 +118,11 @@ div {
 					</c:otherwise>
 				</c:choose>
 			</div>
+			<div class="col-12">
+				<img src="/img/tmp_indexpig.png" id="pigpic">
+			</div>
 		</div>
-		
+
 		<div class="row w-100 m-0" id="footer">
 			<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
 		</div>
@@ -171,7 +142,7 @@ div {
     			  cancelButtonText: '취소',
     			}).then((result) => {
     			  if (result.isConfirmed) {
-    			    location.href="/join.member"
+    			    location.href="/joinform.member"
     			  }
     			})
     	})
@@ -183,7 +154,7 @@ div {
     				pw:$("#pw").val()},
     			type:"POST"
     		}).done(function(resp){
-    			if(resp==false){
+    			if(resp=='false'){
     				Swal.fire({
     					  icon: 'error',
     					  title: 'Oops...',
@@ -233,6 +204,19 @@ div {
 	      			alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
 	   		 	})
 	  		
+		  })
+		  
+		  $(".bi-box-arrow-right").on("click",function(){
+			  Swal.fire({
+				  title: '로그아웃 하시겠습니까?',
+				  showCancelButton: true,
+				  confirmButtonText: '로그아웃',
+				  cancelButtonText: '취소',
+				}).then((result) => {
+				  if (result.isConfirmed) {
+				    location.href="/logout.member";
+				  } 
+				})
 		  })
     </script>
 </body>
