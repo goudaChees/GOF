@@ -535,5 +535,22 @@ private static MemberDAO instance = null;
 				}
 			}
 		}
+		 
+		public int adminUpdate(MemberDTO dto) throws Exception{
+			String sql = "update member set name=?,phone=?, email=?, nickname=? where id=?";
+			try(
+					Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);
+					){
+				pstat.setString(1, dto.getName());
+				pstat.setString(2, dto.getPhone());
+				pstat.setString(3, dto.getEmail());
+				pstat.setString(4, dto.getNickname());
+				pstat.setString(5, dto.getId());
+				int result = pstat.executeUpdate();
+				con.commit();
+				return result;
+			}
+		}
 
 }
