@@ -51,10 +51,12 @@ public class Board1Controller extends HttpServlet {
 
 				File oldFile = null;
 
+				String sys_Name = null;//Board1DTO에 넣기 위해 빼둠
+				
 				while(e.hasMoreElements()) {//파일 insert
 					String name = (String) e.nextElement();
 					String ori_Name = multi.getOriginalFileName(name);
-					String sys_Name = multi.getFilesystemName(name);
+					sys_Name = multi.getFilesystemName(name);
 
 					oldFile = new File(savePath+"\\"+sys_Name);
 					//					File newFile = new File(savePath+"\\"+(parent_Seq-1)+"사진.jpg");
@@ -77,7 +79,7 @@ public class Board1Controller extends HttpServlet {
 				String contents = multi.getParameter("contents");
 
 
-				dao.insert(new Board1DTO(parent_Seq,writer,title,contents,null,item,item_price,0,0,0));
+				dao.insert(new Board1DTO(parent_Seq,writer,title,contents,null,item,item_price,0,0,0,sys_Name));
 
 
 				response.sendRedirect("list.brd1?cpage=1");

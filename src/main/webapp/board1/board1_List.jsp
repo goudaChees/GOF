@@ -105,7 +105,7 @@ span{
 				<c:forEach var="i" items="${list}">
 					<div width="100%" class="boardList">
 						<div class="col-4">
-						<img src="#">
+						<img src="files/${i.fileName }" style="width: 100%; height:100%">
 						</div>
 						<div class="col-7">
 							<div class="row">

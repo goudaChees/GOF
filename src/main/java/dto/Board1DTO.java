@@ -3,6 +3,7 @@ package dto;
 import java.sql.Timestamp;
 
 public class Board1DTO {
+
 	private int seq;
 	private String writer;
 	private String title;
@@ -13,6 +14,26 @@ public class Board1DTO {
 	private int agree_count;
 	private int disagree_count;
 	private int view_count;
+	private String fileName;
+	public Board1DTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Board1DTO(int seq, String writer, String title, String contents, Timestamp write_date, String item,
+			int item_price, int agree_count, int disagree_count, int view_count, String fileName) {
+		super();
+		this.seq = seq;
+		this.writer = writer;
+		this.title = title;
+		this.contents = contents;
+		this.write_date = write_date;
+		this.item = item;
+		this.item_price = item_price;
+		this.agree_count = agree_count;
+		this.disagree_count = disagree_count;
+		this.view_count = view_count;
+		this.fileName = fileName;
+	}
 	public int getSeq() {
 		return seq;
 	}
@@ -73,27 +94,11 @@ public class Board1DTO {
 	public void setView_count(int view_count) {
 		this.view_count = view_count;
 	}
-	public Board1DTO(int seq, String writer, String title, String contents, Timestamp write_date, String item,
-			int item_price, int agree_count, int disagree_count, int view_count) {
-		super();
-		this.seq = seq;
-		this.writer = writer;
-		this.title = title;
-		this.contents = contents;
-		this.write_date = write_date;
-		this.item = item;
-		this.item_price = item_price;
-		this.agree_count = agree_count;
-		this.disagree_count = disagree_count;
-		this.view_count = view_count;
+	public String getFileName() {
+		return fileName;
 	}
-	public Board1DTO() {
-		super();
-		// TODO Auto-generated constructor stub
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
-	
-	
-	
-
 
 }
