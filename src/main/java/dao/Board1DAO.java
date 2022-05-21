@@ -272,4 +272,29 @@ public class Board1DAO {
 			return list;
 		}
 	}
+	
+	public Board1DTO selectBySeq(int seq)throws Exception {
+		String sql = "select * from board1 where seq =?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, seq);
+			try(ResultSet rs = pstat.executeQuery()){
+				
+				rs.next();
+				String writer = rs.getString("writer");
+				String title = rs.getString("title");
+				String contents = rs.getString("contents");
+				Timestamp write_date = rs.getTimestamp("write_date");
+				String item = rs.getString("item");
+				int item_price = rs.getInt("item_price");
+				int agree_count= rs.getInt("agree_count");
+				int disagree_count = rs.getInt("disagree_count");
+				int view_count = rs.getInt("view_count");
+						
+				return new Board1DTO(seq,writer,title,contents,write_date,item,item_price,agree_count,disagree_count,view_count);
+			}
+		}
+	}
 }
