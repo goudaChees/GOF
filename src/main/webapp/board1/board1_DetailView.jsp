@@ -69,7 +69,7 @@ margin: 0px;
 		1
 		</div>	
 		<div id="img_Box" class="col-5">
-			<img src="#">
+			<img src="files/${sys_Name}" style="width: 100% ; height: 100%;" >
 		</div>
 		<div id="contents_Box" class="col-7">
 			<div id="item">${dto.item}</div>
