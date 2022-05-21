@@ -93,16 +93,38 @@ public class Board2_replyDAO {
 	// 선택된 댓글 반환 매서드
 	public int insert(Board2_replyDTO dto) throws Exception {
 		String sql = "insert into board2_reply(seq,writer,parent_seq,price,contents,write_date) values(reply2_seq.nextval,?,?,?,?,default)";
+		int result = 0;
 		try (Connection con = this.getConnection(); PreparedStatement stat = con.prepareStatement(sql);) {
 			stat.setString(1, dto.getNickname());
 			stat.setInt(2, dto.getParent_seq());
 			stat.setInt(3, dto.getPrice());
 			stat.setString(4, dto.getContents());
-			int result = stat.executeUpdate();
+			result = stat.executeUpdate();
 			con.commit();
-			return result;
 		}
-	}
+		String sql2 = "select * from board2 where seq =?";
+		int replycount = 0;
+		try (Connection con = this.getConnection(); 
+			PreparedStatement stat = con.prepareStatement(sql2);){
+			stat.setInt(1, dto.getParent_seq());
+			try(ResultSet rs = stat.executeQuery();)
+			 {
+			rs.next();
+			replycount = rs.getInt("reply");
+			}
+		}
+		replycount++;
+		String sql3 ="update board2 set reply = ? where seq = ?";
+		try(Connection con = this.getConnection(); 
+				PreparedStatement stat = con.prepareStatement(sql3);){
+			stat.setInt(1, replycount);
+			stat.setInt(2, dto.getParent_seq());
+			stat.executeUpdate();
+			con.commit();
+		}
+		return result;
+		}
+	
 
 	public ArrayList<Board2_replyDTO> list(int pseq) throws Exception {
 		String sql = "select * from board2_reply where parent_seq = ? order by seq desc";
@@ -129,14 +151,35 @@ public class Board2_replyDAO {
 		return arr;
 	}
 
-	public int del(int seq) throws Exception {
+	public int del(int seq,int pseq) throws Exception {
 		String sql = "delete from board2_reply where seq=?";
+		int result = 0;
 		try (Connection con = this.getConnection(); PreparedStatement stat = con.prepareStatement(sql);) {
 			stat.setInt(1, seq);
-			int result = stat.executeUpdate();
+			result = stat.executeUpdate();
 			con.commit();
-			return result;
 		}
+		String sql2 = "select * from board2 where seq=?";
+		int replycount = 0;
+		try (Connection con = this.getConnection(); 
+			PreparedStatement stat = con.prepareStatement(sql2);){
+			stat.setInt(1, pseq);
+			try(ResultSet rs = stat.executeQuery();) {
+			rs.next();
+			replycount = rs.getInt("reply");
+			}
+		}
+		replycount--;
+		String sql3 ="update board2 set reply = ? where seq = ?";
+		try(Connection con = this.getConnection(); 
+				PreparedStatement stat = con.prepareStatement(sql3);){
+			stat.setInt(1, replycount);
+			stat.setInt(2, pseq);
+			stat.executeUpdate();
+			con.commit();
+		}
+		return result;
+		
 	}
 
 	public int update(int price, String contents, int seq) throws Exception {

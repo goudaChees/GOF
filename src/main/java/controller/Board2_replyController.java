@@ -41,7 +41,8 @@ public class Board2_replyController extends HttpServlet {
 
 		}else if(uri.equals("/del.brd2_reply")) {
 			int seq = Integer.parseInt(request.getParameter("rseq"));
-			dao.del(seq);
+			int pseq = Integer.parseInt(request.getParameter("pseq"));
+			dao.del(seq,pseq);
 		}else if(uri.equals("/modi.brd2_reply")) {
 			int seq = Integer.parseInt(request.getParameter("rseq"));
 			String contents = request.getParameter("contents");

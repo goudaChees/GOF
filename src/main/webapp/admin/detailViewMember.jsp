@@ -14,6 +14,31 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	
+<script>
+	function openChild(){
+		window.name = "parentForm";
+		
+		openWin = window.open("/admin/banishMember.jsp", "",
+				"top=100,left=200,width=550,height=350");	
+	}
+	
+	function openChild2(){
+		window.name = "parentForm";
+		
+		openWin2 = window.open("/admin/adminModifyMember.jsp", "",
+		"top=100,left=200,width=550,height=350");
+		
+// 		openWin2 = window.open("/admin/adminPwCheck.jsp", "",
+// 				"top=100,left=200,width=550,height=350");	임시로 가려둠
+
+	}
+	function setChildText(){
+		document.getElementById("adminTF").value = openWin2.document.getElementById("cTF").value;	
+	}
+	
+
+</script>	
 <style>
 p {
 	margin: 20px 0px;
@@ -135,15 +160,16 @@ div {
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade show active" id="memberManagement">
-						<form action="adminUpdate.member" method="post">
+						<form action="adminUpdate.admin" method="post">
 							<div class="row">
 								<div class="col">
 									<div class="row">
 										<div class="col">${mdto.id}'s Information</div>
+										<input type="hidden" value="${mdto.id}" name="id" id="userId">
 									</div>
 									<div class="row">
 										<div class="col-3">ID</div>
-										<div class="col-4">${mdto.id }</div>
+										<div class="col-4" >${mdto.id }</div>
 									</div>
 									<div class="row">
 										<div class="col-3">NAME</div>
@@ -182,15 +208,17 @@ div {
 									</div>
 									<div class="row">
 										<div class="col-12">
-											<br>
+											<br><input id="adminTF" type="text" style="color: red;" value="관리자 확인이 필요합니다." disabled>
 										</div>
 									</div>
+									
+									<br>
 									<div class="row" align=center>
 										<div class="col-12" id="btns">
+											
 											<button id="back" type="button">뒤로가기</button>
 											<button id="modify" type="button">수정하기</button>
-											<button id="pw_modify" type="button">비밀번호 수정</button>
-											<button id="member_out" type="button">강제 추방</button>
+											<button id="banish" type="button">강제 추방</button>
 										</div>
 									</div>
 
@@ -212,8 +240,49 @@ div {
 		</div>
 	</div>
 
-
-
-
 </body>
+<script>
+
+	// 뒤로가기 
+	$("#back").on("click", function(){
+		location.href="/adminmain.admin";
+	})
+	
+	// 수정버튼 클릭 시
+	$("#modify").on("click", function(){
+		openChild2();
+		$("#adminTF").on("focus", function(){
+			$("#adminTF").css("display","none");
+			
+			$("#modify").css("display", "none");
+			$("#banish").css("display", "none");
+			let ok = $("<button>");
+			ok.text("수정완료");
+		
+			let cancel = $("<button>");
+			cancel.text("취소");
+			cancel.attr("type","button");
+			cancel.attr("id","canbtn");
+			cancel.on("click", function(){
+				location.reload();
+			})
+		
+			$("#btns").append(ok);
+			$("#btns").append(cancel);
+			
+		})
+
+
+	})
+	
+	$("#banish").on("click", function(){
+		openChild();
+		
+	})
+	
+
+
+
+</script>
+
 </html>

@@ -8,13 +8,16 @@ public class Board2DTO {
 	private String write_date;
 	private String item;
 	private int view_count;
+	private int reply;
 	
 	
 	public Board2DTO() {
 		super();
 	}
+	
+
 	public Board2DTO(int seq, String nickname, String title, String contents, String write_date, String item,
-			int view_count) {
+			int view_count, int reply) {
 		super();
 		this.seq = seq;
 		this.nickname = nickname;
@@ -23,10 +26,23 @@ public class Board2DTO {
 		this.write_date = write_date;
 		this.item = item;
 		this.view_count = view_count;
+		this.reply = reply;
 	}
+
+
 	public int getSeq() {
 		return seq;
 	}
+	public int getReply() {
+		return reply;
+	}
+
+
+	public void setReplay(int reply) {
+		this.reply = reply;
+	}
+
+
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}

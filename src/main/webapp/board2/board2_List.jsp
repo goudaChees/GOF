@@ -104,14 +104,20 @@
 					<div class="col-2">작성자</div>
 					<div class="col-2">제한시간</div>
 					<div class="col-2">작성시간</div>
+					<div class="col-2">조회수</div>
 				</div>
 					<c:forEach var="i" items="${dto}">
 					<div class="row">
 						<div class="col-2">${i.seq}</div>
-						<div class="col-2"><a href="/read.brd2?seq=${i.seq}">${i.title}</a></div>
-						<div class="col-2">${i.nickname}</div>
+						<div class="col-2 title"><a href="/read.brd2?seq=${i.seq}">${i.title}</a>
+						<c:if test="${i.reply!=0}">
+							[${i.reply}]
+						</c:if>
+						</div>
+						<div class="col-2 nickname">${i.nickname}</div>
 						<div class="col-2 limit" id="${i.seq}"></div>
-						<div class="col-2 time" id="${i.write_date}"></div>
+						<div class="col-2 time" id="${i.write_date}">${i.write_date}</div>
+						<div class="col-2">${i.view_count}</div>
 					</div>
 					</c:forEach>
 				<div class="row">
@@ -154,7 +160,7 @@
 				let days = Math.floor(distDt / _day);
 				let hours = Math.floor((distDt % _day) / _hour);
 				let minutes = Math.floor((distDt % _hour) / _minute);
-				let seconds = Math.floor((distDt % _minute) / _second);x
+				let seconds = Math.floor((distDt % _minute) / _second);
 				//document.getElementById(id).textContent = date.toLocaleString() + "까지 : ";
  				//document.getElementById(id).textContent = days + '일 ';
 				//document.getElementById(id).textContent += hours + '시간 ';
@@ -164,12 +170,10 @@
 			timer = setInterval(showRemaining, 1000);
 		}
 
-		for(let i=0;i<10;i++){
+		for(let i=0;i<$(".title").length;i++){
 	        let id = $(document.querySelectorAll(".limit")[i]).attr('id');
 	        let time = $(document.querySelectorAll(".time")[i]).attr('id');
 	        let dateObj = new Date(time);
-			let wtime = dateObj.getFullYear()+"-"+dateObj.getMonth()+"-"+dateObj.getDate()+" "+dateObj.getHours()+":"+dateObj.getMinutes()+":"+dateObj.getSeconds();
-	        $(document.querySelectorAll(".time")[i]).text(wtime);
 	        dateObj.setMinutes(dateObj.getMinutes() +10);
 			countDownTimer(id, dateObj);
 	        }
@@ -178,6 +182,23 @@
 // 		countDownTimer('sample03', '04/01/2024');
 		// 2024년 4월 1일까지 countDownTimer('sample04', '04/01/2019');
 		// 2024년 4월 1일까지
+		const serchbold = function(category,serch){
+			let length = serch.length;
+			//검색어의 길이
+			let arr = [];
+			//인덱스 배열 생성
+			if(category == title){
+				let list = $(".title").children().text();
+				for(let i = 0; i<list.length;){
+					console.log(list.indexOf(serch,i));
+				}
+			}else if(category==nickname){
+				
+			}
+		}
+		
+		
+		
 	</script>
 </body>
 </html>
