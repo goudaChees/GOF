@@ -33,42 +33,44 @@ public class Board1Controller extends HttpServlet {
 		Board1DAO dao = new Board1DAO();
 		Board1_PicDAO pdao = new Board1_PicDAO();
 		HttpSession session = request.getSession();
-
+		
+		session.setAttribute("nickname","하이용");
 
 		try {
 			if(uri.equals("/write.brd1")) {//게사판 글 쓰기
 				
 				int maxSize = 1024*1024*10;//파일 사이즈
 				String savePath =request.getServletContext().getRealPath("files");//파일 경로 설정
-				
-				File filePath = new File(savePath);
-				
-				
-				if(!filePath.exists()) {
-					filePath.mkdir();//files 폴더 없으면 만들기
-				}
-				
+				System.out.println(savePath);
+				System.out.println(request.getContentType());
 				
 				MultipartRequest multi = new MultipartRequest(request,savePath,maxSize,"UTF8",new DefaultFileRenamePolicy());
 				//HttpServletRequest를 MultipartRequset로 바꾸기
 				
 				
 				int parent_Seq = dao.getBoard1SeqNextval(); //게시판 seq 미리 만들기
-				Enumeration e = multi.getFileNames(); //파일 이름 넣기
+				Enumeration e = multi.getFileNames(); 
 				
-				String fileName = null;
-				
+					File oldFile = null;
+
+				if(e !=null){
 				while(e.hasMoreElements()) {//파일 insert
 					String name = (String) e.nextElement();
 					String ori_Name = multi.getOriginalFileName(name);
 					String sys_Name = multi.getFilesystemName(name);
 					
+					oldFile = new File(savePath+"\\"+sys_Name);
+//					File newFile = new File(savePath+"\\"+(parent_Seq-1)+"사진.jpg");
+//					
+//					oldFile.renameTo(newFile);
+//					
+//					System.out.println(newFile);
+//					System.out.println(multi.getFilesystemName(name));
 					pdao.insert(new Board1_PicDTO(0,ori_Name,sys_Name,parent_Seq));
 					
-					if(fileName!=null) {
-						
-					}
 				}
+				}
+				
 				
 				
 				//글 업데이트
@@ -131,6 +133,17 @@ public class Board1Controller extends HttpServlet {
 				
 				request.getRequestDispatcher("/board1/board1_List.jsp?cpage=1").forward(request, response);
 				
+			}else if(uri.equals("/detail.brd1")) {
+				int seq = Integer.parseInt(request.getParameter("seq"));
+				Board1DTO dto = dao.selectBySeq(seq);
+				request.setAttribute("dto", dto);
+				System.out.println(dto.getSeq());
+				request.getRequestDispatcher("/board1/board1_DetailView.jsp").forward(request, response);
+			}else if(uri.equals("/modify.brd1")) {
+				int seq = Integer.parseInt(request.getParameter("seq"));
+				Board1DTO dto = dao.selectBySeq(seq);
+				request.setAttribute("dto", dto);
+				request.getRequestDispatcher("/board1/board1_Modify.jsp").forward(request, response);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

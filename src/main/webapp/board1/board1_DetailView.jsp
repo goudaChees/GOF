@@ -25,25 +25,10 @@
 	box-sizing: border-box;
 }
 
-/* div { */
-/* 	border: 1px solid black; */
-/* 	text-align: center; */
-/*   margin: 0px; */
-/* } */
-#list_Middle>div {
-	float: left;
-}
-
-#boardHeader>div {
-	float: left;
-}
-
-.boardList>div {
-	float: left;
-}
-
-span{
-	font-weight: bolder;
+div {
+border: 1px solid black;
+text-align: center;
+margin: 0px;
 }
 </style>
 </head>
@@ -75,71 +60,42 @@ span{
 			</div>
 		</nav>
 	</div>
-	<div id="list_Container" style="width: 70%; margin: auto;">
-		<div id="list_Header">
-			<div style="text-align: left; border: 0px; font-size: 25px;">지출의참견</div>
-			<div style="text-align: left; border: 0px;">살까말까 답정너들을 위한 참견러들의
-				지침</div>
+	<div id="viewContainer"  style="width:70%; margin: auto;">
+		<div id="board_vIew" class="row">
+		<div id="title" class="col-10">
+		타이틀
 		</div>
-		<div id="list_Middle" style="text-align: right;">
-			<div style="width: 20%">
-			<form action="/search.brd1">
-				<select class="form-select" aria-label="Default select example"
-					name="searchCategory">
-					<option value="0">선택</option>
-					<option value="1">작성자</option>
-					<option value="2">제목</option>
-					<option value="3">물건명</option>
-				</select>
-			</div>
-			<div style="width: 40%; text-align: left;">
-				<input type="text" placeholder="검색하실 내용을 입력하세요" name="searchTarget" style="width: 70%"> 
-				<input type="submit" value="검색">
-			</div>
-			<br>
-			</form>
+		<div id="view_Count" class="col-2">
+		1
+		</div>	
+		<div id="img_Box" class="col-5">
+			<img src="#">
 		</div>
-		<div id="list_Bottom">
-			<div border="1" align="center" id="wrapper"
-				style="width: 70%; margin: auto;" class="row">
-				<c:forEach var="i" items="${list}">
-					<div width="100%" class="boardList">
-						<div class="col-4">
-						<img src="#">
-						</div>
-						<div class="col-7">
-							<div class="row">
-								<input type="hidden" value=${i.seq }>
-								<div class="col-12" style="text-align: left; overflow: hidden;">
-									<a href="/detail.brd1?seq=${i.seq}" class="title">${i.title}</a>
-								</div>
-								<div align="center" class="col-5" class="item">${i.item}</div>
-								<div align="center" class="col-7" class="writer">${i.writer}</div>
-								<div align="center" class="col-12">${i.write_date}</div>
-							</div>	
-						</div>
-						<div class="col-">${i.view_count}</div>
-					</div>
-					<br>
-					<hr>
-				</c:forEach>
-			</div>
+		<div id="contents_Box" class="col-7">
+			<div id="item">${dto.item}</div>
+			<div id="contents">${dto.contents}</div>
 		</div>
-		<div class="row">
-			<div class="col-2"></div>
-			<div class="col-8">${navi}</div>
-			<div class="col-2">
-				<input type="button" id="write" value="글쓰기">
-			</div>
+		<div id="item_price">전체 금액 : ${dto.item_price}</div>
+		<div id="btns" style="text-align: right;">
+			<input type="button" id="toList" value="목록으로">
+			<c:if test="${nickname==dto.writer }">
+				<input type="button" id="modify" value="수정하기">
+				<input type="button" id="delete" value="삭제하기">
+			</c:if>
+		</div>
 		</div>
 	</div>
 	<div class="row w-100 m-0" id="footer">
 		<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
 	</div>
+	<div ></div>
 	<script>
-		$("#write").on("click",function(){
-			location.href="/board1/board1_Write.jsp";
-		})		
+		$("#toList").on("click",function(){
+			location.href="/list.brd1?cpage=1";
+		})
+		$("#modify").on("click",function(){
+			location.href="/modify.brd1?seq=${dto.seq}";
+		})
 	</script>
 </body>
 </html>

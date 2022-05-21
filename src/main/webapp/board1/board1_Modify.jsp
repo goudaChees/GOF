@@ -59,7 +59,7 @@
 			<span style="font-size: 30px;">지출의 참견</span>
 	    	<span>구매가 고민되는 상품의 정보를 입력해주세요.</span><br>
         <div style="text-align:center">
-          	<input type="text" placeholder="글 제목을 입력해주세요" name="title" size="70" id="title"><br>
+          	<input type="text" placeholder="글 제목을 입력해주세요" name="title" size="70" value="${dto.title}"><br>
           	<div class="write_Box" style="width:50% ; border: 0px;">
           		<div id="img_Box">
             		<img src="#" style="width: 200px; height: 200px;" id="img_section">
@@ -67,10 +67,10 @@
             	<input type="file" name="file" id="upload_file" accept="image/*">
           	</div>
           	<div class="write_Box" style="width:50%; height: 200px; border: 0px;">
-            	<input type="text" placeholder="물건명을 입력해주세요" name="item"><br>
-            	<input type="text" placeholder="가격을 입력해주세요" name="item_price"><br>
+            	<input type="text" placeholder="물건명을 입력해주세요" name="item" value="${dto.item }"><br>
+            	<input type="text" placeholder="가격을 입력해주세요" name="item_price" value="${dto.item_price }"><br>
           	</div>
-          	<textarea placeholder="이 물건을 꼭 사야할 이유가 뭔가요" name="contents" rows="10" cols="70"></textarea><br>
+          	<textarea placeholder="이 물건을 꼭 사야할 이유가 뭔가요" name="contents" rows="10" cols="70">${dto.contents }</textarea><br>
           	<input type="button" value="목록으로" id="goToList">
           	<input type="submit" vlaue="저장하기">
         </div>    
