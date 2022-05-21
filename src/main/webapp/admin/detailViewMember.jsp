@@ -26,8 +26,11 @@
 	function openChild2(){
 		window.name = "parentForm";
 		
-		openWin2 = window.open("/admin/adminPwCheck.jsp", "",
-				"top=100,left=200,width=550,height=350");	
+		openWin2 = window.open("/admin/adminModifyMember.jsp", "",
+		"top=100,left=200,width=550,height=350");
+		
+// 		openWin2 = window.open("/admin/adminPwCheck.jsp", "",
+// 				"top=100,left=200,width=550,height=350");	임시로 가려둠
 
 	}
 	function setChildText(){
@@ -205,13 +208,14 @@ div {
 									</div>
 									<div class="row">
 										<div class="col-12">
-											<br>
+											<br><input id="adminTF" type="text" style="color: blue;" value="" readonly>
 										</div>
 									</div>
-
+									
+									<br>
 									<div class="row" align=center>
 										<div class="col-12" id="btns">
-
+											
 											<button id="back" type="button">뒤로가기</button>
 											<button id="modify" type="button">수정하기</button>
 											<button id="banish" type="button">강제 추방</button>
@@ -247,7 +251,26 @@ div {
 	// 수정버튼 클릭 시
 	$("#modify").on("click", function(){
 		openChild2();
-
+		if ($("#adminTF").val() == "관리자 확인") {
+			console.log($("#adminTF").val());
+			$("#modify").css("display", "none");
+			$("#banish").css("display", "none");
+			let ok = $("<button>");
+			ok.text("수정완료");
+		
+			let cancel = $("<button>");
+			cancel.text("취소");
+			cancel.attr("type","button");
+			cancel.attr("id","canbtn");
+			cancel.on("click", function(){
+				location.reload();
+			})
+		
+			$("#btns").append(ok);
+			$("#btns").append(cancel);
+		}else {
+			
+		}
 	})
 	
 	$("#banish").on("click", function(){
