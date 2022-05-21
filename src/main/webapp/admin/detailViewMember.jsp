@@ -160,12 +160,12 @@ div {
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade show active" id="memberManagement">
-						<form action="adminUpdate.member" method="post">
+						<form action="adminUpdate.admin" method="post">
 							<div class="row">
 								<div class="col">
 									<div class="row">
 										<div class="col">${mdto.id}'s Information</div>
-										<input type="hidden" value="${mdto.id}" id="userId">
+										<input type="hidden" value="${mdto.id}" name="id" id="userId">
 									</div>
 									<div class="row">
 										<div class="col-3">ID</div>
@@ -208,7 +208,7 @@ div {
 									</div>
 									<div class="row">
 										<div class="col-12">
-											<br><input id="adminTF" type="text" style="color: blue;" value="" readonly>
+											<br><input id="adminTF" type="text" style="color: red;" value="관리자 확인이 필요합니다." disabled>
 										</div>
 									</div>
 									
@@ -251,8 +251,9 @@ div {
 	// 수정버튼 클릭 시
 	$("#modify").on("click", function(){
 		openChild2();
-		if ($("#adminTF").val() == "관리자 확인") {
-			console.log($("#adminTF").val());
+		$("#adminTF").on("focus", function(){
+			$("#adminTF").css("display","none");
+			
 			$("#modify").css("display", "none");
 			$("#banish").css("display", "none");
 			let ok = $("<button>");
@@ -268,9 +269,10 @@ div {
 		
 			$("#btns").append(ok);
 			$("#btns").append(cancel);
-		}else {
 			
-		}
+		})
+
+
 	})
 	
 	$("#banish").on("click", function(){

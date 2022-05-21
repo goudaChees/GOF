@@ -59,8 +59,12 @@
 			}else {
 				let result = confirm("확인 되었습니다.");
 				if (result) {
-					$("#cTF").attr("value", "관리자 확인");
+					$("#cTF").attr("value", " ");
 					setParentText();
+					let tf = parent.document.getElementById('adminTF');
+					tf.removeAttribute("disabled");
+					tf.focus();
+					
 					let cls = parent.document.getElementsByClassName('editable');
 					for (let i = 0; i < cls.length; i++ ){
 						cls[i].removeAttribute("disabled");
