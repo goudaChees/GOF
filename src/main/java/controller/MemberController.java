@@ -72,8 +72,8 @@ public class MemberController extends HttpServlet {
 								+request.getParameter("phone3");
 				String email= request.getParameter("email");
 				String nickname= request.getParameter("nickname");
-				
-				dao.insert(new MemberDTO(0,id,pw,name,phone,email,nickname,null));
+				String jointype="일반";
+				dao.insert(new MemberDTO(0,id,pw,name,phone,email,nickname,null),jointype);
 				response.sendRedirect("/index.jsp");
 				
 			}else if(uri.equals("/logout.member")) { // 로그아웃
@@ -138,6 +138,46 @@ public class MemberController extends HttpServlet {
 				request.setAttribute("pageList", pageList);
 				request.getRequestDispatcher("/member/myReply.jsp").forward(request, response);
 			
+			} else if (uri.equals("/kakaoCheck.member")) { // 카카오 가입 회원인지 먼저 확인
+				String id = request.getParameter("id");
+				String email = request.getParameter("email");
+				String nickname = request.getParameter("nickname");
+				Boolean isIdExist=dao.isIdExist(id);
+				
+				if(isIdExist == true) { // 회원인 경우 카카로 로그인 진행
+					request.setAttribute("id", id);
+					request.getRequestDispatcher("/kakaoLogin.member").forward(request, response);
+				} else { // 비회원인경우 추가 정보 수집
+					request.setAttribute("id", id);
+					request.setAttribute("email", email);
+					request.setAttribute("nickname", nickname);
+					request.getRequestDispatcher("/kakaoJoin.member").forward(request, response);
+				}
+			
+			} else if (uri.equals("/kakaoLogin.member")) { // 카카오 로그인
+				String id = request.getParameter("id");
+				String pw = eUtil.SHA512(id);
+				
+				Boolean isLoginOk=dao.IsloginOk(id,pw); // 아이디, 비번 검사
+				prw.append(isLoginOk.toString());
+				if(isLoginOk) {
+					HttpSession session = request.getSession();
+					session.setAttribute("loginID", id); // 로그인
+					String nickname = dao.getNickname(id);
+					session.setAttribute("loginNN", nickname);
+				}
+				response.sendRedirect("/index.jsp");
+			
+			} else if (uri.equals("/kakaoJoin.member")) {
+				String id = request.getParameter("id");
+				String pw = eUtil.SHA512(id);
+				String email = request.getParameter("email");
+				String nickname = request.getParameter("nickname");
+				String jointype = "카카오";
+				dao.insert(new MemberDTO(0,id,pw,nickname,null,email,nickname,null), jointype);
+				
+				request.setAttribute("id", id);
+				request.getRequestDispatcher("/kakaoLogin.member").forward(request, response);
 			}
 			
 			
