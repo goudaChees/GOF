@@ -20,7 +20,7 @@
 </head>
 <body>
 
-	<div class="container-fluid">
+	<div class="container w-100">
 		<div class="row w-100 m-0" id="header">
 			<div class="col-12">
 				<nav class="navbar navbar-expand-md navbar-light bg-light">
