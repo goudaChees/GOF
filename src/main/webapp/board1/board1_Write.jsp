@@ -67,12 +67,12 @@
             	<input type="file" name="file" id="upload_file" accept="image/*">
           	</div>
           	<div class="write_Box" style="width:50%; height: 200px; border: 0px;">
-            	<input type="text" placeholder="물건명을 입력해주세요" name="item"><br>
-            	<input type="text" placeholder="가격을 입력해주세요" name="item_price"><br>
+            	<input type="text" placeholder="물건명을 입력해주세요" name="item" id="item"><br>  	
+            	<input type="text" placeholder="가격을 입력해주세요" name="item_price" id="item_price" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /><br>
           	</div>
           	<textarea placeholder="이 물건을 꼭 사야할 이유가 뭔가요" name="contents" rows="10" cols="70"></textarea><br>
           	<input type="button" value="목록으로" id="goToList">
-          	<input type="submit" vlaue="저장하기">
+          	<input type="submit" value="저장하기" id="submit">
         </div>    
 		</div>
 	    <div class="row w-100 m-0" id="footer">
@@ -91,7 +91,20 @@
 	       reader.readAsDataURL(imgFile);
 	     })
 	     
+	     $("#goToList").on("click",function(){
+	    	 loaction.href="/list.brd1?cpage=1";
+	     })
 	     
+       $("#submit").on("click",function(){
+         let item_price = $("#item_price").val().trim();
+         let title= $("#title").val().trim();
+         let item = $("#item").val().trim();;
+		
+         if(title==''||item_price==''||item==''){
+        	 alert("제목, 물건명, 가격은 필수 입력 사항입니다.");
+        	 return false;
+         }
+       })
 
 	 </script>
 </body>

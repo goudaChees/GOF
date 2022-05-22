@@ -53,9 +53,25 @@ public class Board1_PicDAO {
 			try(
 				ResultSet rs = pstat.executeQuery();
 					){
-				rs.next();
-				return rs.getString("sys_name");
+				if(rs.next()) {
+					return rs.getString("sys_name");
+				}else {
+					return null;
+				}
 			}
+		}
+	}
+	
+	public int deleteByParentSeq(int seq)throws Exception {
+		String sql = "delete from board1_pic where parent_seq=?";
+		try(
+				Connection con = this.getConnetction();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, seq);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
 		}
 	}
 }

@@ -301,4 +301,35 @@ public class Board1DAO {
 			}
 		}
 	}
+	
+	public int modify(Board1DTO dto)throws Exception {
+		String sql = "update board1 set title=?,contents=?,item=?,item_price=? where seq=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, dto.getTitle());
+			pstat.setString(2, dto.getContents());
+			pstat.setString(3, dto.getItem());
+			pstat.setInt(4, dto.getItem_price());
+			pstat.setInt(5,dto.getSeq());
+			
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
+	public int deleteBySeq(int seq)throws Exception {
+		String sql = "delete from board1 where seq=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, seq);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
 }
