@@ -138,6 +138,12 @@ div {
 
 </body>
 <script>
+	
+	// 카카오 초기화 및 토큰 받아오기
+	Kakao.init('b956cab5ef7dbe5bc1f861614a4b2061');
+	//sessionStorage에 저장된 사용자 엑세스 토큰 받아온다.
+	window.Kakao.Auth.setAccessToken(JSON.parse(sessionStorage.getItem('AccessKEY')));
+	
 	// 비밀번호 변경 버튼 클릭시 비밀번호 입력 창 띄우기
 	$("#pw_modify").on(
 		"click",
@@ -151,9 +157,30 @@ div {
 	$("#member_out").on(
 			"click",
 			function() {
-				window.open("/member/memberout.jsp", "",
-						"top=100,left=200,width=550,height=350");
-				//location.href="/member/memberout.jsp";
+				if(sessionStorage.getItem('AccessKEY') == null) {
+					window.open("/member/memberout.jsp", "",
+					"top=100,left=200,width=550,height=350");
+		    	} else {
+		    		let result = confirm("정말로 탈퇴하시겠습니까?");
+		    		if(result){
+		    		alert("사용자의 계정이 탈퇴 되었습니다.")
+		    		Kakao.API.request({
+		                url: '/v1/user/unlink',
+		                success: function(response) {
+		                    console.log(response);
+		                    //callback(); //연결끊기(탈퇴)성공시 서버에서 처리할 함수
+		                    Kakao.Auth.logout();
+		                    window.location.href='/logout.member'
+		                },
+		                fail: function(error) {
+		                    console.log('탈퇴 미완료')
+		                    console.log(error);
+		                },
+		            })
+		    		} else {
+		    			return false;
+		    		}
+		    	}
 			})
 	
 	// 수정 버튼 클릭시
