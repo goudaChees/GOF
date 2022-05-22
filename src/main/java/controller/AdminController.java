@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import dao.MemberDAO;
+import dao.AdminDAO;
+import dto.Board1DTO;
+import dto.Board2DTO;
 import dto.MemberDTO;
 import utils.EncryptUtils;
 
@@ -28,7 +30,8 @@ public class AdminController extends HttpServlet {
 		Gson g = new Gson();
 		EncryptUtils util = new EncryptUtils();
 		PrintWriter prw = response.getWriter();
-		MemberDAO mdao = MemberDAO.getInstance();
+		
+		AdminDAO adao = AdminDAO.getInstance();
 		
 		String uri = request.getRequestURI();
 		try {
@@ -37,9 +40,9 @@ public class AdminController extends HttpServlet {
 				if (request.getParameter("cpage") != null) {
 					cpage =  Integer.parseInt(request.getParameter("cpage"));
 				}
-				List<MemberDTO> list = mdao.selectByPage(cpage);
+				List<MemberDTO> list = adao.selectByPage(cpage);
 				
-				String pageNavi = mdao.getPageNavi(cpage);
+				String pageNavi = adao.getPageNavi(cpage);
 				
 				request.setAttribute("list", list);
 				request.setAttribute("pageNavi", pageNavi);
@@ -48,7 +51,7 @@ public class AdminController extends HttpServlet {
 			}else if(uri.equals("/detailViewMember.admin")) {
 				
 				String id = request.getParameter("id");
-				MemberDTO mdto = mdao.selectById(id);
+				MemberDTO mdto = adao.selectById(id);
 				request.setAttribute("mdto", mdto);
 				request.getRequestDispatcher("/admin/detailViewMember.jsp").forward(request, response);
 				
@@ -56,7 +59,7 @@ public class AdminController extends HttpServlet {
 				
 				String adminPw = util.SHA512(request.getParameter("adminPw"));
 				System.out.println(adminPw);
-				Boolean isAdminOk = mdao.isAdminOk(adminPw);
+				Boolean isAdminOk = adao.isAdminOk(adminPw);
 				System.out.println(isAdminOk);
 				prw.append(g.toJson(isAdminOk));
 				
@@ -64,14 +67,14 @@ public class AdminController extends HttpServlet {
 				
 				String banId = request.getParameter("banId");				
 				
-				int result = mdao.deleteById(banId);
+				int result = adao.deleteById(banId);
 				System.out.println(result);
 				prw.append(g.toJson(result));
 			
 			}else if(uri.equals("/modifyMember.admin")) {
 				
 				String id = request.getParameter("id");
-				MemberDTO mdto = mdao.selectById(id);
+				MemberDTO mdto = adao.selectById(id);
 				request.setAttribute("mdto", mdto);
 				request.getRequestDispatcher("/admin/modifyMember.jsp").forward(request, response);
 				
@@ -81,8 +84,39 @@ public class AdminController extends HttpServlet {
 				String phone = request.getParameter("phone");
 				String email = request.getParameter("email");
 				String nickname = request.getParameter("nickname");
-				mdao.adminUpdate(new MemberDTO(0, id, null, name, phone, email, nickname, null));
+				adao.adminUpdate(new MemberDTO(0, id, null, name, phone, email, nickname, null));
 				response.sendRedirect("/adminmain.admin");
+				
+			}else if (uri.equals("/adminBoardsList.admin")) {
+				int board = 1;
+				if (request.getParameter("board") != null ) {
+					board = Integer.parseInt(request.getParameter("board"));
+				}
+				int page = 1;
+				if (request.getParameter("page") != null) {
+					page = Integer.parseInt(request.getParameter("page"));
+				}
+				
+				if (board == 1) {
+					List<Board1DTO> list1 = adao.selectBoard1Page(page);
+					String pageNavi = adao.getBrdPageNavi(board, page);
+					request.setAttribute("list1", list1);
+					request.setAttribute("pageNavi", pageNavi);
+					request.getRequestDispatcher("/admin/adminBoard1List.jsp").forward(request, response);
+					
+				}else if (board == 2) {
+					List<Board2DTO> list2 = adao.selectBoard2Page(page);
+					String pageNavi = adao.getBrdPageNavi(board, page);
+					request.setAttribute("list2", list2);
+					request.setAttribute("pageNavi", pageNavi);
+					request.getRequestDispatcher("/admin/adminBoard2List.jsp").forward(request, response);
+				}
+				
+				
+				
+				
+				
+				
 			}
 			
 			
