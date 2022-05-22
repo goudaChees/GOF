@@ -5,134 +5,142 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>myPage</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<style>
-p {
-	margin: 20px 0px;
-}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="/css/member/mypage.css">
 
-* {
-	box-sizing: border-box;
-}
-
-div {
-	border: 1px solid black;
-	text-align: center;
-}
-
-</style>
 </head>
 <body>
 	<div class="container">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="/index.jsp">앞날의 지침</a>
-				<button class="navbar-toggler" type="button"
-					data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-					aria-controls="navbarNavDropdown" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse justify-content-end"
-					id="navbarNavDropdown">
-					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="#">지출의 참견</a></li>
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="/list.brd2">선택의 참견</a></li>
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="/csmain.cscenter">고객센터</a></li>
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="/mypage.member">마이페이지</a></li>
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="/logout.member"><i class="bi bi-box-arrow-right"></i></a></li>
-					</ul>
-				</div>
+		<div class="row w-100 m-0" id="header">
+			<div class="col-12">
+				<nav class="navbar navbar-expand-md navbar-light bg-light">
+					<div class="container-fluid">
+						<a class="navbar-brand" href="/index.jsp" style="color: #664E55">앞날의
+							지침</a>
+						<button class="navbar-toggler" type="button"
+							data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+							aria-controls="navbarNavDropdown" aria-expanded="false"
+							aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse justify-content-end"
+							id="navbarNavDropdown">
+							<ul class="navbar-nav">
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="#" style="color: #664E55">지출의 참견</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="/list.brd2" style="color: #664E55">선택의
+										참견</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="/csmain.cscenter"
+									style="color: #664E55">고객센터</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="/mypage.member"
+									style="color: #664E55">마이페이지</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="#"><i
+										class="bi bi-box-arrow-right" style="color: #664E55"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
 			</div>
-		</nav>
-		<div class="row">
-			<div class="col">
-				<p>My Page</p>
-				<ul class="nav nav-tabs">
-				  <li class="nav-item">
-				    <a class="nav-link active" aria-current="page" href="/mypage.member">내 정보 보기</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="/myWriting.member?board=1&page=1">내 글 보기</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link" href="/myReply.member?board=1&page=1">내 댓글 보기</a>
-				  </li>
-				</ul>
-				<div class="row">
-					<div class="col-12" id="mypage">
-						<form action="update.member" method="post">
-							<div class="row">
-								<div class="col" >
-									<div class="row">
-										<div class="col">MyPage</div>
-									</div>
-									<div class="row" align=center>
-										<div class="col-3">ID</div>
-										<div class="col-4">${dto.id }</div>
-									</div>
-									<div class="row">
-										<div class="col-3">NAME</div>
-										<div class="col-4">${dto.name }</div>
-									</div>
-									<div class="row">
-										<div class="col-3">PHONE</div>
-										<div class="col-4">
-											<input type=text value="${dto.phone }" class="editable" name=phone id="phoneTD" disabled>
-										</div>
-										<div class="col-5" id="phoneCheckResult"></div>
-									</div>
-									<div class="row">
-										<div class="col-3">EMAIL</div>
-										<div class="col-4">
-											<input type=text value="${dto.email }" class="editable" name=email id="emailTD" disabled>
-										</div>
-										<div class="col-5" id="emailCheckResult"></div>
-									</div>
-									<div class="row">
-										<div class="col-3">NICKNAME</div>
-										<div class="col-4">
-											<input type=text value="${dto.nickname }" class="editable" name=nickname id="nicknameTD" disabled>
-										</div>
-										<div class="col-5" id="nicknameCheckResult"></div>
-									</div>
-									<div class="row">
-										<div class="col-3">JOINDATE</div>
-										<div class="col-4">${dto.joindate }</div>
-									</div>
-									
-									
-						
-								</div>
+		</div>
+		
+		<div class="row w-100 m-0" id="content">
+			<div class="d-none d-lg-block col-3"></div>
+			<div class="col-12 col-lg-6">
+				<div class="row w-100 m-0" id="MyPageOutline">
+					<div class="col-12">
+						<div class="row w-100 m-0" id="MyPageHeader">
+							<div class="col-12">
+								<p>My Page</p>
+								<ul class="nav nav-tabs">
+									<li class="nav-item selected"><a class="nav-link active"
+										aria-current="page" href="/mypage.member">내 정보 보기</a></li>
+									<li class="nav-item"><a class="nav-link"
+										href="/myWriting.member?board=1&page=1">내 글 보기</a></li>
+									<li class="nav-item"><a class="nav-link"
+										href="/myReply.member?board=1&page=1">내 댓글 보기</a></li>
+								</ul>
 							</div>
-							<div class="row">
-								<div class="col-12">
-									<br>
-								</div>
+						</div>
+						<div class="row" id="MyPage">
+							<div class="col-12">
+								<form action="update.member" method="post">
+									<div class="row" id="MyPageArea">
+										<div class="col-12" >
+											<div class="row">
+												<div class="col-12" id="MyPageAreaHeader">MyPage</div>
+											</div>
+											<div class="row" align=center>
+												<div class="col-4">ID</div>
+												<div class="col-8">${dto.id }</div>
+											</div>
+											<div class="row">
+												<div class="col-4">NAME</div>
+												<div class="col-8">${dto.name }</div>
+											</div>
+											<div class="row">
+												<div class="col-4">PHONE</div>
+												<div class="col-8">
+													<input type=text value="${dto.phone }" class="editable" name=phone id="phoneTD" disabled>
+												</div>
+												<div class="col-4"></div>
+												<div class="col-8" id="phoneCheckResult"></div>
+											</div>
+											<div class="row">
+												<div class="col-4">EMAIL</div>
+												<div class="col-8">
+													<input type=text value="${dto.email }" class="editable" name=email id="emailTD" disabled>
+												</div>
+												<div class="col-4"></div>
+												<div class="col-5" id="emailCheckResult"></div>
+											</div>
+											<div class="row">
+												<div class="col-4">NICKNAME</div>
+												<div class="col-8">
+													<input type=text value="${dto.nickname }" class="editable" name=nickname id="nicknameTD" disabled>
+												</div>
+												<div class="col-4"></div>
+												<div class="col-8" id="nicknameCheckResult"></div>
+											</div>
+											<div class="row">
+												<div class="col-4">JOINDATE</div>
+												<div class="col-8">${dto.joindate }</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12">
+											<br>
+										</div>
+									</div>
+									<div class="row w-100 m-0" align=center>
+										<div class="col-12" id="btns">
+											<button id="modify" type="button">수정하기</button>
+											<button id="pw_modify" type="button">비밀번호 수정</button>
+											<button id="member_out" type="button">탈퇴하기</button>
+										</div>
+									</div>
+								</form>
 							</div>
-							<div class="row" align=center>
-								<div class="col-12" id="btns">
-									<button id="modify" type="button">수정하기</button>
-									<button id="pw_modify" type="button">비밀번호 수정</button>
-									<button id="member_out" type="button">탈퇴하기</button>
-								</div>
-							</div>
-						</form>
+						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+		
+		<div class="row w-100 m-0" id="footer">
+			<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
 		</div>
 	</div>
 

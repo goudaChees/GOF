@@ -1,0 +1,170 @@
+@charset "UTF-8";
+
+
+* {
+	box-sizing: border-box;
+}
+
+div {
+	text-align: center;
+}
+
+.container{
+	max-width: 100%; 
+	padding: 0; 
+	margin: 0; 
+	position: relative;
+}
+
+#header{
+	border-bottom: 5px solid #F4ACB7;
+	z-index:5;
+}
+
+#content{
+	margin:0;
+	padding-top: 3%;
+	padding-bottom: 3%;
+	min-height: 95vh;
+	max-width: 100%; 
+	background-color:#FEDDE1;
+	position: relative;
+}
+
+#MyPageOutline{
+	padding:2%;
+	height:100%;
+	border-radius: 15px;
+	background-color: #FFF4EF;
+}
+
+#MyPageHeader{
+	padding-top:10px;
+	height:100px;
+	text-align:left;
+}
+
+#MyPageHeader .col-12{
+	color: #806c71;
+	text-align:left;
+	position:relative;
+}
+
+#MyPageHeader ul{
+	position:absolute;
+	left:13px;
+	bottom:-5px;
+	width:100%;
+}
+
+#MyPageHeader li{
+	margin-right:5px;
+	min-width:20%;
+	max-width:28%;
+	font-size:15px;
+}
+
+#MyPageHeader .nav-link{
+	padding-left:3px;
+	padding-right:3px;
+	border: 1px solid transparent;
+	border-radius: 8px;
+	background-color: #B4C8BC;
+	color:white;
+	text-align:center;
+}
+
+#MyPageHeader .active{
+	background-color: #D8E2DC;
+	color:#516D5C;
+}
+
+#mywriting{
+	margin:0%;
+	padding:2%;
+	height:80%;
+	border: 5px solid #D8E2DC;
+	border-radius: 15px;
+	background-color: white;
+	overflow:hidden;
+	position:relative;
+	z-index:5;
+}
+
+#mywriting>.col-12{
+	height:100%;
+}
+
+#listbtns{
+	text-align: right; 
+	margin-top:2vh;
+	margin-bottom:1.5vh;
+}
+
+#mywriting button{
+	padding:1%;
+	margin-left:1%;
+	color: #9D8189;
+	font-size:14px;
+	background-color: transparent;	
+	border: 2px solid #F4ACB7;
+	border-radius: 20px;
+	width:110px;
+}
+
+#mywriting button:hover{
+	background-color: #FED7DC80;
+	cursor:pointer;	
+}
+
+#mywritinglist{
+	height:90%;
+	overflow-y:auto;
+}
+
+#mywritinglist .row{
+	border-bottom:1px solid #F4ACB7;
+	color:#735960;
+	line-height:30px;
+}
+
+#mywritinglist .col-4{
+	font-size:13px;
+}
+
+#mywritinglist .d-lg-none{
+	text-align:left;
+}
+
+#mywritinglist .d-lg-none:last-of-type{
+	font-size:10px;
+}
+
+#mywritinglist .row:first-of-type{
+	background-color:#F4ACB7;
+	font-weight:bolder;
+	font-size:16px;
+	line-height:35px;
+	color:#5C474D;
+}
+
+#mywritinglist .row:first-of-type>.col-4{
+	font-size:16px;
+}
+
+#mywritinglist .row:last-of-type{
+	border-bottom:1px solid transparent;
+	color:#5C474D;
+}
+
+#mywritinglist a{
+	color:#5C474D;
+	text-decoration:none;
+}
+
+
+
+#footer{
+	background-color: #9D8189;
+	color: white;
+}
