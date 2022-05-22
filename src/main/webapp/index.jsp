@@ -16,11 +16,6 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/css/index.css">
-<script>
-      	// SDK를 초기화. 사용할 앱의 JavaScript 키
-      	Kakao.init('b956cab5ef7dbe5bc1f861614a4b2061');
-//       	console.log(Kakao.isInitialized());
-</script>
 
 </head>
 <body>
@@ -60,7 +55,7 @@
 											aria-current="page" href="/list.brd2" style="color:#664E55">선택의 참견</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
-										<li class="nav-item"><a class="nav-link active"
+										<li class="nav-item"><a class="nav-link active" 
 											aria-current="page" href="/mypage.member" style="color:#664E55">마이페이지</a></li>
 										<li class="nav-item"><a class="nav-link active"
 										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
@@ -112,7 +107,6 @@
 									<input type="button" id="login" value="로그인">
 									<a href="/joinform.member"><input type="button" value="회원가입" id="joinbtn"></a><br>
 									<input type="button" id="kakao-login-btn" value="카카오로 로그인"><br>
-									<input type="button" id="kakao-logout" value="카카오로 로그아웃">
 								</div>
 							</div>
 						</form>
@@ -168,6 +162,15 @@
     			}
     		})
     	})
+    	
+      	// SDK를 초기화. 사용할 앱의 JavaScript 키
+      	Kakao.init('b956cab5ef7dbe5bc1f861614a4b2061');
+	    //console.log(Kakao.isInitialized());
+	    
+	    //item을 localStorage에 저장하는 메소드
+	    function saveToDos(token) { 
+    		typeof(Storage) !== 'undefined' && sessionStorage.setItem('AccessKEY', JSON.stringify(token)); 
+		};
 
 	    $("#kakao-login-btn").on("click", function(){
 	    //1. 로그인 시도
@@ -181,13 +184,24 @@
 	              console.log(res);
 	              let id = res.id;
 				  scope : 'profile_nickname, account_email';
-				alert('로그인성공');
-	              //location.href="loginok.jsp";
+				
+	              $.ajax({
+	            	    url:"/kakaoCheck.member",
+	            	    data:{id:res.id,
+	            	    	email:res.kakao_account.email,
+	            	    	nickname:res.properties.nickname,
+	            	    	token:authObj.access_token},
+	            	    type:"POST"
+	            	}).done(function(resp){
+	            		location.reload();
+	            		
+	            	})
 	        	}
 	          })
 	          console.log(authObj); //access 토큰 값
 			  Kakao.Auth.setAccessToken(authObj.access_token); //access 토큰 값 저장
 			  var token = authObj.access_token;
+			  saveToDos(token);
 	        },
 	        fail: function(err) {
 	          alert(JSON.stringify(err));
@@ -195,29 +209,31 @@
 	      });
 	    })
 	    
-	    $("#kakao-logout").on("click", function(){
-			
-			if (!Kakao.Auth.getAccessToken()) {
-	      			alert('Not logged in.')
-	      			return
-	    		}
-	    		Kakao.Auth.logout(function() {
-	      			alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
-	   		 	})
-	  		
-		  })
 		  
 		  $(".bi-box-arrow-right").on("click",function(){
+			  if (!Kakao.Auth.getAccessToken()) {
 			  Swal.fire({
 				  title: '로그아웃 하시겠습니까?',
 				  showCancelButton: true,
 				  confirmButtonText: '로그아웃',
 				  cancelButtonText: '취소',
 				}).then((result) => {
-				  if (result.isConfirmed) {
-				    location.href="/logout.member";
+				  if (result.isConfirmed) {				
+				    location.href="/logout.member";				  
 				  } 
 				})
+				return
+			  }
+			// -- 로그아웃 버튼 클릭시 카카오톡으로 로그인한 사용자의 토큰을 반납.
+			let result = confirm("로그아웃 하시겠습니까?");
+			if(!result){
+				return false;
+			} else {
+			  Kakao.Auth.logout(function() {
+	      			alert("로그아웃 되었습니다.");
+	      			location.href="/logout.member";
+	   		 	})
+			}
 		  })
     </script>
 </body>

@@ -83,8 +83,8 @@ private static MemberDAO instance = null;
 		}
 	}
 	
-	public int insert(MemberDTO dto) throws Exception {
-		String sql = "insert into member values(member_seq.nextval,?,?,?,?,?,?,default)";
+	public int insert(MemberDTO dto, String jointype) throws Exception {
+		String sql = "insert into member values(member_seq.nextval,?,?,?,?,?,?,default,?)";
 		
 		try(Connection con = this.getConnection();
 			PreparedStatement pstat = con.prepareStatement(sql);){
@@ -94,6 +94,8 @@ private static MemberDAO instance = null;
 			pstat.setString(4, dto.getPhone());
 			pstat.setString(5, dto.getEmail());
 			pstat.setString(6, dto.getNickname());
+			pstat.setString(7, jointype);
+			
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;
