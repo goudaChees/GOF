@@ -60,6 +60,7 @@ margin: 0px;
 			</div>
 		</nav>
 	</div>
+<!-- 게시글--------------------------------------------------------------------------------------------- -->
 	<div id="viewContainer"  style="width:70%; margin: auto;">
 		<div id="board_vIew" class="row">
 		<div id="title" class="col-10">
@@ -69,14 +70,61 @@ margin: 0px;
 		1
 		</div>	
 		<div id="img_Box" class="col-5">
-			<img src="files/${sys_Name}" style="width: 100% ; height: 100%;" >
+			<img src="files/${dto.fileName }" style="width: 100% ; height: 100%;" >
 		</div>
 		<div id="contents_Box" class="col-7">
 			<div id="item">${dto.item}</div>
 			<div id="contents">${dto.contents}</div>
 		</div>
 		<div id="item_price">전체 금액 : ${dto.item_price}</div>
-		<div id="btns" style="text-align: right;">
+		<div>
+			<div>그래프</div>
+			<form action="/write.brd1_reply">
+			<input type="hidden" name="parent_seq" value=${dto.seq }>
+				<div id="radio" name="agree">				
+					<input type="radio" value="Y" name="agree">산다
+					<input type="radio" value="N" name="agree">만다
+				</div>
+			</div>
+<!-- 	댓글------------------------------------------------------------------------- -->
+<!-- 댓글 작성--------------------------------------------------------------------------->
+			<div id="replyWriteContainer">
+				<div id="reply_Write" class="row">
+					<div id="right" style="border:0px" class="col-9">	
+						<div style="border:0px;text-align: left;" id="writer" >
+							${nickname}
+						<input type="hidden" name="nickname" value=${nickname }>
+						</div>
+						<div id="contents" style="border:0px">
+							<input type="text" placehold="왜 그렇게 생각하나요?" style="width: 100%;">
+						</div>				
+					</div>
+					<div id="left" class="col-3" style="border:0px">
+						<input type="submit" value="reply" id="reply">
+					</div>
+				</div>
+			</div>
+			<div id="btns" style="text-align: right;">
+			<hr>
+		</form>
+<!-- --댓글 View------------------------------------------------------------------------------ -->
+		<div calss="replyViewcontainer" class="row">
+			<div class="col-2">찬성/반대</div>
+			<div class="col-8">
+				<div class="writer">writer</div>
+				<div clss="contents">contents</div>
+			</div>
+			<div class="col-2">
+				<div class="reply_btns">
+					<input type="button" value="수정">
+					<input type="button" value="삭제">
+				</div>
+				<div>
+					좋아요
+				</div>
+			</div>	
+		</div>
+<!-- 게시글 목록, 수정, 삭제 버튼---------------------------------------------------------- -->
 			<input type="button" id="toList" value="목록으로">
 			<c:if test="${nickname==dto.writer }">
 				<input type="button" id="modify" value="수정하기">
@@ -89,12 +137,19 @@ margin: 0px;
 		<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
 	</div>
 	<div ></div>
+<!--  게시글 script-------------------------------------------------------------------- -->
 	<script>
 		$("#toList").on("click",function(){
 			location.href="/list.brd1?cpage=1";
 		})
-		$("#modify").on("click",function(){
-			location.href="/modify.brd1?seq=${dto.seq}";
+		$("#modify").on("click",function(){//수정하기
+			location.href="/toModifyForm.brd1?seq=${dto.seq}";
+		})
+		$("#delete").on("click",function(){
+			let result = confirm("정말 삭제하시겠습니까?")
+			if(result){
+				location.href="/delete.brd1?seq=${dto.seq}";
+			}
 		})
 	</script>
 </body>
