@@ -16,30 +16,32 @@
 </head>
 <body>
 	<div class="container w-100">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="/index.jsp">앞날의 지침</a>
-				<button class="navbar-toggler" type="button"
-					data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-					aria-controls="navbarNavDropdown" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse justify-content-end"
-					id="navbarNavDropdown">
-					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link active nonMember"
-							aria-current="page" href="#">지출의 참견</a></li>
-						<li class="nav-item"><a class="nav-link active nonMember"
-							aria-current="page" href="/list.brd2">선택의 참견</a></li>
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="#">고객센터</a></li>
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="/joinform.member">회원가입</a></li>
-					</ul>
-				</div>
+		<div class="row w-100 m-0" id="header">
+			<div class="col-12">
+				<nav class="navbar navbar-expand-md navbar-light bg-light">
+					<div class="container-fluid">
+						<a class="navbar-brand" href="/index.jsp" style="color:#664E55">앞날의 지침</a>
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+							data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+							aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+							<ul class="navbar-nav">
+								<li class="nav-item nonMember"><a class="nav-link active" aria-current="page"
+										href="#" style="color:#664E55">지출의 참견</a></li>
+								<li class="nav-item nonMember"><a class="nav-link active" aria-current="page"
+										href="#" style="color:#664E55">선택의 참견</a></li>
+								<li class="nav-item"><a class="nav-link active" aria-current="page"
+										href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+								<li class="nav-item"><a class="nav-link active" aria-current="page"
+										href="/joinform.member" style="color:#664E55">회원가입</a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
 			</div>
-		</nav>
+		</div>
 
 		<div class="row w-100 m-0" id="content">
 				<div class="d-none d-lg-block col-3"></div>
@@ -412,7 +414,7 @@
 						$("#nnCheckResult").css("color","red");
 						$("#nnCheckResult").text("이미 존재하는 닉네임입니다.")
 						isNNOk = false;
-						$("#join").attr("disabled","true");
+						
 						return false;
 					} else {
 						$("#nickname").css("border","1px solid blue");
