@@ -10,12 +10,10 @@ public class Board2DTO {
 	private int view_count;
 	private int reply;
 	
-	
 	public Board2DTO() {
 		super();
 	}
 	
-
 	public Board2DTO(int seq, String nickname, String title, String contents, String write_date, String item,
 			int view_count, int reply) {
 		super();
@@ -38,7 +36,7 @@ public class Board2DTO {
 	}
 
 
-	public void setReplay(int reply) {
+	public void setReply(int reply) {
 		this.reply = reply;
 	}
 
