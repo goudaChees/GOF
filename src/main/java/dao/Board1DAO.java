@@ -332,4 +332,35 @@ public class Board1DAO {
 			return result;
 		}
 	}
+	
+	public int addAgree(String agree)throws Exception {
+		
+		String sql = null;
+		if(agree.equals("산다")) {//찬성하는 경우
+			sql = "update board1 set agree_count = agree_count+1";
+		}else {//반대하는 경우
+			sql = "update board1 set disagree_count = disagree_count+1";
+		}
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
+	public int addViewCount(int seq)throws Exception {
+		String sql = "update board1 set view_count=view_count+1 where seq=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, seq);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
 }

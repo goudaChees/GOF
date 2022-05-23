@@ -71,7 +71,7 @@
             	<input type="text" placeholder="가격을 입력해주세요" name="item_price" id="item_price" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /><br>
           	</div>
           	<textarea placeholder="이 물건을 꼭 사야할 이유가 뭔가요" name="contents" rows="10" cols="70"></textarea><br>
-          	<input type="button" value="목록으로" id="goToList">
+          	<input type="button" value="목록으로" id="toList">
           	<input type="submit" value="저장하기" id="submit">
         </div>    
 		</div>
@@ -80,6 +80,22 @@
 	    </div>
 	 </form>
 	 <script>
+		$("#toList").on("click",function(){
+			location.href="/list.brd1?cpage=1";
+		})
+	     
+	   $("#submit").on("click",function(){
+	     let item_price = $("#item_price").val().trim();
+	     let title= $("#title").val().trim();
+	     let item = $("#item").val().trim();;
+		
+	     if(title==''||item_price==''||item==''){
+	    	 alert("제목, 물건명, 가격은 필수 입력 사항입니다.");
+	    	 return false;
+	     }
+	   })
+
+	 	
 	 	const reader = new FileReader();
 	 	reader.onload = (readerEvent) =>{
 	 		document.querySelector("#img_section").setAttribute("src",readerEvent.target.result);
@@ -91,20 +107,6 @@
 	       reader.readAsDataURL(imgFile);
 	     })
 	     
-	     $("#goToList").on("click",function(){
-	    	 loaction.href="/list.brd1?cpage=1";
-	     })
-	     
-       $("#submit").on("click",function(){
-         let item_price = $("#item_price").val().trim();
-         let title= $("#title").val().trim();
-         let item = $("#item").val().trim();;
-		
-         if(title==''||item_price==''||item==''){
-        	 alert("제목, 물건명, 가격은 필수 입력 사항입니다.");
-        	 return false;
-         }
-       })
 
 	 </script>
 </body>

@@ -3,13 +3,13 @@ package dto;
 import java.sql.Timestamp;
 
 public class Board1_ReplyDTO {
-		int seq;
-		String writer;
-		String contents;
-		Timestamp write_date;
-		int good;
-		String agree;
-		int parent_Seq;
+		private int seq;
+		private String writer;
+		private String contents;
+		private Timestamp write_date;
+		private int good;
+		private String agree;
+		private int parent_Seq;
 		public int getSeq() {
 			return seq;
 		}
