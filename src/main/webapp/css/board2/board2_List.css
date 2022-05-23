@@ -47,8 +47,8 @@ div {
 	margin:3px;
 }
 
-#board2_search button{
-	paddig:1%;
+button {
+	
 	color: #9D8189;
 	font-size:14px;
 	background-color: transparent;	
@@ -58,7 +58,7 @@ div {
 	height:25px;
 }
 
-#board2_search button:hover{
+button:hover{
 	background-color: #FED7DC80;
 	cursor:pointer;	
 }
@@ -67,8 +67,15 @@ input#search{
 	height:25px;
 }
 
+#title_limit{
+	white-space : nowrap;
+	overflow:hidden;
+	text-overflow: ellipsis;
+}
+
 #footer{
+	text-align:center;
 	background-color: #9D8189;
-	color: white;
+	color:white;
 }
 
