@@ -257,7 +257,7 @@ private static AdminDAO instance = null;
 					b2dto.setWrite_date(rs.getString("write_date"));
 					b2dto.setItem(rs.getString("item"));
 					b2dto.setView_count(rs.getInt("view_count"));
-					b2dto.setReplay(rs.getInt("reply"));
+					b2dto.setReply(rs.getInt("reply"));
 					list.add(b2dto);
 										
 				}
