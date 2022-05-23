@@ -28,9 +28,10 @@ public class Board2_replyDAO {
 	};
 
 	public boolean ischoice(int pseq) throws Exception {
-		String sql = "select choice from board2_reply where parent_seq = ? ";
+		String sql = "select choice from board2_reply where parent_seq = ?";
 		boolean ck = false;
-		try (Connection con = this.getConnection(); PreparedStatement stat = con.prepareStatement(sql);) {
+		try (Connection con = this.getConnection(); 
+				PreparedStatement stat = con.prepareStatement(sql);) {
 			stat.setInt(1, pseq);
 			try (ResultSet rs = stat.executeQuery();) {
 				while (rs.next()) {
@@ -49,12 +50,13 @@ public class Board2_replyDAO {
 	}
 
 	// 댓글 선택 여부 매서드
-	public boolean iswrite(ArrayList<Board2_replyDTO> dto) throws Exception {
-		String sql = "select writer from board2_reply";
+	public boolean iswrite(ArrayList<Board2_replyDTO> dto,int pseq) throws Exception {
+		String sql = "select writer from board2_reply where parent_seq = ?";
 		boolean ck = false;
 		try (Connection con = this.getConnection();
-				PreparedStatement stat = con.prepareStatement(sql);
-				ResultSet rs = stat.executeQuery();) {
+				PreparedStatement stat = con.prepareStatement(sql);){
+			stat.setInt(1, pseq);
+				try(ResultSet rs = stat.executeQuery();) {
 			while (rs.next()) {
 				String result = rs.getString("writer");
 				for (Board2_replyDTO adto : dto) {
@@ -63,7 +65,7 @@ public class Board2_replyDAO {
 					}
 				}
 			}
-
+				}
 		}
 		return ck;
 	}
@@ -127,7 +129,7 @@ public class Board2_replyDAO {
 	
 
 	public ArrayList<Board2_replyDTO> list(int pseq) throws Exception {
-		String sql = "select * from board2_reply where parent_seq = ? order by seq desc";
+		String sql = "select * from board2_reply where parent_seq = ? order by price,seq desc";
 
 		ArrayList<Board2_replyDTO> arr = new ArrayList<>();
 		try (Connection con = this.getConnection(); PreparedStatement stat = con.prepareStatement(sql);) {

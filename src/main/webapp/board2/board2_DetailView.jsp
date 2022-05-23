@@ -51,7 +51,7 @@
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="#">지출의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="list.brd2">선택의 참견</a></li>
+									aria-current="page" href="/list.brd2">선택의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="csmain.cscenter">고객센터</a></li>
 
@@ -95,8 +95,10 @@
 						<button type="button" id="listview">
 						<a href="list.brd2" style="text-decoration:none">게시판으로 돌아가기</a>
 						</button>
-						<button type="button" id="modi">수정하기</button>
-						<button type="button" id="del">삭제하기</button>
+						<c:if test="${(dto.nickname == loginNN && cck== false)||(loginID = admin)}">
+							<button type="button" id="modi">수정하기</button>
+							<button type="button" id="del">삭제하기</button>
+						</c:if>
 					</div>
 				</div>
 				<div class="row" id="replywriter">
@@ -106,11 +108,9 @@
 								<div class="col-12">
 									<div class="row">
 										<div class="col-3">
-											<input type="text" id="writer" value="${loginNN}"
-												style="display: none"> 
-												<input type="text" placeholder="ex)1000" name="price" id="wprice"> 
-												<input type="text" name="pseq" value="${dto.seq}"
-												style="display: none">
+											<input type="text" id="writer" value="${loginNN}" style="display: none"> 
+												<input type="text" placeholder="ex)1000" name="price" id="wprice" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /> 
+												<input type="text" name="pseq" value="${dto.seq}" style="display: none">
 												<div id="wpriceno"></div>
 										</div>
 										<div class="col-6">
@@ -160,7 +160,7 @@
 									선택<input type="radio" name="choice" value="${i.seq}"
 											class="choice">
 									</c:if>
-									<c:if test="${i.nickname == loginNN && cck== false}">
+									<c:if test="${(i.nickname == loginNN && cck== false)||(loginID = admin)}">
 										<button class="modibtn">수정</button>
 										<button class="delbtn" value="${i.seq}">삭제</button>
 									</c:if>
@@ -201,8 +201,8 @@
 		$("#contents").css("display","none");
 		$("#btn1").css("display","none");
 		}
-	}
-	setInterval(end, 1000);
+	};
+ 	setInterval(end, 1000);
 	$("#del").on("click",function(){
 		result = window.confirm("정말 삭제하시겟습니까?");
 		if(result){
