@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/css/member/mypage.css">
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
 </head>
 <body>
