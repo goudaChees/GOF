@@ -110,14 +110,39 @@ public class AdminController extends HttpServlet {
 					request.setAttribute("list2", list2);
 					request.setAttribute("pageNavi", pageNavi);
 					request.getRequestDispatcher("/admin/adminBoard2List.jsp").forward(request, response);
+				}	
+				
+			}else if (uri.equals("/searchbrd.admin")) {
+				int board = 1;
+				if (request.getParameter("board") != null ) {
+					board = Integer.parseInt(request.getParameter("board"));
+				}
+				
+				int page = 1;
+				if (request.getParameter("page") != null) {
+					page = Integer.parseInt(request.getParameter("page"));
+				}
+				
+				int searchCategory = Integer.parseInt(request.getParameter("searchCategory"));
+				String toSearch = request.getParameter("toSearch");
+				
+				if (board == 1) {
+					
+					
+					
+				}else if (board == 2) {
+					
+					
+					
 				}
 				
 				
 				
 				
 				
-				
 			}
+			
+			
 			
 			
 		}catch(Exception e) {

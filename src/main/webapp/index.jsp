@@ -38,7 +38,7 @@
 								<c:choose>
 									<c:when test="${loginID =='admin'}">
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="#" style="color:#664E55">지출의 참견</a></li>
+											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">지출의 참견</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd2" style="color:#664E55">선택의 참견</a></li>
 										<li class="nav-item"><a class="nav-link active"
