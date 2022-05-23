@@ -9,26 +9,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>고객센터</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" >
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/css/cscenter/csmain.css">
 
 </head>
 <body>
 	<div class="container w-100">
-		<div class="row w-100 m-0" id="header">
+		<div class="row" id="header">
 			<div class="col-12">
 				<nav class="navbar navbar-expand-md navbar-light bg-light">
 					<div class="container-fluid">
@@ -110,8 +105,8 @@
 								<ul class="nav nav-tabs">
 									<li class="nav-item"><a class="nav-link active"
 										data-toggle="tab" href="#csmain">자주 묻는 질문</a></li>
-									<li class="nav-item"><a class="nav-link" data-toggle="tab"
-										href="#csmail">1:1 문의하기</a></li>
+									<li class="nav-item"><a class="nav-link" 
+										data-toggle="tab" href="#csmail">1:1 문의하기</a></li>
 								</ul>
 							</div>
 						</div>
@@ -254,20 +249,40 @@
 			<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
 		</div>
 	</div>
-
-</body>
-<script>
-	$(".bi-box-arrow-right").on("click",function(){
+	<script>
+	$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업
 		Swal.fire({
-		  title: '로그아웃 하시겠습니까?',
-		  showCancelButton: true,
-		  confirmButtonText: '로그아웃',
-		  cancelButtonText: '취소',
-		}).then((result) => {
-		  if (result.isConfirmed) {
-		    location.href="/logout.member";
-		  } 
+		  icon: 'info',
+		  text: '로그인 후 사용 가능합니다.'
 		})
 	})
-</script>
+	
+	$(".bi-box-arrow-right").on("click",function(){
+			  if (!Kakao.Auth.getAccessToken()) {
+			  Swal.fire({
+				  text: '로그아웃 하시겠습니까?',
+				  showCancelButton: true,
+				  confirmButtonText: '로그아웃',
+				  cancelButtonText: '취소',
+				}).then((result) => {
+				  if (result.isConfirmed) {				
+				    location.href="/logout.member";				  
+				  } 
+				})
+				return
+			  }
+			// -- 로그아웃 버튼 클릭시 카카오톡으로 로그인한 사용자의 토큰을 반납.
+			let result = confirm("로그아웃 하시겠습니까?");
+			if(!result){
+				return false;
+			} else {
+			  Kakao.Auth.logout(function() {
+	      			alert("로그아웃 되었습니다.");
+	      			location.href="/logout.member";
+	   		 	})
+			}
+		  })
+	</script>
+</body>
+
 </html>

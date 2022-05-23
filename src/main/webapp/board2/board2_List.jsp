@@ -26,6 +26,7 @@
 		<div class="row" id=header>
 			<div class="col-12">
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
 					<div class="container-fluid">
 						<a class="navbar-brand" href="index.jsp" style="color: #664E55">앞날의
 							지침</a>
@@ -41,7 +42,7 @@
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="#" style="color: #664E55">지출의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="list.brd2" style="color: #664E55">선택의
+									aria-current="page" href="/list.brd2" style="color: #664E55">선택의
 										참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="csmain.cscenter"
@@ -147,7 +148,7 @@
 			</div>
 
 		</div>
-		<div class="row w-100 m-0" id="footer">
+		<div class="row" id="footer">
 			<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
 		</div>
 
@@ -195,20 +196,6 @@
 		// 		countDownTimer('sample03', '04/01/2024');
 		// 2024년 4월 1일까지 countDownTimer('sample04', '04/01/2019');
 		// 2024년 4월 1일까지
-		const serchbold = function(category, serch) {
-			let length = serch.length;
-			//검색어의 길이
-			let arr = [];
-			//인덱스 배열 생성
-			if (category == title) {
-				let list = $(".title").children().text();
-				for (let i = 0; i < list.length;) {
-					console.log(list.indexOf(serch, i));
-				}
-			} else if (category == nickname) {
 
-			}
-		}
-	</script>
 </body>
 </html>

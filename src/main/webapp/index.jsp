@@ -65,8 +65,8 @@
 											aria-current="page" href="#" style="color:#664E55">지출의 참견</a></li>
 										<li class="nav-item nonMember"><a class="nav-link active"
 											aria-current="page" href="#" style="color:#664E55">선택의 참견</a></li>
-										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+										<li class="nav-item nonMember"><a class="nav-link active"
+											aria-current="page" href="#" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/joinform.member" style="color:#664E55">회원가입</a></li>
 									</c:otherwise>
@@ -127,19 +127,9 @@
 	<script>
     	$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업
     		Swal.fire({
-    			  title: '회원가입 후 이용 가능합니다.',
-    			  text: "회원가입 페이지로 이동합니다.",
-    			  icon: 'warning',
-    			  showCancelButton: true,
-    			  confirmButtonColor: '#3085d6',
-    			  cancelButtonColor: '#d33',
-    			  confirmButtonText: '확인',
-    			  cancelButtonText: '취소',
-    			}).then((result) => {
-    			  if (result.isConfirmed) {
-    			    location.href="/joinform.member"
-    			  }
-    			})
+			  icon: 'info',
+			  text: '로그인 후 사용 가능합니다.'
+			})
     	})
 
     	$("#login").on("click",function(){ // 일반회원 로그인시
@@ -213,7 +203,7 @@
 		  $(".bi-box-arrow-right").on("click",function(){
 			  if (!Kakao.Auth.getAccessToken()) {
 			  Swal.fire({
-				  title: '로그아웃 하시겠습니까?',
+				  text: '로그아웃 하시겠습니까?',
 				  showCancelButton: true,
 				  confirmButtonText: '로그아웃',
 				  cancelButtonText: '취소',

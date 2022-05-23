@@ -4,11 +4,11 @@ public class Board2_replyDTO {
 	private int seq;
 	private String nickname;
 	private int parent_seq;
-	private int price;
+	private Long price;
 	private String contents;
 	private String wirte_date;
 	private char choice;
-	public Board2_replyDTO(int seq, String nickname, int parent_seq, int price, String contents, String wirte_date,
+	public Board2_replyDTO(int seq, String nickname, int parent_seq, Long price, String contents, String wirte_date,
 			char choice) {
 		super();
 		this.seq = seq;
@@ -40,10 +40,10 @@ public class Board2_replyDTO {
 	public void setParent_seq(int parent_seq) {
 		this.parent_seq = parent_seq;
 	}
-	public int getPrice() {
+	public Long getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(Long price) {
 		this.price = price;
 	}
 	public String getContents() {

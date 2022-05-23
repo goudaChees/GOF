@@ -95,8 +95,8 @@ background-color:bisque;
 			<form action="/write.brd1_reply">
 			<input type="hidden" name="parent_seq" value=${dto.seq }>
 				<div id="radio" style="margin-top:10px;">				
-					<input type="radio" value="산다" name="agree">산다 : ${dto.agree_count }
-					<input type="radio" value="만다" name="agree">만다 : ${dto.disagree_count }
+					<input type="radio" value="승인" name="agree">승인 : ${dto.agree_count }
+					<input type="radio" value="불가" name="agree">불가 : ${dto.disagree_count }
 				</div>
 			</div>
 <!-- 	댓글------------------------------------------------------------------------- -->
@@ -123,7 +123,9 @@ background-color:bisque;
 <!-- --댓글 View------------------------------------------------------------------------------ -->
 		<c:forEach var="i" items="${list }">
 			<div calss="replyViewcontainer" class="row">
-				<div class="col-2">${i.agree}</div>
+				<div class="col-2">
+					<div>${i.agree}</div>
+				</div>
 				<div class="col-8">
 					<div class="writer">작성자 : ${i.writer }</div>
 					<input type="text" name="reply_contents" value=${i.contents} disabled >
