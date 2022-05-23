@@ -9,9 +9,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>myPage</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/css/member/mypage.css">
@@ -19,7 +22,7 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row w-100 m-0" id="header">
+		<div class="row" id="header">
 			<div class="col-12">
 				<nav class="navbar navbar-expand-md navbar-light bg-light">
 					<div class="container-fluid">
@@ -143,9 +146,7 @@
 			<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
 		</div>
 	</div>
-
-</body>
-<script>
+	<script>
 	
 	// 카카오 초기화 및 토큰 받아오기
 	Kakao.init('b956cab5ef7dbe5bc1f861614a4b2061');
@@ -337,8 +338,33 @@
 			}
 		})
 		
-		
+		$(".bi-box-arrow-right").on("click",function(){
+			  if (!Kakao.Auth.getAccessToken()) {
+			  Swal.fire({
+				  text: '로그아웃 하시겠습니까?',
+				  showCancelButton: true,
+				  confirmButtonText: '로그아웃',
+				  cancelButtonText: '취소',
+				}).then((result) => {
+				  if (result.isConfirmed) {				
+				    location.href="/logout.member";				  
+				  } 
+				})
+				return
+			  }
+			// -- 로그아웃 버튼 클릭시 카카오톡으로 로그인한 사용자의 토큰을 반납.
+			let result = confirm("로그아웃 하시겠습니까?");
+			if(!result){
+				return false;
+			} else {
+			  Kakao.Auth.logout(function() {
+	      			alert("로그아웃 되었습니다.");
+	      			location.href="/logout.member";
+	   		 	})
+			}
+		  })
 		
 		
 </script>
+</body>
 </html>
