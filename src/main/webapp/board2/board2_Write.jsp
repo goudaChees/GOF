@@ -96,7 +96,7 @@
 		</div>
 		<div class="row">
 			<div class="col-12">
-				footer
+				Copyright by Phoenix since 2022 05 00
 			</div>
 		</div>
 	</div>
