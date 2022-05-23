@@ -141,12 +141,12 @@ public class Board2_replyDAO {
 					String writer = rs.getString("writer");
 					int parent_seq = rs.getInt("parent_seq");
 					String contents = rs.getString("contents");
-					int price = rs.getInt("price");
+					Long price = rs.getLong("price");
 					String date = rs.getString("write_date");
 					if (!(rs.getString("choice") == null)) {
 						check = rs.getString("choice").charAt(0);
 					}
-					arr.add(new Board2_replyDTO(seq, writer, parent_seq, (long) price, contents, date, check));
+					arr.add(new Board2_replyDTO(seq, writer, parent_seq,price, contents, date, check));
 				}
 			}
 		}

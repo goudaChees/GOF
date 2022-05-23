@@ -173,33 +173,21 @@
 			<div class="col-2"></div>
 		</div>
 		<div class="row">
-			<div class="col-12">footer</div>
+			<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
 		</div>
 	</div>
 
 
 	<script>
-// 	$("#wprice").on("keyup",function(){
-// 		let priceRegex = /[0-9]{1,20}/;
-// 		let wprice = priceRegex.test($("#wprice").text());
-// 		if(!wprice){
-// 			$("#wprice").css("border", "1px solid red");
-// 			$("#wpriceno").css("color", "red");
-// 			$("#wpriceno").text("숫자만 사용하여 1~20자로 작성");
-// 			return
-// 			$("#btn1").on("click",function(){
-// 				if(!wpirce){
-// 					return	
-// 				}
-// 			})
-// 		}
-// 	})
 	const end = function(text){
 		if($("#limit").text()=='종료'){
 		$("#replywriter").css("display","none");
 		$("#wprice").css("display","none");
 		$("#contents").css("display","none");
 		$("#btn1").css("display","none");
+		$("#modi").css("display","none");
+		$(".choice").css("display","none");
+		$(".modibtn").css("display","none");
 		}
 	};
  	setInterval(end, 1000);

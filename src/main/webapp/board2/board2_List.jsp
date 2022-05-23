@@ -137,7 +137,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-12">footer</div>
+			<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
 		</div>
 	</div>
 	<script>
@@ -182,23 +182,6 @@
 // 		countDownTimer('sample03', '04/01/2024');
 		// 2024년 4월 1일까지 countDownTimer('sample04', '04/01/2019');
 		// 2024년 4월 1일까지
-		const serchbold = function(category,serch){
-			let length = serch.length;
-			//검색어의 길이
-			let arr = [];
-			//인덱스 배열 생성
-			if(category == title){
-				let list = $(".title").children().text();
-				for(let i = 0; i<list.length;){
-					console.log(list.indexOf(serch,i));
-				}
-			}else if(category==nickname){
-				
-			}
-		}
-		
-		
-		
-	</script>
+			</script>
 </body>
 </html>
