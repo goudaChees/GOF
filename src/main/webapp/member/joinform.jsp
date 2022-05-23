@@ -4,148 +4,144 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">	
 <title>회원가입</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-* {
-	box-sizing: border-box;
-}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="/css/member/joinform.css">
 
-div {
-	border: 1px solid black;
-	text-align: center;
-}
-</style>
 </head>
 <body>
-	<div class="container w-100"
-		style="max-width: 100%; padding: 0; margin: 0; position: relative;">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="/index.jsp">앞날의 지침</a>
-				<button class="navbar-toggler" type="button"
-					data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-					aria-controls="navbarNavDropdown" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse justify-content-end"
-					id="navbarNavDropdown">
-					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link active nonMember"
-							aria-current="page" href="#">지출의 참견</a></li>
-						<li class="nav-item"><a class="nav-link active nonMember"
-							aria-current="page" href="/list.brd2">선택의 참견</a></li>
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="#">고객센터</a></li>
-						<li class="nav-item"><a class="nav-link active"
-							aria-current="page" href="/joinform.member">회원가입</a></li>
-					</ul>
+	<div class="container w-100">
+		<div class="row w-100 m-0" id="header">
+			<div class="col-12">
+				<nav class="navbar navbar-expand-md navbar-light bg-light">
+					<div class="container-fluid">
+						<a class="navbar-brand" href="/index.jsp" style="color:#664E55">앞날의 지침</a>
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+							data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+							aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+							<ul class="navbar-nav">
+								<li class="nav-item nonMember"><a class="nav-link active" aria-current="page"
+										href="#" style="color:#664E55">지출의 참견</a></li>
+								<li class="nav-item nonMember"><a class="nav-link active" aria-current="page"
+										href="#" style="color:#664E55">선택의 참견</a></li>
+								<li class="nav-item"><a class="nav-link active" aria-current="page"
+										href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+								<li class="nav-item"><a class="nav-link active" aria-current="page"
+										href="/joinform.member" style="color:#664E55">회원가입</a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</div>
+
+		<div class="row w-100 m-0" id="content">
+				<div class="d-none d-lg-block col-3"></div>
+				<div class="col-12 col-lg-6">
+					<div class="row w-100 m-0" id="joinFormOutline">
+						<div class="col-12">
+							<div class="row" id="joinFormHeader">
+								<div class="col-12">회원 가입 정보 입력</div>
+							</div>
+							<div class="row" id="joinFormArea">
+								<div class="col-12">
+									<form method="post" action="join.member">
+									<div class="row">
+										<div class="col-3">아이디</div>
+										<div class="col-9">
+											<input type="text" id="id" name="id" placeholder="영문, 숫자 5~11자">
+										</div>
+										<div class="col-3"></div>
+										<div class="col-9" id="idCheckResult"></div>
+									</div>
+									<div class="row">
+										<div class="col-3">비밀번호</div>
+										<div class="col-9">
+											<input type="password" id="pw1" name="pw1" placeholder="영문, 숫자 8~12자">
+										</div>
+										<div class="col-3"></div>
+										<div class="col-9" id="pw1CheckResult"></div>
+									</div>
+									<div class="row">
+										<div class="col-3">비밀번호 확인</div>
+										<div class="col-9">
+											<input type="password" id="pw2">
+										</div>
+										<div class="col-3"></div>
+										<div class="col-9" id="pw2CheckResult"></div>
+									</div>
+									<div class="row">
+										<div class="col-3">이름</div>
+										<div class="col-9">
+											<input type="text" id="name" name="name">
+										</div>
+										<div class="col-3"></div>
+										<div class="col-9" id="nameCheckResult"></div>
+									</div>
+									<div class="row">
+										<div class="col-3">전화번호</div>
+										<div class="col-9">
+											<input type="text" id="phone1" name="phone1"> - <input type="text"
+												id="phone2" name="phone2"> - <input type="text" id="phone3"
+												name="phone3">
+										</div>
+										<div class="col-3"></div>
+										<div class="col-9" id="phoneCheckResult"></div>
+									</div>
+									<div class="row">
+										<div class="col-3">이메일</div>
+										<div class="col-9">
+											<input type="text" id="email" name="email">
+										</div>
+										<div class="col-3"></div>
+										<div class="col-9" id="emailCheckResult"></div>
+									</div>
+									<div class="row">
+										<div class="col-3">닉네임</div>
+										<div class="col-9">
+											<input type="text" id="nickname" name="nickname">
+										</div>
+										<div class="col-3"></div>
+										<div class="col-9" id="nnCheckResult"></div>
+									</div>
+									<div class="row">
+										<div class="col-3"></div>
+										<div class="col-9" style="text-align: center;">
+											<input type="reset"	value="다시 입력" class="order-1 order-lg-2">
+											<input type="submit" value="회원가입" id="join" class="order-2 order-lg-1" disabled> 
+										</div>
+									</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="d-none d-lg-block col-3">
+					<img src="/img/tmp_frontpig.png" id="frontpig">
 				</div>
 			</div>
-		</nav>
 
-		<div class="row" id="content">
-			<div class="col-12">
-				<form method="post" action="join.member">
-					<div class="row">
-						<div class="col-12">회원 가입 정보 입력</div>
-					</div>
-					<div class="row">
-						<div class="col-3">아이디</div>
-						<div class="col-9">
-							<input type="text" id="id" name="id" placeholder="영문,숫자 5~11자">
-						</div>
-						<div class="col-3"></div>
-						<div class="col-9" id="idCheckResult"></div>
-					</div>
-					<div class="row">
-						<div class="col-3">패스워드</div>
-						<div class="col-9">
-							<input type="password" id="pw1" name="pw1">
-						</div>
-						<div class="col-3"></div>
-						<div class="col-9" id="pw1CheckResult"></div>
-					</div>
-					<div class="row">
-						<div class="col-3">패스워드 확인</div>
-						<div class="col-9">
-							<input type="password" id="pw2">
-						</div>
-						<div class="col-3"></div>
-						<div class="col-9" id="pw2CheckResult"></div>
-					</div>
-					<div class="row">
-						<div class="col-3">이름</div>
-						<div class="col-9">
-							<input type="text" id="name" name="name">
-						</div>
-						<div class="col-3"></div>
-						<div class="col-9" id="nameCheckResult"></div>
-					</div>
-					<div class="row">
-						<div class="col-3">전화번호</div>
-						<div class="col-9">
-							<input type="text" id="phone1" name="phone1">- <input
-								type="text" id="phone2" name="phone2">- <input
-								type="text" id="phone3" name="phone3">
-						</div>
-						<div class="col-3"></div>
-						<div class="col-9" id="phoneCheckResult"></div>
-					</div>
-					<div class="row">
-						<div class="col-3">이메일</div>
-						<div class="col-9">
-							<input type="text" id="email" name="email">
-						</div>
-						<div class="col-3"></div>
-						<div class="col-9" id="emailCheckResult"></div>
-					</div>
-					<div class="row">
-						<div class="col-3">닉네임</div>
-						<div class="col-9">
-							<input type="text" id="nickname" name="nickname">
-						</div>
-						<div class="col-3"></div>
-						<div class="col-9" id="nnCheckResult"></div>
-					</div>
-
-					<div class="row">
-						<div class="col-12" style="text-align: center;">
-							<input type="submit" value="회원가입" id="join" disabled> <input
-								type="reset" value="다시 입력">
-						</div>
-					</div>
-				</form>
+			<div class="row w-100 m-0" id="footer">
+				<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
 			</div>
-		</div>
-
-		<div class="row w-100 m-0" id="footer">
-			<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
-		</div>
 	</div>
 
 	<script>
 		$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업
 			Swal.fire({
-				  title: '회원가입 후 이용 가능합니다.',
-				  text: "회원가입 페이지로 이동합니다.",
-				  icon: 'warning',
-				  showCancelButton: true,
-				  confirmButtonColor: '#3085d6',
-				  cancelButtonColor: '#d33',
-				  confirmButtonText: '확인',
-				  cancelButtonText: '취소',
-				}).then((result) => {
-				  if (result.isConfirmed) {
-				    location.href="/join.member"
-				  }
-				})
+				icon: 'error',
+				title: 'Oops...',
+				text: '회원 가입 후 이용 가능합니다.'
+			})
 		})
 		
 		let isIdOk = false;     // submit 버튼 활성화용 boolean 변수 선언
@@ -163,6 +159,7 @@ div {
 				$("#idCheckResult").css("color", "red");
 				$("#idCheckResult").text("ID는 필수 입력 정보입니다.")
 				isIdOk = false;
+				$("#join").attr("disabled","true");
 				return false;
 			}
 			let idRegex = /^[a-z0-9_]{5,11}$/;
@@ -173,6 +170,7 @@ div {
 				$("#idCheckResult").text(
 						"영문 소문자, 숫자, 특수기호(_)를 조합하여 5~11자로 작성");
 				isIdOk = false;
+				$("#join").attr("disabled","true");
 				return false;
 			} else {
 				$.ajax({
@@ -188,6 +186,7 @@ div {
 							$("#idCheckResult").css("color","red");
 							$("#idCheckResult").text("이미 존재하는 아이디입니다.")
 							isIdOk = false;
+							$("#join").attr("disabled","true");
 							return false;
 						} else {
 							$("#id").css("border","1px solid blue");
@@ -216,6 +215,7 @@ div {
 				$("#pw1CheckResult").css("color", "red");
 				$("#pw1CheckResult").text("비밀번호는 필수 입력 정보입니다.")
 				isPwOk = false;
+				$("#join").attr("disabled","true");
 				return false;
 			}
 			let pwRegex = /^[a-zA-Z0-9]{8,12}$/gm; // 비밀번호 기본 검증
@@ -226,6 +226,7 @@ div {
 				$("#pw1CheckResult").text(
 						"영문 소문자, 대문자, 숫자를 조합하여 8~12자로 작성");
 				isPwOk = false;
+				$("#join").attr("disabled","true");
 				return false;
 			} else {
 				$("#pw1").css("border", "1px solid blue");
@@ -248,6 +249,7 @@ div {
 				$("#pw2CheckResult").css("color", "red");
 				$("#pw2CheckResult").text("비밀번호 입력을 확인해주세요.")
 				isPw2Ok = false;
+				$("#join").attr("disabled","true");
 				return false;
 			}
 			if (pw2 == pw1) {
@@ -266,6 +268,7 @@ div {
 				$("#pw2CheckResult").css("color", "red");
 				$("#pw2CheckResult").text("패스워드가 일치하지 않습니다.");
 				isPw2Ok = false;
+				$("#join").attr("disabled","true");
 				return false;
 			}
 		})
@@ -277,6 +280,7 @@ div {
 				$("#nameCheckResult").css("color", "red");
 				$("#nameCheckResult").text("이름은 필수 입력 정보입니다.")
 				isNameOk = false;
+				$("#join").attr("disabled","true");
 				return false;
 			}
 			let nameRegex = /^[가-힣]{2,5}$/;
@@ -286,6 +290,7 @@ div {
 				$("#nameCheckResult").css("color", "red");
 				$("#nameCheckResult").text("이름의 입력형식이 올바르지 않습니다.");
 				isNameOk = false;
+				$("#join").attr("disabled","true");
 				return false;
 			} else {
 				$("#name").css("border", "1px solid blue");
@@ -326,6 +331,7 @@ div {
 				$("#phoneCheckResult").css("color", "red");
 				$("#phoneCheckResult").text("전화번호의 입력형식이 올바르지 않습니다.");
 				isPhoneOk = false;
+				$("#join").attr("disabled","true");
 				return false;
 			} else {
 				$("#phone1").css("border", "1px solid blue");
@@ -350,6 +356,7 @@ div {
 				$("#emailCheckResult")
 						.text("이메일은 필수 입력 정보입니다.")
 				isEmailOk = false;
+				$("#join").attr("disabled","true");
 				return false;
 			}
 			let emailRegex = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/;
@@ -360,6 +367,7 @@ div {
 				$("#emailCheckResult").text(
 						"이메일의 입력형식이 올바르지 않습니다.");
 				isEmailOk = false;
+				$("#join").attr("disabled","true");
 				return false;
 			} else {
 				$("#email").css("border", "1px solid blue");
@@ -381,6 +389,7 @@ div {
 				$("#nnCheckResult").css("color", "red");
 				$("#nnCheckResult").text("닉네임은 필수 입력 정보입니다.")
 				isNNOk = false;
+				$("#join").attr("disabled","true");
 				return false;
 			}
 			let nnRegex = /^[가-힣A-Za-z0-9_]{3,8}$/;
@@ -392,6 +401,7 @@ div {
 				$("#nnCheckResult").text(
 						"한글, 영문, 숫자, 특수기호(_)를 조합하여 3~8자로 작성");
 				isNNOk = false;
+				$("#join").attr("disabled","true");
 				return false;
 			} else {
 				$.ajax({
@@ -404,6 +414,7 @@ div {
 						$("#nnCheckResult").css("color","red");
 						$("#nnCheckResult").text("이미 존재하는 닉네임입니다.")
 						isNNOk = false;
+						
 						return false;
 					} else {
 						$("#nickname").css("border","1px solid blue");

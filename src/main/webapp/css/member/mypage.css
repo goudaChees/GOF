@@ -1,0 +1,146 @@
+@charset "UTF-8";
+
+
+* {
+	box-sizing: border-box;
+}
+
+div {
+	text-align: center;
+}
+
+.container{
+	max-width: 100%; 
+	padding: 0; 
+	margin: 0; 
+	position: relative;
+}
+
+#header{
+	border-bottom: 5px solid #F4ACB7;
+	z-index:5;
+}
+
+#content{
+	margin:0;
+	padding-top: 3%;
+	padding-bottom: 3%;
+	min-height: 95vh;
+	max-width: 100%; 
+	background-color:#FEDDE1;
+	position: relative;
+}
+
+#MyPageOutline{
+	padding:2%;
+	height:100%;
+	border-radius: 15px;
+	background-color: #FFF4EF;
+}
+
+#MyPageHeader{
+	padding-top:10px;
+	height:100px;
+	text-align:left;
+}
+
+#MyPageHeader .col-12{
+	color: #806c71;
+	text-align:left;
+	position:relative;
+}
+
+#MyPageHeader ul{
+	position:absolute;
+	left:13px;
+	bottom:-5px;
+	width:100%;
+}
+
+#MyPageHeader li{
+	margin-right:5px;
+	min-width:20%;
+	max-width:28%;
+	font-size:15px;
+}
+
+#MyPageHeader .nav-link{
+	padding-left:3px;
+	padding-right:3px;
+	border: 1px solid transparent;
+	border-radius: 8px;
+	background-color: #B4C8BC;
+	color:white;
+	text-align:center;
+}
+
+#MyPageHeader .active{
+	background-color: #D8E2DC;
+	color:#516D5C;
+}
+
+#MyPage{
+	margin:0%;
+	padding:2%;
+	height:80%;
+	border: 5px solid #D8E2DC;
+	border-radius: 15px;
+	background-color: white;
+	overflow:hidden;
+	position:relative;
+	z-index:5;
+}
+
+#MyPage form{
+	height:100%;
+	padding-top:5%;
+}
+
+#MyPageArea{
+	margin:1%;
+	color:#5C474D;
+}
+
+#MyPageAreaHeader{
+	background-color:#F4ACB7;
+	font-weight:bolder;
+	font-size:16px;
+	line-height:40px;
+	color:#5C474D;
+}
+
+#MyPageArea .col-4{
+	background-color:#FFCAD460;
+	font-weight:bolder;
+	line-height:35px;
+}
+
+#MyPageArea .col-8{
+	text-align:left;
+	line-height:35px;
+}
+
+#MyPageArea .row{
+	border-bottom:1px solid #F4ACB7;
+}
+
+#MyPage button{
+	padding:1%;
+	margin-left:1%;
+	color: #9D8189;
+	font-size:14px;
+	background-color: transparent;	
+	border: 2px solid #F4ACB7;
+	border-radius: 20px;
+	width:110px;
+}
+
+#MyPage button:hover{
+	background-color: #FED7DC80;
+	cursor:pointer;	
+}
+
+#footer{
+	background-color: #9D8189;
+	color: white;
+}

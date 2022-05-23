@@ -105,13 +105,13 @@ span{
 				<c:forEach var="i" items="${list}">
 					<div width="100%" class="boardList">
 						<div class="col-4">
-						<img src="#">
+						<img src="files/${i.fileName }" style="width: 100%; height:100%">
 						</div>
 						<div class="col-7">
 							<div class="row">
 								<input type="hidden" value=${i.seq }>
 								<div class="col-12" style="text-align: left; overflow: hidden;">
-									<a href="#" class="title">${i.title}</a>
+									<a href="/detail.brd1?seq=${i.seq}" class="title">${i.title}</a>
 								</div>
 								<div align="center" class="col-5" class="item">${i.item}</div>
 								<div align="center" class="col-7" class="writer">${i.writer}</div>
@@ -136,6 +136,10 @@ span{
 	<div class="row w-100 m-0" id="footer">
 		<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
 	</div>
-
+	<script>
+		$("#write").on("click",function(){
+			location.href="/board1/board1_Write.jsp";
+		})		
+	</script>
 </body>
 </html>
