@@ -30,6 +30,17 @@ border: 1px solid black;
 text-align: center;
 margin: 0px;
 }
+
+#graph>div{
+float:left;
+}
+
+#agreeRatio{
+background-color: aqua;
+}
+#disagreeRatio{
+background-color:bisque;
+}
 </style>
 </head>
 <body>
@@ -64,10 +75,10 @@ margin: 0px;
 	<div id="viewContainer"  style="width:70%; margin: auto;">
 		<div id="board_vIew" class="row">
 		<div id="title" class="col-10">
-		타이틀
+		${dto.title }
 		</div>
 		<div id="view_Count" class="col-2">
-		1
+		${dto.view_count }
 		</div>	
 		<div id="img_Box" class="col-5">
 			<img src="files/${dto.fileName }" style="width: 100% ; height: 100%;" >
@@ -78,12 +89,14 @@ margin: 0px;
 		</div>
 		<div id="item_price">전체 금액 : ${dto.item_price}</div>
 		<div>
-			<div>그래프</div>
+			<div id="graph" style="width:70%; margin:auto;">
+				<div style="width:${agreeRatio}%;height:10px" id="agreeRatio"></div><div style="width:${disagreeRatio}%;height:10px" id="disagreeRatio"></div>
+			</div>
 			<form action="/write.brd1_reply">
 			<input type="hidden" name="parent_seq" value=${dto.seq }>
-				<div id="radio" name="agree">				
-					<input type="radio" value="Y" name="agree">산다
-					<input type="radio" value="N" name="agree">만다
+				<div id="radio" style="margin-top:10px;">				
+					<input type="radio" value="산다" name="agree">산다 : ${dto.agree_count }
+					<input type="radio" value="만다" name="agree">만다 : ${dto.disagree_count }
 				</div>
 			</div>
 <!-- 	댓글------------------------------------------------------------------------- -->
@@ -95,8 +108,8 @@ margin: 0px;
 							${nickname}
 						<input type="hidden" name="nickname" value=${nickname }>
 						</div>
-						<div id="contents" style="border:0px">
-							<input type="text" placehold="왜 그렇게 생각하나요?" style="width: 100%;">
+						<div  style="border:0px">
+							<input type="text" placehold="왜 그렇게 생각하나요?" style="width: 100%;" name="contents" id="contents_reply">
 						</div>				
 					</div>
 					<div id="left" class="col-3" style="border:0px">
@@ -108,22 +121,28 @@ margin: 0px;
 			<hr>
 		</form>
 <!-- --댓글 View------------------------------------------------------------------------------ -->
-		<div calss="replyViewcontainer" class="row">
-			<div class="col-2">찬성/반대</div>
-			<div class="col-8">
-				<div class="writer">writer</div>
-				<div clss="contents">contents</div>
+		<c:forEach var="i" items="${list }">
+			<div calss="replyViewcontainer" class="row">
+				<div class="col-2">${i.agree}</div>
+				<div class="col-8">
+					<div class="writer">작성자 : ${i.writer }</div>
+					<input type="text" name="reply_contents" value=${i.contents} disabled >
+					<input type="hidden" name="replySeqToUpdate" value=${i.seq } disabled >
+					<div>${i.write_date }</div>
+				</div>
+				<div class="col-2">
+				<c:if test="${i.writer==nickname}">
+					<div class="reply_btns">
+						<input type="button" value="수정" class="modify_btn">
+						<input type="button" value="삭제" class="delete_btn">
+					</div>
+				</c:if>
+					<div>
+						좋아요
+					</div>
+				</div>	
 			</div>
-			<div class="col-2">
-				<div class="reply_btns">
-					<input type="button" value="수정">
-					<input type="button" value="삭제">
-				</div>
-				<div>
-					좋아요
-				</div>
-			</div>	
-		</div>
+		</c:forEach>
 <!-- 게시글 목록, 수정, 삭제 버튼---------------------------------------------------------- -->
 			<input type="button" id="toList" value="목록으로">
 			<c:if test="${nickname==dto.writer }">
@@ -137,8 +156,9 @@ margin: 0px;
 		<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
 	</div>
 	<div ></div>
-<!--  게시글 script-------------------------------------------------------------------- -->
+
 	<script>
+	<!--  게시글 script-------------------------------------------------------------------- -->
 		$("#toList").on("click",function(){
 			location.href="/list.brd1?cpage=1";
 		})
@@ -150,6 +170,23 @@ margin: 0px;
 			if(result){
 				location.href="/delete.brd1?seq=${dto.seq}";
 			}
+		})
+	<!-- 댓글 script-------------------------------------------------------------------- -->
+		$("#reply").on("click",function(){		
+// 			1. 제출 시 radio 체크여부 확인
+			if(!$('input:radio[name="agree"]').is(":checked")){
+				alert("'산다','만다' 중 선택해 주세요.");
+				return false;
+			}
+// 			2. 댓글 공백 시 제출 불가
+			if($("#contents_reply").val()==''){
+				alert("댓글 내용을 입력해주세요.");
+				return false;
+			}
+		})
+		
+		$(".modify_btn").on("click",function(){
+			$(this).parent().parent().prev().children().eq(1).removeAttr('disabled');
 		})
 	</script>
 </body>

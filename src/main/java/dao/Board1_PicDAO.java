@@ -21,7 +21,7 @@ public class Board1_PicDAO {
 		return instance;
 	}
 
-	private Connection getConnetction() throws Exception{
+	private Connection getConnection() throws Exception{
 		Context ctx = new InitialContext();
 		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/orcl");
 		return ds.getConnection();
@@ -30,7 +30,7 @@ public class Board1_PicDAO {
 	public int insert(Board1_PicDTO dto)throws Exception {
 		String sql = "insert into board1_pic values(board1pic_seq.nextval,?,?,?)";
 		try(
-				Connection con = this.getConnetction();
+				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
 			pstat.setString(1, dto.getOri_name());
@@ -46,7 +46,7 @@ public class Board1_PicDAO {
 	public String selectImgBySeq(int seq)throws Exception{
 		String sql = "select sys_name from board1_pic where parent_seq =?";
 		try(
-				Connection con = this.getConnetction();
+				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
 				pstat.setInt(1, seq);
@@ -65,7 +65,7 @@ public class Board1_PicDAO {
 	public int deleteByParentSeq(int seq)throws Exception {
 		String sql = "delete from board1_pic where parent_seq=?";
 		try(
-				Connection con = this.getConnetction();
+				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
 			pstat.setInt(1, seq);
