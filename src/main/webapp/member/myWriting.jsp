@@ -18,7 +18,7 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row w-100 m-0" id="header">
+		<div class="row" id="header">
 			<div class="col-12">
 				<nav class="navbar navbar-expand-md navbar-light bg-light">
 					<div class="container-fluid">
@@ -121,16 +121,29 @@
 		})
 		
 		$(".bi-box-arrow-right").on("click",function(){
+			  if (!Kakao.Auth.getAccessToken()) {
 			  Swal.fire({
-				  title: '로그아웃 하시겠습니까?',
+				  text: '로그아웃 하시겠습니까?',
 				  showCancelButton: true,
 				  confirmButtonText: '로그아웃',
 				  cancelButtonText: '취소',
 				}).then((result) => {
-				  if (result.isConfirmed) {
-				    location.href="/logout.member";
+				  if (result.isConfirmed) {				
+				    location.href="/logout.member";				  
 				  } 
 				})
+				return
+			  }
+			// -- 로그아웃 버튼 클릭시 카카오톡으로 로그인한 사용자의 토큰을 반납.
+			let result = confirm("로그아웃 하시겠습니까?");
+			if(!result){
+				return false;
+			} else {
+			  Kakao.Auth.logout(function() {
+	      			alert("로그아웃 되었습니다.");
+	      			location.href="/logout.member";
+	   		 	})
+			}
 		  })
 	</script>
 </body>

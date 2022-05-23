@@ -83,7 +83,7 @@ public class Board2_replyDAO {
 						dto.setNickname(rs.getString("writer"));
 						dto.setParent_seq(rs.getInt("parent_seq"));
 						dto.setContents(rs.getString("contents"));
-						dto.setPrice(rs.getInt("price"));
+						dto.setPrice((long) rs.getInt("price"));
 						dto.setWirte_date(rs.getString("write_date"));
 						dto.setChoice(rs.getString("choice").charAt(0));
 					}
@@ -99,7 +99,7 @@ public class Board2_replyDAO {
 		try (Connection con = this.getConnection(); PreparedStatement stat = con.prepareStatement(sql);) {
 			stat.setString(1, dto.getNickname());
 			stat.setInt(2, dto.getParent_seq());
-			stat.setInt(3, dto.getPrice());
+			stat.setLong(3, dto.getPrice());
 			stat.setString(4, dto.getContents());
 			result = stat.executeUpdate();
 			con.commit();
@@ -146,7 +146,7 @@ public class Board2_replyDAO {
 					if (!(rs.getString("choice") == null)) {
 						check = rs.getString("choice").charAt(0);
 					}
-					arr.add(new Board2_replyDTO(seq, writer, parent_seq, price, contents, date, check));
+					arr.add(new Board2_replyDTO(seq, writer, parent_seq, (long) price, contents, date, check));
 				}
 			}
 		}
