@@ -128,6 +128,8 @@ p {
 		</c:otherwise>
 	</c:choose>
 
+
+
 	<div class="container">
 		<div class="row">
 			<div class="col">
@@ -152,7 +154,7 @@ p {
 
 						<div id="list_Middle" style="text-align: right;">
 							<div style="width: 20%">
-								<form action="/search.brd1">
+								<form action="/searchbrd.admin?board=1&page=1">
 									<select class="form-select" aria-label="Default select example"
 										name="searchCategory">
 										<option value="0">선택</option>
@@ -163,7 +165,7 @@ p {
 							</div>
 							<div style="width: 40%; text-align: left;">
 								<input type="text" placeholder="검색하실 내용을 입력하세요"
-									name="searchTarget" style="width: 70%"> <input
+									name="toSearch" style="width: 70%"> <input
 									type="submit" value="검색">
 							</div>
 							<br>

@@ -151,19 +151,20 @@ p {
 							</div>
 						</div>
 
-						<form action="serch.brd2" method="post">
+						<form action="searchbrd.admin?board=2&page=1" method="post">
 							<div class="row">
 								<div class="col-4"></div>
 								<div class="col-2">
 									<select class="from-select: aria-label=select" id="select1"
-										name="category">
-										<option class="select" value="title">제목</option>
-										<option class="select" value="writer">작성자</option>
-										<option class="select" value="contents">내용</option>
+										name="searchCategory">
+										<option class="select" value="0">선택</option>
+										<option class="select" value="1">작성자</option>
+										<option class="select" value="2">제목</option>
+										<option class="select" value="3">내용</option>
 									</select>
 								</div>
 								<div class="col-4">
-									<input type="search" id="serch" name="serch"
+									<input type="search" id="search" name="toSearch"
 										placeholder="검색하실 내용을 입력하세요">
 								</div>
 								<div class="col-2">

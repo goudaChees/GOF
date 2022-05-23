@@ -391,7 +391,182 @@ private static AdminDAO instance = null;
 		return sb.toString();
 		
 	}
-
+	
+	// 보드 별 서치 기능 
+	
+	public List<Board1DTO> brd1search(String toSearch, int searchCategory, int page) throws Exception {
+		
+		String sql ="";
+		
+		if(searchCategory == 1) {
+			sql = "select * from (select row_number() over(order by seq desc) line,"
+					+ " board1.* from board1 where writer like ?) where line between ? and ?";
+		}else if (searchCategory == 2) {
+			sql = "select * from (select row_number() over(order by seq desc) line, "
+					+ "board1.* from board1 where title like ?) where line between ? and ?";
+		}else if (searchCategory == 3) {
+			sql = "select * from (select row_number() over(order by seq desc) line, "
+					+ "board1.* from board1 where item like ?) where line between ? and ?";
+		}else {
+			sql = "select * from (select row_number() over(order by seq desc) line, "
+					+ "board1.* from board1) where line between ? and ?";
+		}
+		
+		int startPage = page * 10 - 9;
+		int endPage = page * 10; 
+		
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			if(searchCategory > 0) {
+				pstat.setString(1, "%"+toSearch+"%");
+				pstat.setInt(2, startPage);
+				pstat.setInt(3, endPage);
+			}else {
+				pstat.setInt(1, startPage);
+				pstat.setInt(2, endPage);
+			}
+			
+			List<Board1DTO> list = new ArrayList<Board1DTO>();
+			try(
+					ResultSet rs = pstat.executeQuery();
+					){
+				while(rs.next()) {
+					Board1DTO b1dto = new Board1DTO();
+					b1dto.setSeq(rs.getInt("seq"));
+					b1dto.setWriter(rs.getString("writer"));
+					b1dto.setTitle(rs.getString("title"));
+					b1dto.setContents(rs.getString("contents"));
+					b1dto.setWrite_date(rs.getTimestamp("write_date"));
+					b1dto.setItem(rs.getString("item"));
+					b1dto.setItem_price(rs.getInt("item_price"));
+					b1dto.setAgree_count(rs.getInt("agree_count"));
+					b1dto.setDisagree_count(rs.getInt("disagree_count"));
+					b1dto.setView_count(rs.getInt("view_count"));
+					b1dto.setFileName(rs.getString("filename"));
+					list.add(b1dto);
+				}
+				return list;
+				
+			}
+		}
+	}
+	
+	public List<Board2DTO> brd2search (String toSearch, int searchCategory, int page) throws Exception {
+		
+		String sql ="";
+		
+		if(searchCategory == 1) {
+			sql = "select * from (select row_number() over(order by seq desc) line,"
+					+ " board2.* from board2 where writer like ?) where line between ? and ?";
+		}else if (searchCategory == 2) {
+			sql = "select * from (select row_number() over(order by seq desc) line, "
+					+ "board2.* from board2 where title like ?) where line between ? and ?";
+		}else if (searchCategory == 3) {
+			sql = "select * from (select row_number() over(order by seq desc) line, "
+					+ "board2.* from board2 where contents like ?) where line between ? and ?";
+		}else {
+			sql = "select * from (select row_number() over(order by seq desc) line, "
+					+ "board2.* from board2) where line between ? and ?";
+		}
+		
+		int startPage = page * 10 - 9;
+		int endPage = page * 10; 
+		
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			if(searchCategory > 0) {
+				pstat.setString(1, "%"+toSearch+"%");
+				pstat.setInt(2, startPage);
+				pstat.setInt(3, endPage);
+			}else {
+				pstat.setInt(1, startPage);
+				pstat.setInt(2, endPage);
+			}
+			
+			List<Board2DTO> list = new ArrayList<Board2DTO>();
+			try(
+					ResultSet rs = pstat.executeQuery();
+					){
+				while(rs.next()) {
+					Board2DTO b2dto = new Board2DTO();
+					b2dto.setSeq(rs.getInt("seq"));
+					b2dto.setNickname(rs.getString("writer"));
+					b2dto.setTitle(rs.getString("title"));
+					b2dto.setContents(rs.getString("contents"));
+					b2dto.setWrite_date(rs.getString("write_date"));
+					b2dto.setItem(rs.getString("item"));
+					b2dto.setView_count(rs.getInt("view_count"));
+					b2dto.setReply(rs.getInt("reply"));
+					list.add(b2dto);
+				}
+				
+				return list;
+			}
+		}
+	}
+	
+	// 보드별 서치 카운트
+	
+	public int getBrdSearchTotalCount(int searchCategory, int boardNum, String toSearch) throws Exception {
+		String sql = "";
+		int result = 0;
+		if (boardNum == 1) {
+			if (searchCategory == 1) {
+				sql = "select count(*) from board1 where writer like ?";
+			}else if (searchCategory == 2) {
+				sql = "select count(*) from board1 where title like ?";
+			}else if (searchCategory == 3) {
+				sql = "select count(*) from board1 where item like ?";
+			}
+			
+			try (
+					Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);
+					){
+				pstat.setString(1, "%"+toSearch+"%");
+				try (
+						ResultSet rs = pstat.executeQuery();
+						){
+					rs.next();
+					result = rs.getInt(1);
+				}
+				
+			}
+			
+		}else if (boardNum == 2) {
+			if(searchCategory == 1) {
+				sql = "select count(*) from board2 where writer like ?";
+			}else if (searchCategory == 2) {
+				sql = "select count(*) from board2 where title like ?";
+			}else if (searchCategory == 3) {
+				sql = "select count(*) from board2 where contents like ?";
+			}
+			
+			try (
+					Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);
+					){
+				pstat.setString(1, "%"+toSearch+"%");
+				try (
+						ResultSet rs = pstat.executeQuery();
+						){
+					rs.next();
+					result = rs.getInt(1);
+				}
+			}
+			
+			
+		}
+		return result;
+	}
+	
+	// 보드 서치 네비
+	
 	
 	
 }
+		

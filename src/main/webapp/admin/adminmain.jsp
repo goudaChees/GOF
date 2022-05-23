@@ -114,6 +114,8 @@ p {
 		</c:otherwise>
 	</c:choose>
 
+
+
 	<div class="container">
 		<div class="row">
 			<div class="col">
