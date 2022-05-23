@@ -336,7 +336,7 @@ public class Board1DAO {
 	public int addAgree(String agree)throws Exception {
 		
 		String sql = null;
-		if(agree.equals("산다")) {//찬성하는 경우
+		if(agree.equals("승인")) {//찬성하는 경우
 			sql = "update board1 set agree_count = agree_count+1";
 		}else {//반대하는 경우
 			sql = "update board1 set disagree_count = disagree_count+1";
