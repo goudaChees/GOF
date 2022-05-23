@@ -196,6 +196,7 @@
 		// 		countDownTimer('sample03', '04/01/2024');
 		// 2024년 4월 1일까지 countDownTimer('sample04', '04/01/2019');
 		// 2024년 4월 1일까지
+	</script>
 
 </body>
 </html>
