@@ -111,7 +111,7 @@ span{
 							<div class="row">
 								<input type="hidden" value=${i.seq }>
 								<div class="col-12" style="text-align: left; overflow: hidden;">
-									<a href="/detail.brd1?seq=${i.seq}" class="title">${i.title}</a>
+									<a href="/detail.brd1?seq=${i.seq}" class="title">${i.title}(${i.reply_count })</a>
 								</div>
 								<div align="center" class="col-5" class="item">${i.item}</div>
 								<div align="center" class="col-7" class="writer">${i.writer}</div>

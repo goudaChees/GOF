@@ -87,7 +87,7 @@
 	   $("#submit").on("click",function(){
 	     let item_price = $("#item_price").val().trim();
 	     let title= $("#title").val().trim();
-	     let item = $("#item").val().trim();;
+	     let item = $("#item").val().trim();
 		
 	     if(title==''||item_price==''||item==''){
 	    	 alert("제목, 물건명, 가격은 필수 입력 사항입니다.");

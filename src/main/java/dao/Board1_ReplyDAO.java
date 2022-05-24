@@ -29,7 +29,7 @@ public class Board1_ReplyDAO {
 		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/orcl");
 		return ds.getConnection();
 	}
-	public int insert(Board1_ReplyDTO dto)throws Exception {
+	public int insert(Board1_ReplyDTO dto)throws Exception {//댓글 작성 기능
 		String sql = "insert into board1_reply values(board1reply_seq.nextval,?,?,default,0,?,?)";
 		try(
 				Connection con = this.getConnection();
@@ -46,7 +46,7 @@ public class Board1_ReplyDAO {
 		}
 	}
 	
-	public List<Board1_ReplyDTO> selectReplyByParentSeq(int parent_Seq)throws Exception{
+	public List<Board1_ReplyDTO> selectReplyByParentSeq(int parent_Seq)throws Exception{//댓글 목록 불러오기
 		String sql = "select * from board1_reply where parent_seq=?";
 		try(
 				Connection con = this.getConnection();
@@ -73,4 +73,75 @@ public class Board1_ReplyDAO {
 		}
 	}
 	
+	public String getAgreeByseq(int seq)throws Exception{
+		String sql = "select Agree from board1_reply where seq=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, seq);
+			try(
+				ResultSet rs = pstat.executeQuery();	
+					){
+				rs.next();
+				return rs.getString("agree");
+			}
+		}
+	}
+	
+	public int modifyReply(int seq,String agree,String contents)throws Exception {//댓글 수정 기능
+		String sql = "update board1_reply set agree=?, contents=? where seq =? ";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, agree);
+			pstat.setString(2, contents);
+			pstat.setInt(3, seq);
+			
+			int result = pstat.executeUpdate();
+			return result;
+		}
+		
+	}
+	public int deleteReplyBySeq(int seq)throws Exception {
+		String sql = "delete from board1_reply where seq=?";	
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, seq);
+			int result = pstat.executeUpdate();
+			return result;
+		}
+	}
+	
+	public int deleteReplyByParent_Seq(int parent_Seq)throws Exception {
+		String sql = "delete from board1_reply where parent_seq=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, parent_Seq);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
+	public int countReplyByParentSeq(int parent_Seq)throws Exception {//각 게시판 별 댓글 수 구하기
+		String sql = "select count(*) from board1_reply where parent_seq=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, parent_Seq);
+			try(
+				ResultSet rs = pstat.executeQuery();
+					){
+				rs.next();
+				return rs.getInt(1);
+			}
+		}
+	}
 }
