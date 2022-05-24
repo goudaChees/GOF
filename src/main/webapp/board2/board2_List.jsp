@@ -22,9 +22,9 @@
 
 </head>
 <body>
-	<div class="container w-100">
-		<div class="row" id=header>
-			<div class="col-12">
+	<div class="container">
+		<div class="row w-100 m-0" id=header>
+			<div class="col-12 p-0">
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
 					<div class="container-fluid">
@@ -40,7 +40,7 @@
 							id="navbarNavDropdown">
 							<ul class="navbar-nav">
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="#" style="color: #664E55">지출의 참견</a></li>
+									aria-current="page" href="/list.brd1?cpage=1" style="color: #664E55">지출의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="/list.brd2" style="color: #664E55">선택의
 										참견</a></li>
@@ -51,7 +51,7 @@
 								<c:choose>
 									<c:when test="${loginID =='admin'}">
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="#" style="color: #664E55"
+											aria-current="page" href="/list.brd1?cpage=1" style="color: #664E55"
 											style="color:#664E55">관리자페이지</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="logout.member"><i
@@ -74,8 +74,8 @@
 		</div>
 
 		<div class="row w-100 m-0" id="content">
-			<div class="d-none d-lg-block col-2"></div>
-			<div class="col-12 col-lg-8">    
+			<div class="d-none d-lg-block col-3"></div>
+			<div class="col-12 col-lg-6">    
 				<div class="row w-100 m-0" id="PageOutline">
 					<div class="col-12">
 						<div class="row w-100 m-0" id="board2_title">
@@ -87,7 +87,7 @@
 						<div class="row" id="board2_search">
 							<form action="serch.brd2" method="post" align=right>
 								<div class="row">
-									<div class="col-12">
+									<div class="col-12" align=right>
 										<select class="from-select: aria-label=select" id="select1"
 											name="category">
 											<option class="select" value="title">제목</option>
@@ -106,24 +106,24 @@
 							<div class="col-1"></div>
 							<div class="col-10">
 								<div class="row">
-									<div class="col-2">글번호</div>
-									<div class="col-4">제목</div>
-									<div class="col-2">작성자</div>
-									<div class="col-2">조회수</div>
-									<div class="col-2">제한시간</div>
+									<div class="col-md-2 d-none d-md-block">글번호</div>
+									<div class="col-8 col-md-4">제목</div>
+									<div class="col-md-2 d-none d-md-block">작성자</div>
+									<div class="col-md-2 d-none d-md-block">조회수</div>
+									<div class="col-4 col-md-2">제한시간</div>
 									
 								</div>
 								<c:forEach var="i" items="${dto}">
 									<div class="row">
-										<div class="col-2">${i.seq}</div>
-										<div class="col-4 title">
-											<a href="/read.brd2?seq=${i.seq}">${i.title}</a>
+										<div class="col-md-2 d-none d-md-block">${i.seq}</div>
+										<div class="col-8 col-md-4 title" id="title_limit">
+											<a href="/read.brd2?seq=${i.seq}" >${i.title}</a>
 											<c:if test="${i.reply!=0}">[${i.reply}]</c:if>
 										</div>
-										<div class="col-2 nickname">${i.nickname}</div>
+										<div class="col-md-2 d-none d-md-block nickname">${i.nickname}</div>
 										<div class="col time" id="${i.write_date}"  style="display:none">${i.write_date}</div>
-										<div class="col-2">${i.view_count}</div>
-										<div class="col-2 limit" id="${i.seq}"></div>
+										<div class="col-md-2 d-none d-md-block">${i.view_count}</div>
+										<div class="col-4 col-md-2 limit" id="${i.seq}"></div>
 									</div>
 								</c:forEach>
 								<div class="row">
