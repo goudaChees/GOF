@@ -71,7 +71,9 @@ float:left;
             		<input type="hidden" id="isImgDeleted" name="isImgDeleted" value="N">
             	</div>
             	<div id="file_Box">
-            		<input type="button" value="삭제하기" id="delete">
+            		<c:if test="${dto.fileName!=null}">
+            			<input type="button" value="삭제하기" id="delete">
+            		</c:if>
             		<input type="file" name="file" id="upload_file" accept="image/*">
             	</div>
           	</div>

@@ -92,10 +92,10 @@ background-color:bisque;
 			<div id="graph" style="width:70%; margin:auto;">
 				<div style="width:${agreeRatio}%;height:10px" id="agreeRatio"></div><div style="width:${disagreeRatio}%;height:10px" id="disagreeRatio"></div>
 			</div>
-			<form action="/write.brd1_reply">
+		<form action="/write.brd1_reply">
 			<input type="hidden" name="parent_seq" value=${dto.seq }>
 				<div id="radio" style="margin-top:10px;">				
-					<input type="radio" value="승인" name="agree">승인 : ${dto.agree_count }
+					<input type="radio" value="승인" name="agree"  checked>승인 : ${dto.agree_count }
 					<input type="radio" value="불가" name="agree">불가 : ${dto.disagree_count }
 				</div>
 			</div>
@@ -122,28 +122,36 @@ background-color:bisque;
 		</form>
 <!-- --댓글 View------------------------------------------------------------------------------ -->
 		<c:forEach var="i" items="${list }">
-			<div calss="replyViewcontainer" class="row">
-				<div class="col-2">
-					<div>${i.agree}</div>
-				</div>
-				<div class="col-8">
-					<div class="writer">작성자 : ${i.writer }</div>
-					<input type="text" name="reply_contents" value=${i.contents} disabled >
-					<input type="hidden" name="replySeqToUpdate" value=${i.seq } disabled >
-					<div>${i.write_date }</div>
-				</div>
-				<div class="col-2">
-				<c:if test="${i.writer==nickname}">
-					<div class="reply_btns">
-						<input type="button" value="수정" class="modify_btn">
-						<input type="button" value="삭제" class="delete_btn">
+			<form action="/modify.brd1_reply">
+				<div calss="replyViewcontainer" class="row">
+					<div class="col-2">
+						<div><img src="/img/${i.agree}.png" style="width:80%"></div>
+						<div class="radio" style="margin-top:10px; display:none">				
+							<input type="radio" name="agree_re" value="승인">승인
+							<input type="radio" name="agree_re" value="불가">불가
+						</div>
 					</div>
-				</c:if>
-					<div>
-						좋아요
+					<div class="col-8">
+						<div class="writer">작성자 : ${i.writer }</div>
+						<input type="text" name="reply_contents" value=${i.contents } readonly>
+						<input type="hidden" name="replySeqToUpdate" value=${i.seq }>
+						<input type="hidden" name="parent_seq2" value=${dto.seq }>
+						<div>${i.write_date }</div>
 					</div>
-				</div>	
-			</div>
+					<div class="col-2">
+					<c:if test="${i.writer==nickname}">
+						<div class="reply_btns">
+							<input type="hidden" name="preAgree" value=${i.agree }>
+							<input type="button" value="수정" class="modify_btn">
+							<input type="button" value="삭제" class="delete_btn">
+						</div>
+					</c:if>
+						<div>
+							좋아요
+						</div>
+					</div>	
+				</div>
+			</form>
 		</c:forEach>
 <!-- 게시글 목록, 수정, 삭제 버튼---------------------------------------------------------- -->
 			<input type="button" id="toList" value="목록으로">
@@ -177,18 +185,63 @@ background-color:bisque;
 		$("#reply").on("click",function(){		
 // 			1. 제출 시 radio 체크여부 확인
 			if(!$('input:radio[name="agree"]').is(":checked")){
-				alert("'산다','만다' 중 선택해 주세요.");
+				alert("'승인','불가' 두가지 사항 중 선택해 주세요.");
 				return false;
 			}
 // 			2. 댓글 공백 시 제출 불가
-			if($("#contents_reply").val()==''){
+			if($("#contents_reply").val().trim()==''){
 				alert("댓글 내용을 입력해주세요.");
 				return false;
 			}
 		})
-		
+	
+//			3. 댓글 수정 기능
 		$(".modify_btn").on("click",function(){
-			$(this).parent().parent().prev().children().eq(1).removeAttr('disabled');
+			$(this).css('display','none');//수정 버튼 none처리
+			$(this).parent().parent().prev().children().eq(1).attr('readonly',false);
+			//댓글창 text창 활성화
+			//disable은 parameter로 안 넘어가서 readonly 이용 
+			let agreeRadio = $(this).parent().parent().prev().prev().children().eq(1);
+			agreeRadio.css('display','inline-block');
+			//라디오 선택 부분 활성화
+			
+			
+			if($(this).prev().val()=='승인'){//원래의 선택 값 부분에 dafault로 선택 처리
+				agreeRadio.children()[0].checked=true;
+			}else if($(this).prev().val()=='불가'){
+				agreeRadio.children()[1].checked=true;
+			}
+			
+			//수정 버튼 클릭 시 수정 버튼 대신 완료버튼으로 치환
+			let ok = $("<button>");
+			ok.text("완료");
+			ok.attr("class","complete_btn");
+			ok.attr("type","submit");
+			$(this).parent().prepend(ok);
+			
+			agreeRadio.children().change(function() {//radio 선택 변경 때마다 해당 이미지 변경
+			    if (agreeRadio.children()[0].checked) {
+			    	agreeRadio.children().parent().prev().children().attr("src","/img/승인.png")
+			    	console.log(agreeRadio.children().val());
+			    }else if(agreeRadio.children()[1].checked) {
+ 			    	agreeRadio.children().parent().prev().children().attr("src","/img/불가.png")
+			    }
+			    console.log(agreeRadio.children()[0].checked);
+			});
+			
+			ok.on("click",function(){//댓글 공백 제한 처리
+				if($(this).parent().parent().prev().children().eq(1).val().trim()==''){
+					alert("댓글 내용을 입력해주세요.");
+					return false;
+				}
+				
+			})
+		})
+//			4. 댓글 삭제 기능
+		$(".delete_btn").on("click",function(){
+			let seq = $(this).parent().parent().prev().children().eq(2).val();
+			let board_Seq = $(this).parent().parent().prev().children().eq(3).val(); 
+			location.href="/delete.brd1_reply?seq="+seq+"&board_Seq="+board_Seq;
 		})
 	</script>
 </body>

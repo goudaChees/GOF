@@ -30,7 +30,7 @@ public class Board1DAO {
 	};
 
 	public int insert(Board1DTO dto)throws Exception {//게시판에 넣기
-		String sql = "insert into board1 values(?,?,?,?,default,?,?,0,0,0,?)";
+		String sql = "insert into board1 values(?,?,?,?,default,?,?,0,0,0,?,0)";
 
 		try(
 				Connection con = this.getConnection();
@@ -41,7 +41,7 @@ public class Board1DAO {
 			pstat.setString(3, dto.getTitle());
 			pstat.setString(4, dto.getContents());
 			pstat.setString(5, dto.getItem());
-			pstat.setInt(6, dto.getItem_price());
+			pstat.setLong(6, dto.getItem_price());
 			pstat.setString(7,dto.getFileName());
 
 			int result = pstat.executeUpdate();
@@ -105,13 +105,14 @@ public class Board1DAO {
 					String contents = rs.getString("contents");
 					Timestamp write_date = rs.getTimestamp("write_date");
 					String item = rs.getString("item");
-					int item_price = rs.getInt("item_price");
+					Long item_price = rs.getLong("item_price");
 					int agree_count = rs.getInt("agree_count");
 					int disagree_count = rs.getInt("disagree_count");
 					int view_count =  rs.getInt("view_count");
 					String fileName = rs.getString("filename");
-
-					list.add(new Board1DTO(seq,writer,title,contents,write_date,item,item_price,agree_count,disagree_count,view_count,fileName));
+					int reply_Count = rs.getInt("reply_count");
+					
+					list.add(new Board1DTO(seq,writer,title,contents,write_date,item,item_price,agree_count,disagree_count,view_count,fileName,reply_Count));
 				}
 				return list;
 			}
@@ -129,11 +130,11 @@ public class Board1DAO {
 			return rs.getInt(1);
 		}
 	}
-	
+
 	public int getRecordCountBySearch(int searchCategory, String searchTarget)throws Exception {
-		
+
 		String sql = null;
-		
+
 		if(searchCategory==1) {
 			sql = "select count(*) from board1 where writer like ?";
 		}else if(searchCategory==2) {
@@ -141,14 +142,14 @@ public class Board1DAO {
 		}else if(searchCategory==3) {
 			sql = "select count(*) from board1 where item like ?";
 		}
-		
+
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);				
 				){
 			pstat.setString(1, "%"+searchTarget+"%");
 			try(
-				ResultSet rs = pstat.executeQuery();
+					ResultSet rs = pstat.executeQuery();
 					){
 				rs.next();
 				System.out.println("rs.getInt(1) : " + rs.getInt(1));
@@ -156,7 +157,7 @@ public class Board1DAO {
 			}
 		}
 	}
-	
+
 	public String getNavi(int cpage,int searchCategory,String searchTarget)throws Exception {
 		int recoardTotalCount = 0;
 		System.out.println(searchCategory);
@@ -165,9 +166,9 @@ public class Board1DAO {
 		}else {
 			recoardTotalCount = this.getRecordTotalCount();
 		}
-		
-		
-		
+
+
+
 		this.getRecordTotalCount(); //전체 레코드 수
 		System.out.println("recoardTotalCount : "+ recoardTotalCount);
 		int racordPerPage = 10; // 페이지 당 레코드
@@ -188,11 +189,11 @@ public class Board1DAO {
 
 		int startNavi = ((cpage-1)/naviCountPerPage)*naviCountPerPage+1;
 		int endNavi = startNavi+naviCountPerPage-1;
-		
+
 		if(pageTotalCount<endNavi) {
 			endNavi=pageTotalCount;
 		}	
-		
+
 		boolean needNext = true;
 		boolean needPrev = true;
 
@@ -225,11 +226,11 @@ public class Board1DAO {
 
 		return sb.toString();
 	}
-	
+
 	public List<Board1DTO> search(String target,int searchCategory,int cpage)throws Exception{
-		
+
 		String sql = null;
-		
+
 		if(searchCategory==1){
 			sql = "select * from (select row_number() over(order by seq desc) line, board1.* from board1 where writer like ?) where line between ? and ?";
 		}else if(searchCategory==2) {
@@ -263,19 +264,20 @@ public class Board1DAO {
 					String contents = rs.getString("contents");
 					Timestamp write_date = rs.getTimestamp("write_date");
 					String item = rs.getString("item");
-					int item_price = rs.getInt("item_price");
+					Long item_price = rs.getLong("item_price");
 					int agree_count = rs.getInt("agree_count");
 					int disagree_count = rs.getInt("disagree_count");
 					int view_count =  rs.getInt("view_count");
 					String fileName = rs.getString("filename");
-
-					list.add(new Board1DTO(seq,writer,title,contents,write_date,item,item_price,agree_count,disagree_count,view_count,fileName));
+					int reply_Count = rs.getInt("reply_count");
+					
+					list.add(new Board1DTO(seq,writer,title,contents,write_date,item,item_price,agree_count,disagree_count,view_count,fileName,reply_Count));
 				}
 			}
 			return list;
 		}
 	}
-	
+
 	public Board1DTO selectBySeq(int seq)throws Exception {
 		String sql = "select * from board1 where seq =?";
 		try(
@@ -284,24 +286,25 @@ public class Board1DAO {
 				){
 			pstat.setInt(1, seq);
 			try(ResultSet rs = pstat.executeQuery()){
-				
+
 				rs.next();
 				String writer = rs.getString("writer");
 				String title = rs.getString("title");
 				String contents = rs.getString("contents");
 				Timestamp write_date = rs.getTimestamp("write_date");
 				String item = rs.getString("item");
-				int item_price = rs.getInt("item_price");
+				Long item_price = rs.getLong("item_price");
 				int agree_count= rs.getInt("agree_count");
 				int disagree_count = rs.getInt("disagree_count");
 				int view_count = rs.getInt("view_count");
 				String fileName = rs.getString("filename");
-						
-				return new Board1DTO(seq,writer,title,contents,write_date,item,item_price,agree_count,disagree_count,view_count,fileName);
+				int reply_Count = rs.getInt("reply_count");
+				
+				return new Board1DTO(seq,writer,title,contents,write_date,item,item_price,agree_count,disagree_count,view_count,fileName,reply_Count);
 			}
 		}
 	}
-	
+
 	public int modify(Board1DTO dto)throws Exception {
 		String sql = "update board1 set title=?,contents=?,item=?,item_price=? where seq=?";
 		try(
@@ -311,15 +314,15 @@ public class Board1DAO {
 			pstat.setString(1, dto.getTitle());
 			pstat.setString(2, dto.getContents());
 			pstat.setString(3, dto.getItem());
-			pstat.setInt(4, dto.getItem_price());
+			pstat.setLong(4, dto.getItem_price());
 			pstat.setInt(5,dto.getSeq());
-			
+
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;
 		}
 	}
-	
+
 	public int deleteBySeq(int seq)throws Exception {
 		String sql = "delete from board1 where seq=?";
 		try(
@@ -332,27 +335,104 @@ public class Board1DAO {
 			return result;
 		}
 	}
-	
-	public int addAgree(String agree)throws Exception {
-		
+
+	public int addAgree(String agree,int seq)throws Exception {
+
 		String sql = null;
 		if(agree.equals("승인")) {//찬성하는 경우
-			sql = "update board1 set agree_count = agree_count+1";
+			sql = "update board1 set agree_count = agree_count+1 where seq=?";
 		}else {//반대하는 경우
-			sql = "update board1 set disagree_count = disagree_count+1";
+			sql = "update board1 set disagree_count = disagree_count+1 where seq=?";
 		}
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
+			pstat.setInt(1, seq);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+
+	public int addViewCount(int seq)throws Exception {
+		String sql = "update board1 set view_count=view_count+1 where seq=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, seq);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+
+	public int updateFileNameBySeq(int seq,String sys_Name)throws Exception {
+		String sql = "update board1 set filename = ? where seq =?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, sys_Name);
+			pstat.setInt(2,seq);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+
+	public int modifyAgree(String agree,int seq)throws Exception {
+		String sql = null;
+		if(agree.equals("승인")) {//승인으로 바꾼 경우 disagree는 -1, agree는 +1을 해준다.
+			sql = "update board1 set agree_count=agree_count+1,disagree_count=disagree_count-1 where seq=?";
+		}else {//불가로 바꾼 경우 agree는 -1, disagree는 +1을 해준다.
+			sql = "update board1 set agree_count=agree_count-1,disagree_count=disagree_count+1 where seq=?";
+		}
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, seq);
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;
 		}
 	}
 	
-	public int addViewCount(int seq)throws Exception {
-		String sql = "update board1 set view_count=view_count+1 where seq=?";
+	public int subtractAgreeCount(int board_Seq,String agree)throws Exception {
+		String sql = null;
+		if(agree.equals("승인")) {//승인인 경우
+			sql = "update board1 set agree_count=agree_count-1 where seq=?";
+		}else {//불가인 경우
+			sql = "update board1 set disagree_count=disagree_count-1 where seq=?";
+		}
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, board_Seq);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
+	public int addReplyCount(int seq)throws Exception {
+		String sql = "update board1 set reply_count=reply_count+1 where seq=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, seq);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
+	public int subtractReplyCount(int seq)throws Exception {
+		String sql = "update board1 set reply_count=reply_count-1 where seq=?";
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
