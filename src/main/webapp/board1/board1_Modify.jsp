@@ -23,6 +23,10 @@
   float: left;
 }
 
+#file_Box>input{
+float:left;
+}
+
 </style>
 
 </head>
@@ -54,25 +58,32 @@
          </nav>
      </div>		        
 
-	<form action="/write.brd1" enctype="multipart/form-data" method="post">
-		<div id=write_container style="text-align: left; width: 50%; margin: auto;">
+	<form action="/modify.brd1" enctype="multipart/form-data" method="post">
+		<div id=write_container style="text-align: left; width: 70%; margin: auto;">
 			<span style="font-size: 30px;">지출의 참견</span>
 	    	<span>구매가 고민되는 상품의 정보를 입력해주세요.</span><br>
         <div style="text-align:center">
-          	<input type="text" placeholder="글 제목을 입력해주세요" name="title" size="70" id="title"><br>
+          	<input type="text" placeholder="글 제목을 입력해주세요" name="title" id="title" size="70" value="${dto.title}"><br>
+          	<input type="hidden" name="seq" size="70" value="${dto.seq}">
           	<div class="write_Box" style="width:50% ; border: 0px;">
           		<div id="img_Box">
-            		<img src="#" style="width: 200px; height: 200px;" id="img_section">
+            		<img src="files/${dto.fileName}" style="width: 200px; height: 200px;" id="img_section">
+            		<input type="hidden" id="isImgDeleted" name="isImgDeleted" value="N">
             	</div>
-            	<input type="file" name="file" id="upload_file" accept="image/*">
+            	<div id="file_Box">
+            		<c:if test="${dto.fileName!=null}">
+            			<input type="button" value="삭제하기" id="delete">
+            		</c:if>
+            		<input type="file" name="file" id="upload_file" accept="image/*">
+            	</div>
           	</div>
           	<div class="write_Box" style="width:50%; height: 200px; border: 0px;">
-            	<input type="text" placeholder="물건명을 입력해주세요" name="item" id="item"><br>  	
-            	<input type="text" placeholder="가격을 입력해주세요" name="item_price" id="item_price" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /><br>
+            	<input type="text" placeholder="물건명을 입력해주세요" name="item" id="item" value="${dto.item }"><br>
+            	<input type="text" placeholder="가격을 입력해주세요" name="item_price" value="${dto.item_price }" id="item_price" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /><br>
           	</div>
-          	<textarea placeholder="이 물건을 꼭 사야할 이유가 뭔가요" name="contents" rows="10" cols="70"></textarea><br>
-          	<input type="button" value="목록으로" id="toList">
-          	<input type="submit" value="저장하기" id="submit">
+          	<textarea placeholder="이 물건을 꼭 사야할 이유가 뭔가요" name="contents" rows="10" cols="70">${dto.contents }</textarea><br>
+          	<input type="button" value="목록으로" id="goToList">
+          	<input type="submit" value="수정하기" id="submit">
         </div>    
 		</div>
 	    <div class="row w-100 m-0" id="footer">
@@ -80,22 +91,6 @@
 	    </div>
 	 </form>
 	 <script>
-		$("#toList").on("click",function(){
-			location.href="/list.brd1?cpage=1";
-		})
-	     
-	   $("#submit").on("click",function(){
-	     let item_price = $("#item_price").val().trim();
-	     let title= $("#title").val().trim();
-	     let item = $("#item").val().trim();
-		
-	     if(title==''||item_price==''||item==''){
-	    	 alert("제목, 물건명, 가격은 필수 입력 사항입니다.");
-	    	 return false;
-	     }
-	   })
-
-	 	
 	 	const reader = new FileReader();
 	 	reader.onload = (readerEvent) =>{
 	 		document.querySelector("#img_section").setAttribute("src",readerEvent.target.result);
@@ -107,7 +102,25 @@
 	       reader.readAsDataURL(imgFile);
 	     })
 	     
-
+	     $("#delete").on("click",function(){
+	    	 $("#img_section").attr("src","");//삭제 버튼 클릭 시 이미지 내림
+	    	 $("#isImgDeleted").val("Y");//이미지 삭제 하는 경우
+	     })
+		
+	  	$("#goToList").on("click",function(){
+	    	 loaction.href="/list.brd1?cpage=1";
+	     })
+	     
+		$("#submit").on("click",function(){
+         let item_price = $("#item_price").val().trim();
+         let title= $("#title").val().trim();
+         let item = $("#item").val().trim();;
+		
+         if(title==''||item_price==''||item==''){
+        	 alert("제목, 물건명, 가격은 필수 입력 사항입니다.");
+        	 return false;
+         }
+       })
 	 </script>
 </body>
 </html>

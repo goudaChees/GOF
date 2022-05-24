@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+
+* {
+	box-sizing: border-box;
+}
+
+div {
+	text-align: center;
+}
+
+.container{
+	max-width: 100%; 
+	padding: 0; 
+	margin: 0; 
+	position: relative;
+}
+
+#header{
+	border-bottom: 5px solid #F4ACB7;
+	z-index:5;
+}
+
+#content{
+	margin:0;
+	padding-top: 3%;
+	padding-bottom: 3%;
+	min-height: 95vh;
+	max-width: 100%; 
+	background-color:#FED7DC;
+	position: relative;
+}
+
+#joinFormOutline{
+	padding:2%;
+	height:100%;
+	border-radius: 15px;
+	background-color: #FFF4EF;
+}
+
+#joinFormHeader{
+	height:5%;
+	margin:3%;
+}
+
+#joinFormHeader .col-12{
+	color: #806c71;
+	text-align:left;
+}
+
+#joinFormArea{
+	margin:2%;
+	height:85%;
+	border: 5px solid #D8E2DC;
+	border-radius: 15px;
+	background-color: white;
+	overflow:hidden;
+}
+
+#joinFormArea form{
+	height:100%;
+}
+
+#joinFormArea .row{
+	height: 12.5%;
+	border-bottom: 1px solid #e1e9e4;
+}
+
+#joinFormArea .col-3{
+	background-color: #e1e9e4;
+	padding-top:4%;
+}
+
+#joinFormArea .col-9{
+	text-align:left;
+	padding-left:5%;
+}
+
+#joinFormArea input{
+	padding:0;
+	margin-top: 5%;
+}
+
+#phone1,#phone2,#phone3{
+	width:60px;
+}
+
+#idCheckResult,#pw1CheckResult, 
+#pw2CheckResult,#nameCheckResult,
+#phoneCheckResult, #emailCheckResult,
+#nnCheckResult{
+	font-size: 13px;
+}
+
+#joinFormArea input[type=submit],
+#joinFormArea input[type=reset]{
+	padding:1.5%;
+	margin:2%;
+	color: #FFF4EF;
+	background-color: #F4ACB7;	
+	border: 0px;
+	border-radius: 5px;
+	width:85px;
+}
+
+#joinFormArea input:disabled {
+   background-color: #F4ACB750;
+}
+
+#frontpig{
+	position: absolute;
+	width: 150px;
+	right: 13%;
+	bottom:8%;
+}
+
+#footer{
+	background-color: #9D8189;
+	color: white;
+}
