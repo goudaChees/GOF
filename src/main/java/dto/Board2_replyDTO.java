@@ -55,8 +55,8 @@ public class Board2_replyDTO {
 	public String getWrite_date() {
 		return write_date;
 	}
-	public void setWirte_date(String wirte_date) {
-		this.write_date = wirte_date;
+	public void setWrite_date(String write_date) {
+		this.write_date = write_date;
 	}
 	public char getChoice() {
 		return choice;

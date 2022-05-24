@@ -84,7 +84,7 @@ public class Board2_replyDAO {
 						dto.setParent_seq(rs.getInt("parent_seq"));
 						dto.setContents(rs.getString("contents"));
 						dto.setPrice((long) rs.getInt("price"));
-						dto.setWirte_date(rs.getString("write_date"));
+						dto.setWrite_date(rs.getString("write_date"));
 						dto.setChoice(rs.getString("choice").charAt(0));
 					}
 				}
