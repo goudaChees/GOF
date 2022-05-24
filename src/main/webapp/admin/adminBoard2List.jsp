@@ -140,7 +140,7 @@ p {
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="/adminBoardsList.admin?board=1">게시글 관리</a></li>
 					<li class="nav-item"><a class="nav-link" 
-						href="/adminReplyList.admin?board=1">댓글 관리</a></li>
+						href="/adminReplysList.admin?board=1">댓글 관리</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade show active">

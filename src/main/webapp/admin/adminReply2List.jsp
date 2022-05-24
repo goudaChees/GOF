@@ -78,10 +78,86 @@
 			</div>
 		</div>
 
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<p>Admin Page</p>
+				<ul class="nav nav-tabs">
+					<li class="nav-item"><a class="nav-link"
+						href="/adminmain.admin">회원 정보 관리</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/adminBoardsList.admin?board=1">게시글
+							관리</a></li>
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="/adminReplyList.admin?board=1">댓글 관리</a></li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane fade show active">
+						<div class="row w-100 m-0">
+							<div class="col-12" id="listbtns">
+								<button id="toBoard1Reply">지출의 참견</button>
+								<button id="toBoard2Reply">선택의 참견</button>
+							</div>
+						</div>
 
 
+		<div id="list_Middle" style="text-align: right;">
+			<div style="width: 20%">
+				<form action="/searchbrd.admin?board=1&page=1">
+						<select class="form-select" aria-label="Default select example"
+							name="searchCategory">
+						<option value="0">선택</option>
+						<option value="1">작성자</option>
+						<option value="2">제목</option>
+						<option value="3">물건명</option>
+						</select>
+				</div>
+				<div style="width: 40%; text-align: left;">
+					<input type="text" placeholder="검색하실 내용을 입력하세요"
+						name="toSearch" style="width: 70%"> <input
+						type="submit" value="검색">
+				</div>
+				<br>
+				</form>
+		</div>
 
+		<div id ="replyList">
+			<div>
+				<c:forEach var="i" items="${listR2 }">
+					<div>
+						<a href ="/read.brd2?seq=${i.parent_seq }">본문 보러가기</a>
+					</div>
+					<div>
+						<c:if test="${i.choice == Y}">[채택된 댓글]]</c:if>
+					</div>
+					<div>${i.nickname}</div>
+					<div>${i.price}</div>
+					<div>${i.write_date }</div>
+		
+				</c:forEach>
+			
+			
+			</div>
+			
+		</div>
+		<div>
+			<div>${pageNavi}
+			</div>
+		</div>
 
+		<div class="row w-100 m-0" id="footer">
+			<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
+		</div>		
+	<script>
+	$("#toBoard1Reply").on("click", function(){
+		location.href="/adminReplysList.admin?board=1";
+	})
+	
+	$("#toBoard2Reply").on("click", function(){
+		location.href="/adminReplysList.admin?board=2";
+	})
+	
+	</script>
 
 </body>
 </html>

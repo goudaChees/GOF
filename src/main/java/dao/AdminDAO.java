@@ -694,8 +694,16 @@ private static AdminDAO instance = null;
 					b2rdto.setParent_seq(rs.getInt("parent_seq"));
 					b2rdto.setPrice(rs.getLong("price"));
 					b2rdto.setContents(rs.getString("contents"));
-					b2rdto.setWirte_date(rs.getString("write_date"));
-					b2rdto.setChoice(rs.getString("choice").charAt(0));
+					b2rdto.setWrite_date(rs.getString("write_date"));
+					
+					char choice = 'N';
+					if(rs.getString("choice") == null) {
+						choice = 'N';
+					}else {
+						choice = 'Y';
+					}
+					
+					b2rdto.setChoice(choice);
 					list.add(b2rdto);
 					
 				}

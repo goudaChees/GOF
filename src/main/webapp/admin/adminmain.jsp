@@ -126,7 +126,7 @@ p {
 					<li class="nav-item"><a class="nav-link" 
 						href="/adminBoardsList.admin">게시글 관리</a></li>
 					<li class="nav-item"><a class="nav-link" 
-						href="/adminReplyList.admin">댓글 관리</a></li>
+						href="/adminReplysList.admin">댓글 관리</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade show active" id="memberManagement">
