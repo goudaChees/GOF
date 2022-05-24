@@ -54,9 +54,9 @@ p {
 							id="navbarNavDropdown">
 							<ul class="navbar-nav">
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="#">지출의 참견</a></li>
+									aria-current="page" href="/list.brd1?cpage=1">지출의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="list.brd2">선택의 참견</a></li>
+									aria-current="page" href="/list.brd2">선택의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="/csmain.cscenter">고객센터</a></li>
 								<li class="nav-item"><a class="nav-link active"
@@ -85,9 +85,9 @@ p {
 							id="navbarNavDropdown">
 							<ul class="navbar-nav">
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="#">지출의 참견</a></li>
+									aria-current="page" href="/list.brd1?cpage=1">지출의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="list.brd2">선택의 참견</a></li>
+									aria-current="page" href="/list.brd2">선택의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="/csmain.cscenter">고객센터</a></li>
 								<li class="nav-item"><a class="nav-link active"
@@ -117,9 +117,9 @@ p {
 								<li class="nav-item"><a class="nav-link active nonMember"
 									aria-current="page" href="#">지출의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active nonMember"
-									aria-current="page" href="list.brd2">선택의 참견</a></li>
+									aria-current="page" href="#">선택의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/csmain.cscenter">고객센터</a></li>
+									aria-current="page" href="#">고객센터</a></li>
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="joinform.member">회원가입</a></li>
 							</ul>
@@ -140,7 +140,7 @@ p {
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="/adminBoardsList.admin?board=1">게시글 관리</a></li>
 					<li class="nav-item"><a class="nav-link" 
-						href="/adminReplyList.admin?board=1">댓글 관리</a></li>
+						href="/adminReplysList.admin?board=1">댓글 관리</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade show active">
@@ -200,7 +200,7 @@ p {
 								</c:forEach>
 								<div class="row">
 									<div class="col-1"></div>
-									<div class="col-10">list</div>
+									<div class="col-10">!!</div>
 									<div class="col-1"></div>
 								</div>
 							</div>
@@ -211,17 +211,12 @@ p {
 							<div class="col-8">${pageNavi}</div>
 
 							<div class="row">
-								<div class="col-12">footer</div>
+								<div class="col-12">??</div>
 							</div>
 
 
 						</div>
-						<div class="tab-pane fade" id="postManagement">
-							<p>post list.</p>
-						</div>
-						<div class="tab-pane fade" id="replyManagement">
-							<p>reply list.</p>
-						</div>
+
 					</div>
 				</div>
 			</div>

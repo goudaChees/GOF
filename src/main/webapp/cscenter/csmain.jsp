@@ -41,7 +41,7 @@
 								<c:choose>
 									<c:when test="${loginID =='admin'}">
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="#" style="color: #664E55">지출의
+											aria-current="page" href="/list.brd1?cpage=1" style="color: #664E55">지출의
 												참견</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd2" style="color: #664E55">선택의
@@ -58,7 +58,7 @@
 									</c:when>
 									<c:when test="${loginID !=null}">
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="#" style="color: #664E55">지출의
+											aria-current="page" href="/list.brd1?cpage=1" style="color: #664E55">지출의
 												참견</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd2" style="color: #664E55">선택의
@@ -81,7 +81,7 @@
 											aria-current="page" href="#" style="color: #664E55">선택의
 												참견</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter"
+											aria-current="page" href="#"
 											style="color: #664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/joinform.member"

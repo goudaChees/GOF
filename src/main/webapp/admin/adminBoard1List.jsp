@@ -52,9 +52,9 @@ p {
 							id="navbarNavDropdown">
 							<ul class="navbar-nav">
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="#">지출의 참견</a></li>
+									aria-current="page" href="/list.brd1?cpage=1">지출의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="list.brd2">선택의 참견</a></li>
+									aria-current="page" href="/list.brd2">선택의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="/csmain.cscenter">고객센터</a></li>
 								<li class="nav-item"><a class="nav-link active"
@@ -83,7 +83,7 @@ p {
 							id="navbarNavDropdown">
 							<ul class="navbar-nav">
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="#">지출의 참견</a></li>
+									aria-current="page" href="/list.brd1?cpage=1">지출의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="list.brd2">선택의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
@@ -115,9 +115,9 @@ p {
 								<li class="nav-item"><a class="nav-link active nonMember"
 									aria-current="page" href="#">지출의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active nonMember"
-									aria-current="page" href="list.brd2">선택의 참견</a></li>
+									aria-current="page" href="#">선택의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/csmain.cscenter">고객센터</a></li>
+									aria-current="page" href="#">고객센터</a></li>
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="joinform.member">회원가입</a></li>
 							</ul>
@@ -141,7 +141,7 @@ p {
 						aria-current="page" href="/adminBoardsList.admin?board=1">게시글
 							관리</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="/adminReplyList.admin?board=1">댓글 관리</a></li>
+						href="/adminReplysList.admin?board=1">댓글 관리</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane fade show active">
@@ -189,6 +189,7 @@ p {
 												</div>
 												<div align="center" class="col-5" class="item">${i.item}</div>
 												<div align="center" class="col-7" class="writer">${i.writer}</div>
+												<div align="center" class="col-12">${i.agree_count } vs ${i.disagree_count}</div>
 												<div align="center" class="col-12">${i.write_date}</div>
 											</div>
 										</div>
