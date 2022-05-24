@@ -147,7 +147,7 @@
 								<div class="col-8 contents">
 									<div class="row">
 										<div class="col-6">${i.nickname}</div>
-										<div class="col-6">${i.wirte_date}</div>
+										<div class="col-6">${i.write_date}</div>
 										<div class="col-12 incontents">
 										<input type="text" value="${i.contents}" class="editable" disabled>
 										</div>
@@ -178,7 +178,7 @@
 
 	<script>
 	window.onload = function(){
-		if(${cck == false && wck == false}){
+		if(${cck == true || wck == true}){
 		$("#contents").attr("readonly",true);
 		$("#contents").attr("placeholder","댓글은 한 게시물 당 한 개만 작성이 가능합니다.");
 		$("#wprice").attr("readonly",true);
@@ -197,8 +197,11 @@
  			alert("가격,내용은 필수 입력 사항입니다.");
 	    	 return false;
  		}
+ 		window.reload();
  		
  	})
+ 	
+ 	
 	$("#del").on("click",function(){
 		result = window.confirm("정말 삭제하시겟습니까?");
 		if(result){

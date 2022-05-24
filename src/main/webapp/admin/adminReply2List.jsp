@@ -125,7 +125,7 @@
 			<div>
 				<c:forEach var="i" items="${listR2 }">
 					<div>
-						<a href ="/read.brd2?seq=${i.parent_seq }">본문 보러가기</a>
+						<a href ="/read.brd2?seq=${i.parent_seq}">본문 보러가기</a>
 					</div>
 					<div>
 						<c:if test="${i.choice == Y}">[채택된 댓글]]</c:if>
