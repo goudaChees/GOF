@@ -14,7 +14,9 @@ import com.google.gson.Gson;
 
 import dao.AdminDAO;
 import dto.Board1DTO;
+import dto.Board1_ReplyDTO;
 import dto.Board2DTO;
+import dto.Board2_replyDTO;
 import dto.MemberDTO;
 import utils.EncryptUtils;
 
@@ -127,21 +129,57 @@ public class AdminController extends HttpServlet {
 				String toSearch = request.getParameter("toSearch");
 				
 				if (board == 1) {
+					List<Board1DTO> list1 = adao.brd1search(toSearch, searchCategory, page); 
+					String  searchPage = adao.getBrdSearchPageNavi(page, searchCategory, board, toSearch);
 					
+					request.setAttribute("list1", list1);
+					request.setAttribute("searchCategory", searchCategory);
+					request.setAttribute("toSearch", toSearch);
+					request.setAttribute("pageNavi", searchPage);
 					
+					request.getRequestDispatcher("/admin/adminBoard1List.jsp?board=1&page=1").forward(request, response);
 					
 				}else if (board == 2) {
+					List<Board2DTO> list2 = adao.brd2search(toSearch, searchCategory, page);
+					String searchPage = adao.getBrdSearchPageNavi(page, searchCategory, board, toSearch);
 					
+					request.setAttribute("list2", list2);
+					request.setAttribute("searchCategory", searchCategory);
+					request.setAttribute("toSearch", toSearch);
+					request.setAttribute("pageNavi", searchPage);
 					
+					request.getRequestDispatcher("/admin/adminBoard2List.jsp?board=2&page=1").forward(request, response);
 					
 				}
+			}else if (uri.equals("/adminReplysList.admin")) {
+				int board = 1;
+				if (request.getParameter("board") != null) {
+					board = Integer.parseInt(request.getParameter("board"));
+				}
+					
+				int page = 1;
+				if (request.getParameter("page") != null) {
+					page = Integer.parseInt(request.getParameter("page"));
+				}
 				
-				
-				
-				
-				
+				if (board == 1) {
+					List<Board1_ReplyDTO> listR1 = adao.selectBrd1ReplyPage(page);
+					String pageNavi = adao.getBrdReplyPageNavi(board, page);
+					request.setAttribute("listR1", listR1);
+					request.setAttribute("pageNavi", pageNavi);
+					request.getRequestDispatcher("/admin/adminReply1List.jsp").forward(request, response);
+					
+				}else if (board == 2) {
+					List<Board2_replyDTO> listR2 = adao.selectBrd2ReplyPage(page);
+					String pageNavi = adao.getBrdReplyPageNavi(board, page);
+					request.setAttribute("listR2", listR2);
+					request.setAttribute("pageNavi", pageNavi);
+					request.getRequestDispatcher("/admin/adminReply2List.jsp").forward(request, response);
+						
+				}
 			}
-			
+				
+
 			
 			
 			

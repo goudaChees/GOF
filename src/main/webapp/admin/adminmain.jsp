@@ -38,9 +38,9 @@ p {
 							id="navbarNavDropdown">
 							<ul class="navbar-nav">
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="#">지출의 참견</a></li>
+									aria-current="page" href="/list.brd1?cpage=1">지출의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="list.brd2">선택의 참견</a></li>
+									aria-current="page" href="/list.brd2">선택의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="/csmain.cscenter">고객센터</a></li>
 								<li class="nav-item"><a class="nav-link active"
@@ -69,9 +69,9 @@ p {
 							id="navbarNavDropdown">
 							<ul class="navbar-nav">
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="#">지출의 참견</a></li>
+									aria-current="page" href="/list.brd1?cpage=1">지출의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="list.brd2">선택의 참견</a></li>
+									aria-current="page" href="/list.brd2">선택의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="/csmain.cscenter">고객센터</a></li>
 								<li class="nav-item"><a class="nav-link active"
@@ -99,9 +99,9 @@ p {
 							id="navbarNavDropdown">
 							<ul class="navbar-nav">
 								<li class="nav-item"><a class="nav-link active nonMember"
-									aria-current="page" href="#">지출의 참견</a></li>
+									aria-current="page" href="/list.brd1?cpage=1">지출의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active nonMember"
-									aria-current="page" href="list.brd2">선택의 참견</a></li>
+									aria-current="page" href="/list.brd2">선택의 참견</a></li>
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="/csmain.cscenter">고객센터</a></li>
 								<li class="nav-item"><a class="nav-link active"

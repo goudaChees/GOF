@@ -12,7 +12,9 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import dto.Board1DTO;
+import dto.Board1_ReplyDTO;
 import dto.Board2DTO;
+import dto.Board2_replyDTO;
 import dto.MemberDTO;
 
 public class AdminDAO {
@@ -565,6 +567,228 @@ private static AdminDAO instance = null;
 	}
 	
 	// 보드 서치 네비
+	
+	public String getBrdSearchPageNavi (int currentPage, int searchCategory, int boardNum, String toSearch) throws Exception {
+		int recordTotalCount = this.getBrdSearchTotalCount(searchCategory, boardNum, toSearch); 
+		
+		int recordCountPerPage = 10; // 한 페이지에 몇명의 회원
+		
+		int naviCountPerPage = 10; // 한 페이지에 몇개의 네비를 보여줄 것인지
+		int pageTotalCount = 0; // 총 몇개의 페이지가 필요한가?
+		
+		if(recordTotalCount % recordCountPerPage > 0) {
+			pageTotalCount = recordTotalCount / recordCountPerPage +1;
+		}else {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+
+		if(currentPage < 1) {
+			currentPage= 1;
+		}else if(currentPage > pageTotalCount) {
+			currentPage = pageTotalCount;
+		}
+		
+		int startNavi = (currentPage-1) / naviCountPerPage * naviCountPerPage + 1;
+		int endNavi = startNavi + naviCountPerPage - 1;
+		
+		if (endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+		
+		boolean needNext = true;
+		boolean needPrev = true;
+		
+		if (startNavi == 1) {
+			needPrev = false;
+		}
+		
+		if (endNavi == pageTotalCount) {
+			needNext = false;
+		}
+		
+		StringBuilder sb = new StringBuilder();
+
+		
+		if (needPrev) {
+			sb.append("<a href='adminBoardsList.admin?board="+boardNum+"&page="+(startNavi-1)+"'>< </a>");
+		}
+		
+		for (int i = startNavi ; i <= endNavi; i++) {
+			if (currentPage == i) {
+
+				sb.append("<a href=\'adminBoardsList.admin?board="+boardNum+"&page="+i+"\'>[" + i + "] </a>");
+			}else {
+
+				sb.append("<a href=\'adminBoardsList.admin?board="+boardNum+"&page="+i+"\'>"+ i +" </a>");
+			}
+		}
+		if (needNext) {
+
+			sb.append("<a href='adminBoardsList.admin?board="+boardNum+"&page="+(endNavi+1)+"'>> </a>");
+		}
+		
+		return sb.toString();
+		
+	}
+	
+	// 보드 1의 댓글 리스트
+	
+	public List<Board1_ReplyDTO> selectBrd1ReplyPage (int page) throws Exception {
+		int startPage = page * 10 - 9;
+		int endPage =  page * 10;
+		
+		String sql = "select * from  (select row_number() over(order by seq) line,"
+				+ " board1_reply.* from board1_reply) where line between ? and ?";
+		
+		List<Board1_ReplyDTO> list = new ArrayList<>();
+		
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, startPage);
+			pstat.setInt(2, endPage);
+			try (
+					ResultSet rs = pstat.executeQuery();
+					){
+				while(rs.next()) {
+					Board1_ReplyDTO b1rdto = new Board1_ReplyDTO();
+					b1rdto.setSeq(rs.getInt("seq"));
+					b1rdto.setWriter(rs.getString("writer"));
+					b1rdto.setContents(rs.getString("contents"));
+					b1rdto.setWrite_date(rs.getTimestamp("write_date"));
+					b1rdto.setGood(rs.getInt("good"));
+					b1rdto.setAgree(rs.getString("agree"));
+					b1rdto.setParent_Seq(rs.getInt("parent_Seq"));
+					list.add(b1rdto);
+				}
+			}return list;
+		}
+		
+	}
+	
+	// 보드 2 댓글 리스트
+	
+	public  List<Board2_replyDTO> selectBrd2ReplyPage (int page) throws Exception {
+		int startPage = page * 10 - 9;
+		int endPage =  page * 10;
+		
+		String sql = "select * from  (select row_number() over(order by seq) line,"
+				+ " board2_reply.* from board2_reply) where line between ? and ?";
+		
+		List<Board2_replyDTO> list = new ArrayList<>();
+		
+		try (
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, startPage);
+			pstat.setInt(2, endPage);
+			try (
+					ResultSet rs = pstat.executeQuery();
+					){
+				while(rs.next()) {
+					Board2_replyDTO b2rdto = new Board2_replyDTO();
+					b2rdto.setSeq(rs.getInt("seq"));
+					b2rdto.setNickname(rs.getString("writer"));
+					b2rdto.setParent_seq(rs.getInt("parent_seq"));
+					b2rdto.setPrice(rs.getLong("price"));
+					b2rdto.setContents(rs.getString("contents"));
+					b2rdto.setWirte_date(rs.getString("write_date"));
+					b2rdto.setChoice(rs.getString("choice").charAt(0));
+					list.add(b2rdto);
+					
+				}
+				
+			}return list;
+		}
+		
+	}
+	
+	// 댓글 토탈 카운트
+	
+	private int getBrdReplyTotalCount (int boardNum) throws Exception {
+		String sql =  "";
+		if (boardNum == 1) {
+			sql = "select count(*) from board1_reply";
+		}else if (boardNum == 2) {
+			sql = "select count(*) from board2_reply";
+		}
+		
+		try (
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				ResultSet rs = pstat.executeQuery();
+				){
+			rs.next();
+			return rs.getInt(1);
+		}
+	}
+	
+	// 댓글 페이지네이션
+	
+	public String getBrdReplyPageNavi(int boardNum, int currentPage) throws Exception {
+		int recordTotalCount = this.getBrdReplyTotalCount(boardNum); 
+		
+		int recordCountPerPage = 10; // 한 페이지에 몇명의 회원
+		
+		int naviCountPerPage = 10; // 한 페이지에 몇개의 네비를 보여줄 것인지
+		int pageTotalCount = 0; // 총 몇개의 페이지가 필요한가?
+		
+		if(recordTotalCount % recordCountPerPage > 0) {
+			pageTotalCount = recordTotalCount / recordCountPerPage +1;
+		}else {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+
+		if(currentPage < 1) {
+			currentPage= 1;
+		}else if(currentPage > pageTotalCount) {
+			currentPage = pageTotalCount;
+		}
+		
+		int startNavi = (currentPage-1) / naviCountPerPage * naviCountPerPage + 1;
+		int endNavi = startNavi + naviCountPerPage - 1;
+		
+		if (endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+		
+		boolean needNext = true;
+		boolean needPrev = true;
+		
+		if (startNavi == 1) {
+			needPrev = false;
+		}
+		
+		if (endNavi == pageTotalCount) {
+			needNext = false;
+		}
+		
+		StringBuilder sb = new StringBuilder();
+
+		
+		if (needPrev) {
+			sb.append("<a href='adminReplysList.admin?board="+boardNum+"&page="+(startNavi-1)+"'>< </a>");
+		}
+		
+		for (int i = startNavi ; i <= endNavi; i++) {
+			if (currentPage == i) {
+
+				sb.append("<a href=\'adminReplysList.admin?board="+boardNum+"&page="+i+"\'>[" + i + "] </a>");
+			}else {
+
+				sb.append("<a href=\'adminReplysList.admin?board="+boardNum+"&page="+i+"\'>"+ i +" </a>");
+			}
+		}
+		if (needNext) {
+
+			sb.append("<a href='adminReplysList.admin?board="+boardNum+"&page="+(endNavi+1)+"'>> </a>");
+		}
+		
+		return sb.toString();
+		
+	}
 	
 	
 	
