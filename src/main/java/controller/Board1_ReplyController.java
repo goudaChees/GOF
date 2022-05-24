@@ -73,6 +73,7 @@ public class Board1_ReplyController extends HttpServlet {
 				response.sendRedirect("/detail.brd1?seq="+parent_Seq);
 				
 			}
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("/error.jsp");
