@@ -55,6 +55,8 @@ public class Board2Controller extends HttpServlet {
 				dao.insert(new Board2DTO(0,nickname,title,contents,item,"0",0));
 			}else if(uri.equals("/modi.brd2")) {
 				
+			}else if(uri.equals("")) {
+				
 			}
 			}catch (Exception e) {
 			e.printStackTrace();
