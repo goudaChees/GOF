@@ -22,9 +22,9 @@
 
 </head>
 <body>
-	<div class="container w-100">
-		<div class="row" id=header>
-			<div class="col-12">
+	<div class="container">
+		<div class="row w-100 m-0" id=header>
+			<div class="col-12 p-0">
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
 					<div class="container-fluid">
@@ -74,8 +74,8 @@
 		</div>
 
 		<div class="row w-100 m-0" id="content">
-			<div class="d-none d-lg-block col-2"></div>
-			<div class="col-12 col-lg-8">    
+			<div class="d-none d-lg-block col-3"></div>
+			<div class="col-12 col-lg-6">    
 				<div class="row w-100 m-0" id="PageOutline">
 					<div class="col-12">
 						<div class="row w-100 m-0" id="board2_title">

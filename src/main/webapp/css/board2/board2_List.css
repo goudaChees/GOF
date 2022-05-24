@@ -65,6 +65,7 @@ button:hover{
 
 input#search{
 	height:25px;
+	width:100%;
 }
 
 #title_limit{
