@@ -102,7 +102,6 @@
 					</div>
 				</div>
 				<div class="row" id="replywriter">
-					<c:if test="${cck == false && wck == false}">
 						<form action="/write.brd2_reply" method="post">
 							<div class="row">
 								<div class="col-12">
@@ -123,7 +122,6 @@
 								</div>
 							</div>
 						</form>
-					</c:if>
 					<!-- 				댓글 작성 한적이 없거나 선택되지 않았다면 뎃글 작성 가능 -->
 				</div>
 	<c:if test="${crdto != null}">
@@ -179,11 +177,14 @@
 
 
 	<script>
+	window.onload = function(){
+		if(${cck == false && wck == false}){
+		$("#contents").attr("readonly",true);
+		$("#contents").attr("placeholder","댓글은 한 게시물 당 한 개만 작성이 가능합니다.");
+		$("#wprice").attr("readonly",true);
+		}
 	const end = function(text){
 		if($("#limit").text()=='종료'){
-		$("#replywriter").css("display","none");
-		$("#wprice").css("display","none");
-		$("#contents").css("display","none");
 		$("#btn1").css("display","none");
 		$("#modi").css("display","none");
 		$(".choice").css("display","none");
@@ -309,7 +310,7 @@
 	        let dateObj = new Date(time);
 	        dateObj.setMinutes(dateObj.getMinutes() +10);
 			countDownTimer("limit", dateObj);
-	        
+	}
 	</script>
 </body>
 </html>
