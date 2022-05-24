@@ -69,7 +69,7 @@
 		</div>
 		<div class="row">
 			<div class="col-12">
-				<input type="text" name="title" placeholder="제목을 작성해주세요">
+				<input type="text" name="title" placeholder="제목을 작성해주세요" id="title" maxlength="100">
 			</div>
 		</div>
 		<div class="col-12">
@@ -79,7 +79,7 @@
 			<div class="col-2">
 			</div>
 			<div class="col-8">
-				<textarea id="summernote" name="contents"></textarea>
+				<textarea id="summernote" name="contents" maxlength="4000"></textarea>
 			</div>
 			<div class="col-2">
 			</div>
@@ -88,10 +88,10 @@
 			<div class="col-8">
 			</div>
 			<div class="col-2">
-				<button type="submit">작성하기</button>
+				<button type="submit" id="submit">작성하기</button>
 			</div>
 			<div class="col-2">
-				<button type="button" id="bkack">취소하기</button>
+				<button type="button" id="back">취소하기</button>
 			</div>
 		</div>
 		<div class="row">
@@ -116,6 +116,14 @@
 			['insert', ['link']],
 		  ]
 		});
+		$("#submit").on("click",function(){
+			if($("#summernote").val()=='' && $("#title").val()==''){
+				alert("제목, 내용은 필수 입력 사항입니다.");
+		    	 return false;
+			}
+			
+		})
+		
 	  </script>
 </body>
 </html>
