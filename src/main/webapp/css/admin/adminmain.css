@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+div {
+	text-align: center;
+}
+
+.container{
+	max-width: 100%; 
+	padding: 0; 
+	margin: 0; 
+	position: relative;
+}
+
+#header{
+	border-bottom: 5px solid #9D8189;
+	z-index:5;
+}
+
+#content{
+	margin:0;
+	padding-top: 3%;
+	padding-bottom: 3%;
+	min-height: 95vh;
+	max-width: 100%; 
+	background-color:#C0ADB3;
+	position: relative;
+}
+
+#AdminPageOutLine{
+	padding:2%;
+	height:100%;
+	border-radius: 15px;
+	background-color: #FFF4EF;
+	
+}
+
+#AdminPageHeader{
+	padding-top:10px;
+	height:100px;
+	text-align:left;
+}
+
+#AdminPageHeader .col-12{
+	color: #806c71;
+	text-align:left;
+	position:relative;
+}
+
+#AdminPageHeader ul{
+	position:absolute;
+	left:13px;
+	bottom:-3px;
+	width:100%;
+}
+
+#AdminPageHeader li{
+	margin-right:5px;
+	min-width:30%;
+	max-width:40%;
+	font-size:15px;
+}
+
+#AdminPageHeader .nav-link{
+	padding-left:3px;
+	padding-right:3px;
+	border: 1px solid transparent;
+	border-radius: 8px;
+	background-color: #B4C8BC;
+	color:white;
+	text-align:center;
+}
+
+#AdminPageHeader .active{
+	background-color: #D8E2DC;
+	color:#516D5C;
+}
+
+#memberManagement{
+	margin:0%;
+	padding:2%;
+	height:80%;
+	border: 5px solid #D8E2DC;
+	border-radius: 15px;
+	background-color:white;
+	overflow:hidden;
+	position:relative;
+	z-index:5;
+	
+}
+
+#memberManagement>.col-12{
+	height:100%;
+	overflow-y:auto;
+}
+
+#memberManagement .row{
+	border-bottom:1px solid #F4ACB7;
+	color:#735960;
+	line-height:40px;
+}
+
+
+
+
+
