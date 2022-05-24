@@ -26,20 +26,21 @@
 }
 
 div {
-border: 1px solid black;
-text-align: center;
-margin: 0px;
+	border: 1px solid black;
+	text-align: center;
+	margin: 0px;
 }
 
-#graph>div{
-float:left;
+#graph>div {
+	float: left;
 }
 
-#agreeRatio{
-background-color: aqua;
+#agreeRatio {
+	background-color: aqua;
 }
-#disagreeRatio{
-background-color:bisque;
+
+#disagreeRatio {
+	background-color: bisque;
 }
 </style>
 </head>
@@ -71,104 +72,111 @@ background-color:bisque;
 			</div>
 		</nav>
 	</div>
-<!-- 게시글--------------------------------------------------------------------------------------------- -->
-	<div id="viewContainer"  style="width:70%; margin: auto;">
+	<!-- 게시글--------------------------------------------------------------------------------------------- -->
+	<div id="viewContainer" style="width: 70%; margin: auto;">
 		<div id="board_vIew" class="row">
-		<div id="title" class="col-10">
-		${dto.title }
-		</div>
-		<div id="view_Count" class="col-2">
-		${dto.view_count }
-		</div>	
-		<div id="img_Box" class="col-5">
-			<img src="files/${dto.fileName }" style="width: 100% ; height: 100%;" >
-		</div>
-		<div id="contents_Box" class="col-7">
-			<div id="item">${dto.item}</div>
-			<div id="contents">${dto.contents}</div>
-		</div>
-		<div id="item_price">전체 금액 : ${dto.item_price}</div>
-		<div>
-			<div id="graph" style="width:70%; margin:auto;">
-				<div style="width:${agreeRatio}%;height:10px" id="agreeRatio"></div><div style="width:${disagreeRatio}%;height:10px" id="disagreeRatio"></div>
+			<div id="title" class="col-10">${dto.title }</div>
+			<div id="view_Count" class="col-2">${dto.view_count }</div>
+			<div id="img_Box" class="col-5">
+				<img src="files/${dto.fileName }" style="width: 100%; height: 100%;">
 			</div>
-		<form action="/write.brd1_reply">
-			<input type="hidden" name="parent_seq" value=${dto.seq }>
-				<div id="radio" style="margin-top:10px;">				
-					<input type="radio" value="승인" name="agree"  checked>승인 : ${dto.agree_count }
-					<input type="radio" value="불가" name="agree">불가 : ${dto.disagree_count }
+			<div id="contents_Box" class="col-7">
+				<div id="item">${dto.item}</div>
+				<div id="contents">${dto.contents}</div>
+			</div>
+			<div id="item_price">전체 금액 : ${dto.item_price}</div>
+			<div>
+				<div id="graph" style="width: 70%; margin: auto;">
+					<div style="width:${agreeRatio}%;height:10px" id="agreeRatio"></div>
+					<div style="width:${disagreeRatio}%;height:10px" id="disagreeRatio"></div>
 				</div>
+				<form action="/write.brd1_reply">
+					<input type="hidden" name="parent_seq" value=${dto.seq }>
+					<div id="radio" style="margin-top: 10px;">
+						<input type="radio" value="승인" name="agree" checked>승인 :
+						${dto.agree_count } <input type="radio" value="불가" name="agree">불가
+						: ${dto.disagree_count }
+					</div>
 			</div>
-<!-- 	댓글------------------------------------------------------------------------- -->
-<!-- 댓글 작성--------------------------------------------------------------------------->
+			<!-- 	댓글------------------------------------------------------------------------- -->
+			<!-- 댓글 작성--------------------------------------------------------------------------->
 			<div id="replyWriteContainer">
 				<div id="reply_Write" class="row">
-					<div id="right" style="border:0px" class="col-9">	
-						<div style="border:0px;text-align: left;" id="writer" >
-							${nickname}
-						<input type="hidden" name="nickname" value=${nickname }>
+					<div id="right" style="border: 0px" class="col-9">
+						<div style="border: 0px; text-align: left;" id="writer">
+							${nickname} <input type="hidden" name="nickname"
+								value=${nickname }>
 						</div>
-						<div  style="border:0px">
-							<input type="text" placehold="왜 그렇게 생각하나요?" style="width: 100%;" name="contents" id="contents_reply">
-						</div>				
+						<div style="border: 0px">
+							<input type="text" placehold="왜 그렇게 생각하나요?" style="width: 100%;"
+								name="contents" id="contents_reply">
+						</div>
 					</div>
-					<div id="left" class="col-3" style="border:0px">
+					<div id="left" class="col-3" style="border: 0px">
 						<input type="submit" value="reply" id="reply">
 					</div>
 				</div>
 			</div>
 			<div id="btns" style="text-align: right;">
-			<hr>
-		</form>
-<!-- --댓글 View------------------------------------------------------------------------------ -->
-		<c:forEach var="i" items="${list }">
-			<form action="/modify.brd1_reply">
-				<div calss="replyViewcontainer" class="row">
-					<div class="col-2">
-						<div><img src="/img/${i.agree}.png" style="width:80%"></div>
-						<div class="radio" style="margin-top:10px; display:none">				
-							<input type="radio" name="agree_re" value="승인">승인
-							<input type="radio" name="agree_re" value="불가">불가
+				<hr>
+				</form>
+				<!-- --댓글 View------------------------------------------------------------------------------ -->
+				<c:forEach var="i" items="${list }">
+					<form action="/modify.brd1_reply">
+						<div calss="replyViewcontainer" class="row">
+							<div class="col-2">
+								<div>
+									<img src="/img/${i.agree}.png" style="width: 80%">
+								</div>
+								<div class="radio" style="margin-top: 10px; display: none">
+									<input type="radio" name="agree_re" value="승인">승인 <input
+										type="radio" name="agree_re" value="불가">불가
+								</div>
+							</div>
+							<div class="col-8">
+								<div class="writer">작성자 : ${i.writer }</div>
+								<input type="text" name="reply_contents" value='${i.contents }'
+									readonly> <input type="hidden" name="replySeqToUpdate"
+									value=${i.seq }> <input type="hidden"
+									name="parent_seq2" value=${dto.seq }>
+								<div>${i.write_date }</div>
+							</div>
+							<div class="col-2">
+								<c:if test="${i.writer==nickname}">
+									<div class="reply_btns">
+										<input type="hidden" name="preAgree" value=${i.agree }>
+										<input type="button" value="수정" class="modify_btn"> <input
+											type="button" value="삭제" class="delete_btn">
+									</div>
+								</c:if>
+								<div>좋아요</div>
+							</div>
 						</div>
-					</div>
-					<div class="col-8">
-						<div class="writer">작성자 : ${i.writer }</div>
-						<input type="text" name="reply_contents" value=${i.contents } readonly>
-						<input type="hidden" name="replySeqToUpdate" value=${i.seq }>
-						<input type="hidden" name="parent_seq2" value=${dto.seq }>
-						<div>${i.write_date }</div>
-					</div>
-					<div class="col-2">
-					<c:if test="${i.writer==nickname}">
-						<div class="reply_btns">
-							<input type="hidden" name="preAgree" value=${i.agree }>
-							<input type="button" value="수정" class="modify_btn">
-							<input type="button" value="삭제" class="delete_btn">
-						</div>
-					</c:if>
-						<div>
-							좋아요
-						</div>
-					</div>	
-				</div>
-			</form>
-		</c:forEach>
-<!-- 게시글 목록, 수정, 삭제 버튼---------------------------------------------------------- -->
-			<input type="button" id="toList" value="목록으로">
-			<c:if test="${nickname==dto.writer }">
-				<input type="button" id="modify" value="수정하기">
-				<input type="button" id="delete" value="삭제하기">
-			</c:if>
-		</div>
+					</form>
+				</c:forEach>
+				<!-- 게시글 목록, 수정, 삭제 버튼---------------------------------------------------------- -->
+				<input type="button" id="toList" value="목록으로">
+				<c:if test="${nickname==dto.writer }">
+					<input type="button" id="modify" value="수정하기">
+					<input type="button" id="delete" value="삭제하기">
+				</c:if>
+			</div>
 		</div>
 	</div>
 	<div class="row w-100 m-0" id="footer">
 		<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
 	</div>
-	<div ></div>
+	<div></div>
 
 	<script>
 	<!--  게시글 script-------------------------------------------------------------------- -->
+
+	window.onload = function(){		
+		if(${didIDwrite}){
+			$("#contents_reply").attr("readonly",true);
+			$("#contents_reply").attr("placeholder","댓글은 한 게시물 당 한 개만 작성이 가능합니다.");
+		}	
+	}
 		$("#toList").on("click",function(){
 			location.href="/list.brd1?cpage=1";
 		})
@@ -182,6 +190,8 @@ background-color:bisque;
 			}
 		})
 	<!-- 댓글 script-------------------------------------------------------------------- -->
+
+	
 		$("#reply").on("click",function(){		
 // 			1. 제출 시 radio 체크여부 확인
 			if(!$('input:radio[name="agree"]').is(":checked")){
@@ -243,6 +253,8 @@ background-color:bisque;
 			let board_Seq = $(this).parent().parent().prev().children().eq(3).val(); 
 			location.href="/delete.brd1_reply?seq="+seq+"&board_Seq="+board_Seq;
 		})
+		
+		
 	</script>
 </body>
 </html>

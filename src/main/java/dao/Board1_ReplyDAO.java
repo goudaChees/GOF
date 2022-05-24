@@ -144,4 +144,24 @@ public class Board1_ReplyDAO {
 			}
 		}
 	}
+	
+	public boolean didIDwrite(int seq,String nickname)throws Exception {
+		String sql = "select * from board1_reply where parent_seq=? and writer=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, seq);
+			pstat.setString(2, nickname);
+			try(
+				ResultSet rs = pstat.executeQuery();
+					){
+				if(rs.next()) {
+					return true;
+				}
+				
+				return false;
+			}
+		}
+	}
 }

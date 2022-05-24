@@ -113,7 +113,7 @@ public class Board1Controller extends HttpServlet {
 			}else if(uri.equals("/detail.brd1")) {//게시글 보기
 				int seq =  Integer.parseInt(request.getParameter("seq"));//게시글 seq 가져오기
 				String nickname = (String) session.getAttribute("loginNN");//닉네임 가져오기
-
+				
 				//1.전 페이지 참고해서 view_Count 올리기
 				String referer = request.getHeader("referer");
 				if(referer.contains("http://localhost/list.brd1")) {
@@ -123,12 +123,15 @@ public class Board1Controller extends HttpServlet {
 				//2. 게시글 정보 담기
 				Board1DTO dto = dao.selectBySeq(seq);//seq에 따른 contents 출력
 				request.setAttribute("dto", dto);//출력된 contents dto에 저장
-
+				
 				//3. 댓글 정보 담기
 				List<Board1_ReplyDTO> list = rdao.selectReplyByParentSeq(seq);//부모 seq에 따른 댓글 목록 출력
 				request.setAttribute("list", list);//댓글 목록 list에 담기
 
-				//3. 차트를 위한 결과값 뽑기
+				boolean didIDwrite = rdao.didIDwrite(seq,nickname);//해당 게시글에 댓글을 달았는지 검사
+				System.out.println("did : "+ didIDwrite);
+				
+				//4. 차트를 위한 결과값 뽑기
 
 				double agreeRatio=0;
 				double disagreeRatio=0;
@@ -155,6 +158,7 @@ public class Board1Controller extends HttpServlet {
 				request.setAttribute("disagreeRatio", disagreeRatio);
 				request.setAttribute("nickname", nickname);
 				request.setAttribute("dto", dto);
+				request.setAttribute("didIDwrite", didIDwrite);
 
 
 				request.getRequestDispatcher("/board1/board1_DetailView.jsp").forward(request, response);
