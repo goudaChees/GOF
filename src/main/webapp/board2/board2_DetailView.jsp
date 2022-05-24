@@ -191,6 +191,13 @@
 		}
 	};
  	setInterval(end, 1000);
+ 	$("#btn1").on("click",function(){
+ 		if($("#wprice").val()=='' || $("#contents").val()==''){
+ 			alert("가격,내용은 필수 입력 사항입니다.");
+	    	 return false;
+ 		}
+ 		
+ 	})
 	$("#del").on("click",function(){
 		result = window.confirm("정말 삭제하시겟습니까?");
 		if(result){
