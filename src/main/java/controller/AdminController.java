@@ -177,6 +177,44 @@ public class AdminController extends HttpServlet {
 					request.getRequestDispatcher("/admin/adminReply2List.jsp").forward(request, response);
 						
 				}
+			}else if (uri.equals("/searchBrdReply.admin")) {
+				int board = 1;
+				if (request.getParameter("board") != null ) {
+					board = Integer.parseInt(request.getParameter("board"));
+				}
+				
+				int page = 1;
+				if (request.getParameter("page") != null) {
+					page = Integer.parseInt(request.getParameter("page"));
+				}
+				
+				int searchCategory = Integer.parseInt(request.getParameter("searchCategory"));
+				String toSearch = request.getParameter("toSearch");
+				
+				if (board == 1) {
+					List<Board1_ReplyDTO> listR1 = adao.brd1ReplySearch(toSearch, searchCategory, page); 
+					String  searchPage = adao.getBrdReplySearchPageNavi(page, searchCategory, board, toSearch);
+					
+					request.setAttribute("listR1", listR1);
+					request.setAttribute("searchCategory", searchCategory);
+					request.setAttribute("toSearch", toSearch);
+					request.setAttribute("pageNavi", searchPage);
+					
+					request.getRequestDispatcher("/admin/adminReply1List.jsp?board=1&page=1").forward(request, response);
+					
+				}else if (board == 2) {
+					List<Board2_replyDTO> listR2 = adao.brd2ReplySearch(toSearch, searchCategory, page);
+					String searchPage = adao.getBrdReplySearchPageNavi(page, searchCategory, board, toSearch);
+					
+					request.setAttribute("listR2", listR2);
+					request.setAttribute("searchCategory", searchCategory);
+					request.setAttribute("toSearch", toSearch);
+					request.setAttribute("pageNavi", searchPage);
+					
+					request.getRequestDispatcher("/admin/adminReply2List.jsp?board=2&page=1").forward(request, response);
+					
+				}
+				
 			}
 				
 
