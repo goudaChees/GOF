@@ -155,6 +155,7 @@
 
 	</div>
 	<script>
+	window.onload=function(){
 		const countDownTimer = function(id, date) {
 			let _vDate = new Date(date);
 			// 전달 받은 일자 
@@ -196,22 +197,24 @@
 		// 		countDownTimer('sample03', '04/01/2024');
 		// 2024년 4월 1일까지 countDownTimer('sample04', '04/01/2019');
 		// 2024년 4월 1일까지
-		 
+		if(${category}!=null){	 
 		let mystring='';
-		if(${category}==title){
+ 		if(${category}==title){
 			
-			let	SearchString = ${serch};
+ 			let	SearchString = ${serch};
 
-		}else if(${category} == writer){
+ 		}else if(${category} == writer){
 
-			let	SearchString = ${serch};
+ 			let	SearchString = ${serch};
+ 		}
+
+ 		let regex = new RegExp(SearchString, "g");
+  		for(let i = 0; i<$(".title").length;i++){
+ 			mystring=$(document.querySelectorAll(".title")[i]).val();
+ 			mystring.replace(regex, "<em class='highlight'>" + SearchString + "</em>");
+ 		}
 		}
-
-		let regex = new RegExp(SearchString, "g");
- 		for(let i = 0; i<$(".title").length;i++){
-			mystring=$(document.querySelectorAll(".title")[i]).val();
-			mystring.replace(regex, "<em class='highlight'>" + SearchString + "</em>");
-		}
+	}
 	</script>
 
 </body>
