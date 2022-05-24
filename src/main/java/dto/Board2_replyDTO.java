@@ -6,9 +6,9 @@ public class Board2_replyDTO {
 	private int parent_seq;
 	private Long price;
 	private String contents;
-	private String wirte_date;
+	private String write_date;
 	private char choice;
-	public Board2_replyDTO(int seq, String nickname, int parent_seq, Long price, String contents, String wirte_date,
+	public Board2_replyDTO(int seq, String nickname, int parent_seq, Long price, String contents, String write_date,
 			char choice) {
 		super();
 		this.seq = seq;
@@ -16,7 +16,7 @@ public class Board2_replyDTO {
 		this.parent_seq = parent_seq;
 		this.price = price;
 		this.contents = contents;
-		this.wirte_date = wirte_date;
+		this.write_date = write_date;
 		this.choice = choice;
 	}
 	public Board2_replyDTO() {
@@ -52,11 +52,11 @@ public class Board2_replyDTO {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	public String getWirte_date() {
-		return wirte_date;
+	public String getWrite_date() {
+		return write_date;
 	}
 	public void setWirte_date(String wirte_date) {
-		this.wirte_date = wirte_date;
+		this.write_date = wirte_date;
 	}
 	public char getChoice() {
 		return choice;
