@@ -184,10 +184,10 @@ public class Board2_replyDAO {
 		
 	}
 
-	public int update(int price, String contents, int seq) throws Exception {
+	public int update(Long price, String contents, int seq) throws Exception {
 		String sql = "update board2_reply set price=?,contents=? where seq=?";
 		try (Connection con = this.getConnection(); PreparedStatement stat = con.prepareStatement(sql);) {
-			stat.setInt(1, price);
+			stat.setLong(1, price);
 			stat.setString(2, contents);
 			stat.setInt(3, seq);
 			int result = stat.executeUpdate();

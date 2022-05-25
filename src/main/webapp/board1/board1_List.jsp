@@ -87,8 +87,8 @@
 										<div class="row w-100 writing">
 											<div class="col-3">
 												<div class="thumbnail">
-													<img src="files/${i.fileName }">
-												</div>
+													<img src="/img/돼지.png"  id="${i.seq}">
+												</div> 
 											</div>
 											<div class="col-9">
 												<div class="row">
@@ -114,15 +114,15 @@
 				</div>
 			</div>
 		</div>
+		<div class="row w-100 m-0" id="footer">
+			<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
+		</div>
 	</div>
 	
 	<script>
-	
-		window.onload = function(){		
-		if(${nickname==null}){
-			location.href="/index.jsp"
+		window.onload=function(){
+			$("#169").css("src","/img/돼지.png")
 		}
-		})
 		
 		$("#write").on("click",function(){
 			if(${nickname==null}){

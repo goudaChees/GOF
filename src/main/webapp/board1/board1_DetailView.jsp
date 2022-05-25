@@ -222,10 +222,7 @@ div {
 				$("#contents_reply").attr("readonly",true);
 				$("#contents_reply").attr("placeholder","댓글은 한 게시물 당 한 개만 작성이 가능합니다.");
 			}
-			
-			for(let i=0;i<${list.size()};i++){
-				console.log(${list[i].seq})
-			}
+
 		}
 		 
 		
@@ -248,8 +245,7 @@ div {
 			if(result){
 				location.href="/delete.brd1?seq=${dto.seq}";
 			}
-			
-		
+
 		})
 		
 		

@@ -25,7 +25,7 @@
 			<div class="col-12">
 				<nav class="navbar navbar-expand-md navbar-light bg-light">
 					<div class="container-fluid">
-						<a class="navbar-brand" href="/index.jsp" style="color:#664E55">앞날의 지침</a>
+						<a class="navbar-brand" href="/index.jsp" style="color:#664E55"><img src="/img/logo.png" id="logo"></a>
 						<button class="navbar-toggler" type="button"
 							data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 							aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -38,9 +38,9 @@
 								<c:choose>
 									<c:when test="${loginID =='admin'}">
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">지출의 참견</a></li>
+											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd2" style="color:#664E55">선택의 참견</a></li>
+											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
@@ -50,9 +50,9 @@
 									</c:when>
 									<c:when test="${loginID !=null}">
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">지출의 참견</a></li>
+											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd2" style="color:#664E55">선택의 참견</a></li>
+											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active" 
@@ -62,9 +62,9 @@
 									</c:when>
 									<c:otherwise>
 										<li class="nav-item nonMember"><a class="nav-link active"
-											aria-current="page" href="#" style="color:#664E55">지출의 참견</a></li>
+											aria-current="page" href="#" style="color:#664E55">살까말까</a></li>
 										<li class="nav-item nonMember"><a class="nav-link active"
-											aria-current="page" href="#" style="color:#664E55">선택의 참견</a></li>
+											aria-current="page" href="#" style="color:#664E55">최저가경매</a></li>
 										<li class="nav-item nonMember"><a class="nav-link active"
 											aria-current="page" href="#" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
@@ -79,14 +79,12 @@
 		</div>
 		
 		<div class="row w-100 m-0" id="content">
-			<div class="d-none d-lg-block col-12 bills">
-				<img src="/img/tmp_indexL.png" id="billsPic1">
-			</div>
-			<div class="d-none d-lg-block col-12 bills">
-				<img src="/img/tmp_indexW.png" id="billsPic2">
+			<div class="col-12">
+				<img src="/img/Main.png" id="bgImg">
 			</div>
 			<div class="col-12" id="loginArea">
-				<h1>Blah Blah</h1>
+				<img src="/img/loginBg.png" class="d-none d-lg-block" id="loginBg">
+				<img src="/img/mloginBg.png" class="d-block d-lg-none" id="mloginBg">
 				<c:choose>
 					<c:when test="${loginID !=null}">
 						<div class="row">
@@ -112,9 +110,6 @@
 						</form>
 					</c:otherwise>
 				</c:choose>
-			</div>
-			<div class="col-12">
-				<img src="/img/tmp_indexpig.png" id="pigpic">
 			</div>
 		</div>
 

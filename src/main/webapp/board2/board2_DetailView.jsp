@@ -108,7 +108,7 @@
 									<div class="row">
 										<div class="col-3">
 											<input type="text" id="writer" value="${loginNN}" style="display: none"> 
-												<input type="text" placeholder="ex)1000" name="price" id="wprice" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /> 
+												<input type="text" placeholder="ex)1000" maxlength="10" name="price" id="wprice" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /> 
 												<input type="text" name="pseq" value="${dto.seq}" style="display: none">
 												<div id="wpriceno"></div>
 										</div>
