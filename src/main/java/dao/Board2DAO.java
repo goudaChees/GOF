@@ -45,6 +45,7 @@ public class Board2DAO {
 		ArrayList<Board2DTO> arr = new ArrayList<>();
 		try (Connection con = this.getConnection();
 				PreparedStatement stat = con.prepareStatement(sql);
+				ResultSet rs = stat.executeQuery();){
 			while (rs.next()) {
 				int seq = rs.getInt("seq");
 				String writer = rs.getString("writer");
