@@ -3,7 +3,9 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -93,6 +95,16 @@ public class Board2DAO {
 			con.commit();
 		}
 
+	}
+	public boolean istimeover(Board2DTO dto) throws Exception{
+		Date wdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dto.getWrite_date());
+		Date overdate = new Date();
+		
+		long diffMin = (overdate.getTime() - wdate.getTime()) / 60000; //분 차이
+		if(diffMin>10) {
+			return true;
+		}
+		return false;
 	}
 
 	// 뷰 카운트

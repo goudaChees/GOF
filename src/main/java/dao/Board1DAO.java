@@ -152,7 +152,6 @@ public class Board1DAO {
 					ResultSet rs = pstat.executeQuery();
 					){
 				rs.next();
-				System.out.println("rs.getInt(1) : " + rs.getInt(1));
 				return rs.getInt(1);
 			}
 		}
@@ -160,7 +159,6 @@ public class Board1DAO {
 
 	public String getNavi(int cpage,int searchCategory,String searchTarget)throws Exception {
 		int recoardTotalCount = 0;
-		System.out.println(searchCategory);
 		if(searchCategory>0) {
 			recoardTotalCount = this.getRecordCountBySearch(searchCategory,searchTarget);
 		}else {
@@ -170,7 +168,6 @@ public class Board1DAO {
 
 
 		this.getRecordTotalCount(); //전체 레코드 수
-		System.out.println("recoardTotalCount : "+ recoardTotalCount);
 		int racordPerPage = 10; // 페이지 당 레코드
 		int naviCountPerPage = 10; //페이지 당 네비 수
 		int pageTotalCount =0;// 전체 필요 네비  수
@@ -430,7 +427,6 @@ public class Board1DAO {
 			return result;
 		}
 	}
-	
 	public int subtractReplyCount(int seq)throws Exception {
 		String sql = "update board1 set reply_count=reply_count-1 where seq=?";
 		try(
@@ -443,4 +439,5 @@ public class Board1DAO {
 			return result;
 		}
 	}
+
 }

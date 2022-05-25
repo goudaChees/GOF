@@ -72,6 +72,7 @@ public class Board2Controller extends HttpServlet {
 				int seq = Integer.parseInt(request.getParameter("seq"));
 				String loginNN = (String) session.getAttribute("loginNN");
 				Board2DTO dto = dao.contents(seq);
+				 
 				request.setAttribute("dto", dto);
 				// 글보기
 				dao.count(seq, dto.getView_count());
@@ -81,16 +82,18 @@ public class Board2Controller extends HttpServlet {
 				// 댓글보기
 				request.setAttribute("loginNN", loginNN);
 				
+				
 				boolean cck = rdao.ischoice(seq);
 				// 선택체크 선택되어 있다면 true
-				boolean wck = rdao.iswrite(rdto,seq);
+				boolean wck = rdao.iswrite(seq,loginNN);
 				// 작성여부 체크 작성한적이 있다면 true
 				
+				boolean timeover = dao.istimeover(dto);
 				if(cck) {
 					Board2_replyDTO crdto = rdao.choiceReply(seq);
 					request.setAttribute("crdto", crdto);
 				}
-				
+				request.setAttribute("timeover", timeover);
 				request.setAttribute("cck", cck);
 				request.setAttribute("wck", wck);
 				request.getRequestDispatcher("/board2/board2_DetailView.jsp").forward(request, response);
@@ -121,8 +124,6 @@ public class Board2Controller extends HttpServlet {
 				request.setAttribute("navi", pageNavi);
 				request.setAttribute("dto", dto);
 				request.getRequestDispatcher("/board2/board2_List.jsp").forward(request, response);
-				
-			}else if(uri.equals("")) {
 				
 			}
 		} 
