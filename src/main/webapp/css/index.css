@@ -17,50 +17,59 @@ div {
 }
 
 #header{
-	border-bottom: 5px solid #F4ACB7;
+	border-bottom: 5px solid #A2BAAC;
 	z-index:5;
 }
 
+#logo{
+	height:45px;
+}
+
 #content{
-	background-color: #FFD5DD;
 	height: 95vh;
 	position: relative;
 	overflow:hidden;
 }
 
-#content .bils {
+#loginArea{
 	position: relative;
 }
-#billsPic1{
+
+#bgImg {
 	position: absolute;
-	left: 0%;
-	bottom:0%;
-	max-width:30%;
+	object-fit:cover;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	z-index:-2;
 }
-#billsPic2{
+
+#loginBg{
 	position: absolute;
-	right: 0%;
-	top:0%;
-	max-width:30%;
+	left: 52.5%;
+    top: 15%;
+    transform: translate(-50%, -50%);
+	width:550px;
+	z-index:-1;
+}
+
+#mloginBg{
+	position: absolute;
+	left: 52.5%;
+    top: 12%;
+    transform: translate(-50%, -50%);
+	width:550px;
+	z-index:-1;
+}
+
+#loginArea input{
+	margin-bottom: 15px;
 }
 
 #id, #pw{
 	border: 1px solid transparent;
 	border-radius: 5px;
-}
-
-#content h1{
-	margin-top: 15%;
-	margin-bottom: 5%;
-	color:#664E55;
-}
-
-#loginArea{
-	position: absolute;
-}
-
-#loginArea input{
-	margin-bottom: 15px;
 }
 
 #login, #joinbtn{
@@ -76,19 +85,6 @@ div {
 
 #login:hover, #joinbtn:hover{
 	background-color: #FFF4EF95;
-}
-
-
-#content>col-12:last-child{
-	position: relative;
-}
-
-#pigpic{
-	position: absolute;
-	right:8%;
-	bottom:-8%;
-	width:30%;
-	min-width:350px;
 }
 
 #footer{
