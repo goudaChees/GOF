@@ -1,5 +1,43 @@
 @charset "UTF-8";
 
+
+#board2List{
+	margin:0%;
+	padding:2%;
+	padding-top:2%;
+	padding-bottom:3%;
+	border: 5px solid #FEDDE1;
+	border-radius: 15px;
+	background-color: #FEDDE1;
+	position:relative;
+	height: 65vh;
+
+}
+
+
+#header_title>div{
+	color: #806c71;
+	text-align:left;
+	position:relative;
+	height:100px;
+}
+
+#note_content{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	max-height: 300px;
+	height:70%;
+}
+
+.note-statusbar{
+	display:none;
+}
+
+
+input:focus {outline:1px solid #F4ACB7;}
+
+
+
 * {
 	box-sizing: border-box;
 }
@@ -51,6 +89,8 @@ div {
 	border-radius:15px;
 	width: 100%;
 	margin-top: 10px;
+	padding:1%;
+	
 }
 
 #board2Header{
@@ -112,19 +152,7 @@ div {
 	background-color: #FF4ACB10;
 }
 
-#board2List{
-	margin:0%;
-	padding:2%;
-	padding-top:3%;
-	padding-bottom:3%;
-	min-height:50%;
-	border: 5px solid #FEDDE1;
-	border-radius: 15px;
-	background-color: #FEDDE1;
-	position:relative;
-	
-	max-height: 80%;
-}
+
 
 #board2List>.col-12{
 	height:100%;
@@ -141,6 +169,7 @@ div {
 	border: 3px solid #F193A199;
 	border-radius: 20px;
 	width:90px;
+	margin-top:2%;
 }
 
 .write:hover{
@@ -157,7 +186,6 @@ div {
 	border-radius:3px;
 	max-height:13vh;
 }
-
 
 
 #board2List a{
@@ -194,8 +222,12 @@ div {
 	color:white;
 }
 
+.note-editable{
+	height: 37vh !important ;
+}
 
 
-input:focus {outline:1px solid #F4ACB7;}
+
+
 
 
