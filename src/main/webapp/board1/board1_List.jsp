@@ -114,6 +114,9 @@
 				</div>
 			</div>
 		</div>
+		<div class="row w-100 m-0" id="footer">
+			<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
+		</div>
 	</div>
 	
 	<script>
