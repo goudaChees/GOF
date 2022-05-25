@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 * {
 	box-sizing: border-box;
 }
@@ -30,41 +31,40 @@ div {
 	position: relative;
 }
 
-#AdminPageOutLine{
+#MyPageOutline{
 	padding:2%;
 	height:100%;
 	border-radius: 15px;
 	background-color: #FFF4EF;
-	
 }
 
-#AdminPageHeader{
+#MyPageHeader{
 	padding-top:10px;
 	height:100px;
 	text-align:left;
 }
 
-#AdminPageHeader .col-12{
+#MyPageHeader .col-12{
 	color: #806c71;
 	text-align:left;
 	position:relative;
 }
 
-#AdminPageHeader ul{
+#MyPageHeader ul{
 	position:absolute;
 	left:13px;
-	bottom:-3px;
+	bottom:-5px;
 	width:100%;
 }
 
-#AdminPageHeader li{
+#MyPageHeader li{
 	margin-right:5px;
-	min-width:30%;
-	max-width:40%;
+	min-width:20%;
+	max-width:28%;
 	font-size:15px;
 }
 
-#AdminPageHeader .nav-link{
+#MyPageHeader .nav-link{
 	padding-left:3px;
 	padding-right:3px;
 	border: 1px solid transparent;
@@ -74,48 +74,73 @@ div {
 	text-align:center;
 }
 
-#AdminPageHeader .active{
+#MyPageHeader .active{
 	background-color: #D8E2DC;
 	color:#516D5C;
 }
 
-#memberManagement{
+#MyPage{
 	margin:0%;
 	padding:2%;
 	height:80%;
 	border: 5px solid #D8E2DC;
 	border-radius: 15px;
-	background-color:white;
+	background-color: white;
 	overflow:hidden;
 	position:relative;
 	z-index:5;
-	font-weight:bolder;
-	
 }
 
-#memberManagement .col-12{
+#MyPage form{
 	height:100%;
-	overflow-y:auto;
+	padding-top:5%;
 }
 
-#memberManagement .row{
-	border-bottom:1px solid #D8E2DC;
-	color:#516D5C;
-	line-height:40px;
-	
+#MyPageArea{
+	margin:1%;
+	color:#5C474D;
 }
 
-#memberHeader div{
+#MyPageAreaHeader{
 	background-color:#516D5C;
 	font-weight:bolder;
 	font-size:16px;
-	line-height:35px;
+	line-height:40px;
 	color: white;
 }
 
-#memberlistHeader{
+#MyPageArea .col-4{
+	background-color: #D8E2DC;
 	font-weight:bolder;
-	color:#516D5C;
-	
+	line-height:35px;
 }
 
+#MyPageArea .col-8{
+	text-align:left;
+	line-height:35px;
+}
+
+#MyPageArea .row{
+	border-bottom:1px solid #516D5C;
+}
+
+#MyPage button{
+	padding:1%;
+	margin-left:1%;
+	color: #9D8189;
+	font-size:14px;
+	background-color: transparent;	
+	border: 2px solid #516D5C;
+	border-radius: 20px;
+	width:110px;
+}
+
+#MyPage button:hover{
+	background-color: #D8E2DC80;
+	cursor:pointer;	
+}
+
+#footer{
+	background-color: #9D8189;
+	color: white;
+}
