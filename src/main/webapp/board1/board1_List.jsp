@@ -115,7 +115,7 @@ span{
 								</div>
 								<div align="center" class="col-5" class="item">${i.item}</div>
 								<div align="center" class="col-7" class="writer">${i.writer}</div>
-								<div align="center" class="col-12">${i.write_date}</div>
+								<div align="center" class="col-12" class="date">${i.write_date}</div>
 							</div>	
 						</div>
 						<div class="col-">${i.view_count}</div>

@@ -2,7 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -20,6 +21,7 @@ import dao.Board1DAO;
 import dao.Board1_PicDAO;
 import dao.Board1_ReplyDAO;
 import dto.Board1DTO;
+import dto.Board1_GoodDTO;
 import dto.Board1_PicDTO;
 import dto.Board1_ReplyDTO;
 
@@ -32,6 +34,7 @@ public class Board1Controller extends HttpServlet {
 		String uri = request.getRequestURI();
 		response.setCharacterEncoding("utf-8");
 		request.setCharacterEncoding("utf-8");
+		Gson g = new Gson();
 		
 		System.out.println(uri);
 		Board1DAO dao = new Board1DAO();
@@ -257,11 +260,12 @@ public class Board1Controller extends HttpServlet {
 				}
 				response.sendRedirect("/list.brd1?cpage=1");
 			}else if(uri.equals("/isGoodChecked.brd1")) {//해당 게시물에 사용자가 좋아요 누른 댓글 시퀀스 배열로 반환
-				String id = (String) session.getAttribute("loginID");
-				System.out.println("id :" + id);
+				String nickname = (String) session.getAttribute("loginNN");
 				int board1_Seq = Integer.parseInt(request.getParameter("board1_Seq"));
-				System.out.println("board1_Seq : "+ board1_Seq);
-				rdao.isGoodChecked(board1_Seq,id);
+				//해당 게시글의 좋아요 목록 출력
+				List<Board1_GoodDTO> list = rdao.selectGoodBySeq(board1_Seq, nickname);
+				PrintWriter pw = response.getWriter();
+				pw.append(g.toJson(list));
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
