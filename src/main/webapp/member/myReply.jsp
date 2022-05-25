@@ -19,8 +19,8 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row" id="header">
-			<div class="col-12">
+		<div class="row w-100 m-0" id="header">
+			<div class="col-12 p-0">
 				<nav class="navbar navbar-expand-md navbar-light bg-light">
 					<div class="container-fluid">
 						<a class="navbar-brand" href="/index.jsp" style="color: #664E55">앞날의
@@ -84,19 +84,21 @@
 								</div>
 								<div class="row w-100 m-0" id="myreplylist">
 									<div class="col-12 p-0">
-										<div class="row w-100 m-0">
+										<div class="row w-100 m-0 listHeader">
 											<div class="col-12 col-lg-8">내용</div>
 											<div class="d-none d-lg-block col-4">작성일자</div>
 										</div>
 										<c:forEach var='i' items="${replyList }">
-											<div class="row w-100 m-0">
-												<div class="col-8 p-0 d-none d-lg-block">${i.contents }</div>
-												<div class="col-4 p-0 d-none d-lg-block">${i.formed_WriteDate }</div>
-												<div class="col-12 p-0 d-block d-lg-none">${i.contents }</div>
-												<div class="col-12 p-0 d-block d-lg-none">${i.formed_WriteDate }</div>
-											</div>
+											<a href='${link }${i.parent_seq }'>
+												<div class="row w-100 m-0">
+													<div class="col-8 p-0 d-none d-lg-block">${i.contents }</div>
+													<div class="col-4 p-0 d-none d-lg-block">${i.formed_WriteDate }</div>
+													<div class="col-12 p-0 d-block d-lg-none">${i.contents }</div>
+													<div class="col-12 p-0 d-block d-lg-none">${i.formed_WriteDate }</div>
+												</div>
+											</a>
 										</c:forEach>
-										<div class="row w-100 m-0">
+										<div class="row w-100 m-0 listFooter">
 											<div class="col-12">${pageList }</div>
 										</div>
 									</div>
