@@ -119,7 +119,7 @@
 													<div class="col-md-2 d-none d-md-block nickname">${i.nickname}</div>
 													<div class="col time" id="${i.write_date}"  style="display:none">${i.write_date}</div>
 													<div class="col-md-2 d-none d-md-block">${i.view_count}</div>
-													<div class="col-4 col-md-3 limit" id="${i.seq}"></div>
+													<div class="col-4 col-md-3 limit" id="${i.seq}">시간 확인중</div>
 												</div>
 												<div class="row w-100 m-0 writingEtc">
 													<div class="col-12 d-md-none d-md-block">

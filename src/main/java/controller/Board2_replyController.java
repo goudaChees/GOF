@@ -32,7 +32,8 @@ public class Board2_replyController extends HttpServlet {
 			String nickname = (String) session.getAttribute("loginNN");
 			int pseq = Integer.parseInt(request.getParameter("pseq"));
 			String contents = request.getParameter("contents");
-			Long price = (long) Integer.parseInt(request.getParameter("price"));
+			Long price =  Long.parseLong(request.getParameter("price"));
+			
 			dao.insert(new Board2_replyDTO(0,nickname,pseq,price,contents,"0",'Y'));
 			response.sendRedirect("/read.brd2?seq="+pseq);
 		}else if(uri.equals("/choice.brd2_reply")) {
@@ -46,7 +47,7 @@ public class Board2_replyController extends HttpServlet {
 		}else if(uri.equals("/modi.brd2_reply")) {
 			int seq = Integer.parseInt(request.getParameter("rseq"));
 			String contents = request.getParameter("contents");
-			int price = Integer.parseInt(request.getParameter("price"));
+			long price =  Long.parseLong(request.getParameter("price"));
 			dao.update(price, contents, seq);
 		}
 			
