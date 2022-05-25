@@ -50,24 +50,24 @@ public class Board2_replyDAO {
 	}
 
 	// 댓글 선택 여부 매서드
-	public boolean iswrite(ArrayList<Board2_replyDTO> dto,int pseq) throws Exception {
-		String sql = "select writer from board2_reply where parent_seq = ?";
-		boolean ck = false;
-		try (Connection con = this.getConnection();
-				PreparedStatement stat = con.prepareStatement(sql);){
-			stat.setInt(1, pseq);
-				try(ResultSet rs = stat.executeQuery();) {
-			while (rs.next()) {
-				String result = rs.getString("writer");
-				for (Board2_replyDTO adto : dto) {
-					if (result.equals(adto.getNickname())) {
-						ck = true;
-					}
+	public boolean iswrite(int pseq,String nickname) throws Exception {
+		String sql = "select * from board1_reply where parent_seq=? and writer=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, pseq);
+			pstat.setString(2, nickname);
+			try(
+				ResultSet rs = pstat.executeQuery();
+					){
+				if(rs.next()) {
+					return true;
 				}
+				
+				return false;
 			}
-				}
 		}
-		return ck;
 	}
 
 	// 댓글 중복 불가 확인 매서드
