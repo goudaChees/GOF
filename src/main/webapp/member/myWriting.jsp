@@ -82,20 +82,21 @@
 								</div>
 								<div class="row w-100 m-0" id="mywritinglist">
 									<div class="col-12 p-0">
-										<div class="row w-100 m-0">
+										<div class="row w-100 m-0 listHeader">
 											<div class="col-12 col-lg-8">제목</div>
 											<div class="d-none d-lg-block col-4">작성일자</div>
 										</div>
 										<c:forEach var='i' items="${list }">
-											<div class="row w-100 m-0">
-												<div class="col-8 p-0 d-none d-lg-block">${i.title }</div>
-												<div class="col-4 p-0 d-none d-lg-block">${i.formed_WriteDate }</div>
-												<div class="col-12 p-0 d-block d-lg-none">${i.title }</div>
-												<div class="col-12 p-0 d-block d-lg-none">${i.formed_WriteDate }</div>
-												
-											</div>
+											<a href='${link }${i.seq }'>
+												<div class="row w-100 m-0">
+													<div class="col-8 p-0 d-none d-lg-block">${i.title }</div>
+													<div class="col-4 p-0 d-none d-lg-block">${i.formed_WriteDate }</div>
+													<div class="col-12 p-0 d-block d-lg-none">${i.title }</div>
+													<div class="col-12 p-0 d-block d-lg-none">${i.formed_WriteDate }</div>
+												</div>
+											</a>
 										</c:forEach>
-										<div class="row w-100 m-0">
+										<div class="row w-100 m-0 listFooter">
 											<div class="col-12">${pageList }</div>
 										</div>
 									</div>

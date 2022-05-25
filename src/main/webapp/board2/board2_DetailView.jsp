@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>board2 Detail View</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -153,7 +153,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-2">
+								<div class="col-2 text2">
 									<c:if test="${loginNN == dto.nickname && cck == false}">
 									선택<input type="radio" name="choice" value="${i.seq}"
 											class="choice">
@@ -178,17 +178,24 @@
 
 	<script>
 	window.onload = function(){
-		if(${cck == true || wck == true}){
+		if(${wck}){
+			$("#contents").attr("readonly",true);
+			$("#contents").attr("placeholder","댓글은 한 게시물 당 한 개만 작성이 가능합니다.");
+			$("#wprice").attr("readonly",true);
+		}
+		if(${cck}){
 		$("#contents").attr("readonly",true);
-		$("#contents").attr("placeholder","댓글은 한 게시물 당 한 개만 작성이 가능합니다.");
+		$("#contents").attr("placeholder","작성자가 댓글을 선택했다면 게시글을 작성할수 없습니다.");
 		$("#wprice").attr("readonly",true);
 		}
+		
 	const end = function(text){
 		if($("#limit").text()=='종료'){
 		$("#btn1").css("display","none");
 		$("#modi").css("display","none");
 		$(".choice").css("display","none");
 		$(".modibtn").css("display","none");
+		$(".text2").text("시간종료");
 		}
 	};
  	setInterval(end, 1000);
@@ -200,7 +207,10 @@
  		window.reload();
  		
  	})
- 	
+ 	if(${cck == true}){
+ 		$(".text2").text("선택완료");
+ 		
+ 	}
  	
 	$("#del").on("click",function(){
 		result = window.confirm("정말 삭제하시겟습니까?");

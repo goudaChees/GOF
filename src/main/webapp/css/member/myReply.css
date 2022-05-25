@@ -123,7 +123,6 @@ div {
 }
 
 #myreplylist .row{
-	padding-left:10px;
 	border-bottom:1px solid #F4ACB7;
 	color:#735960;
 	line-height:30px;
@@ -141,7 +140,7 @@ div {
 	font-size:10px;
 }
 
-#myreplylist .row:first-of-type{
+#myreplylist .listHeader{
 	background-color:#F4ACB7;
 	font-weight:bolder;
 	font-size:16px;
@@ -149,11 +148,11 @@ div {
 	color:#5C474D;
 }
 
-#myreplylist .row:first-of-type>.col-4{
+#myreplylist .listHeader .col-4{
 	font-size:16px;
 }
 
-#myreplylist .row:last-of-type{
+#myreplylist .listFooter{
 	border-bottom:1px solid transparent;
 	color:#5C474D;
 }

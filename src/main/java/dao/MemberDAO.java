@@ -395,7 +395,15 @@ private static MemberDAO instance = null;
 			return sb.toString();
 		}
 
-		
+		public String getLink(int boardNum) {
+			String link="";
+			if(boardNum==1) {
+				link = "/detail.brd1?seq=";
+			}else if(boardNum==2) {
+				link="/read.brd2?seq=";
+			}
+			return link;
+		}
 
 
 }
