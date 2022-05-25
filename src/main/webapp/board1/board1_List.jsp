@@ -93,7 +93,7 @@
 											<div class="col-9">
 												<div class="row">
 													<input type="hidden" value=${i.seq }>
-													<div class="col-12 writingTitle">[ ${i.item} ] ${i.title} <p>${i.reply_count }</p></div>
+													<div class="col-12 writingTitle">[ ${i.item} ] ${i.title} <p class="d-none d-sm-inline">${i.reply_count }</p></div>
 													<div class="col-12 writingEtc">
 														${i.writer} <i class="bi bi-dot"></i> ${i.write_date} <i class="bi bi-dot"></i> 조회 ${i.view_count}
 													</div>
