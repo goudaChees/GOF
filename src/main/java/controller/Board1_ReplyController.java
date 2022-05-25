@@ -1,12 +1,16 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
 
 import dao.Board1DAO;
 import dao.Board1_ReplyDAO;
@@ -21,6 +25,9 @@ public class Board1_ReplyController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		Board1_ReplyDAO rdao = new Board1_ReplyDAO();
 		Board1DAO dao = new Board1DAO();
+		Gson g = new Gson();
+		
+		HttpSession session = request.getSession();
 
 		try {
 			if(uri.equals("/write.brd1_reply")) {
@@ -34,7 +41,6 @@ public class Board1_ReplyController extends HttpServlet {
 				dao.addAgree(agree,parent_Seq);		
 				//3. 댓글 수 추가
 				dao.addReplyCount(parent_Seq);
-				System.out.println(parent_Seq);
 				response.sendRedirect("/detail.brd1?seq="+parent_Seq);
 			
 			}else if(uri.equals("/modify.brd1_reply")) {//댓글 수정
@@ -71,6 +77,44 @@ public class Board1_ReplyController extends HttpServlet {
 				dao.subtractReplyCount(parent_Seq);
 				
 				response.sendRedirect("/detail.brd1?seq="+parent_Seq);
+				
+			}else if(uri.equals("/good.brd1_reply")) {
+				int board1_Seq = Integer.parseInt(request.getParameter("board1_Seq"));
+				int reply_Seq = Integer.parseInt(request.getParameter("reply1_Seq"));
+				String id = (String) session.getAttribute("loginID");
+				System.out.println(id);
+				
+				//1.good(좋아요) 테이블에 데이터 넣기
+				rdao.insertGood(id, board1_Seq, reply_Seq);
+				
+				//2.board1_reply 테이블에 좋아요+1
+				rdao.addGoodBySeq(reply_Seq);
+				
+				//3. 해당 댓글의 좋아요 값 출력
+				Board1_ReplyDTO dto = rdao.getGoodBySeq(reply_Seq);
+			
+				
+				
+				//4.결과 값을 PrintWriter에 담는다.
+				PrintWriter pw = response.getWriter();
+				
+				pw.append(g.toJson(dto));
+				
+
+			
+			}else if(uri.equals("/cancelGood.brd1_reply")) {
+				System.out.println("result : 전");
+				int board1_Seq = Integer.parseInt(request.getParameter("board1_Seq"));
+				int reply_Seq = Integer.parseInt(request.getParameter("reply1_Seq"));
+				String nickname = (String) session.getAttribute("loginNN");
+
+				//1.good(좋아요) 테이블의 데이터 빼기
+				rdao.insertGood(nickname, board1_Seq, reply_Seq);
+				
+				//2.board1_reply 테이블에 좋아요+1
+				rdao.addGoodBySeq(reply_Seq);
+
+
 				
 			}
 			

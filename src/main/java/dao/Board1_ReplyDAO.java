@@ -164,4 +164,78 @@ public class Board1_ReplyDAO {
 			}
 		}
 	}
+	public int insertGood(String id,int board1_Seq, int reply1_Seq)throws Exception {
+		String sql = "insert into good_board1 values(good_seq.nextval,?,?,?)";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, id);
+			pstat.setInt(2, board1_Seq);
+			pstat.setInt(3, reply1_Seq);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+		
+	}
+	
+	public int addGoodBySeq(int reply_Seq)throws Exception {
+		String sql = "update board1_reply set good=good+1 where seq =?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, reply_Seq);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
+	public Board1_ReplyDTO getGoodBySeq(int reply_Seq)throws Exception{
+		String sql = "select * from board1_reply where seq=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, reply_Seq);
+			try(
+				ResultSet rs = pstat.executeQuery();	
+					){
+				rs.next();
+				int seq = rs.getInt("seq");
+				String writer = rs.getString("writer");
+				String contents = rs.getString("contents");
+				Timestamp write_date = rs.getTimestamp("write_date");
+				int good = rs.getInt("good");				
+				String agree = rs.getString("agree");
+				int parent_Seq = rs.getInt("parent_seq");
+				
+				return new Board1_ReplyDTO(seq,writer,contents,write_date,good,agree,parent_Seq);
+			}
+		}
+	}
+	
+	public List<Integer> isGoodChecked(int board1_Seq,String id)throws Exception{
+		String sql = "select reply_seq from good_board1 where  id=? and board_seq=? ";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, id);
+			pstat.setInt(2, board1_Seq);
+			try(
+				ResultSet rs = pstat.executeQuery();	
+					){
+				List<Integer> list = new ArrayList<Integer>();
+				while(rs.next()) {
+					int i=rs.getInt(1);
+					list.add(i);
+				}
+				
+				return list;
+			}
+		}
+	}
 }

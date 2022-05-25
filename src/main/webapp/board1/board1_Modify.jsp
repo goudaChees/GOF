@@ -108,7 +108,7 @@ float:left;
 	     })
 		
 	  	$("#goToList").on("click",function(){
-	    	 loaction.href="/list.brd1?cpage=1";
+	    	 location.href="/list.brd1?cpage=1";
 	     })
 	     
 		$("#submit").on("click",function(){

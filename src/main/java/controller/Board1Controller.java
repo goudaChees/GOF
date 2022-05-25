@@ -32,6 +32,8 @@ public class Board1Controller extends HttpServlet {
 		String uri = request.getRequestURI();
 		response.setCharacterEncoding("utf-8");
 		request.setCharacterEncoding("utf-8");
+		
+		System.out.println(uri);
 		Board1DAO dao = new Board1DAO();
 		Board1_PicDAO pdao = new Board1_PicDAO();
 		Board1_ReplyDAO rdao = new Board1_ReplyDAO();
@@ -129,7 +131,6 @@ public class Board1Controller extends HttpServlet {
 				request.setAttribute("list", list);//댓글 목록 list에 담기
 
 				boolean didIDwrite = rdao.didIDwrite(seq,nickname);//해당 게시글에 댓글을 달았는지 검사
-				System.out.println("did : "+ didIDwrite);
 				
 				//4. 차트를 위한 결과값 뽑기
 
@@ -154,11 +155,14 @@ public class Board1Controller extends HttpServlet {
 					disagreeRatio=50;
 				}
 
+				//5. 댓글에 좋아요 눌렀는지 안눌렀는지 검사.
+				
 				request.setAttribute("agreeRatio", agreeRatio);
 				request.setAttribute("disagreeRatio", disagreeRatio);
 				request.setAttribute("nickname", nickname);
 				request.setAttribute("dto", dto);
 				request.setAttribute("didIDwrite", didIDwrite);
+				
 
 
 				request.getRequestDispatcher("/board1/board1_DetailView.jsp").forward(request, response);
@@ -252,6 +256,12 @@ public class Board1Controller extends HttpServlet {
 					rdao.deleteReplyByParent_Seq(seq);
 				}
 				response.sendRedirect("/list.brd1?cpage=1");
+			}else if(uri.equals("/isGoodChecked.brd1")) {//해당 게시물에 사용자가 좋아요 누른 댓글 시퀀스 배열로 반환
+				String id = (String) session.getAttribute("loginID");
+				System.out.println("id :" + id);
+				int board1_Seq = Integer.parseInt(request.getParameter("board1_Seq"));
+				System.out.println("board1_Seq : "+ board1_Seq);
+				rdao.isGoodChecked(board1_Seq,id);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
