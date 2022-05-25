@@ -123,9 +123,11 @@ public class MemberController extends HttpServlet {
 				int boardNum = Integer.parseInt(request.getParameter("board"));
 				int page=Integer.parseInt(request.getParameter("page"));
 				String pageList = dao.PageList(nickname, boardNum, page);
+				String link = dao.getLink(boardNum);
 				List<MyWritingDTO> list = dao.SelectPage(nickname, boardNum, page);
 				request.setAttribute("list", list);
 				request.setAttribute("pageList", pageList);
+				request.setAttribute("link",link);
 				request.getRequestDispatcher("/member/myWriting.jsp").forward(request, response);
 			
 			}else if(uri.equals("/myReply.member")) {	// 내 댓글 보기 클릭시
@@ -134,8 +136,10 @@ public class MemberController extends HttpServlet {
 				int page=Integer.parseInt(request.getParameter("page"));
 				String pageList = dao.reply_PageList(nickname, boardNum, page);
 				List<MyReplyDTO> replyList = dao.reply_SelectPage(nickname, boardNum, page);
+				String link = dao.getLink(boardNum);
 				request.setAttribute("replyList", replyList);
 				request.setAttribute("pageList", pageList);
+				request.setAttribute("link",link);
 				request.getRequestDispatcher("/member/myReply.jsp").forward(request, response);
 			
 			} else if (uri.equals("/kakaoCheck.member")) { // 카카오 가입 회원인지 먼저 확인
