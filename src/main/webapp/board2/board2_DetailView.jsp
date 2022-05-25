@@ -86,7 +86,7 @@
 			<div class="col-8">
 				<div class="row">
 					<div style="display: none;" id="wtime">${dto.write_date}</div>
-					<div class="col-12" id="limit"></div>
+					<div class="col-12" id="limit">시간확인중</div>
 					<div class="col-12">${dto.contents}</div>
 				</div>
 				<div class="row">
@@ -177,7 +177,13 @@
 
 
 	<script>
-	window.onload = function(){
+	if(${timeover}){
+		$("#btn1").css("display","none");
+		$("#modi").css("display","none");
+		$(".choice").css("display","none");
+		$(".modibtn").css("display","none");
+		$(".text2").text("시간종료");
+	}
 		if(${wck}){
 			$("#contents").attr("readonly",true);
 			$("#contents").attr("placeholder","댓글은 한 게시물 당 한 개만 작성이 가능합니다.");
@@ -189,16 +195,6 @@
 		$("#wprice").attr("readonly",true);
 		}
 		
-	const end = function(text){
-		if($("#limit").text()=='종료'){
-		$("#btn1").css("display","none");
-		$("#modi").css("display","none");
-		$(".choice").css("display","none");
-		$(".modibtn").css("display","none");
-		$(".text2").text("시간종료");
-		}
-	};
- 	setInterval(end, 1000);
  	$("#btn1").on("click",function(){
  		if($("#wprice").val()=='' || $("#contents").val()==''){
  			alert("가격,내용은 필수 입력 사항입니다.");
@@ -323,7 +319,7 @@
 	        let dateObj = new Date(time);
 	        dateObj.setMinutes(dateObj.getMinutes() +10);
 			countDownTimer("limit", dateObj);
-	}
+	
 	</script>
 </body>
 </html>
