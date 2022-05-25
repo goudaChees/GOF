@@ -114,63 +114,6 @@
 				</div>
 			</div>
 		</div>
-<<<<<<< HEAD
-		<div id="list_Middle" style="text-align: right;">
-			<div style="width: 20%">
-			<form action="/search.brd1">
-				<select class="form-select" aria-label="Default select example"
-					name="searchCategory">
-					<option value="0">선택</option>
-					<option value="1">작성자</option>
-					<option value="2">제목</option>
-					<option value="3">물건명</option>
-				</select>
-			</div>
-			<div style="width: 40%; text-align: left;">
-				<input type="text" placeholder="검색하실 내용을 입력하세요" name="searchTarget" style="width: 70%"> 
-				<input type="submit" value="검색">
-			</div>
-			<br>
-			</form>
-		</div>
-		<div id="list_Bottom">
-			<div border="1" align="center" id="wrapper"
-				style="width: 70%; margin: auto;" class="row">
-				<c:forEach var="i" items="${list}">
-					<div width="100%" class="boardList">
-						<div class="col-4">
-						<img src="files/${i.fileName }" style="width: 100%; height:100%">
-						</div>
-						<div class="col-7">
-							<div class="row">
-								<input type="hidden" value=${i.seq }>
-								<div class="col-12" style="text-align: left; overflow: hidden;">
-									<a href="/detail.brd1?seq=${i.seq}" class="title">${i.title}(${i.reply_count })</a>
-								</div>
-								<div align="center" class="col-5" class="item">${i.item}</div>
-								<div align="center" class="col-7" class="writer">${i.writer}</div>
-								<div align="center" class="col-12" class="date">${i.write_date}</div>
-							</div>	
-						</div>
-						<div class="col-">${i.view_count}</div>
-					</div>
-					<br>
-					<hr>
-				</c:forEach>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-2"></div>
-			<div class="col-8">${navi}</div>
-			<div class="col-2">
-				<input type="button" id="write" value="글쓰기">
-			</div>
-=======
-		
-		<div class="row w-100 m-0" id="footer">
-			<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
->>>>>>> cce16140ced3ccbfa6aafd97c891b3772951e8e3
-		</div>
 	</div>
 	
 	<script>
