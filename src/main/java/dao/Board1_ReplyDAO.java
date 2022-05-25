@@ -11,6 +11,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import dto.Board1_GoodDTO;
 import dto.Board1_ReplyDTO;
 
 public class Board1_ReplyDAO {
@@ -164,13 +165,13 @@ public class Board1_ReplyDAO {
 			}
 		}
 	}
-	public int insertGood(String id,int board1_Seq, int reply1_Seq)throws Exception {
+	public int insertGood(String nickname,int board1_Seq, int reply1_Seq)throws Exception {
 		String sql = "insert into good_board1 values(good_seq.nextval,?,?,?)";
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
-			pstat.setString(1, id);
+			pstat.setString(1, nickname);
 			pstat.setInt(2, board1_Seq);
 			pstat.setInt(3, reply1_Seq);
 			int result = pstat.executeUpdate();
@@ -193,7 +194,33 @@ public class Board1_ReplyDAO {
 		}
 	}
 	
-	public Board1_ReplyDTO getGoodBySeq(int reply_Seq)throws Exception{
+	public int subtractGoodBySeq(int seq)throws Exception {
+		String sql = "update board1_reply set good=good-1 where seq =?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, seq);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
+	public int deleteGood(String nickname,int reply_Seq)throws Exception {
+		String sql = "delete from good_board1 where nickname=? and reply_seq=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, nickname);
+			pstat.setInt(2, reply_Seq);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	public Board1_ReplyDTO getReplyBySeq(int reply_Seq)throws Exception{
 		String sql = "select * from board1_reply where seq=?";
 		try(
 				Connection con = this.getConnection();
@@ -217,21 +244,23 @@ public class Board1_ReplyDAO {
 		}
 	}
 	
-	public List<Integer> isGoodChecked(int board1_Seq,String id)throws Exception{
-		String sql = "select reply_seq from good_board1 where  id=? and board_seq=? ";
+	public List<Board1_GoodDTO> selectGoodBySeq(int board1_Seq,String nickname)throws Exception{
+		String sql = "select * from good_board1 where  nickname=? and board_seq=? ";
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
-			pstat.setString(1, id);
+			pstat.setString(1, nickname);
 			pstat.setInt(2, board1_Seq);
 			try(
 				ResultSet rs = pstat.executeQuery();	
 					){
-				List<Integer> list = new ArrayList<Integer>();
+				List<Board1_GoodDTO> list = new ArrayList<Board1_GoodDTO>();
 				while(rs.next()) {
-					int i=rs.getInt(1);
-					list.add(i);
+					int seq = rs.getInt("seq");
+					int reply_Seq = rs.getInt("reply_seq");
+
+					list.add(new Board1_GoodDTO(seq,nickname,board1_Seq,reply_Seq));
 				}
 				
 				return list;
