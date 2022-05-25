@@ -19,8 +19,8 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row" id="header">
-			<div class="col-12">
+		<div class="row w-100 m-0" id="header">
+			<div class="col-12 p-0">
 				<nav class="navbar navbar-expand-md navbar-light bg-light">
 					<div class="container-fluid">
 						<a class="navbar-brand" href="/index.jsp" style="color: #664E55">앞날의
