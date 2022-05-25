@@ -91,6 +91,14 @@ float:left;
 	    </div>
 	 </form>
 	 <script>
+	 	
+		window.onload = function(){		
+			if(${nickname==null}){
+				alert("로그인 후 이용가능합니다.");
+				location.href="/index.jsp"
+			}
+			})
+			
 	 	const reader = new FileReader();
 	 	reader.onload = (readerEvent) =>{
 	 		document.querySelector("#img_section").setAttribute("src",readerEvent.target.result);
@@ -112,6 +120,12 @@ float:left;
 	     })
 	     
 		$("#submit").on("click",function(){
+			
+			if(${nickname==null}){
+				alert("로그인 후 이용가능합니다.");
+				location.href="/index.jsp"
+			}
+			
          let item_price = $("#item_price").val().trim();
          let title= $("#title").val().trim();
          let item = $("#item").val().trim();;

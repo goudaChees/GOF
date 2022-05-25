@@ -35,8 +35,6 @@ public class Board1Controller extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		request.setCharacterEncoding("utf-8");
 		Gson g = new Gson();
-		
-		System.out.println(uri);
 		Board1DAO dao = new Board1DAO();
 		Board1_PicDAO pdao = new Board1_PicDAO();
 		Board1_ReplyDAO rdao = new Board1_ReplyDAO();
@@ -234,7 +232,7 @@ public class Board1Controller extends HttpServlet {
 				String title = multi.getParameter("title");
 				String contents = multi.getParameter("contents");
 				String item = multi.getParameter("item");
-				int item_price = Integer.parseInt(multi.getParameter("item_price"));
+				long item_price = Long.parseLong(multi.getParameter("item_price"));
 
 				dao.modify(new Board1DTO(seq,writer,title,contents,null,item,item_price,0,0,0,null,0));
 

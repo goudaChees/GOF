@@ -49,7 +49,7 @@ div {
 	background-color: bisque;
 }
 
-.good_path:hover{
+.good_path:hover,.goodcancel_path:hover{
 	cursor:pointer;
 }
 </style>
@@ -130,6 +130,8 @@ div {
 				<hr>
 				</form>
 				<!-- --댓글 View------------------------------------------------------------------------------ -->
+				
+				
 				<c:forEach var="i" items="${list }">
 					<form action="/modify.brd1_reply">
 						<div class="replyViewcontainer" class="row">
@@ -147,7 +149,8 @@ div {
 								<input type="text" name="reply_contents" value='${i.contents }' readonly> 
 								<input type="hidden" name="replySeqToUpdate" value=${i.seq }>
 								<input type="hidden" name="parent_seq2" value=${dto.seq }>
-								<div>${i.write_date }</div>
+								<input type="hidden" name="reply_date" value=${i.write_date }>
+								<div id="write_date1"><fmt:formatDate pattern = "yyyy/MM/dd"value=${i.write_date } id="write_date"/></div>
 							</div>
 							<div class="col-2" style="border:0px">
 								<c:if test="${i.writer==nickname}">
@@ -191,9 +194,15 @@ div {
 
 	<script>
 	<!--  게시글 script-------------------------------------------------------------------- -->
-		
-
 		window.onload = function(){	
+			if(${nickname==null}){
+				alert("로그인 후 이용 가능합니다.")
+				location.href="/index.jsp"
+			}
+			// 로드시 좋아요 한 댓글 검정색 처리	
+			if(${nickname==null}){
+				location.href="/index.jsp"
+			}
 			$.ajax({
 				url:"/isGoodChecked.brd1",
 				data:{
@@ -201,7 +210,6 @@ div {
 				},
 				dataType:"json"
 			}).done(function(res){
-				console.log(res);
 				$(res).each(function(){
 					$("#c"+this.reply_Seq).parent().css("display","block");
 					$("#"+this.reply_Seq).parent().css("display","none");
@@ -214,25 +222,45 @@ div {
 				$("#contents_reply").attr("readonly",true);
 				$("#contents_reply").attr("placeholder","댓글은 한 게시물 당 한 개만 작성이 가능합니다.");
 			}
+			
+			for(let i=0;i<${list.size()};i++){
+				console.log(${list[i].seq})
+			}
 		}
-		
+		 
 		
 		$("#toList").on("click",function(){
 			location.href="/list.brd1?cpage=1";
 		})
 		$("#modify").on("click",function(){//수정하기
+			if(${nickname==null}){
+				alert("로그인 후 이용가능합니다.");
+				location.href="/index.jsp"
+			}
 			location.href="/toModifyForm.brd1?seq=${dto.seq}";
 		})
 		$("#delete").on("click",function(){
+			if(${nickname==null}){
+				alert("로그인 후 이용가능합니다.");
+				location.href="/index.jsp"
+			}
 			let result = confirm("정말 삭제하시겠습니까?")
 			if(result){
 				location.href="/delete.brd1?seq=${dto.seq}";
 			}
+			
+		
 		})
+		
+		
 	<!-- 댓글 script-------------------------------------------------------------------- -->
 
 	
-		$("#reply").on("click",function(){		
+		$("#reply").on("click",function(){	
+			if(${nickname==null}){
+				alert("로그인 후 이용가능합니다.");
+				location.href="/index.jsp"
+			}
 // 			1. 제출 시 radio 체크여부 확인
 			if(!$('input:radio[name="agree"]').is(":checked")){
 				alert("'승인','불가' 두가지 사항 중 선택해 주세요.");
@@ -247,6 +275,10 @@ div {
 	
 //			3. 댓글 수정 기능
 		$(".modify_btn").on("click",function(){
+			if(${nickname==null}){
+				alert("로그인 후 이용가능합니다.");
+				location.href="/index.jsp"
+			}
 			$(this).css('display','none');//수정 버튼 none처리
 			$(this).parent().parent().prev().children().eq(1).attr('readonly',false);
 			//댓글창 text창 활성화
@@ -289,13 +321,25 @@ div {
 		})
 //			4. 댓글 삭제 기능
 		$(".delete_btn").on("click",function(){
-			let seq = $(this).parent().parent().prev().children().eq(2).val();
-			let board_Seq = $(this).parent().parent().prev().children().eq(3).val(); 
-			location.href="/delete.brd1_reply?seq="+seq+"&board_Seq="+board_Seq;
+			if(${nickname==null}){
+				alert("로그인 후 이용가능합니다.");
+				location.href="/index.jsp"
+			}
+			
+			result = confirm("댓글을 정말로 삭제하시겠습니까?")
+			if(result){
+				let seq = $(this).parent().parent().prev().children().eq(2).val();
+				let board_Seq = $(this).parent().parent().prev().children().eq(3).val(); 
+				location.href="/delete.brd1_reply?seq="+seq+"&board_Seq="+board_Seq;	
+			}
+
 		})
 //			5. 댓글 좋아요 기능		
-		$(".good_path").on("click",function(){
-						
+		$(".good_path").on("click",function(){	
+			if(${nickname==null}){
+				alert("로그인 후 이용가능합니다.");
+				location.href="/index.jsp"
+			}
 			$.ajax({
 				url:"/good.brd1_reply",
 				data:{
@@ -313,7 +357,10 @@ div {
 //			6. 댓글 좋아요 취소 기능
 
 			$(".goodcencel_path").on("click",function(){
-						
+				if(${nickname==null}){
+					alert("로그인 후 이용가능합니다.");
+					location.href="/index.jsp"
+				}		
 			$.ajax({
 				url:"/cancelGood.brd1_reply",
 				data:{

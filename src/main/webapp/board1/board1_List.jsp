@@ -117,7 +117,17 @@
 	</div>
 	
 	<script>
+	
+		window.onload = function(){		
+		if(${nickname==null}){
+			location.href="/index.jsp"
+		}
+		})
+		
 		$("#write").on("click",function(){
+			if(${nickname==null}){
+				location.href="/index.jsp"
+			}
 			location.href="/board1/board1_Write.jsp";
 		})		
 	</script>

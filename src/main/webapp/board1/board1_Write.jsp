@@ -68,7 +68,7 @@
           	</div>
           	<div class="write_Box" style="width:50%; height: 200px; border: 0px;">
             	<input type="text" placeholder="물건명을 입력해주세요" name="item" id="item"><br>  	
-            	<input type="text" placeholder="가격을 입력해주세요" name="item_price" id="item_price" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /><br>
+            	<input type="text" placeholder="가격을 입력해주세요" name="item_price" id="item_price" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="10"/><br>
           	</div>
           	<textarea placeholder="이 물건을 꼭 사야할 이유가 뭔가요" name="contents" rows="10" cols="70"></textarea><br>
           	<input type="button" value="목록으로" id="toList">
