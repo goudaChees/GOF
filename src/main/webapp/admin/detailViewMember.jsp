@@ -7,13 +7,17 @@
 <meta charset="UTF-8">
 <title>Detail Member</title>
 
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="/css/admin/adminmemberpage.css">
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+
 	
 <script>
 	function openChild(){
@@ -52,14 +56,12 @@ div {
 </style>
 </head>
 <body>
-	<c:choose>
-		<c:when test="${loginID =='admin'}">
-			<!-- 세션에 관리자 아이디로 로그인시 -->
-			<div class="container w-100"
-				style="max-width: 100%; padding: 0; margin: 0; position: relative;">
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<div class="container w-100">
+		<div class="row" id="header">
+			<div class="col-12">
+				<nav class="navbar navbar-expand-md navbar-light bg-light">
 					<div class="container-fluid">
-						<a class="navbar-brand" href="/index.jsp">앞날의 지침</a>
+						<a class="navbar-brand" href="/index.jsp" style="color:#664E55">앞날의 지침</a>
 						<button class="navbar-toggler" type="button"
 							data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 							aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -69,174 +71,163 @@ div {
 						<div class="collapse navbar-collapse justify-content-end"
 							id="navbarNavDropdown">
 							<ul class="navbar-nav">
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/list.brd1?cpage=1">지출의 참견</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/list.brd2">선택의 참견</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/csmain.cscenter">고객센터</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/adminmain.admin">관리자페이지</a></li>
+								<c:choose>
+									<c:when test="${loginID =='admin'}">
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">지출의 참견</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/list.brd2" style="color:#664E55">선택의 참견</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/adminmain.admin" style="color:#664E55">관리자페이지</a></li>
+										<li class="nav-item"><a class="nav-link active"
+										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
+									</c:when>
+									<c:when test="${loginID !=null}">
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">지출의 참견</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/list.brd2" style="color:#664E55">선택의 참견</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+										<li class="nav-item"><a class="nav-link active" 
+											aria-current="page" href="/mypage.member" style="color:#664E55">마이페이지</a></li>
+										<li class="nav-item"><a class="nav-link active"
+										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="nav-item nonMember"><a class="nav-link active"
+											aria-current="page" href="#" style="color:#664E55">지출의 참견</a></li>
+										<li class="nav-item nonMember"><a class="nav-link active"
+											aria-current="page" href="#" style="color:#664E55">선택의 참견</a></li>
+										<li class="nav-item nonMember"><a class="nav-link active"
+											aria-current="page" href="#" style="color:#664E55">고객센터</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/joinform.member" style="color:#664E55">회원가입</a></li>
+									</c:otherwise>
+								</c:choose>
 							</ul>
 						</div>
 					</div>
 				</nav>
 			</div>
-		</c:when>
-
-		<c:when test="${loginID !=null}">
-			<!-- 세션에 아이디가 존재할때 -->
-			<div class="container w-100"
-				style="max-width: 100%; padding: 0; margin: 0; position: relative;">
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
-					<div class="container-fluid">
-						<a class="navbar-brand" href="/index.jsp">앞날의 지침</a>
-						<button class="navbar-toggler" type="button"
-							data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-							aria-controls="navbarNavDropdown" aria-expanded="false"
-							aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-						<div class="collapse navbar-collapse justify-content-end"
-							id="navbarNavDropdown">
-							<ul class="navbar-nav">
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/list.brd1?cpage=1">지출의 참견</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/list.brd2">선택의 참견</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/csmain.cscenter">고객센터</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/mypage.member">마이페이지</a></li>
-							</ul>
+		</div>
+		
+		<div class="row w-100 m-0" id="content">
+			<div class="d-none d-lg-block col-3"></div>
+			<div class="col-12 col-lg-6">
+				<div class="row w-100 m-0" id="memberPageOutline">
+					<div class="col-12">
+						<div class="row w-100 m-0" id="memberPageHeader">
+							<div class="col-12">
+								<p>Admin Page</p>
+								<ul class="nav nav-tabs">
+									<li class="nav-item"><a class="nav-link active"
+										aria-current="page" href="/adminmain.admin">회원 정보 관리</a></li>
+									<li class="nav-item"><a class="nav-link" 
+										href="/adminBoardsList.admin">게시글 관리</a></li>
+									<li class="nav-item"><a class="nav-link" 
+										href="/adminReplysList.admin?board=1">댓글 관리</a></li>
+								</ul>
+							</div>	
 						</div>
-					</div>
-				</nav>
-			</div>
-		</c:when>
-		<c:otherwise>
-			<!-- 세션에 아이디가 없을 때 -->
-			<div class="container w-100"
-				style="max-width: 100%; padding: 0; margin: 0; position: relative;">
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
-					<div class="container-fluid">
-						<a class="navbar-brand" href="/index.jsp">앞날의 지침</a>
-						<button class="navbar-toggler" type="button"
-							data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-							aria-controls="navbarNavDropdown" aria-expanded="false"
-							aria-label="Toggle navigation">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-						<div class="collapse navbar-collapse justify-content-end"
-							id="navbarNavDropdown">
-							<ul class="navbar-nav">
-								<li class="nav-item"><a class="nav-link active nonMember"
-									aria-current="page" href="#">지출의 참견</a></li>
-								<li class="nav-item"><a class="nav-link active nonMember"
-									aria-current="page" href="#">선택의 참견</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="#">고객센터</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="joinform.member">회원가입</a></li>
-							</ul>
-						</div>
-					</div>
-				</nav>
-			</div>
-		</c:otherwise>
-	</c:choose>
-
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<p>Admin Page</p>
-				<ul class="nav nav-tabs">
-					<li class="nav-item"><a class="nav-link active"
-						data-current="page" href="/adminmain.admin">회원 정보 관리</a></li>
-					<li class="nav-item"><a class="nav-link" 
-						href="/adminBoardsList.admin">게시글 관리</a></li>
-					<li class="nav-item"><a class="nav-link" 
-						href="/adminReplyList.admin">댓글 관리</a></li>
-				</ul>
-				<div class="tab-content">
-					<div class="tab-pane fade show active" id="memberManagement">
-						<form action="adminUpdate.admin" method="post">
-							<div class="row">
-								<div class="col">
-									<div class="row">
-										<div class="col">${mdto.id}'s Information</div>
-										<input type="hidden" value="${mdto.id}" name="id" id="userId">
-									</div>
-									<div class="row">
-										<div class="col-3">ID</div>
-										<div class="col-4" >${mdto.id }</div>
-									</div>
-									<div class="row">
-										<div class="col-3">NAME</div>
-										<div class="col-4">
-											<input type=text value="${mdto.name }" class="editable"
-												name=name id="nameTD" disabled>
+							
+						<div class="row" id="memberPage">
+							<div class="col-12">	
+								<form action="adminUpdate.admin" method="post">
+									<div class="row" id="memberPageArea">
+										<div class="col-12">
+											<div class="row">
+												<div class="col-12" id="memberPageAreaHeader">${mdto.id}'s Information</div>
+												<input type="hidden" value="${mdto.id}" name="id" id="userId">
+											</div>
+											<div class="row" align=center>
+												<div class="col-4">ID</div>
+												<div class="col-8">${mdto.id}</div>
+											</div>
+											<div class="row">
+												<div class="col-4">NAME</div>
+												<div class="col-8">
+													<input type=text value="${mdto.name}" class="editable"
+													name=name id="nameTD" disabled>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-4">PHONE</div>
+												<div class="col-8">
+													<input type=text value="${mdto.phone}" class="editable"
+														name=phone id="phoneTD" disabled>
+												</div>
+												<div class="col-4"></div>
+												<div class="col-8" id="phoneCheckResult"></div>
+											</div>
+											<div class="row">
+												<div class="col-4">EMAIL</div>
+												<div class="col-8">
+													<input type=text value="${mdto.email}" class="editable"
+														name=email id="emailTD" disabled>
+												</div>
+												<div class="col-4"></div>
+												<div class="col-8" id="emailCheckResult"></div>
+											</div>
+											<div class="row">
+												<div class="col-4">PHONE</div>
+												<div class="col-8">
+													<input type=text value="${mdto.phone}" class="editable"
+														name=phone id="phoneTD" disabled>
+												</div>
+												<div class="col-4"></div>
+												<div class="col-8" id="phoneCheckResult"></div>
+											</div>
+											<div class="row">
+												<div class="col-4">EMAIL</div>
+												<div class="col-8">
+													<input type=text value="${mdto.email}" class="editable"
+														name=email id="emailTD" disabled>
+												</div>
+												<div class="col-4"></div>
+												<div class="col-8" id="emailCheckResult"></div>
+											</div>
+											<div class="row">
+												<div class="col-4">NICKNAME</div>
+												<div class="col-8">
+													<input type=text value="${mdto.nickname}" class="editable"
+														name=nickname id="nicknameTD" disabled>
+												</div>
+												<div class="col-4"></div>
+												<div class="col-8" id="nicknameCheckResult"></div>
+											</div>
+											<div class="row">
+												<div class="col-4">JOINDATE</div>
+												<div class="col-8">${mdto.joindate}</div>
+											</div>
 										</div>
 									</div>
-									<div class="row">
-										<div class="col-3">PHONE</div>
-										<div class="col-4">
-											<input type=text value="${mdto.phone }" class="editable"
-												name=phone id="phoneTD" disabled>
-										</div>
-										<div class="col-5" id="phoneCheckResult"></div>
-									</div>
-									<div class="row">
-										<div class="col-3">EMAIL</div>
-										<div class="col-4">
-											<input type=text value="${mdto.email }" class="editable"
-												name=email id="emailTD" disabled>
-										</div>
-										<div class="col-5" id="emailCheckResult"></div>
-									</div>
-									<div class="row">
-										<div class="col-3">NICKNAME</div>
-										<div class="col-4">
-											<input type=text value="${mdto.nickname }" class="editable"
-												name=nickname id="nicknameTD" disabled>
-										</div>
-										<div class="col-5" id="nicknameCheckResult"></div>
-									</div>
-									<div class="row">
-										<div class="col-3">JOINDATE</div>
-										<div class="col-4">${mdto.joindate }</div>
-									</div>
+									<br>
 									<div class="row">
 										<div class="col-12">
-											<br><input id="adminTF" type="text" style="color: red;" value="관리자 확인이 필요합니다." disabled>
+											<input id="adminTF" type="text" style="color: red; width:200px;" value="관리자 확인이 필요합니다. " disabled>
 										</div>
 									</div>
 									
 									<br>
-									<div class="row" align=center>
+									<div class="row w-100 m-10" align=center>
 										<div class="col-12" id="btns">
-											
 											<button id="back" type="button">뒤로가기</button>
 											<button id="modify" type="button">수정하기</button>
 											<button id="banish" type="button">강제 추방</button>
 										</div>
 									</div>
-
-
-								</div>
+								</form>
 							</div>
-
-
-						</form>
-					</div>
-					<div class="tab-pane fade" id="postManagement">
-						<p>post list.</p>
-					</div>
-					<div class="tab-pane fade" id="replyManagement">
-						<p>reply list.</p>
+						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="row w-100 m-0" id="footer">
+			<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
 		</div>
 	</div>
 

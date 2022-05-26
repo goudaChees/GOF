@@ -13,7 +13,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/css/admin/adminmain.css">
@@ -92,7 +91,7 @@
 									<li class="nav-item"><a class="nav-link" 
 										href="/adminBoardsList.admin">게시글 관리</a></li>
 									<li class="nav-item"><a class="nav-link" 
-										href="/adminReplysList.admin">댓글 관리</a></li>
+										href="/adminReplysList.admin?board=1">댓글 관리</a></li>
 								</ul>
 							</div>
 						</div>
@@ -106,9 +105,9 @@
 						<div class="row w-100 m-0"  id="memberManagement">
 							<div class="col-12 p-0">
 								<div class="row w-100 m-0">
-									<div class="col-12">Member List</div>
+									<div class="col-12" id="memberlistHeader">Member List</div>
 								</div>
-								<div class="row w-100 m-0">
+								<div class="row w-100 m-0" id="memberHeader">
 									<div class="d-none d-lg-block col-1">No.</div>
 									<div class="d-none d-lg-block col-lg-3">ID</div>
 									<div class="d-none d-lg-block col-lg-3">NickName</div>
@@ -141,15 +140,15 @@
 								<c:forEach var="i" items="${list}">
 									<div class="row w-100 m-0">
 										<div class="col-1 p-0 d-none d-lg-block">${i.seq}</div>
-										<div class="col-12 p-0 col-lg-3"><a href="/detailViewMember.admin?id=${i.id}">${i.id}</a></div>										
-										<div class="col-4 p-0 col-lg-3">${i.nickname}</div>
-										<div class="col-4 p-0 col-lg-2">${i.name}</div>
-										<div class="col-4 p-0 col-lg-3">${i.joindate}</div>
+										<div class="col-6 p-0 col-lg-3"><a href="/detailViewMember.admin?id=${i.id}">${i.id}</a></div>										
+										<div class="col-6 p-0 col-lg-3">${i.nickname}</div>
+										<div class="col-6 p-0 col-lg-2">${i.name}</div>
+										<div class="col-6 p-0 col-lg-3">${i.joindate}</div>
 									</div>
 								
 								</c:forEach>
 								
-								<div class="row w-100 m-0">
+								<div class="row w-100 m-0 memberlistPageNavi">
 									<div class="col-12">
 										${pageNavi}
 									</div>
