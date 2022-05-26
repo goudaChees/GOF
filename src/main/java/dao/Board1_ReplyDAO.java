@@ -267,4 +267,57 @@ public class Board1_ReplyDAO {
 			}
 		}
 	}
+	
+	public Board1_ReplyDTO getBestReplyByParentSeq(int parent_Seq)throws Exception{
+		String sql = "select * from (select  row_number() over(order by good desc) 순위,board1_reply.* from board1_reply where parent_seq = ?) where 순위 = 1 order by write_date";
+		try(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+			){
+			pstat.setInt(1, parent_Seq);
+			try(
+				ResultSet rs = pstat.executeQuery();	
+					){
+				rs.next();
+				int seq = rs.getInt("seq");
+				String writer = rs.getString("writer");
+				String contents = rs.getString("contents");
+				Timestamp write_date= rs.getTimestamp("write_date");
+				int good = rs.getInt("good");
+				String agree = rs.getString("agree");
+				int parent_seq = rs.getInt("parent_seq");
+				
+				return new Board1_ReplyDTO(seq,writer,contents,write_date,good,agree,parent_seq);
+			}
+		}
+	}
+	
+	public List<Board1_ReplyDTO> getReplyExceptBest(int parent_Seq)throws Exception{
+		String sql = "select * from (select row_number() over(order by good desc) 순위,board1_reply.* from board1_reply where parent_seq != ?) where 순위 = 1 order by write_date";
+		try(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+			){
+			pstat.setInt(1, parent_Seq);
+			try(
+				ResultSet rs = pstat.executeQuery();	
+					){
+				
+				List<Board1_ReplyDTO> list = new ArrayList<Board1_ReplyDTO>();
+				while(rs.next()) {
+					int seq = rs.getInt("seq");
+					String writer = rs.getString("writer");
+					String contents = rs.getString("contents");
+					Timestamp write_date= rs.getTimestamp("write_date");
+					int good = rs.getInt("good");
+					String agree = rs.getString("agree");
+					int parent_seq = rs.getInt("parent_seq");
+					
+					Board1_ReplyDTO dto = new Board1_ReplyDTO(seq,writer,contents,write_date,good,agree,parent_seq);
+					list.add(dto);
+				}
+				return list;
+			}
+		}
+	}
 }
