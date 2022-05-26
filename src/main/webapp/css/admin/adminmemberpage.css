@@ -54,7 +54,7 @@ div {
 	position:absolute;
 	left:13px;
 	bottom:-5px;
-	width:100%;
+	width:95%;
 }
 
 #memberPageHeader li{
@@ -72,6 +72,7 @@ div {
 	background-color: #B4C8BC;
 	color:white;
 	text-align:center;
+	font-size:min(15px,2.8vw);
 }
 
 #memberPageHeader .active{
@@ -89,6 +90,11 @@ div {
 	overflow:hidden;
 	position:relative;
 	z-index:5;
+}
+
+#memberPage .col-12{
+	overflow-y :auto;
+	height:100%;
 }
 
 #memberPage form{
@@ -122,6 +128,7 @@ div {
 
 #memberPageArea .row{
 	border-bottom:1px solid #516D5C;
+	
 }
 
 #memberPage button{
@@ -138,6 +145,10 @@ div {
 #memberPage button:hover{
 	background-color: #D8E2DC80;
 	cursor:pointer;	
+}
+
+.editable {
+	width:min(165px);
 }
 
 #footer{
