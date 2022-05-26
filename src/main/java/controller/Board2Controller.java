@@ -87,7 +87,6 @@ public class Board2Controller extends HttpServlet {
 				// 선택체크 선택되어 있다면 true
 				boolean wck = rdao.iswrite(seq,loginNN);
 				// 작성여부 체크 작성한적이 있다면 true
-				
 				boolean timeover = dao.istimeover(dto);
 				if(cck) {
 					Board2_replyDTO crdto = rdao.choiceReply(seq);

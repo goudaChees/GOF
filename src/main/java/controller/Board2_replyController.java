@@ -33,7 +33,6 @@ public class Board2_replyController extends HttpServlet {
 			int pseq = Integer.parseInt(request.getParameter("pseq"));
 			String contents = request.getParameter("contents");
 			Long price =  Long.parseLong(request.getParameter("price"));
-			
 			dao.insert(new Board2_replyDTO(0,nickname,pseq,price,contents,"0",'Y'));
 			response.sendRedirect("/read.brd2?seq="+pseq);
 		}else if(uri.equals("/choice.brd2_reply")) {
