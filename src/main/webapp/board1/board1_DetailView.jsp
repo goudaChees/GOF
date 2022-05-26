@@ -108,7 +108,7 @@ div {
 					<div style="width:${disagreeRatio}%;height:10px" id="disagreeRatio"></div>
 				</div>
 				<form action="/write.brd1_reply">
-					<input type="hidden" name="parent_seq" value=${dto.seq }>
+					<input type="text" name="parent_seq" value=${dto.seq }>
 					<div id="radio" style="margin-top: 10px;">
 						<input type="radio" value="승인" name="agree" checked>승인 :
 						${dto.agree_count } <input type="radio" value="불가" name="agree">불가
@@ -152,7 +152,7 @@ div {
 								</div>
 							</div>
 							<div class="col-8" style="border:0px">
-								<div class="writer" id="writer_view">작성자 : ${i.writer }</div>
+								<div class="writer" id="r${i.seq }">작성자 : ${i.writer }</div>
 								<input type="text" name="reply_contents" value='${i.contents }' readonly maxlength=300> 
 								<input type="hidden" name="replySeqToUpdate" value=${i.seq }>
 								<input type="hidden" name="parent_seq2" value=${dto.seq }>
@@ -262,9 +262,11 @@ div {
 			
 			
 			// 베스트 댓글 
-			let best = $("<span>best</spen>")
-			best.css("color","red")
-			$("#writer_view").prepend(best)
+			if(${glist}[0].good>0){
+				let best = $("<span>best</span>")
+				best.css("color","red")
+				$("#r"+${glist}[0].seq).prepend(best)
+			}
 		}
 		 
 		
