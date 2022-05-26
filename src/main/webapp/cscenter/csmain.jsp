@@ -9,16 +9,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>고객센터</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e3b2ec1cbf323959f82484d3c09baa42"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" >
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/css/cscenter/csmain.css">
+
+
 
 </head>
 <body>
@@ -41,8 +51,8 @@
 								<c:choose>
 									<c:when test="${loginID =='admin'}">
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd1?cpage=1" style="color: #664E55">지출의
-												참견</a></li>
+											aria-current="page" href="/list.brd1?cpage=1"
+											style="color: #664E55">지출의 참견</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd2" style="color: #664E55">선택의
 												참견</a></li>
@@ -58,8 +68,8 @@
 									</c:when>
 									<c:when test="${loginID !=null}">
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd1?cpage=1" style="color: #664E55">지출의
-												참견</a></li>
+											aria-current="page" href="/list.brd1?cpage=1"
+											style="color: #664E55">지출의 참견</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd2" style="color: #664E55">선택의
 												참견</a></li>
@@ -81,8 +91,7 @@
 											aria-current="page" href="#" style="color: #664E55">선택의
 												참견</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="#"
-											style="color: #664E55">고객센터</a></li>
+											aria-current="page" href="#" style="color: #664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/joinform.member"
 											style="color: #664E55">회원가입</a></li>
@@ -105,8 +114,10 @@
 								<ul class="nav nav-tabs">
 									<li class="nav-item"><a class="nav-link active"
 										data-toggle="tab" href="#csmain">자주 묻는 질문</a></li>
-									<li class="nav-item"><a class="nav-link" 
-										data-toggle="tab" href="#csmail">1:1 문의하기</a></li>
+									<li class="nav-item"><a class="nav-link" data-toggle="tab"
+										href="#csmail">1:1 문의하기</a></li>
+									<li class="nav-item"><a class="nav-link" data-toggle="tab"
+										href="#cscontact">찾아 오시는 길</a></li>
 								</ul>
 							</div>
 						</div>
@@ -196,8 +207,8 @@
 														data-bs-toggle="collapse"
 														data-bs-target="#panelsStayOpen-collapsefour"
 														aria-expanded="false"
-														aria-controls="panelsStayOpen-collapsefour">Q. 1:1
-														문의를 하고 싶어요!</button>
+														aria-controls="panelsStayOpen-collapsefour">Q.
+														1:1 문의를 하고 싶어요!</button>
 												</h2>
 												<div id="panelsStayOpen-collapsefour"
 													class="accordion-collapse collapse"
@@ -237,6 +248,30 @@
 											</div>
 										</form>
 									</div>
+									<!-- 지도 api 추가 -->
+									<div class="tab-pane fade" id="cscontact">
+										<div class=row>
+											<div class=col-12>오시는 길</div>
+										</div>
+										<div class=row>
+											<div class=col-12>주소 : 서울특별시 중구 남대문로 120 대일빌딩 2F, 3F</div>
+										</div>
+										<div class=row>
+											<div class=col-12>버스 : 우리은행 종로지점 정류장 지선 163 / 172 / 201
+												/ 262 / 401 / 406 / 701 / 704 / N15 / N62 마을 7017 / 7021 /
+												7022 간선 8110</div>
+										</div>
+										<div class=row>
+											<div class=col-12>지하철 : 지하철 2호선 을지로입구역 3번출구 100M / 1호선
+												종각역 4번, 5번 출구 200M</div>
+										</div>
+										<div class=row>
+											<div class=col-12>
+												<div id="map" style="width:500px;height:400px;"></div>
+											</div>
+										</div>
+										<!--  지도 api 마감 -->
+									</div>
 								</div>
 							</div>
 						</div>
@@ -250,6 +285,14 @@
 		</div>
 	</div>
 	<script>
+	var container = document.getElementById('map');
+	var options = { 
+		center: new kakao.maps.LatLng(37.56792863494778, 126.98304380248652), //지도의 중심좌표.
+		level: 3 
+		};
+
+	var map = new kakao.maps.Map(container, options);
+	//지도 api 스크립트
 	$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업
 		Swal.fire({
 		  icon: 'info',
