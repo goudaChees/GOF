@@ -21,6 +21,7 @@
 <body>
 
 	<div class="container w-100">
+	
 		<div class="row" id="header">
 			<div class="col-12">
 				<nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -77,8 +78,9 @@
 				</nav>
 			</div>
 		</div>
-		
-		
+		<div class="row w-100 m-0" id="content">
+			<div class="d-none d-lg-block col-3"></div>
+			<div class="col-12 col-lg-6">
 	<div class="container">
 		<div class="row">
 			<div class="col">
