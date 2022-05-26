@@ -69,23 +69,23 @@
 						<form action="/write.brd1" enctype="multipart/form-data" method="post">
 							<div class="row w-100 m-0" id="writingArea">
 								<div class="col-12">
-									<input type="text" placeholder="글 제목을 입력해주세요" name="title" size="70" id="title"><br>
+									<input type="text" placeholder="글 제목을 입력해주세요" name="title" size="70" id="title" maxlength=100><br>
 								</div>
 								<div class="col-2 d-none d-lg-block"></div>
-								<div class="col-4 col-lg-4">
+								<div class="col-4 col-lg-4" style="text-align:center">
 									<div id="img_Box" class="thumbnail">
-					            		<img src="#" id="img_section">
+					            		<img src="/img/pig2.png" id="img_section">
 					            	</div>
 								</div>
 								<div class="col-8 col-lg-4">
-									<input type="text" placeholder="물건명을 입력해주세요" name="item" id="item"><br>  	
-					            	<input type="text" placeholder="가격을 입력해주세요" name="item_price" id="item_price" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /><br>
+									<input type="text" placeholder="물건명을 입력해주세요" name="item" id="item" maxlength=30><br>  	
+					            	<input type="text" placeholder="가격을 입력해주세요" name="item_price" id="item_price" maxlength=10 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /><br>
 					            	<label for="upload_file">파일 첨부</label>
 					            	<input type="file" name="file" id="upload_file" accept="image/*">
 								</div>
 								<div class="col-2 d-none d-lg-block"></div>
 								<div class="col-12">
-									<textarea placeholder="이 물건을 꼭 사야하는 이유" name="contents" rows="10" cols="70"></textarea>
+									<textarea placeholder="이 물건을 꼭 사야하는 이유" name="contents" rows="10" cols="70" maxlength=1000></textarea>
 								</div>
 								<div class="col-12">
 									<input type="button" value="목록으로" id="toList" class="writingBtns">

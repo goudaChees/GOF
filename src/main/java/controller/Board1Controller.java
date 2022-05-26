@@ -35,8 +35,6 @@ public class Board1Controller extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		request.setCharacterEncoding("utf-8");
 		Gson g = new Gson();
-		
-		System.out.println(uri);
 		Board1DAO dao = new Board1DAO();
 		Board1_PicDAO pdao = new Board1_PicDAO();
 		Board1_ReplyDAO rdao = new Board1_ReplyDAO();
@@ -89,7 +87,7 @@ public class Board1Controller extends HttpServlet {
 				
 				List<Board1DTO> list = dao.selectByPage(cpage);//한 페이지당 리스트 출력
 				request.setAttribute("list", list);//게시글 리스트 저장
-				
+				request.setAttribute("glist", g.toJson(list));
 				
 				int searchCategory = 0;//검색 카테고리 기본(Board1DAO의 getNavi()에서 각 카테고리 별로 sql문이 다름)
 				String searchTarget = null;//null이어야 처음부터 모든 항목이 검색된다.
@@ -132,6 +130,7 @@ public class Board1Controller extends HttpServlet {
 				//3. 댓글 정보 담기
 				List<Board1_ReplyDTO> list = rdao.selectReplyByParentSeq(seq);//부모 seq에 따른 댓글 목록 출력
 				request.setAttribute("list", list);//댓글 목록 list에 담기
+				request.setAttribute("glist", g.toJson(list));
 
 				boolean didIDwrite = rdao.didIDwrite(seq,nickname);//해당 게시글에 댓글을 달았는지 검사
 				
@@ -234,7 +233,7 @@ public class Board1Controller extends HttpServlet {
 				String title = multi.getParameter("title");
 				String contents = multi.getParameter("contents");
 				String item = multi.getParameter("item");
-				int item_price = Integer.parseInt(multi.getParameter("item_price"));
+				long item_price = Long.parseLong(multi.getParameter("item_price"));
 
 				dao.modify(new Board1DTO(seq,writer,title,contents,null,item,item_price,0,0,0,null,0));
 
