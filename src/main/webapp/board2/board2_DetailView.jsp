@@ -95,10 +95,13 @@
 						<button type="button" id="listview">
 						<a href="list.brd2" style="text-decoration:none">게시판으로 돌아가기</a>
 						</button>
-						<c:if test="${(dto.nickname == loginNN && cck== false)||(loginID == 'admin')}">
+						<c:if test="${dto.nickname == loginNN && cck==false}">
 							<button type="button" id="modi">수정하기</button>
-							<button type="button" id="del">삭제하기</button>
 						</c:if>
+						<c:if test="${(loginID == 'admin')||(dto.nickname == loginNN)}">
+							<button type="button" id="del">삭제하기</button>
+						</c:if>	
+						
 					</div>
 				</div>
 				<div class="row" id="replywriter">
@@ -158,8 +161,10 @@
 									선택<input type="radio" name="choice" value="${i.seq}"
 											class="choice">
 									</c:if>
-									<c:if test="${(i.nickname == loginNN && cck== false)||(loginID == 'admin')}">
+									<c:if test="${dto.nickname == loginNN && cck==false}">
 										<button class="modibtn">수정</button>
+									</c:if>
+									<c:if test="${(loginID == 'admin')||(dto.nickname == loginNN)}">
 										<button class="delbtn" value="${i.seq}">삭제</button>
 									</c:if>
 								</div>
