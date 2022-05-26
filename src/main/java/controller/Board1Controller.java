@@ -119,7 +119,7 @@ public class Board1Controller extends HttpServlet {
 				
 				//1.전 페이지 참고해서 view_Count 올리기
 				String referer = request.getHeader("referer");
-				if(referer.contains("http://localhost/list.brd1")) {
+				if(referer.contains("/list.brd1")) {
 					dao.addViewCount(seq);
 				};
 
@@ -128,7 +128,9 @@ public class Board1Controller extends HttpServlet {
 				request.setAttribute("dto", dto);//출력된 contents dto에 저장
 				
 				//3. 댓글 정보 담기
-				List<Board1_ReplyDTO> list = rdao.selectReplyByParentSeq(seq);//부모 seq에 따른 댓글 목록 출력
+				List<Board1_ReplyDTO> list = rdao.getReplyExceptBest(seq);//부모 seq에 따른 댓글 목록 출력
+				Board1_ReplyDTO rdto = rdao.getBestReplyByParentSeq(seq);
+				list.add(0,rdto);
 				request.setAttribute("list", list);//댓글 목록 list에 담기
 				request.setAttribute("glist", g.toJson(list));
 

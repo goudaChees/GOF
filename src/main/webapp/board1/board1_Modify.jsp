@@ -95,7 +95,7 @@
 				            		<input type="file" name="file" id="upload_file" accept="image/*">
 								</div>
 								<div class="col-12">
-									<textarea placeholder="이 물건을 꼭 사야하는 이유" name="contents" rows="10" cols="70" maxlength=1000>${dto.contents } ></textarea><br>
+									<textarea placeholder="이 물건을 꼭 사야하는 이유" name="contents" rows="10" cols="70" maxlength=1000 value=${dto.contents }></textarea><br>
 								</div>
 								<div class="col-12">
 									<input type="button" value="목록으로" id="goToList" class="writingBtns">
