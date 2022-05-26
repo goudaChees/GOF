@@ -1,5 +1,6 @@
 package controller;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.mail.Message;
 import javax.mail.Transport;
@@ -10,21 +11,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
 
 import dao.MailDAO;
 
-/**
- * Servlet implementation class MailController
- */
 @WebServlet("*.mail")
 public class MailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public MailController() {
-        super();
-       
-    }
+    Gson g = new Gson();
    
     
     
@@ -33,17 +28,15 @@ public class MailController extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		response.setCharacterEncoding("utf-8");
 		request.setCharacterEncoding("utf-8");
-		HttpSession sessions = request.getSession();
 		MailDAO dao = new MailDAO();
-		System.out.println(uri);
 		try {
 		if(uri.equals("/send.mail")) {
-			
-			String receiver = request.getParameter("joinmail"); // 메일 받을 주소
-			String title = "회원가입 인증 메일입니다.";
+			String random = dao.randomString(); // 난수 설정
+			String receiver = request.getParameter("email"); // 메일 받을 주소
+			String title = "[땡그랑]회원가입 인증 메일입니다.";
 			String content = "<h2>안녕하세요. 땡그랑 관리자입니다.</h2>"
-					+ "회원가입 인증 번호는 다음과 같습니다."
-					+ "";
+					+ "회원가입 인증 번호는 다음과 같습니다.<br>["
+					+ random +"]입니다.<br>";
 			Message message = new MimeMessage(dao.getSession());
 			
 			message.setFrom(new InternetAddress("sendMail@gmail.com", "관리자", "utf-8"));
@@ -53,6 +46,9 @@ public class MailController extends HttpServlet {
 
 			Transport.send(message);
 			
+			PrintWriter pw = response.getWriter();
+			pw.append(g.toJson(random));//난수 발송
+		
 	  }
 	} catch (Exception e) {
 			e.printStackTrace();
@@ -63,11 +59,9 @@ public class MailController extends HttpServlet {
 	  
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 

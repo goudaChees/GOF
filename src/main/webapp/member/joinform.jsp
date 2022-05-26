@@ -100,6 +100,10 @@
 										<div class="col-3">이메일</div>
 										<div class="col-9">
 											<input type="text" id="email" name="email">
+											<input type="text" id="ck" style="display: none;" value="no">
+											<input type="text" id="isok">
+											<button type="button" id="sendmail">메일확인</button>
+											<button type="button" id="okbtn" style="display: none;">인증확인</button>
 										</div>
 										<div class="col-3"></div>
 										<div class="col-9" id="emailCheckResult"></div>
@@ -136,6 +140,32 @@
 	</div>
 
 	<script>
+	$("#sendmail").on("click",function(){
+		let email = $("#email").val();
+		if(email == ""){
+			 alert("메일칸을 작성해주세요.")
+			 return false;
+		}
+		$.ajax({
+			url:"/send.mail",
+			dataType:"json",
+			data:{email:$("#email").val()}
+		}).always(function(resp){
+			$("#ck").val(resp);
+		})
+	})
+	$("#isok").on("keyup",function(){
+		 $("#okbtn").css("display","inline")
+	})
+	$("#okbtn").on("click",function(){
+		if($("#ck").val()==$("#isok").val()){
+			alert("메일이 인증되었습니다.")
+		}else if(!($("#ck").val()==$("#isok").val())){
+			alert("메일 인증이 실패하였습니다.")
+			return false;
+		}	
+	})
+	
 		$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업
 			Swal.fire({
 				icon: 'error',
