@@ -159,7 +159,7 @@ div {
 								<div id="w${i.seq }"></div>
 							</div>
 							<div class="col-2" style="border:0px">
-								<c:if test="${i.writer==nickname}">
+								<c:if test="${i.writer==nickname || id=='admin'}">
 									<div class="reply_btns">
 										<input type="hidden" name="preAgree" value=${i.agree }>
 										<input type="button" value="수정" class="modify_btn"> <input
@@ -186,7 +186,7 @@ div {
 				<!-- 게시글 목록, 수정, 삭제 버튼---------------------------------------------------------- -->
 			<div id="btns" style="text-align: right;">
 				<input type="button" id="toList" value="목록으로">
-				<c:if test="${nickname==dto.writer }">
+				<c:if test="${nickname==dto.writer || id=='admin'}">
 					<input type="button" id="modify" value="수정하기">
 					<input type="button" id="delete" value="삭제하기">
 				</c:if>
