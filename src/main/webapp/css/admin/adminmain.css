@@ -72,6 +72,7 @@ div {
 	background-color: #B4C8BC;
 	color:white;
 	text-align:center;
+	font-size:min(15px,2.8vw);
 }
 
 #AdminPageHeader .active{
@@ -131,3 +132,15 @@ div {
 	font-size:20px;
 }
 
+.listNN{
+	color:#FFBE46;
+}
+
+.memberinfo div{
+	font-size:min(15px,3vw);
+	font-size:16px;
+}
+
+#memberlistHeader{
+	font-size:min(20px,5vw);
+}

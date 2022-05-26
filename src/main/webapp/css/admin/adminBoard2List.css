@@ -72,6 +72,7 @@ div {
 	background-color: #B4C8BC;
 	color:white;
 	text-align:center;
+	font-size:min(15px,2.8vw);
 }
 
 #Board2Header .active{
@@ -183,6 +184,12 @@ div {
 
 #board2List>.col-12{
 	height:100%;
+}
+
+#listTitle{
+	font-size: 20px;
+	color:#5C474D;
+	font-weight:bolder;
 }
 
 #board2List input[type="button"]{

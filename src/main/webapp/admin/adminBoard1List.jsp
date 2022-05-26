@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Page</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -80,7 +82,7 @@
 					<div class="col-12">
 						<div class="row w-100 m-0" id="Board1Header">
 							<div class="col-12">
-								<p>Admin Page</p>
+								<p>[관리자 전용] 페이지 입니다.</p>
 								<ul class="nav nav-tabs">
 									<li class="nav-item"><a class="nav-link"
 										href="/adminmain.admin">회원 정보 관리</a></li>
@@ -139,11 +141,10 @@
 													<div class="col-9">
 														<div class="row">												
 															<input type="hidden" value=${i.seq }>
-															<div class="col-12 writingTitle">[ ${i.item} ] ${i.title} <p class="d-none d-sm-inline">${i.reply_count }</p><span id="n${i.seq }" style="display:none;">  new!</span></div>
+															<div class="col-12 writingTitle">[ ${i.item} ] ${i.title} <p class="d-none d-sm-inline">${i.reply_count }</p><span id="n${i.seq }" style="display:none;">  new!</span>  </div>
 															<div class="col-12 writingEtc">
-																${i.writer} <i class="bi bi-dot"></i><span id="w${i.seq }"> ${i.write_date} </span><i class="bi bi-dot"></i> 조회 ${i.view_count}
+																<span id="${i.seq }"> ${i.write_date} </span><i class="bi bi-dot"></i>${i.writer} <i class="bi bi-dot"></i> 찬성 [ ${i.agree_count } ] vs [ ${i.disagree_count} ] 반대
 															</div>
-															<div class="col-12">찬성 [ ${i.agree_count } ] vs [ ${i.disagree_count} ] 반대</div>
 														</div>
 													</div>
 												</div>

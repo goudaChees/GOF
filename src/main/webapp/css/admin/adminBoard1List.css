@@ -72,6 +72,7 @@ div {
 	background-color: #B4C8BC;
 	color:white;
 	text-align:center;
+	font-size:min(15px,2.8vw);
 }
 
 #Board1Header .active{
@@ -97,7 +98,7 @@ div {
 }
 
 #mywriting span{
-	font-size:min(6vw,14px);
+	font-size:min(3vw,15px);
 }
 
 #mywriting .col-12:last-child{
@@ -268,7 +269,7 @@ div {
 .writingEtc{
 	text-align:left;
 	color: #9D8189;
-	font-size:min(14px,2vw);
+	font-size:min(12px,2vw);
 	line-height: min(30px,4.5vw);
 }
 

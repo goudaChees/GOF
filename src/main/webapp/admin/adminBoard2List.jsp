@@ -5,12 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Page</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/css/admin/adminBoard2List.css">
 </head>
 <body>
@@ -79,7 +82,7 @@
 					<div class="col-12">
 						<div class="row w-100 m-0" id="Board2Header">
 							<div class="col-12">
-							<p>Admin Page</p>
+							<p>[관리자 전용] 페이지 입니다.</p>
 							<ul class="nav nav-tabs">
 								<li class="nav-item"><a class="nav-link" 
 									href="/adminmain.admin">회원 정보 관리</a></li>
@@ -101,17 +104,17 @@
 							</div>
 							<div class="row w-100 m-0">
 								<div class="col-12 p-0">
-									<form action="searchbrd.admin?board=2&page=1" method="post">
-										<select class="from-select: aria-label=select" id="select1"
+									<form action="/searchbrd.admin?board=2&page=1">
+										<select class="form-select" aria-label="Default select example" 
 											name="searchCategory">
 											<option class="select" value="0">선택</option>
 											<option class="select" value="1">작성자</option>
 											<option class="select" value="2">제목</option>
 											<option class="select" value="3">내용</option>
 										</select>
-										<input type="search" id="search" name="toSearch"
+										<input type="text" name="toSearch"
 											placeholder="검색하실 내용을 입력하세요">
-										<button type="submit" id="submit">검색</button>
+										<input type="submit" value="검색">
 									</form>
 									<div class="row w-100 m-0"><br>
 									</div>
@@ -122,13 +125,13 @@
 								<div class="col-12 p-0 tableheader">
 									<div class="row w-100 m-0" align=left>
 										<div class="col-12 p-0">
-											<div class="row w-100 m-0" align=left>
-												<div class="col-md-2 d-none d-md-block">글번호</div>
-												<div class="col-md-2 d-none d-md-block">제목</div>
+											<div class="row w-100 m-0" align=left id="listTitle">
+												<div class="col-md-2 d-none d-md-block" text-align="left">글번호</div>
+												<div class="col-md-3 d-none d-md-block">제목</div>
 												<div class="col-md-2 d-none d-md-block">작성자</div>
-												<div class="col-md-2 d-none d-md-block">제한시간</div>
-												<div class="col-md-2 d-none d-md-block">작성시간</div>
 												<div class="col-md-2 d-none d-md-block">조회수</div>
+												<div class="col-md-3 d-none d-md-block">제한시간</div>
+												
 											</div>
 										</div>
 									</div>
@@ -141,18 +144,18 @@
 												<div class="col-12">
 													<div class="row w-100 m-0 writingTitle">
 														<div class="col-md-2 d-none d-md-block">${i.seq}</div>
-														<div class="col-8 col-md-2 title" id="title_limit" style="text-align:left">
+														<div class="col-8 col-md-3 title" id="title_limit" style="text-align:left">
 															${i.title}
 															<c:if test="${i.reply!=0}">[${i.reply}]</c:if>
 														</div>
 														<div class="col-md-2 d-none d-md-block nickname">${i.nickname}</div>
-														<div class="col-md-2 d-none d-md-block time" id="${i.write_date}">${i.write_date}</div>
+														<div class="col time" id="${i.write_date}" style="display:none">${i.write_date}</div>
 														<div class="col-md-2 d-none d-md-block">${i.view_count}</div>
-														<div class="col-4 col-md-2 limit" id="${i.seq}">시간 확인중</div>
+														<div class="col-4 col-md-3 limit" id="${i.seq}">시간 확인중</div>
 													</div>
 													<div class="row w-100 m-0 writingEtc">
 														<div class="col-12 d-md-none d-md-block">
-															${i.nickname} <i class="bi bi-dot"></i> ${i.write_date} <i class="bi bi-dot"></i> 조회 ${i.view_count}
+															${i.nickname} <i class="bi bi-dot"></i> ${i.write_date} 
 														</div>
 													</div>
 												</div>
