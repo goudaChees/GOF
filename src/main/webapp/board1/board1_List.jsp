@@ -87,15 +87,22 @@
 										<div class="row w-100 writing">
 											<div class="col-3">
 												<div class="thumbnail">
-													<img src="files/${i.fileName }">
-												</div>
+													<c:choose>
+														<c:when test="${i.fileName==null }">
+															<img src="/img/pig2.png"  id="${i.seq}">
+														</c:when>
+														<c:otherwise>
+															<img src="files/${i.fileName }"  id="${i.seq}">
+														</c:otherwise>
+													</c:choose>
+												</div> 
 											</div>
 											<div class="col-9">
 												<div class="row">
 													<input type="hidden" value=${i.seq }>
-													<div class="col-12 writingTitle">[ ${i.item} ] ${i.title} <p class="d-none d-sm-inline">${i.reply_count }</p></div>
+													<div class="col-12 writingTitle">[ ${i.item} ] ${i.title} <p class="d-none d-sm-inline">${i.reply_count }</p><span id="n${i.seq }" style="display:none;">  new!</span></div>
 													<div class="col-12 writingEtc">
-														${i.writer} <i class="bi bi-dot"></i> ${i.write_date} <i class="bi bi-dot"></i> 조회 ${i.view_count}
+														${i.writer} <i class="bi bi-dot"></i><span id="w${i.seq }"> ${i.write_date} </span><i class="bi bi-dot"></i> 조회 ${i.view_count}
 													</div>
 												</div>	
 											</div>
@@ -120,7 +127,41 @@
 	</div>
 	
 	<script>
+	
+		
+		window.onload=function(){//날짜 반환
+			
+			let today=new Date();//오늘날짜
+			
+			toYear = today.getFullYear();
+			toMonth = today.getMonth()+1;
+			toDate = today.getDate()
+
+			for(let i=0;i<${glist}.length;i++){
+				let seq = ${glist}[i].seq;
+				let write_date = new Date(${glist}[i].write_date);
+				
+				year = write_date.getFullYear();
+				month = write_date.getMonth()+1;
+				date = write_date.getDate();
+				hour = write_date.getHours();
+				minutes = write_date.getMinutes();
+				
+				if(toYear==year&&toMonth==month&&toDate==date){
+					write_date = hour +":"+minutes;
+					$("#w"+seq).text(write_date);
+					$("#n"+seq).css("display","inline-block");
+				}else{
+					write_date = year +"."+month +"."+date;
+					$("#w"+seq).text(write_date);					
+				}
+			}
+		}	
+	
 		$("#write").on("click",function(){
+			if(${nickname==null}){
+				location.href="/index.jsp"
+			}
 			location.href="/board1/board1_Write.jsp";
 		})		
 	</script>

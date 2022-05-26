@@ -69,7 +69,7 @@
 						<form action="/modify.brd1" enctype="multipart/form-data" method="post">
 							<div class="row w-100 m-0" id="writingArea">
 								<div class="col-12">
-									<input type="text" placeholder="글 제목을 입력해주세요" name="title" id="title" size="70" value="${dto.title}"><br>
+									<input type="text" placeholder="글 제목을 입력해주세요" maxlength=100 name="title" id="title" size="70" value="${dto.title}"><br>
 									<input type="hidden" name="seq" size="70" value="${dto.seq}">
 								</div>
 								<div class="col-2 d-none d-lg-block"></div>
@@ -80,8 +80,8 @@
 					            	</div>
 								</div>
 								<div class="col-8 col-lg-4">
-									<input type="text" placeholder="물건명을 입력해주세요" name="item" id="item" value="${dto.item }"><br>
-            						<input type="text" placeholder="가격을 입력해주세요" name="item_price" value="${dto.item_price }" id="item_price" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /><br>
+									<input type="text" placeholder="물건명을 입력해주세요" name="item" id="item" value="${dto.item }" maxlength=30><br>
+            						<input type="text" placeholder="가격을 입력해주세요" name="item_price" value="${dto.item_price }" id="item_price" maxlength=9 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /><br>
 					            	<c:if test="${dto.fileName!=null}">
 				            			<input type="button" value="파일 제거" id="delete">
 				            		</c:if>
@@ -90,7 +90,7 @@
 								</div>
 								<div class="col-2 d-none d-lg-block"></div>
 								<div class="col-12">
-									<textarea placeholder="이 물건을 꼭 사야하는 이유" name="contents" rows="10" cols="70">${dto.contents }</textarea><br>
+									<textarea placeholder="이 물건을 꼭 사야하는 이유" name="contents" rows="10" cols="70" maxlength=1000>${dto.contents } ></textarea><br>
 								</div>
 								<div class="col-12">
 									<input type="button" value="목록으로" id="goToList" class="writingBtns">
@@ -109,8 +109,7 @@
      </div>		        
 
 	 <script>
-	 
-	 
+
 	 	const reader = new FileReader();
 	 	reader.onload = (readerEvent) =>{
 	 		document.querySelector("#img_section").setAttribute("src",readerEvent.target.result);
@@ -123,7 +122,7 @@
 	     })
 	     
 	     $("#delete").on("click",function(){
-	    	 $("#img_section").attr("src","");//삭제 버튼 클릭 시 이미지 내림
+	    	 $("#img_section").attr("src","/img/pig2.png");//삭제 버튼 클릭 시 이미지 바꿈
 	    	 $("#isImgDeleted").val("Y");//이미지 삭제 하는 경우
 	     })
 		
@@ -132,6 +131,12 @@
 	     })
 	     
 		$("#submit").on("click",function(){
+			
+			if(${nickname==null}){
+				alert("로그인 후 이용가능합니다.");
+				location.href="/index.jsp"
+			}
+			
          let item_price = $("#item_price").val().trim();
          let title= $("#title").val().trim();
          let item = $("#item").val().trim();;
