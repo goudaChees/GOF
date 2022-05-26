@@ -74,7 +74,14 @@
 								</div>
 								<div class="col-4">
 									<div id="img_Box" class="thumbnail">
-					            		<img src="files/${dto.fileName}" id="img_section">
+										<c:choose>
+											<c:when test="${dto.fileName==null }">
+												<img src="/img/pig2.png"  id="${dto.seq}">
+											</c:when>
+											<c:otherwise>
+												<img src="files/${dto.fileName }"  id="${dto.seq}">
+											</c:otherwise>
+										</c:choose>
             							<input type="hidden" id="isImgDeleted" name="isImgDeleted" value="N">
 					            	</div>
 								</div>
