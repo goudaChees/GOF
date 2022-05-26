@@ -116,6 +116,7 @@ public class Board1Controller extends HttpServlet {
 			}else if(uri.equals("/detail.brd1")) {//게시글 보기
 				int seq =  Integer.parseInt(request.getParameter("seq"));//게시글 seq 가져오기
 				String nickname = (String) session.getAttribute("loginNN");//닉네임 가져오기
+				String id = (String) session.getAttribute("loginID");//아이디 가져오기
 				
 				//1.전 페이지 참고해서 view_Count 올리기
 				String referer = request.getHeader("referer");
@@ -166,6 +167,7 @@ public class Board1Controller extends HttpServlet {
 				request.setAttribute("nickname", nickname);
 				request.setAttribute("dto", dto);
 				request.setAttribute("didIDwrite", didIDwrite);
+				request.setAttribute("id", id);
 				
 
 
