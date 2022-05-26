@@ -72,8 +72,7 @@
 									<input type="text" placeholder="글 제목을 입력해주세요" maxlength=100 name="title" id="title" size="70" value="${dto.title}"><br>
 									<input type="hidden" name="seq" size="70" value="${dto.seq}">
 								</div>
-								<div class="col-2 d-none d-lg-block"></div>
-								<div class="col-4 col-lg-4">
+								<div class="col-4">
 									<div id="img_Box" class="thumbnail">
 										<c:choose>
 											<c:when test="${dto.fileName==null }">
@@ -86,7 +85,7 @@
             							<input type="hidden" id="isImgDeleted" name="isImgDeleted" value="N">
 					            	</div>
 								</div>
-								<div class="col-8 col-lg-4">
+								<div class="col-8">
 									<input type="text" placeholder="물건명을 입력해주세요" name="item" id="item" value="${dto.item }" maxlength=30><br>
             						<input type="text" placeholder="가격을 입력해주세요" name="item_price" value="${dto.item_price }" id="item_price" maxlength=9 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /><br>
 					            	<c:if test="${dto.fileName!=null}">
@@ -95,7 +94,6 @@
 				            		<label for="upload_file">파일 첨부</label>
 				            		<input type="file" name="file" id="upload_file" accept="image/*">
 								</div>
-								<div class="col-2 d-none d-lg-block"></div>
 								<div class="col-12">
 									<textarea placeholder="이 물건을 꼭 사야하는 이유" name="contents" rows="10" cols="70" maxlength=1000>${dto.contents } ></textarea><br>
 								</div>

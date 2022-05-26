@@ -100,7 +100,8 @@
 											<div class="col-9">
 												<div class="row">
 													<input type="hidden" value=${i.seq }>
-													<div class="col-12 writingTitle">[ ${i.item} ] ${i.title} <p class="d-none d-sm-inline">${i.reply_count }</p><span id="n${i.seq }" style="display:none;">  new!</span></div>
+													<div class="col-12 itemLine" id="itemName_${i.seq }">${i.item}</div>
+													<div class="col-12 writingTitle"><span id="n${i.seq }" style="display:none;">  new!</span> ${i.title} <p class="d-none d-sm-inline">${i.reply_count }</p></div>
 													<div class="col-12 writingEtc">
 														${i.writer} <i class="bi bi-dot"></i><span id="w${i.seq }"> ${i.write_date} </span><i class="bi bi-dot"></i> 조회 ${i.view_count}
 													</div>
@@ -155,6 +156,17 @@
 					write_date = year +"."+month +"."+date;
 					$("#w"+seq).text(write_date);					
 				}
+				
+				if($("#itemName_"+seq).text().length>15){
+					let name = $("#itemName_"+seq).text().substr(0, 15);
+					let content = "[ "+name+"... ]";
+					$("#itemName_"+seq).text(content);
+					
+				}else if($("#itemName_"+seq).text().length<=15){
+					let name = $("#itemName_"+seq).text();
+					let content = "[ "+name+" ]";
+					$("#itemName_"+seq).text(content);
+				}
 			}
 		}	
 	
@@ -163,7 +175,9 @@
 				location.href="/index.jsp"
 			}
 			location.href="/board1/board1_Write.jsp";
-		})		
+		})	
+		
+		
 	</script>
 </body>
 </html>
