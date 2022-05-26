@@ -300,6 +300,7 @@ private static AdminDAO instance = null;
 					b1dto.setDisagree_count(rs.getInt("disagree_count"));
 					b1dto.setView_count(rs.getInt("view_count"));
 					b1dto.setFileName(rs.getString("filename"));
+					b1dto.setReply_count(rs.getInt("reply_count"));
 					list.add(b1dto);
 										
 				}
