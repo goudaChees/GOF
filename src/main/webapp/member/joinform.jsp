@@ -383,26 +383,28 @@
 					if(email == ""){
 						 alert("메일칸을 작성해주세요.");
 						 isEmailOk = false;
-						$("#join").attr("disabled","true");
+						 $("#join").attr("disabled","true");
 						 return false;
 					}
-					$("#sendmail").text("인증메일 재발송");
-					alert("메일이 발송되었습니다.");
-					
 					$.ajax({
 						url:"/send.mail",
 						dataType:"json",
 						data:{email:$("#email").val()}
 					}).always(function(resp){
+						alert("메일이 발송되었습니다.");
 						$("#emailKey").val(resp);
 					})
+					$("#sendmail").text("인증메일 재발송");
 				})
-				$("#sendmail").on("keyup",function(){
+				$("#emailKeyInput").on("keyup",function(){
 					 $("#okbtn").css("display","inline")
 				})
 				$("#okbtn").on("click",function(){
 					if($("#emailKey").val()==$("#emailKeyInput").val()){
-						alert("메일이 인증되었습니다.")
+						alert("메일이 인증되었습니다.");
+						$("#emailKeyInput").css("display", "none");
+						$("#emailCheckResult").css("color", "blue");
+						$("#emailCheckResult").text("이메일 인증 완료");
 						isEmailOk = true;
 					
 						//모든 검증 통과 시 submit 버튼 활성화
@@ -412,6 +414,7 @@
 						}
 					}else if(!($("#emailKey").val()==$("#emailKeyInput").val())){
 						alert("메일 인증이 실패하였습니다.");
+						$("#emailKeyInput").css("border", "1px solid red");
 						isEmailOk = false;
 						$("#join").attr("disabled","true");
 						return false;
