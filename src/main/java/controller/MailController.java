@@ -53,10 +53,6 @@ public class MailController extends HttpServlet {
 	} catch (Exception e) {
 			e.printStackTrace();
 	}
-
-	 
-
-	  
 	}
 
 	
