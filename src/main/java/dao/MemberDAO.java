@@ -404,6 +404,42 @@ private static MemberDAO instance = null;
 			}
 			return link;
 		}
-
-
+		public String getID(String name,String email) throws Exception{
+			String sql = "Select * from member where name=? and email=?";
+			try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+				pstat.setString(1, name);
+				pstat.setString(2, email);
+				try(ResultSet rs = pstat.executeQuery()){
+					rs.next();
+					return rs.getString("id");
+				}
+			}
+		}
+		public boolean isgetID(String name,String email) throws Exception{
+			String sql = "Select * from member where name=? and email=?";
+			try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+				pstat.setString(1, name);
+				pstat.setString(2, email);
+				try(ResultSet rs = pstat.executeQuery()){
+					return rs.next();
+				}
+			}
+		}
+		public int chpw(String pw,String id,String email) throws Exception{
+			String sql = "update member set password=? where id=? and email=?";
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);){
+				pstat.setString(1, pw);
+				pstat.setString(2, id);
+				pstat.setString(3, email);
+				int result = pstat.executeUpdate();
+				con.commit();
+				return result;
+			}
+			
+			
+			
+		}
 }

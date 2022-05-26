@@ -182,6 +182,23 @@ public class MemberController extends HttpServlet {
 				
 				request.setAttribute("id", id);
 				request.getRequestDispatcher("/kakaoLogin.member").forward(request, response);
+			} else if (uri.equals("/findid.member")) {
+				String name = request.getParameter("name");
+				String email = request.getParameter("email");
+				String id = "";
+				boolean isfindid = dao.isgetID(name, email);
+				if(isfindid) {
+					id = dao.getID(name, email);
+				}
+				PrintWriter pw = response.getWriter();
+				pw.append(g.toJson(id));
+			} else if (uri.equals("/findpw.member")) {
+				String id = request.getParameter("id");
+				String email = request.getParameter("email");
+				String pw = eUtil.SHA512(request.getParameter("newpw"));
+				int isok = dao.chpw(pw,id,email);
+				PrintWriter pws = response.getWriter();
+				pws.append(g.toJson(isok));
 			}
 			
 			

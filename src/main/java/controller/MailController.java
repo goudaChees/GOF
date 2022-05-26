@@ -49,6 +49,24 @@ public class MailController extends HttpServlet {
 			PrintWriter pw = response.getWriter();
 			pw.append(g.toJson(random));//난수 발송
 		
+	  }else if(uri.equals("/findpw.mail")) {
+		  String random =dao.randomString(); // 난수설정
+		  String receiver = request.getParameter("email"); // 메일 받을 주소
+		  String title = "[땡그랑]비밀번호 찾기 인증 메일입니다.";
+		  String content = "<h2>안녕하세요. 땡그랑 관리자입니다.</h2>"
+					+ "비밀번호찾기 인증 번호는 다음과 같습니다.<br>["
+					+ random +"]입니다.<br>";
+		  Message message = new MimeMessage(dao.getSession());
+			
+			message.setFrom(new InternetAddress("sendMail@gmail.com", "관리자", "utf-8"));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
+			message.setSubject(title);
+			message.setContent(content, "text/html; charset=utf-8");
+
+			Transport.send(message);
+			
+			PrintWriter pw = response.getWriter();
+			pw.append(g.toJson(random));//난수 발송
 	  }
 	} catch (Exception e) {
 			e.printStackTrace();

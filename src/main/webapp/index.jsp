@@ -106,7 +106,7 @@
 									<img src="/img/kakao_login.png" id="kakao-login-btn"><br>
 								</div>
 								<div class="col-4"></div>
-								<div class="col-4 loginlastline"><a href="#" id="findIdPw">아이디/비밀번호 찾기</a>   <a href="/joinform.member" id="joinbtn">회원가입</a></div>
+								<div class="col-4 loginlastline"><a href="#" id="findId">아이디</a><a href="#" id="findPW">/비밀번호 찾기</a>  <a href="/joinform.member" id="joinbtn">회원가입</a></div>
 								<div class="col-4"></div>
 							</div>
 						</form>
@@ -122,6 +122,14 @@
 	</div>
 
 	<script>
+		$("#findId").on("click",function(){
+			window.open("/member/findid.jsp", "",
+			"top=100,left=200,width=550,height=350");
+		})
+		$("#findPW").on("click",function(){
+			window.open("/member/findpw.jsp", "",
+			"top=100,left=200,width=550,height=350");
+		})
     	$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업
     		Swal.fire({
 			  icon: 'info',
