@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AdminPage</title>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -84,7 +86,7 @@
 					<div class="col-12">
 						<div class="row w-100 m-0" id="AdminPageHeader">
 							<div class="col-12">
-								<p>Admin Page</p>
+								<p>[관리자 전용] 페이지 입니다.</p>
 								<ul class="nav nav-tabs">
 									<li class="nav-item"><a class="nav-link active"
 										aria-current="page" href="/adminmain.admin">회원 정보 관리</a></li>
@@ -95,18 +97,14 @@
 								</ul>
 							</div>
 						</div>
-					
-<!-- 						위까지만 스타일 통일 아래는 아직  -->
-						
-<!-- 						<div class="tab-content"> -->
-<!-- 							<div class="tab-pane fade show active" id="memberManagement"> -->
-						
 				
 						<div class="row w-100 m-0"  id="memberManagement">
 							<div class="col-12 p-0">
 								<div class="row w-100 m-0">
 									<div class="col-12" id="memberlistHeader">Member List</div>
+									<div class="col-12"></div>
 								</div>
+
 								<div class="row w-100 m-0" id="memberHeader">
 									<div class="d-none d-lg-block col-1">No.</div>
 									<div class="d-none d-lg-block col-lg-3">ID</div>
@@ -114,49 +112,28 @@
 									<div class="d-none d-lg-block col-2">Name</div>
 									<div class="d-none d-lg-block col-lg-3">JoinDate</div>
 								</div>
-						
-<!-- 							<table align=center> -->
-<!-- 								<tr> -->
-<!-- 									<th colspan=5 style="text-align:center;">Members</th> -->
-<!-- 								</tr> -->
-<!-- 								<tr> -->
-<!-- 									<td>No.</td> -->
-<!-- 									<td>ID</td> -->
-<!-- 									<td>Nickname</td> -->
-<!-- 									<td>Name</td> -->
-<!-- 									<td>JoinDate</td> -->
-<!-- 								</tr> -->
-<%-- 								<c:forEach var="i" items="${list}"> --%>
-<!-- 									<tr> -->
-<%-- 										<td>${i.seq}</td> --%>
-<%-- 										<td><a href="/detailViewMember.admin?id=${i.id}">${i.id}</td>										 --%>
-<%-- 										<td>${i.nickname}</td> --%>
-<%-- 										<td>${i.name}</td> --%>
-<%-- 										<td>${i.joindate}</td> --%>
-<!-- 									</tr> -->
-								
-<%-- 								</c:forEach> --%>
 								
 								<c:forEach var="i" items="${list}">
-									<div class="row w-100 m-0">
+									<a href="/detailViewMember.admin?id=${i.id}">
+									<div class="row w-100 m-0 memberinfo">
 										<div class="col-1 p-0 d-none d-lg-block">${i.seq}</div>
-										<div class="col-6 p-0 col-lg-3"><a href="/detailViewMember.admin?id=${i.id}">${i.id}</a></div>										
+										<div class="col-6 p-0 col-lg-3 listNN">${i.id}</div>										
 										<div class="col-6 p-0 col-lg-3">${i.nickname}</div>
 										<div class="col-6 p-0 col-lg-2">${i.name}</div>
 										<div class="col-6 p-0 col-lg-3">${i.joindate}</div>
 									</div>
-								
+									</a>
 								</c:forEach>
 								
-								<div class="row w-100 m-0 memberlistPageNavi">
-									<div class="col-12">
-										${pageNavi}
-									</div>
-								</div>
+
 								
 							</div>
 						</div>							
-						
+						<div class="row w-100 m-0 memberlistPageNavi">
+							<div class="col-12">
+								${pageNavi}
+							</div>
+						</div>
 					</div>
 				
 				</div>

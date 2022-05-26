@@ -53,14 +53,14 @@ div {
 #AdminPageHeader ul{
 	position:absolute;
 	left:13px;
-	bottom:-3px;
-	width:100%;
+	bottom:-5px;
+	width:95%;
 }
 
 #AdminPageHeader li{
 	margin-right:5px;
-	min-width:30%;
-	max-width:40%;
+	min-width:20%;
+	max-width:28%;
 	font-size:15px;
 }
 
@@ -72,6 +72,7 @@ div {
 	background-color: #B4C8BC;
 	color:white;
 	text-align:center;
+	font-size:min(15px,2.8vw);
 }
 
 #AdminPageHeader .active{
@@ -82,7 +83,7 @@ div {
 #memberManagement{
 	margin:0%;
 	padding:2%;
-	height:80%;
+	height:70%;
 	border: 5px solid #D8E2DC;
 	border-radius: 15px;
 	background-color:white;
@@ -106,7 +107,7 @@ div {
 }
 
 #memberHeader div{
-	background-color:#516D5C;
+	background-color:#B4C8BC;
 	font-weight:bolder;
 	font-size:16px;
 	line-height:35px;
@@ -116,7 +117,7 @@ div {
 #memberlistHeader{
 	font-weight:bolder;
 	color:#516D5C;
-	
+	font-size:25px;
 }
 
 #memberManagement a{
@@ -124,7 +125,22 @@ div {
 	text-decoration:none;
 }
 
-#memberManagement .memberlistPageNavi a{
+.memberlistPageNavi a{
 	color:#516D5C;
+	text-decoration:none;
+	font-weight:bolder;
+	font-size:20px;
 }
 
+.listNN{
+	color:#FFBE46;
+}
+
+.memberinfo div{
+	font-size:min(15px,3vw);
+	font-size:16px;
+}
+
+#memberlistHeader{
+	font-size:min(20px,5vw);
+}

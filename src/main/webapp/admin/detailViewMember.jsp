@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Detail Member</title>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -43,17 +45,7 @@
 	
 
 </script>	
-<style>
-p {
-	margin: 20px 0px;
-}
 
-div {
-/* 	border: 1px solid black; */
-	text-align: center;
-}
-
-</style>
 </head>
 <body>
 	<div class="container w-100">
@@ -121,115 +113,115 @@ div {
 					<div class="col-12">
 						<div class="row w-100 m-0" id="memberPageHeader">
 							<div class="col-12">
-								<p>Admin Page</p>
-								<ul class="nav nav-tabs">
-									<li class="nav-item"><a class="nav-link active"
-										aria-current="page" href="/adminmain.admin">회원 정보 관리</a></li>
-									<li class="nav-item"><a class="nav-link" 
-										href="/adminBoardsList.admin">게시글 관리</a></li>
-									<li class="nav-item"><a class="nav-link" 
-										href="/adminReplysList.admin?board=1">댓글 관리</a></li>
-								</ul>
-							</div>	
-						</div>
+							<p>[관리자 전용] 페이지 입니다.</p>
+							<ul class="nav nav-tabs">
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="/adminmain.admin">회원 정보 관리</a></li>
+								<li class="nav-item"><a class="nav-link" 
+									href="/adminBoardsList.admin">게시글 관리</a></li>
+								<li class="nav-item"><a class="nav-link" 
+									href="/adminReplysList.admin?board=1">댓글 관리</a></li>
+							</ul>
+						</div>	
+					</div>
 							
-						<div class="row" id="memberPage">
-							<div class="col-12">	
-								<form action="adminUpdate.admin" method="post">
-									<div class="row" id="memberPageArea">
-										<div class="col-12">
-											<div class="row">
-												<div class="col-12" id="memberPageAreaHeader">${mdto.id}'s Information</div>
-												<input type="hidden" value="${mdto.id}" name="id" id="userId">
+					<div class="row" id="memberPage">
+						<div class="col-12">	
+							<form action="adminUpdate.admin" method="post">
+								<div class="row" id="memberPageArea">
+									<div class="col-12">
+										<div class="row">
+											<div class="col-12" id="memberPageAreaHeader">${mdto.id}'s Information</div>
+											<input type="hidden" value="${mdto.id}" name="id" id="userId">
+										</div>
+										<div class="row" align=center>
+											<div class="col-4">ID</div>
+											<div class="col-8">${mdto.id}</div>
+										</div>
+										<div class="row">
+											<div class="col-4">NAME</div>
+											<div class="col-8">
+												<input type=text value="${mdto.name}" class="editable"
+												name=name id="nameTD" disabled>
 											</div>
-											<div class="row" align=center>
-												<div class="col-4">ID</div>
-												<div class="col-8">${mdto.id}</div>
-											</div>
-											<div class="row">
-												<div class="col-4">NAME</div>
-												<div class="col-8">
-													<input type=text value="${mdto.name}" class="editable"
-													name=name id="nameTD" disabled>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-4">PHONE</div>
-												<div class="col-8">
-													<input type=text value="${mdto.phone}" class="editable"
-														name=phone id="phoneTD" disabled>
-												</div>
+										</div>
+										<div class="row">
+											<div class="col-4">PHONE</div>
+											<div class="col-8">
+												<input type=text value="${mdto.phone}" class="editable"
+													name=phone id="phoneTD" disabled>
+											</div>												
 												<div class="col-4"></div>
 												<div class="col-8" id="phoneCheckResult"></div>
 											</div>
-											<div class="row">
-												<div class="col-4">EMAIL</div>
-												<div class="col-8">
-													<input type=text value="${mdto.email}" class="editable"
-														name=email id="emailTD" disabled>
-												</div>
-												<div class="col-4"></div>
-												<div class="col-8" id="emailCheckResult"></div>
+										<div class="row">
+											<div class="col-4">EMAIL</div>
+											<div class="col-8">
+												<input type=text value="${mdto.email}" class="editable"
+													name=email id="emailTD" disabled>
 											</div>
-											<div class="row">
-												<div class="col-4">PHONE</div>
-												<div class="col-8">
-													<input type=text value="${mdto.phone}" class="editable"
-														name=phone id="phoneTD" disabled>
-												</div>
-												<div class="col-4"></div>
-												<div class="col-8" id="phoneCheckResult"></div>
+											<div class="col-4"></div>
+											<div class="col-8" id="emailCheckResult"></div>
+										</div>
+										<div class="row">
+											<div class="col-4">PHONE</div>
+											<div class="col-8">
+												<input type=text value="${mdto.phone}" class="editable"
+													name=phone id="phoneTD" disabled>
 											</div>
-											<div class="row">
-												<div class="col-4">EMAIL</div>
-												<div class="col-8">
-													<input type=text value="${mdto.email}" class="editable"
-														name=email id="emailTD" disabled>
-												</div>
-												<div class="col-4"></div>
-												<div class="col-8" id="emailCheckResult"></div>
+											<div class="col-4"></div>
+											<div class="col-8" id="phoneCheckResult"></div>
+										</div>
+										<div class="row">
+											<div class="col-4">EMAIL</div>
+											<div class="col-8">
+												<input type=text value="${mdto.email}" class="editable"
+													name=email id="emailTD" disabled>
 											</div>
-											<div class="row">
-												<div class="col-4">NICKNAME</div>
-												<div class="col-8">
-													<input type=text value="${mdto.nickname}" class="editable"
-														name=nickname id="nicknameTD" disabled>
-												</div>
-												<div class="col-4"></div>
-												<div class="col-8" id="nicknameCheckResult"></div>
+											<div class="col-4"></div>
+											<div class="col-8" id="emailCheckResult"></div>
+										</div>
+										<div class="row">
+											<div class="col-4">NICKNAME</div>
+											<div class="col-8">
+												<input type=text value="${mdto.nickname}" class="editable"
+													name=nickname id="nicknameTD" disabled>
 											</div>
-											<div class="row">
-												<div class="col-4">JOINDATE</div>
-												<div class="col-8">${mdto.joindate}</div>
-											</div>
+											<div class="col-4"></div>
+											<div class="col-8" id="nicknameCheckResult"></div>
+										</div>
+										<div class="row">
+											<div class="col-4">JOINDATE</div>
+											<div class="col-8">${mdto.joindate}</div>
 										</div>
 									</div>
-									<br>
-									<div class="row">
-										<div class="col-12">
-											<input id="adminTF" type="text" style="color: red; width:200px;" value="관리자 확인이 필요합니다. " disabled>
-										</div>
+								</div>
+								<br>
+								<div class="row">
+									<div class="col-12">
+										<input id="adminTF" type="text" style="color: red; width:200px;" value="관리자 확인이 필요합니다. " disabled>
 									</div>
+								</div>
 									
-									<br>
-									<div class="row w-100 m-10" align=center>
-										<div class="col-12" id="btns">
-											<button id="back" type="button">뒤로가기</button>
-											<button id="modify" type="button">수정하기</button>
-											<button id="banish" type="button">강제 추방</button>
-										</div>
+								<br>
+								<div class="row w-100 m-10" align=center>
+									<div class="col-12" id="btns">
+										<button id="back" type="button">뒤로가기</button>
+										<button id="modify" type="button">수정하기</button>
+										<button id="banish" type="button">강제 추방</button>
 									</div>
-								</form>
-							</div>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="row w-100 m-0" id="footer">
-			<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
-		</div>
 	</div>
+	<div class="row w-100 m-0" id="footer">
+		<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
+	</div>
+</div>
 
 </body>
 <script>
