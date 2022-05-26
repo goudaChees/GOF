@@ -100,6 +100,10 @@
 										<div class="col-3">이메일</div>
 										<div class="col-9">
 											<input type="text" id="email" name="email">
+											<input type="text" id="emailKey" style="display: none;" value="no">
+											<input type="text" id="emailKeyInput">
+											<button type="button" id="sendmail">인증메일 발송</button>
+											<button type="button" id="okbtn" style="display: none;">인증확인</button>
 										</div>
 										<div class="col-3"></div>
 										<div class="col-9" id="emailCheckResult"></div>
@@ -136,6 +140,7 @@
 	</div>
 
 	<script>
+	
 		$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업
 			Swal.fire({
 				icon: 'error',
@@ -372,13 +377,46 @@
 			} else {
 				$("#email").css("border", "1px solid blue");
 				$("#emailCheckResult").text("");
-				isEmailOk = true;
-
-				//모든 검증 통과 시 submit 버튼 활성화
-				if (isIdOk && isPwOk && isPw2Ok && isNameOk
-						&& isPhoneOk && isEmailOk && isNNOk) {
-					$("#join").removeAttr("disabled");
-				}
+				
+				$("#sendmail").on("click",function(){
+					let email = $("#email").val();
+					if(email == ""){
+						 alert("메일칸을 작성해주세요.");
+						 isEmailOk = false;
+						$("#join").attr("disabled","true");
+						 return false;
+					}
+					$("#sendmail").text("인증메일 재발송");
+					alert("메일이 발송되었습니다.");
+					
+					$.ajax({
+						url:"/send.mail",
+						dataType:"json",
+						data:{email:$("#email").val()}
+					}).always(function(resp){
+						$("#emailKey").val(resp);
+					})
+				})
+				$("#sendmail").on("keyup",function(){
+					 $("#okbtn").css("display","inline")
+				})
+				$("#okbtn").on("click",function(){
+					if($("#emailKey").val()==$("#emailKeyInput").val()){
+						alert("메일이 인증되었습니다.")
+						isEmailOk = true;
+					
+						//모든 검증 통과 시 submit 버튼 활성화
+						if (isIdOk && isPwOk && isPw2Ok && isNameOk
+								&& isPhoneOk && isEmailOk && isNNOk) {
+							$("#join").removeAttr("disabled");
+						}
+					}else if(!($("#emailKey").val()==$("#emailKeyInput").val())){
+						alert("메일 인증이 실패하였습니다.");
+						isEmailOk = false;
+						$("#join").attr("disabled","true");
+						return false;
+					}	
+				})
 			}
 		})
 

@@ -108,7 +108,7 @@ div {
 					<div style="width:${disagreeRatio}%;height:10px" id="disagreeRatio"></div>
 				</div>
 				<form action="/write.brd1_reply">
-					<input type="hidden" name="parent_seq" value=${dto.seq }>
+					<input type="text" name="parent_seq" value=${dto.seq }>
 					<div id="radio" style="margin-top: 10px;">
 						<input type="radio" value="승인" name="agree" checked>승인 :
 						${dto.agree_count } <input type="radio" value="불가" name="agree">불가
@@ -152,14 +152,14 @@ div {
 								</div>
 							</div>
 							<div class="col-8" style="border:0px">
-								<div class="writer" id="writer_view">작성자 : ${i.writer }</div>
+								<div class="writer" id="r${i.seq }">작성자 : ${i.writer }</div>
 								<input type="text" name="reply_contents" value='${i.contents }' readonly maxlength=300> 
 								<input type="hidden" name="replySeqToUpdate" value=${i.seq }>
 								<input type="hidden" name="parent_seq2" value=${dto.seq }>
 								<div id="w${i.seq }"></div>
 							</div>
 							<div class="col-2" style="border:0px">
-								<c:if test="${i.writer==nickname}">
+								<c:if test="${i.writer==nickname || id=='admin'}">
 									<div class="reply_btns">
 										<input type="hidden" name="preAgree" value=${i.agree }>
 										<input type="button" value="수정" class="modify_btn"> <input
@@ -186,7 +186,7 @@ div {
 				<!-- 게시글 목록, 수정, 삭제 버튼---------------------------------------------------------- -->
 			<div id="btns" style="text-align: right;">
 				<input type="button" id="toList" value="목록으로">
-				<c:if test="${nickname==dto.writer }">
+				<c:if test="${nickname==dto.writer || id=='admin'}">
 					<input type="button" id="modify" value="수정하기">
 					<input type="button" id="delete" value="삭제하기">
 				</c:if>
@@ -226,7 +226,10 @@ div {
 					write_date = hour +":"+minutes;
 					$("#w"+seq).text(write_date);
 				}else{
-					write_date = year +"."+month +"."+date;
+					
+					let twoYear = year.toString().substring(2,4);
+					
+					write_date = twoYear +"."+month +"."+date;
 					$("#w"+seq).text(write_date);					
 				}
 			}
@@ -262,9 +265,11 @@ div {
 			
 			
 			// 베스트 댓글 
-			let best = $("<span>best</spen>")
-			best.css("color","red")
-			$("#writer_view").prepend(best)
+			if(${glist}[0].good>0){
+				let best = $("<span>best</span>")
+				best.css("color","red")
+				$("#r"+${glist}[0].seq).prepend(best)
+			}
 		}
 		 
 		

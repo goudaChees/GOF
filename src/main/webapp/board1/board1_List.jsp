@@ -153,7 +153,8 @@
 					$("#w"+seq).text(write_date);
 					$("#n"+seq).css("display","inline-block");
 				}else{
-					write_date = year +"."+month +"."+date;
+					let twoYear = year.toString().substring(2,4);
+					write_date = twoYear +"."+month +"."+date;
 					$("#w"+seq).text(write_date);					
 				}
 				
