@@ -119,3 +119,12 @@ div {
 	
 }
 
+#memberManagement a{
+	color:#FFBE46;
+	text-decoration:none;
+}
+
+#memberManagement .memberlistPageNavi a{
+	color:#516D5C;
+}
+

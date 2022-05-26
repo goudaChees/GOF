@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>고객센터</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e3b2ec1cbf323959f82484d3c09baa42"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -27,7 +27,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/css/cscenter/csmain.css">
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed298afa01dbe436406160c176a6dde2"></script>
+
 
 
 </head>
@@ -117,7 +117,7 @@
 									<li class="nav-item"><a class="nav-link" data-toggle="tab"
 										href="#csmail">1:1 문의하기</a></li>
 									<li class="nav-item"><a class="nav-link" data-toggle="tab"
-										href="#csmail">찾아 오시는 길</a></li>
+										href="#cscontact">찾아 오시는 길</a></li>
 								</ul>
 							</div>
 						</div>
@@ -249,7 +249,7 @@
 										</form>
 									</div>
 									<!-- 지도 api 추가 -->
-									<div class="tab-pane fade">
+									<div class="tab-pane fade" id="cscontact">
 										<div class=row>
 											<div class=col-12>오시는 길</div>
 										</div>
@@ -267,7 +267,7 @@
 										</div>
 										<div class=row>
 											<div class=col-12>
-												<div id="map"></div>
+												<div id="map" style="width:500px;height:400px;"></div>
 											</div>
 										</div>
 										<!--  지도 api 마감 -->

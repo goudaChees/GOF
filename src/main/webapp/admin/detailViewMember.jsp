@@ -113,13 +113,13 @@ div {
 				</nav>
 			</div>
 		</div>
-
+		
 		<div class="row w-100 m-0" id="content">
 			<div class="d-none d-lg-block col-3"></div>
 			<div class="col-12 col-lg-6">
-				<div class="row w-100 m-0" id="MyPageOutline">
+				<div class="row w-100 m-0" id="memberPageOutline">
 					<div class="col-12">
-						<div class="row w-100 m-0" id="MyPageHeader">
+						<div class="row w-100 m-0" id="memberPageHeader">
 							<div class="col-12">
 								<p>Admin Page</p>
 								<ul class="nav nav-tabs">
@@ -128,18 +128,18 @@ div {
 									<li class="nav-item"><a class="nav-link" 
 										href="/adminBoardsList.admin">게시글 관리</a></li>
 									<li class="nav-item"><a class="nav-link" 
-										href="/adminReplyList.admin">댓글 관리</a></li>
+										href="/adminReplysList.admin?board=1">댓글 관리</a></li>
 								</ul>
 							</div>	
 						</div>
 							
-						<div class="row" id="MyPage">
+						<div class="row" id="memberPage">
 							<div class="col-12">	
 								<form action="adminUpdate.admin" method="post">
-									<div class="row" id="MypageArea">
+									<div class="row" id="memberPageArea">
 										<div class="col-12">
 											<div class="row">
-												<div class="col-12" id="MyPageAreaHeader">${mdto.id}'s Information</div>
+												<div class="col-12" id="memberPageAreaHeader">${mdto.id}'s Information</div>
 												<input type="hidden" value="${mdto.id}" name="id" id="userId">
 											</div>
 											<div class="row" align=center>
@@ -149,14 +149,14 @@ div {
 											<div class="row">
 												<div class="col-4">NAME</div>
 												<div class="col-8">
-													<input type=text value="${mdto.name }" class="editable"
+													<input type=text value="${mdto.name}" class="editable"
 													name=name id="nameTD" disabled>
 												</div>
 											</div>
 											<div class="row">
 												<div class="col-4">PHONE</div>
 												<div class="col-8">
-													<input type=text value="${mdto.phone }" class="editable"
+													<input type=text value="${mdto.phone}" class="editable"
 														name=phone id="phoneTD" disabled>
 												</div>
 												<div class="col-4"></div>
@@ -165,7 +165,7 @@ div {
 											<div class="row">
 												<div class="col-4">EMAIL</div>
 												<div class="col-8">
-													<input type=text value="${mdto.email }" class="editable"
+													<input type=text value="${mdto.email}" class="editable"
 														name=email id="emailTD" disabled>
 												</div>
 												<div class="col-4"></div>
@@ -174,7 +174,7 @@ div {
 											<div class="row">
 												<div class="col-4">PHONE</div>
 												<div class="col-8">
-													<input type=text value="${mdto.phone }" class="editable"
+													<input type=text value="${mdto.phone}" class="editable"
 														name=phone id="phoneTD" disabled>
 												</div>
 												<div class="col-4"></div>
@@ -183,7 +183,7 @@ div {
 											<div class="row">
 												<div class="col-4">EMAIL</div>
 												<div class="col-8">
-													<input type=text value="${mdto.email }" class="editable"
+													<input type=text value="${mdto.email}" class="editable"
 														name=email id="emailTD" disabled>
 												</div>
 												<div class="col-4"></div>
@@ -192,7 +192,7 @@ div {
 											<div class="row">
 												<div class="col-4">NICKNAME</div>
 												<div class="col-8">
-													<input type=text value="${mdto.nickname }" class="editable"
+													<input type=text value="${mdto.nickname}" class="editable"
 														name=nickname id="nicknameTD" disabled>
 												</div>
 												<div class="col-4"></div>
@@ -200,13 +200,14 @@ div {
 											</div>
 											<div class="row">
 												<div class="col-4">JOINDATE</div>
-												<div class="col-8">${mdto.joindate }</div>
+												<div class="col-8">${mdto.joindate}</div>
 											</div>
 										</div>
 									</div>
+									<br>
 									<div class="row">
 										<div class="col-12">
-											<br><input id="adminTF" type="text" style="color: red;" value="관리자 확인이 필요합니다." disabled>
+											<input id="adminTF" type="text" style="color: red; width:200px;" value="관리자 확인이 필요합니다. " disabled>
 										</div>
 									</div>
 									

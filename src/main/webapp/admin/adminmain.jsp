@@ -91,7 +91,7 @@
 									<li class="nav-item"><a class="nav-link" 
 										href="/adminBoardsList.admin">게시글 관리</a></li>
 									<li class="nav-item"><a class="nav-link" 
-										href="/adminReplysList.admin">댓글 관리</a></li>
+										href="/adminReplysList.admin?board=1">댓글 관리</a></li>
 								</ul>
 							</div>
 						</div>
@@ -148,7 +148,7 @@
 								
 								</c:forEach>
 								
-								<div class="row w-100 m-0">
+								<div class="row w-100 m-0 memberlistPageNavi">
 									<div class="col-12">
 										${pageNavi}
 									</div>

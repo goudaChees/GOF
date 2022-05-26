@@ -31,40 +31,40 @@ div {
 	position: relative;
 }
 
-#MyPageOutline{
+#memberPageOutline{
 	padding:2%;
 	height:100%;
 	border-radius: 15px;
 	background-color: #FFF4EF;
 }
 
-#MyPageHeader{
+#memberPageHeader{
 	padding-top:10px;
 	height:100px;
 	text-align:left;
 }
 
-#MyPageHeader .col-12{
+#memberPageHeader .col-12{
 	color: #806c71;
 	text-align:left;
 	position:relative;
 }
 
-#MyPageHeader ul{
+#memberPageHeader ul{
 	position:absolute;
 	left:13px;
 	bottom:-5px;
 	width:100%;
 }
 
-#MyPageHeader li{
+#memberPageHeader li{
 	margin-right:5px;
 	min-width:20%;
 	max-width:28%;
 	font-size:15px;
 }
 
-#MyPageHeader .nav-link{
+#memberPageHeader .nav-link{
 	padding-left:3px;
 	padding-right:3px;
 	border: 1px solid transparent;
@@ -74,12 +74,12 @@ div {
 	text-align:center;
 }
 
-#MyPageHeader .active{
+#memberPageHeader .active{
 	background-color: #D8E2DC;
 	color:#516D5C;
 }
 
-#MyPage{
+#memberPage{
 	margin:0%;
 	padding:2%;
 	height:80%;
@@ -91,17 +91,17 @@ div {
 	z-index:5;
 }
 
-#MyPage form{
+#memberPage form{
 	height:100%;
 	padding-top:5%;
 }
 
-#MyPageArea{
+#memberPageArea{
 	margin:1%;
 	color:#5C474D;
 }
 
-#MyPageAreaHeader{
+#memberPageAreaHeader{
 	background-color:#516D5C;
 	font-weight:bolder;
 	font-size:16px;
@@ -109,22 +109,22 @@ div {
 	color: white;
 }
 
-#MyPageArea .col-4{
+#memberPageArea .col-4{
 	background-color: #D8E2DC;
 	font-weight:bolder;
 	line-height:35px;
 }
 
-#MyPageArea .col-8{
+#memberPageArea .col-8{
 	text-align:left;
 	line-height:35px;
 }
 
-#MyPageArea .row{
+#memberPageArea .row{
 	border-bottom:1px solid #516D5C;
 }
 
-#MyPage button{
+#memberPage button{
 	padding:1%;
 	margin-left:1%;
 	color: #9D8189;
@@ -135,7 +135,7 @@ div {
 	width:110px;
 }
 
-#MyPage button:hover{
+#memberPage button:hover{
 	background-color: #D8E2DC80;
 	cursor:pointer;	
 }
