@@ -47,24 +47,42 @@ div {
 
 #loginBg{
 	position: absolute;
-	left: 52.5%;
-    top: 15%;
+	left: 50%;
+    top: 0;
     transform: translate(-50%, -50%);
-	width:550px;
+	width:700px;
 	z-index:-1;
 }
 
 #mloginBg{
 	position: absolute;
-	left: 52.5%;
-    top: 12%;
+	left: 50%;
+    top: 0;
     transform: translate(-50%, -50%);
-	width:550px;
+	width:600px;
 	z-index:-1;
 }
 
+#loginHi{
+	position: absolute;
+	left: 50%;
+    top: 30px;
+    transform: translate(-50%, -50%);
+    width:600px;
+    padding-left:20px;
+}
+
+#loginInput{
+	position: absolute;
+	left: 50%;
+    top: 30px;
+    transform: translate(-50%, -50%);
+    width:600px;
+    padding-left:20px;
+}
+
 #loginArea input{
-	margin-bottom: 15px;
+	margin-bottom: 17px;
 }
 
 #id, #pw{
@@ -73,18 +91,21 @@ div {
 }
 
 #login, #joinbtn{
-	background-color: transparent;
-	border: 2px solid #F4ACB7;
+	background-color: #fff4ef;
+	color:#ff6a85;
+	border: 0px;
 	border-radius:20px;
-	margin:8px;
-	padding:4px;
+	margin:3px;
+	padding:5px;
 	width:90px;
-	color:#664E55;
 	text-align:center;
+	font-weight:bold;
 }
 
 #login:hover, #joinbtn:hover{
-	background-color: #FFF4EF95;
+	
+	background-color: #f29eab;
+	color:#FFF4EF;
 }
 
 #footer{

@@ -83,17 +83,17 @@
 				<img src="/img/Main.png" id="bgImg">
 			</div>
 			<div class="col-12" id="loginArea">
-				<img src="/img/loginBg.png" class="d-none d-lg-block" id="loginBg">
-				<img src="/img/mloginBg.png" class="d-block d-lg-none" id="mloginBg">
+				<img src="/img/loginBg_center.png" class="d-none d-lg-block" id="loginBg">
+				<img src="/img/mloginBg_center.png" class="d-block d-lg-none" id="mloginBg">
 				<c:choose>
 					<c:when test="${loginID !=null}">
-						<div class="row">
+						<div class="row" id="loginHi">
 							<div class="col-12">${loginNN }님 안녕하세요!</div>
 						</div>
 					</c:when>
 					<c:otherwise>
 						<form action="login.member" method="post">
-							<div class="row">
+							<div class="row" id="loginInput">
 								<div class="col-12 p-0">
 									<input type="text" id="id" name="id" placeholder="아이디 입력">
 								</div>
