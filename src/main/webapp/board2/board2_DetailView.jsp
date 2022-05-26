@@ -113,7 +113,8 @@
 												<div id="wpriceno"></div>
 										</div>
 										<div class="col-6">
-											<input type="text" placeholder="내용을 입력해주세요" name="contents" id="contents">
+											<textarea placeholder="내용을 입력해주세요" name="contents" id="contents">
+											</textarea>
 										</div>
 										<div class="col-3">
 											<button type="submit" id="btn1">작성</button>
@@ -196,7 +197,7 @@
 		}
 		
  	$("#btn1").on("click",function(){
- 		if($("#wprice").val()=='' || $("#contents").val()==''){
+ 		if($("#wprice").val()=='' || $("#contents").text()==''){
  			alert("가격,내용은 필수 입력 사항입니다.");
 	    	 return false;
  		}
