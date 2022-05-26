@@ -88,13 +88,20 @@ div {
 			<div id="title" class="col-10">${dto.title }</div>
 			<div id="view_Count" class="col-2">${dto.view_count }</div>
 			<div id="img_Box" class="col-5">
-				<img src="files/${dto.fileName }" style="width: 100%; height: 100%;">
+				<c:choose>
+					<c:when test="${dto.fileName==null }">
+						<img src="/img/pig2.png" style="width: 100%; height: 100%;">
+					</c:when>
+					<c:otherwise>
+						<img src="files/${dto.fileName }" style="width: 100%; height: 100%;">
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<div id="contents_Box" class="col-7">
 				<div id="item">${dto.item}</div>
 				<div id="contents">${dto.contents}</div>
 			</div>
-			<div id="item_price">전체 금액 : ${dto.item_price}</div>
+			<div id="item_price"></div>
 			<div>
 				<div id="graph" style="width: 70%; margin: auto;">
 					<div style="width:${agreeRatio}%;height:10px" id="agreeRatio"></div>
@@ -119,7 +126,7 @@ div {
 						</div>
 						<div style="border: 0px">
 							<input type="text" placehold="왜 그렇게 생각하나요?" style="width: 100%;"
-								name="contents" id="contents_reply">
+								name="contents" id="contents_reply" maxlength=300>
 						</div>
 					</div>
 					<div id="left" class="col-3" style="border: 0px">
@@ -146,11 +153,10 @@ div {
 							</div>
 							<div class="col-8" style="border:0px">
 								<div class="writer">작성자 : ${i.writer }</div>
-								<input type="text" name="reply_contents" value='${i.contents }' readonly> 
+								<input type="text" name="reply_contents" value='${i.contents }' readonly maxlength=300> 
 								<input type="hidden" name="replySeqToUpdate" value=${i.seq }>
 								<input type="hidden" name="parent_seq2" value=${dto.seq }>
-								<input type="hidden" name="reply_date" value=${i.write_date }>
-								<div id="write_date1"><fmt:formatDate pattern = "yyyy/MM/dd"value=${i.write_date } id="write_date"/></div>
+								<div id="w${i.seq }"></div>
 							</div>
 							<div class="col-2" style="border:0px">
 								<c:if test="${i.writer==nickname}">
@@ -199,6 +205,37 @@ div {
 				alert("로그인 후 이용 가능합니다.")
 				location.href="/index.jsp"
 			}
+//          0. 날짜 변환(오늘날짜는 시간, 전날은 연,월,일 표시)
+			let today=new Date();//오늘날짜
+			
+			toYear = today.getFullYear();
+			toMonth = today.getMonth()+1;
+			toDate = today.getDate()
+
+			for(let i=0;i<${glist}.length;i++){
+				let seq = ${glist}[i].seq;
+				let write_date = new Date(${glist}[i].write_date);
+				
+				year = write_date.getFullYear();
+				month = write_date.getMonth()+1;
+				date = write_date.getDate();
+				hour = write_date.getHours();
+				minutes = write_date.getMinutes();
+				
+				if(toYear==year&&toMonth==month&&toDate==date){
+					write_date = hour +":"+minutes;
+					$("#w"+seq).text(write_date);
+				}else{
+					write_date = year +"."+month +"."+date;
+					$("#w"+seq).text(write_date);					
+				}
+			}
+			
+			let money=${dto.item_price}
+			let moneyForm = "총 금액 : "+money.toLocaleString() +"원"  
+			$("#item_price").text(moneyForm)
+			
+			
 			// 로드시 좋아요 한 댓글 검정색 처리	
 			if(${nickname==null}){
 				location.href="/index.jsp"
