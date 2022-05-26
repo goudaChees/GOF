@@ -95,18 +95,14 @@
 								</ul>
 							</div>
 						</div>
-					
-<!-- 						위까지만 스타일 통일 아래는 아직  -->
-						
-<!-- 						<div class="tab-content"> -->
-<!-- 							<div class="tab-pane fade show active" id="memberManagement"> -->
-						
 				
 						<div class="row w-100 m-0"  id="memberManagement">
 							<div class="col-12 p-0">
 								<div class="row w-100 m-0">
 									<div class="col-12" id="memberlistHeader">Member List</div>
+									<div class="col-12"><br></div>
 								</div>
+
 								<div class="row w-100 m-0" id="memberHeader">
 									<div class="d-none d-lg-block col-1">No.</div>
 									<div class="d-none d-lg-block col-lg-3">ID</div>
@@ -148,15 +144,15 @@
 								
 								</c:forEach>
 								
-								<div class="row w-100 m-0 memberlistPageNavi">
-									<div class="col-12">
-										${pageNavi}
-									</div>
-								</div>
+
 								
 							</div>
 						</div>							
-						
+						<div class="row w-100 m-0 memberlistPageNavi">
+							<div class="col-12">
+								${pageNavi}
+							</div>
+						</div>
 					</div>
 				
 				</div>
