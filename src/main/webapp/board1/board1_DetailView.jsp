@@ -152,7 +152,7 @@ div {
 								</div>
 							</div>
 							<div class="col-8" style="border:0px">
-								<div class="writer">작성자 : ${i.writer }</div>
+								<div class="writer" id="writer_view">작성자 : ${i.writer }</div>
 								<input type="text" name="reply_contents" value='${i.contents }' readonly maxlength=300> 
 								<input type="hidden" name="replySeqToUpdate" value=${i.seq }>
 								<input type="hidden" name="parent_seq2" value=${dto.seq }>
@@ -230,7 +230,7 @@ div {
 					$("#w"+seq).text(write_date);					
 				}
 			}
-			
+			// 작성 금액 형식 #,###원으로 변환
 			let money=${dto.item_price}
 			let moneyForm = "총 금액 : "+money.toLocaleString() +"원"  
 			$("#item_price").text(moneyForm)
@@ -259,7 +259,12 @@ div {
 				$("#contents_reply").attr("readonly",true);
 				$("#contents_reply").attr("placeholder","댓글은 한 게시물 당 한 개만 작성이 가능합니다.");
 			}
-
+			
+			
+			// 베스트 댓글 
+			let best = $("<span>best</spen>")
+			best.css("color","red")
+			$("#writer_view").prepend(best)
 		}
 		 
 		
@@ -282,13 +287,14 @@ div {
 			if(result){
 				location.href="/delete.brd1?seq=${dto.seq}";
 			}
-
+		
+		
 		})
 		
 		
 	<!-- 댓글 script-------------------------------------------------------------------- -->
 
-	
+//		댓글 작성	
 		$("#reply").on("click",function(){	
 			if(${nickname==null}){
 				alert("로그인 후 이용가능합니다.");

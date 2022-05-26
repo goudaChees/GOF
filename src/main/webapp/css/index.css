@@ -59,7 +59,7 @@ div {
 	left: 50%;
     top: 0;
     transform: translate(-50%, -50%);
-	width:600px;
+	width:550px;
 	z-index:-1;
 }
 
@@ -75,14 +75,14 @@ div {
 #loginInput{
 	position: absolute;
 	left: 50%;
-    top: 30px;
+    top: 20px;
     transform: translate(-50%, -50%);
     width:600px;
     padding-left:20px;
 }
 
 #loginArea input{
-	margin-bottom: 17px;
+	margin-bottom: 14px;
 }
 
 #id, #pw{
@@ -90,22 +90,49 @@ div {
 	border-radius: 5px;
 }
 
-#login, #joinbtn{
+#login{
 	background-color: #fff4ef;
 	color:#ff6a85;
 	border: 0px;
-	border-radius:20px;
-	margin:3px;
+	border-radius:10px;
+	margin:2px;
 	padding:5px;
-	width:90px;
+	height:37px;
+	width:183px;
 	text-align:center;
 	font-weight:bold;
 }
 
-#login:hover, #joinbtn:hover{
+#login:hover{
 	
 	background-color: #f29eab;
 	color:#FFF4EF;
+}
+
+#kakao-login-btn{
+	height:37px;
+	border-radius:10px;
+	margin-bottom: 10px;
+}
+
+#kakao-login-btn:hover{
+	cursor:pointer;
+	opacity:0.8;	
+}
+
+.loginlastline{
+	white-space:pre;
+	padding:0;
+}
+
+#loginInput a{
+	font-size:12px;
+	color:#7F626A;
+/* 	ff6a85 */
+/* 	735960 */
+/* 7F626A */
+	text-decoration:none;
+	font-weight:bold;
 }
 
 #footer{

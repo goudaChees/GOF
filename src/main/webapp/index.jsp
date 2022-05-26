@@ -102,10 +102,12 @@
 										placeholder="비밀번호 입력">
 								</div>
 								<div class="col-12">
-									<input type="button" id="login" value="로그인">
-									<a href="/joinform.member"><input type="button" value="회원가입" id="joinbtn"></a><br>
-									<input type="button" id="kakao-login-btn" value="카카오로 로그인"><br>
+									<input type="button" id="login" value="로그인"><br>
+									<img src="/img/kakao_login.png" id="kakao-login-btn"><br>
 								</div>
+								<div class="col-4"></div>
+								<div class="col-4 loginlastline"><a href="#" id="findIdPw">아이디/비밀번호 찾기</a>   <a href="/joinform.member" id="joinbtn">회원가입</a></div>
+								<div class="col-4"></div>
 							</div>
 						</form>
 					</c:otherwise>
