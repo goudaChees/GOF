@@ -108,13 +108,12 @@
 									<div class="row">
 										<div class="col-3">
 											<input type="text" id="writer" value="${loginNN}" style="display: none"> 
-												<input type="text" placeholder="ex)1000" maxlength="10" name="price" id="wprice" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /> 
+												<input type="text" required="required" placeholder="ex)1000" maxlength="10" name="price" id="wprice" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /> 
 												<input type="text" name="pseq" value="${dto.seq}" style="display: none">
 												<div id="wpriceno"></div>
 										</div>
 										<div class="col-6">
-											<textarea placeholder="내용을 입력해주세요" name="contents" id="contents">
-											</textarea>
+											<textarea placeholder="내용을 입력해주세요" name="contents" id="contents" required="required"></textarea>
 										</div>
 										<div class="col-3">
 											<button type="submit" id="btn1">작성</button>
@@ -131,7 +130,7 @@
 					<div class="col-8">
 						<div class="row">
 							<div class="col-6">${crdto.nickname}</div>
-							<div class="col-6">${crdto.wirte_date}</div>
+							<div class="col-6">${crdto.write_date}</div>
 							<div class="col-12">${crdto.contents}</div>
 						</div>
 					</div>
@@ -150,7 +149,7 @@
 										<div class="col-6">${i.nickname}</div>
 										<div class="col-6">${i.write_date}</div>
 										<div class="col-12 incontents">
-										<input type="text" value="${i.contents}" class="editable" disabled>
+										<textarea class="editable" disabled >${i.contents}</textarea>
 										</div>
 									</div>
 								</div>
@@ -196,14 +195,6 @@
 		$("#wprice").attr("readonly",true);
 		}
 		
- 	$("#btn1").on("click",function(){
- 		if($("#wprice").val()=='' || $("#contents").text()==''){
- 			alert("가격,내용은 필수 입력 사항입니다.");
-	    	 return false;
- 		}
- 		window.reload();
- 		
- 	})
  	if(${cck == true}){
  		$(".text2").text("선택완료");
  		
@@ -318,7 +309,7 @@
 		}
 	        let time = $("#wtime").text();
 	        let dateObj = new Date(time);
-	        dateObj.setMinutes(dateObj.getMinutes() +10);
+	        dateObj.setMinutes(dateObj.getMinutes() +30);
 			countDownTimer("limit", dateObj);
 	
 	</script>
