@@ -104,7 +104,7 @@
 													<input type=text value="${dto.email }" class="editable" name=email id="emailTD" disabled>
 												</div>
 												<div class="col-4"></div>
-												<div class="col-5" id="emailCheckResult"></div>
+												<div class="col-8" id="emailCheckResult"></div>
 											</div>
 											<div class="row">
 												<div class="col-4">NICKNAME</div>
