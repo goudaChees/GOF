@@ -173,14 +173,21 @@ div {
 	padding-bottom:10px;
 }
 
-.writingTitle {
+.itemLine{
 	text-align:left;
 	color: #806c71;
+	font-size:min(15px,3vw);
+	width:100%;
+}
+
+.writingTitle {
+	text-align:left;
+	color: #766469;
 	overflow:hidden;
 	text-overflow:ellipsis;
     white-space:nowrap;
 	font-size:min(16px,3.5vw);
-	line-height: min(45px,9vw);
+	line-height: min(34px,6.5vw);
 }
 
 .writingTitle p{
@@ -200,7 +207,7 @@ div {
 	text-align:left;
 	color: #9D8189;
 	font-size:min(14px,2vw);
-	line-height: min(30px,4.5vw);
+	line-height: min(18px,2.5vw);
 }
 
 #board1List a{
