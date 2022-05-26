@@ -87,7 +87,7 @@
 							<div class="col-12">
 								<div class="row w-100 m-0">
 									<div class="col-12">
-										<input type="text" name="title" placeholder="제목을 작성해주세요">
+										<input type="text" name="title" placeholder="${dto.title}">
 									</div>
 									
 									<div class="col-12" id="note_content">

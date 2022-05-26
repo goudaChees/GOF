@@ -59,6 +59,8 @@ public class Board2Controller extends HttpServlet {
 			} else if (uri.equals("/modi.brd2")) {
 				int seq = Integer.parseInt(request.getParameter("seq"));
 				request.setAttribute("seq", seq);
+				Board2DTO dto = dao.contents(seq);
+				request.setAttribute("dto", dto);
 				request.getRequestDispatcher("/board2/board2_Write.jsp").forward(request, response);
 			} else if(uri.equals("/modi2.brd2")) {
 				int seq = Integer.parseInt(request.getParameter("seq"));
@@ -70,6 +72,7 @@ public class Board2Controller extends HttpServlet {
 			}
 			else if (uri.equals("/read.brd2")) {
 				int seq = Integer.parseInt(request.getParameter("seq"));
+				String loginID = (String) session.getAttribute("loginID");
 				String loginNN = (String) session.getAttribute("loginNN");
 				Board2DTO dto = dao.contents(seq);
 				 
@@ -80,8 +83,8 @@ public class Board2Controller extends HttpServlet {
 				ArrayList<Board2_replyDTO> rdto = rdao.list(seq);
 				request.setAttribute("rdto", rdto);
 				// 댓글보기
+				request.setAttribute("loginID", loginID);
 				request.setAttribute("loginNN", loginNN);
-				
 				
 				boolean cck = rdao.ischoice(seq);
 				// 선택체크 선택되어 있다면 true

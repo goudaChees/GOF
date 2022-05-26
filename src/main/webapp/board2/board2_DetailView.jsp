@@ -95,7 +95,7 @@
 						<button type="button" id="listview">
 						<a href="list.brd2" style="text-decoration:none">게시판으로 돌아가기</a>
 						</button>
-						<c:if test="${(dto.nickname == loginNN && cck== false)||(loginID == admin)}">
+						<c:if test="${(dto.nickname == loginNN && cck== false)||(loginID == 'admin')}">
 							<button type="button" id="modi">수정하기</button>
 							<button type="button" id="del">삭제하기</button>
 						</c:if>
@@ -158,7 +158,7 @@
 									선택<input type="radio" name="choice" value="${i.seq}"
 											class="choice">
 									</c:if>
-									<c:if test="${(i.nickname == loginNN && cck== false)||(loginID == admin)}">
+									<c:if test="${(i.nickname == loginNN && cck== false)||(loginID == 'admin')}">
 										<button class="modibtn">수정</button>
 										<button class="delbtn" value="${i.seq}">삭제</button>
 									</c:if>
@@ -174,8 +174,6 @@
 			<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
 		</div>
 	</div>
-
-
 	<script>
 	if(${timeover}){
 		$("#btn1").css("display","none");
@@ -184,20 +182,19 @@
 		$(".modibtn").css("display","none");
 		$(".text2").text("시간종료");
 	}
-		if(${wck}){
-			$("#contents").attr("readonly",true);
-			$("#contents").attr("placeholder","댓글은 한 게시물 당 한 개만 작성이 가능합니다.");
-			$("#wprice").attr("readonly",true);
-		}
-		if(${cck}){
+	if(${wck}){
+		$("#contents").attr("readonly",true);
+		$("#contents").attr("placeholder","댓글은 한 게시물 당 한 개만 작성이 가능합니다.");
+		$("#wprice").attr("readonly",true);
+	}
+	if(${cck}){
 		$("#contents").attr("readonly",true);
 		$("#contents").attr("placeholder","작성자가 댓글을 선택했다면 게시글을 작성할수 없습니다.");
 		$("#wprice").attr("readonly",true);
-		}
-		
+	}
+	
  	if(${cck == true}){
  		$(".text2").text("선택완료");
- 		
  	}
  	
 	$("#del").on("click",function(){
