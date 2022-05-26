@@ -28,7 +28,7 @@ public class Board1_ReplyController extends HttpServlet {
 		Gson g = new Gson();
 		
 		HttpSession session = request.getSession();
-
+		
 		try {
 			if(uri.equals("/write.brd1_reply")) {
 				String writer = request.getParameter("nickname");
@@ -98,13 +98,11 @@ public class Board1_ReplyController extends HttpServlet {
 				
 				pw.append(g.toJson(dto));
 				
-
-			
 			}else if(uri.equals("/cancelGood.brd1_reply")) {
 				int board1_Seq = Integer.parseInt(request.getParameter("board1_Seq"));
 				int reply_Seq = Integer.parseInt(request.getParameter("reply1_Seq"));
 				String nickname = (String) session.getAttribute("loginNN");
-
+				
 				//1.good(좋아요) 테이블의 데이터 빼기
 				rdao.deleteGood(nickname,reply_Seq);
 				
@@ -116,10 +114,7 @@ public class Board1_ReplyController extends HttpServlet {
 				
 				//4.결과 값을 PrintWriter에 담는다.
 				PrintWriter pw = response.getWriter();
-				
-				pw.append(g.toJson(dto));
-				
-				
+				pw.append(g.toJson(dto));			
 			}
 			
 		}catch(Exception e) {
