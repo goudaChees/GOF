@@ -71,8 +71,7 @@ body {
      	   if(!(idok) || !(emailok)){
      		   $("#btn").attr("disabled","true");
      	   }
- 	   }
-        
+ 	   } 
        })
        
        $("#email").on({
@@ -110,6 +109,7 @@ body {
         	   }
     	   }
        })
+       let inok = false;
        	$("#btn").on("click",function(){
        		$("#btn").text("매일 발송중");
        		$.ajax({
@@ -130,14 +130,17 @@ body {
            			$("#btn2").css("display","inline");
            			$("#writepw").css("display","inline");
            			$("#okok").val("인증되었습니다.");
+           			inok = true;
        			}else if(!($("#ck").val()==$("#isok").val())){
        				$("#okok").val("인증번호를 확인해주세요.");
+       				inok = false;
        			}
        		})
        		
        	})
-       let isPwOk = true;
-       $("#newpw").on("keyup",function(){
+       let isPwOk = false;
+       let isPwOk2 = false;
+       $("#newpw").on({keyup:function(){
     	   let pw = $("#newpw").val();
            let pwRegex = /^[a-zA-Z0-9]{8,12}$/gm;
            let pwResult = pwRegex.test(pw);
@@ -158,10 +161,37 @@ body {
     					"사용할수 있는 비밀번호 입니다.");
     		   isPwOk = true;
     	   }
-    	   
+       },
+    	   focusout : function(){
+    		   if($("#newpw").val()==$("#newpwck").val()){
+        		   isPwOk2 = true;   
+        	   }else{
+        		   isPwOk2 = false;
+        	   }
+    		   if (!isPwOk2) {
+            	   $("#newpwck").css("border", "1px solid red");
+            	   $("#pwck2").css("color", "red");
+            	   $("#pwck2").css("display","inline");
+        			$("#pwck2").text(
+        					"비밀번호가 다릅니다.");
+               }
+               if(isPwOk2){
+        		   $("#newpwck").css("border", "1px solid blue");
+        		   $("#pwck2").css("color", "blue");
+            	   $("#pwck2").css("display","inline");
+        			$("#pwck2").text(
+        					"비밀번호가 같습니다.");
+        	   }
+               if(isPwOk2 && isPwOk && idok && emailok && inok){
+    			   $("#btn2").removeAttr("disabled");
+    		   }else if((!isPwOk2)||(!isPwOk)||(!idok)||(!emailok)||(!inok)){
+    			   $("#btn2").attr("disabled","true");
+    		   }
+    	   }
+       
        })
-       $("#newpwck").on("keyup",function(){
-    	   let isPwOk2 = false;
+       $("#newpwck").on({keyup:function(){
+    	   
     	   if($("#newpw").val()==$("#newpwck").val()){
     		   isPwOk2 = true;   
     	   }else{
@@ -181,11 +211,20 @@ body {
     			$("#pwck2").text(
     					"비밀번호가 같습니다.");
     	   }
-           if($("#newpw").val()==$("#newpwck").val()){
-        	   $("#btn2").removeAttr("disabled");
-           }else if(!($("#newpw").val()==$("#newpwck").val())){
-        	   $("#btn2").attr("disabled","true");
-           }
+       },
+    	   focusout : function(){
+    		   if(isPwOk2 && isPwOk && idok && emailok){
+    			   $("#btn2").removeAttr("disabled");
+    		   }else if((!isPwOk2)||(!isPwOk)||(!idok)||(!emailok)){
+    			   $("#btn2").attr("disabled","true");
+    		   }
+    		   if($("#newpw").val()==$("#newpwck").val()){
+        		   isPwOk2 = true;   
+        	   }else{
+        		   isPwOk2 = false;
+        	   }
+    	   }
+       
        })
        
        	$("#btn2").on("click",function(){
