@@ -406,6 +406,7 @@
 					}).always(function(resp){
 						alert("메일이 발송되었습니다.");
 						$("#emailKey").val(resp);
+						return false;
 					})
 					$("#sendmail").text("인증메일 재발송");
 					$("#emailKeyInput").css("display","inline");
@@ -420,7 +421,7 @@
 						$("#emailCheckResult").css("color", "blue");
 						$("#emailCheckResult").text("이메일 인증 완료");
 						isEmailOk = true;
-					
+						
 						//모든 검증 통과 시 submit 버튼 활성화
 						if (isIdOk && isPwOk && isPw2Ok && isNameOk
 								&& isPhoneOk && isEmailOk && isNNOk) {
