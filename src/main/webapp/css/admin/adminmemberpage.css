@@ -155,3 +155,7 @@ div {
 	background-color: #9D8189;
 	color: white;
 }
+
+#adminTF {
+	border-style:none;
+}

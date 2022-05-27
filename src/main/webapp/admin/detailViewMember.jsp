@@ -173,15 +173,6 @@
 											<div class="col-8" id="phoneCheckResult"></div>
 										</div>
 										<div class="row">
-											<div class="col-4">EMAIL</div>
-											<div class="col-8">
-												<input type=text value="${mdto.email}" class="editable"
-													name=email id="emailTD" disabled>
-											</div>
-											<div class="col-4"></div>
-											<div class="col-8" id="emailCheckResult"></div>
-										</div>
-										<div class="row">
 											<div class="col-4">NICKNAME</div>
 											<div class="col-8">
 												<input type=text value="${mdto.nickname}" class="editable"
@@ -199,7 +190,7 @@
 								<br>
 								<div class="row">
 									<div class="col-12">
-										<input id="adminTF" type="text" style="color: red; width:200px;" value="관리자 확인이 필요합니다. " disabled>
+										<input id="adminTF" type="text" style="color: red; width:200px;" value="관리자 확인이 필요합니다. " readonly>
 									</div>
 								</div>
 									
