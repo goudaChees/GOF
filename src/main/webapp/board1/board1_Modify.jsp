@@ -76,10 +76,10 @@
 									<div id="img_Box" class="thumbnail">
 										<c:choose>
 											<c:when test="${dto.fileName==null }">
-												<img src="/img/pig2.png"  id="${dto.seq}">
+												<img src="/img/pig2.png"  id="i${dto.seq}">
 											</c:when>
 											<c:otherwise>
-												<img src="files/${dto.fileName }"  id="${dto.seq}">
+												<img src="files/${dto.fileName }"  id="i${dto.seq}">
 											</c:otherwise>
 										</c:choose>
             							<input type="hidden" id="isImgDeleted" name="isImgDeleted" value="N">
@@ -139,10 +139,10 @@
      </div>		        
 
 	 <script>
-
+	 	
 	 	const reader = new FileReader();
 	 	reader.onload = (readerEvent) =>{
-	 		document.querySelector("#img_section").setAttribute("src",readerEvent.target.result);
+	 		document.querySelector("#i"+${dto.seq}).setAttribute("src",readerEvent.target.result);
 	 		console.log(readerEvent.target.result);
 	 	}
 
@@ -151,8 +151,9 @@
 	       reader.readAsDataURL(imgFile);
 	     })
 	     
+
 	     $("#delete").on("click",function(){
-	    	 $("#img_section").attr("src","/img/pig2.png");//삭제 버튼 클릭 시 이미지 바꿈
+	    	 $("#i"+${dto.seq}).attr("src","/img/pig2.png");//삭제 버튼 클릭 시 이미지 바꿈
 	    	 $("#isImgDeleted").val("Y");//이미지 삭제 하는 경우
 	     })
 		
@@ -161,7 +162,6 @@
 	     })
 	     
 		$("#submit").on("click",function(){
-			
 			if(${nickname==null}){
 				alert("로그인 후 이용가능합니다.");
 				location.href="/index.jsp"

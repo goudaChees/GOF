@@ -322,7 +322,7 @@
 				return false;
 			}
 		})
-
+		
 		$("#name").on("keyup",function() { // 이름 검증
 			let name = $("#name").val();
 			if (name == "") {
