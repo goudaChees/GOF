@@ -77,6 +77,9 @@ public class Board2_replyDAO {
 			stat.setInt(1, pseq);
 			try (ResultSet rs = stat.executeQuery();) {
 				while (rs.next()) {
+					if(rs.getString("choice") == null) {
+						continue;
+					}
 					if (rs.getString("choice").charAt(0) == 'Y') {
 						dto.setSeq(rs.getInt("seq"));
 						dto.setNickname(rs.getString("writer"));
