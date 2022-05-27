@@ -134,7 +134,7 @@ div {
 	padding: 1%;
 	margin:0px;
 	border-radius:3px;
-	max-height:23vh;	
+	max-height:25vh;	
 	color:#5C474D;
 }
 
@@ -188,7 +188,7 @@ div {
 	color:#5C474D;
 	margin:0px;
 	resize:none;
-	height: 100%;
+	height: 80%;
 	margin-top: 6px;
 }
 
