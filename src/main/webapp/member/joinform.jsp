@@ -238,63 +238,40 @@
 			} else {
 				$("#pw1").css("border", "1px solid blue");
 				$("#pw1CheckResult").text("");
-				let pw2 = $("#pw2").val();
-				if (pw2 == pw) {
-					$("#pw2").css("border", "1px solid blue");
-					$("#pw2CheckResult").css("color", "blue");
-					$("#pw2CheckResult").text("패스워드가 일치합니다.");
-					isPwOk = true;
-					isPw2Ok = true;
-
-					//모든 검증 통과 시 submit 버튼 활성화
-					if (isIdOk && isPwOk && isPw2Ok && isNameOk
-							&& isPhoneOk && isEmailOk && isNNOk) {
-						$("#join").removeAttr("disabled");
-					}
-				} else {
-					$("#pw2").css("border", "1px solid red");
-					$("#pw2CheckResult").css("color", "red");
-					$("#pw2CheckResult").text("패스워드가 일치하지 않습니다.");
-					isPw2Ok = false;
-					
-					$("#join").attr("disabled","true");
-					return false;
-				}
-			}
-		})
-
-		$("#pw2").on("keyup",function() { // 비번2 일치 검증
-			let pw1 = $("#pw1").val();
-			let pw2 = $("#pw2").val();
-			if (pw2 == "") {
-				$("#pw2").css("border", "1px solid red");
-				$("#pw2CheckResult").css("color", "red");
-				$("#pw2CheckResult").text("비밀번호 입력을 확인해주세요.")
-				isPw2Ok = false;
-				
-				$("#join").attr("disabled","true");
-				return false;
-			}
-			if (pw2 == pw1) {
-				$("#pw2").css("border", "1px solid blue");
-				$("#pw2CheckResult").css("color", "blue");
-				$("#pw2CheckResult").text("패스워드가 일치합니다.");
 				isPwOk = true;
-				isPw2Ok = true;
-
-				//모든 검증 통과 시 submit 버튼 활성화
-				if (isIdOk && isPwOk && isPw2Ok && isNameOk
-						&& isPhoneOk && isEmailOk && isNNOk) {
-					$("#join").removeAttr("disabled");
-				}
-			} else {
-				$("#pw2").css("border", "1px solid red");
-				$("#pw2CheckResult").css("color", "red");
-				$("#pw2CheckResult").text("패스워드가 일치하지 않습니다.");
-				isPw2Ok = false;
 				
-				$("#join").attr("disabled","true");
-				return false;
+				$("#pw2").on("keyup",function() { // 비번2 일치 검증
+					let pw2 = $("#pw2").val();
+					if (pw2 == "") {
+						$("#pw2").css("border", "1px solid red");
+						$("#pw2CheckResult").css("color", "red");
+						$("#pw2CheckResult").text("비밀번호 입력을 확인해주세요.")
+						isPw2Ok = false;
+						
+						$("#join").attr("disabled","true");
+						return false;
+					}
+					if (pw2 == pw) {
+						$("#pw2").css("border", "1px solid blue");
+						$("#pw2CheckResult").css("color", "blue");
+						$("#pw2CheckResult").text("패스워드가 일치합니다.");
+						isPw2Ok = true;
+
+						//모든 검증 통과 시 submit 버튼 활성화
+						if (isIdOk && isPwOk && isPw2Ok && isNameOk
+								&& isPhoneOk && isEmailOk && isNNOk) {
+							$("#join").removeAttr("disabled");
+						}
+					} else {
+						$("#pw2").css("border", "1px solid red");
+						$("#pw2CheckResult").css("color", "red");
+						$("#pw2CheckResult").text("패스워드가 일치하지 않습니다.");
+						isPw2Ok = false;
+						
+						$("#join").attr("disabled","true");
+						return false;
+					}
+				})
 			}
 		})
 

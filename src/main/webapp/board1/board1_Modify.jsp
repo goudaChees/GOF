@@ -76,7 +76,7 @@
 									<div id="img_Box" class="thumbnail">
 										<c:choose>
 											<c:when test="${dto.fileName==null }">
-												<img src="/img/pig2.png"  id="${dto.seq}">
+												<img src="/img/pig2.png" id="${dto.seq}">
 											</c:when>
 											<c:otherwise>
 												<img src="files/${dto.fileName }"  id="${dto.seq}">
@@ -117,7 +117,7 @@
 
 	 	const reader = new FileReader();
 	 	reader.onload = (readerEvent) =>{
-	 		document.querySelector("#img_section").setAttribute("src",readerEvent.target.result);
+	 		document.querySelector("#"+${dto.seq}).setAttribute("src",readerEvent.target.result);
 	 		console.log(readerEvent.target.result);
 	 	}
 
@@ -127,7 +127,7 @@
 	     })
 	     
 	     $("#delete").on("click",function(){
-	    	 $("#img_section").attr("src","/img/pig2.png");//삭제 버튼 클릭 시 이미지 바꿈
+	    	 $("#"+${dto.seq}).attr("src","/img/pig2.png");//삭제 버튼 클릭 시 이미지 바꿈
 	    	 $("#isImgDeleted").val("Y");//이미지 삭제 하는 경우
 	     })
 		
