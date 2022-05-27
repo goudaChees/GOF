@@ -62,7 +62,7 @@
 					$("#cTF").attr("value", " ");
 					setParentText();
 					let tf = parent.document.getElementById('adminTF');
-					tf.removeAttribute("disabled");
+					tf.removeAttribute("readonly");
 					tf.focus();
 					
 					let cls = parent.document.getElementsByClassName('editable');

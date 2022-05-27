@@ -54,13 +54,13 @@ div {
 	position:absolute;
 	left:13px;
 	bottom:-3px;
-	width:100%;
+	width:95%;
 }
 
 #CsCenterHeader li{
 	margin-right:5px;
-	min-width:30%;
-	max-width:40%;
+	min-width:20%;
+	max-width:28%;
 	font-size:15px;
 }
 
@@ -72,6 +72,7 @@ div {
 	background-color: #B4C8BC;
 	color:white;
 	text-align:center;
+	font-size:min(15px,2.8vw);
 }
 
 #CsCenterHeader .active{
