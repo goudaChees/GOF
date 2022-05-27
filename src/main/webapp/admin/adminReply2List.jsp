@@ -15,7 +15,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/admin/adminReply2List.css">
 </head>
 <body>
 	<div class="container w-100">
@@ -76,78 +76,87 @@
 			</div>
 		</div>
 
-	<div class="row w-100 m-0" id="content">
-		<div class="d-none d-lg-block col-3">></div>
-			<div class="col-12 col-lg-6">
-				<div class="row w-100 m-0" id="Board1Outline">
-					<div class="col-12">
-						<div class="row w-100 m-0" id="Board1Header">
+		<div class="row w-100 m-0" id="content">
+			<div class="d-none d-lg-block col-3">></div>
+				<div class="col-12 col-lg-6">
+					<div class="row w-100 m-0" id="Board1Outline">
 						<div class="col-12">
-						<p>Admin Page</p>
-						<ul class="nav nav-tabs">
-							<li class="nav-item"><a class="nav-link"
-								href="/adminmain.admin">회원 정보 관리</a></li>
-							<li class="nav-item"><a class="nav-link"
-								href="/adminBoardsList.admin?board=1">게시글
-								관리</a></li>
-							<li class="nav-item"><a class="nav-link active"
-								aria-current="page" href="/adminReplyList.admin?board=1">댓글 관리</a></li>
-							</ul>
-						</div>
-					</div>
-					
-					<div class="row w-100 m-0" id="mywriting">
-						<div class="col-12">							
-							<div class="row w-100 m-0">
-								<div class="col-12" id="listbtns">
-									<button id="toBoard1Reply">살까말까</button>
-									<button id="toBoard2Reply">최저가경매</button>
-								</div>
+							<div class="row w-100 m-0" id="Board1Header">
+							<div class="col-12">
+							<p>Admin Page</p>
+							<ul class="nav nav-tabs">
+								<li class="nav-item"><a class="nav-link"
+									href="/adminmain.admin">회원 정보 관리</a></li>
+								<li class="nav-item"><a class="nav-link"
+									href="/adminBoardsList.admin?board=1">게시글
+									관리</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="/adminReplyList.admin?board=1">댓글 관리</a></li>
+								</ul>
 							</div>
-							<div class="row w-100 m-0">
-								<div class="col-12 p-0">
-									<form action="/searchBrdReply.admin?board=2&page=1">
-										<select class="form-select" aria-label="Default select example"
-											name="searchCategory">
-											<option value="0">선택</option>
-											<option value="1">작성자</option>
-											<option value="2">내용</option>
-										</select>
-										<input type="text" placeholder="검색하실 내용을 입력하세요"
-											name="toSearch">
-										<input type="submit" value="검색">
-									</form>
-									<div class="row w-100 m-0"><br>
+						</div>
+					
+						<div class="row w-100 m-0" id="mywriting">
+							<div class="col-12">							
+								<div class="row w-100 m-0">
+									<div class="col-12" id="listbtns">
+										<button id="toBoard1Reply">살까 말까</button>
+										<button id="toBoard2Reply">최저가 경매</button>
+									</div>
+								</div>
+								<div class="row w-100 m-0">
+									<div class="col-12 p-0">
+										<form action="/searchBrdReply.admin?board=2&page=1">
+											<select class="form-select" aria-label="Default select example"
+												name="searchCategory">
+												<option value="0">선택</option>
+												<option value="1">작성자</option>
+												<option value="2">내용</option>
+											</select>
+											<input type="text" placeholder="검색하실 내용을 입력하세요"
+												name="toSearch">
+											<input type="submit" value="검색">
+										</form>
+										<div class="row w-100 m-0"><br>
+										</div>
+									</div>
+								</div>
+							
+								<div class="row w-100 m-0" id="board1List">
+									<div class="col-12 p-0">
+										<c:forEach var="i" items="${listR2 }">
+											<div class="row w-100 writing">
+												<a href ="/read.brd2?seq=${i.parent_seq}">
+
+												<div class="col-12 parentLink" style="text-align:center;">
+													<div>
+														<c:if test="${i.choice == Y}">[채택된 댓글]]</c:if>
+														<c:if test="${!(i.choice == Y)}">[일반 댓글]</c:if>
+														본문 보러가기
+													</div>
+												</div>
+											<div class="row w-100">
+												<div class="col-5 d-sm-3"><b>${i.nickname}</b></div>
+												<div class="col-7 d-sm-3">${i.contents }</div>
+												<div class="col-11 d-sm-3">제시된 가격 : ${i.price} 원</div>
+											</div>
+												</a>
+											</div>	
+										</c:forEach>
 									</div>
 								</div>
 							</div>
-							
-							<div class="row w-100 m-0" id="board1List">
-								<div class="col-12 p-0">
-									<c:forEach var="i" items="${listR2 }">
-										<div class="row w-100 writing">
-										<a href ="/read.brd2?seq=${i.parent_seq}">
-									
-					<div>
-						본문 보러가기</a>
+						</div>
+						<div class="row w-100 m-0 board1Navi">
+							<div class="col-12">${pageNavi}
+							</div>
+						</div>
 					</div>
-					<div>
-						<c:if test="${i.choice == Y}">[채택된 댓글]]</c:if>
-					</div>
-					<div>${i.nickname}</div>
-					<div>${i.price}</div>
-					<div>${i.write_date }</div>
+				</div>
+			</div>
+		</div>
 		
-				</c:forEach>
-			
-			
-			</div>
-			
-		</div>
-		<div>
-			<div>${pageNavi}
-			</div>
-		</div>
+
 
 		<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
 			<div class="col-12 d-lg-none">

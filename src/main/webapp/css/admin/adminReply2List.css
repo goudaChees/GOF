@@ -226,8 +226,12 @@ div {
 }
 
 .writing .col-4,.col-8,.col-6{
- 	font-size:min(15px,3vw);
- 	
+ 	font-size:min(15px,3vw);	
+}
+
+.writing .col-5,.col-7,.col-11 {
+	font-size:min(15px,3vw);
+	text-align : center;
 }
 
 .writing .col-9{
@@ -274,7 +278,7 @@ div {
 	text-decoration:none;
 	color:#5C474D;
 	font-weight:bolder;
-	font-size:15px;
+	font-size:20px;
 }
 
 #footer{

@@ -129,14 +129,15 @@
 											<div class="row w-100 writing">
 												<a href ="/detail.brd1?seq=${i.parent_Seq }" >
 												<div class="col-12 parentLink" style="text-align:center;">
-													본문 보러가기
+													[ ${i.agree} ] - 본문 보러가기
+													
 												</div>
 											
 											<div class="row w-100">
-												<div class="col-4 d-sm-3">${i.writer}</div>
+												<div class="col-4 d-sm-3"><b>${i.writer}</b></div>
 												<div class="col-8 d-sm-3">${i.contents}</div>
-												<div class="col-3 d-none d-sm-3">${i.write_date }</div>
-												<div class="col-3 d-none d-sm-3">${i.agree }</div>
+												<div class="col-11 d-sm-3 d-none d-sm-block">${i.write_date }</div>
+												
 											</div>
 												</a>
 											</div>
@@ -145,12 +146,17 @@
 								</div>
 							</div>
 						</div>
+						<div class="row w-100 m-0 board1Navi">
+							<div class="col-12">${pageNavi}
+							</div>
+						</div>
 					</div>			
-				</div>				
+				</div>			
 			</div>					
-		</div>						
+		</div>
+		
+					
 								
-
 		<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
 			<div class="col-12 d-lg-none">
 				<div style="margin-left:40px ; margin-top:20px;text-align:left">
