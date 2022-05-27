@@ -156,6 +156,16 @@ div {
 	color: white;
 }
 
+.footerLink{
+	text-decoration: none;
+	color:white;
+}
+
+.footerLink:hover{
+	cursor:pointer;
+	color:#FFF2CC;
+}
+
 #adminTF {
 	border-style:none;
 }

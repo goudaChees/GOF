@@ -101,7 +101,7 @@
 										<div class="col-9">
 											<input type="text" id="email" name="email">
 											<input type="text" id="emailKey" style="display: none;" value="no">
-											<input type="text" id="emailKeyInput">
+											<input type="text" id="emailKeyInput" style="display: none;" placeholder="인증키 입력">
 											<button type="button" id="sendmail">인증메일 발송</button>
 											<button type="button" id="okbtn" style="display: none;">인증확인</button>
 										</div>
@@ -133,10 +133,35 @@
 					<img src="/img/tmp_frontpig.png" id="frontpig">
 				</div>
 			</div>
-
-			<div class="row w-100 m-0" id="footer">
-				<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
+		<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
+			<div class="col-12 d-lg-none">
+				<div style="margin-left:40px ; margin-top:20px;text-align:left">
+					<a href="/cscenter/csmain.jsp" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/cscenter/csmain.jsp" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/cscenter/csmain.jsp" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
+					<div style="margin-top:35px ; text-align:left">
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br>
+						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span>E-MAIL : 4989 - 4284 </span><br>
+						<span style="color:#FFF2CC">COPYRIGHT BY PHOENIX  </span>
+					</div>
+				</div>
 			</div>
+			<div class="d-none d-lg-block col-lg-9">
+				<div style="margin-left:40px ; margin-top:20px;text-align:left">
+					<a href="/cscenter/csmain.jsp" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/cscenter/csmain.jsp" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/cscenter/csmain.jsp" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
+					<div style="margin-top:30px ; text-align:left; margin-bottom:15px">
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br>
+						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span style="margin-left:20px" class="footerLetter">E-MAIL : 4989 - 4284 </span><br>
+						<span style="color:#FFF2CC">COPYRIGHT BY YUNJI AYEONG WOOHYENG JEONGYOEN HEESEUNG IN  PHOENIX  </span>
+					</div>
+				</div>
+			</div>
+			<div class="d-none d-lg-block col-lg-3" style="text-align:right">
+				<img src="/img/footerLogo.png" style="width:70%;margin-right:10px;margin-top:10%">
+			</div>
+		</div>
 	</div>
 
 	<script>
@@ -198,7 +223,7 @@
 							$("#idCheckResult").css("color","blue");
 							$("#idCheckResult").text("사용가능한 아이디입니다.")
 							isIdOk = true;
-
+							
 							//모든 검증 통과 시 submit 버튼 활성화
 							if (isIdOk && isPwOk
 									&& isPw2Ok
@@ -220,6 +245,7 @@
 				$("#pw1CheckResult").css("color", "red");
 				$("#pw1CheckResult").text("비밀번호는 필수 입력 정보입니다.")
 				isPwOk = false;
+				
 				$("#join").attr("disabled","true");
 				return false;
 			}
@@ -231,16 +257,18 @@
 				$("#pw1CheckResult").text(
 						"영문 소문자, 대문자, 숫자를 사용하여 8~12자로 작성");
 				isPwOk = false;
+				
 				$("#join").attr("disabled","true");
 				return false;
 			} else {
 				$("#pw1").css("border", "1px solid blue");
 				$("#pw1CheckResult").text("");
-				
-				if (pw2 == pw1) {
+				let pw2 = $("#pw2").val();
+				if (pw2 == pw) {
 					$("#pw2").css("border", "1px solid blue");
 					$("#pw2CheckResult").css("color", "blue");
 					$("#pw2CheckResult").text("패스워드가 일치합니다.");
+					isPwOk = true;
 					isPw2Ok = true;
 
 					//모든 검증 통과 시 submit 버튼 활성화
@@ -253,6 +281,7 @@
 					$("#pw2CheckResult").css("color", "red");
 					$("#pw2CheckResult").text("패스워드가 일치하지 않습니다.");
 					isPw2Ok = false;
+					
 					$("#join").attr("disabled","true");
 					return false;
 				}
@@ -267,6 +296,7 @@
 				$("#pw2CheckResult").css("color", "red");
 				$("#pw2CheckResult").text("비밀번호 입력을 확인해주세요.")
 				isPw2Ok = false;
+				
 				$("#join").attr("disabled","true");
 				return false;
 			}
@@ -274,6 +304,7 @@
 				$("#pw2").css("border", "1px solid blue");
 				$("#pw2CheckResult").css("color", "blue");
 				$("#pw2CheckResult").text("패스워드가 일치합니다.");
+				isPwOk = true;
 				isPw2Ok = true;
 
 				//모든 검증 통과 시 submit 버튼 활성화
@@ -286,6 +317,7 @@
 				$("#pw2CheckResult").css("color", "red");
 				$("#pw2CheckResult").text("패스워드가 일치하지 않습니다.");
 				isPw2Ok = false;
+				
 				$("#join").attr("disabled","true");
 				return false;
 			}
@@ -298,6 +330,7 @@
 				$("#nameCheckResult").css("color", "red");
 				$("#nameCheckResult").text("이름은 필수 입력 정보입니다.")
 				isNameOk = false;
+				
 				$("#join").attr("disabled","true");
 				return false;
 			}
@@ -308,6 +341,7 @@
 				$("#nameCheckResult").css("color", "red");
 				$("#nameCheckResult").text("이름의 입력형식이 올바르지 않습니다.");
 				isNameOk = false;
+				
 				$("#join").attr("disabled","true");
 				return false;
 			} else {
@@ -331,6 +365,8 @@
 				$("#phoneCheckResult").css("color", "red");
 				$("#phoneCheckResult").text("전화번호는 필수 입력 정보입니다.");
 				isPhoneOk = false;
+				
+				$("#join").attr("disabled","true");
 				return false;
 			}
 			
@@ -349,6 +385,7 @@
 				$("#phoneCheckResult").css("color", "red");
 				$("#phoneCheckResult").text("전화번호의 입력형식이 올바르지 않습니다.");
 				isPhoneOk = false;
+				
 				$("#join").attr("disabled","true");
 				return false;
 			} else {
@@ -374,6 +411,7 @@
 				$("#emailCheckResult")
 						.text("이메일은 필수 입력 정보입니다.")
 				isEmailOk = false;
+				
 				$("#join").attr("disabled","true");
 				return false;
 			}
@@ -385,6 +423,7 @@
 				$("#emailCheckResult").text(
 						"이메일의 입력형식이 올바르지 않습니다.");
 				isEmailOk = false;
+				
 				$("#join").attr("disabled","true");
 				return false;
 			} else {
@@ -396,6 +435,7 @@
 					if(email == ""){
 						 alert("메일칸을 작성해주세요.");
 						 isEmailOk = false;
+						 
 						 $("#join").attr("disabled","true");
 						 return false;
 					}
@@ -406,8 +446,10 @@
 					}).always(function(resp){
 						alert("메일이 발송되었습니다.");
 						$("#emailKey").val(resp);
+						return false;
 					})
 					$("#sendmail").text("인증메일 재발송");
+					$("#emailKeyInput").css("display","inline");
 				})
 				$("#emailKeyInput").on("keyup",function(){
 					 $("#okbtn").css("display","inline")
@@ -419,7 +461,7 @@
 						$("#emailCheckResult").css("color", "blue");
 						$("#emailCheckResult").text("이메일 인증 완료");
 						isEmailOk = true;
-					
+
 						//모든 검증 통과 시 submit 버튼 활성화
 						if (isIdOk && isPwOk && isPw2Ok && isNameOk
 								&& isPhoneOk && isEmailOk && isNNOk) {
@@ -429,6 +471,7 @@
 						alert("메일 인증이 실패하였습니다.");
 						$("#emailKeyInput").css("border", "1px solid red");
 						isEmailOk = false;
+						
 						$("#join").attr("disabled","true");
 						return false;
 					}	
@@ -443,6 +486,7 @@
 				$("#nnCheckResult").css("color", "red");
 				$("#nnCheckResult").text("닉네임은 필수 입력 정보입니다.")
 				isNNOk = false;
+				
 				$("#join").attr("disabled","true");
 				return false;
 			}
@@ -455,6 +499,7 @@
 				$("#nnCheckResult").text(
 						"한글, 영문, 숫자, 특수기호(_)를 조합하여 3~8자로 작성");
 				isNNOk = false;
+				
 				$("#join").attr("disabled","true");
 				return false;
 			} else {
@@ -468,7 +513,8 @@
 						$("#nnCheckResult").css("color","red");
 						$("#nnCheckResult").text("이미 존재하는 닉네임입니다.")
 						isNNOk = false;
-						
+					
+						$("#join").attr("disabled","true");
 						return false;
 					} else {
 						$("#nickname").css("border","1px solid blue");
@@ -489,6 +535,7 @@
 				})
 			}
 		})
+	
 	</script>
 </body>
 </html>

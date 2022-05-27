@@ -23,7 +23,7 @@
 			<div class="col-12">
 				<nav class="navbar navbar-expand-md navbar-light bg-light">
 					<div class="container-fluid">
-						<a class="navbar-brand" href="/index.jsp" style="color:#664E55">앞날의 지침</a>
+						<a class="navbar-brand" href="/index.jsp" style="color:#664E55">땡그랑</a>
 						<button class="navbar-toggler" type="button"
 							data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 							aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -36,9 +36,9 @@
 								<c:choose>
 									<c:when test="${loginID =='admin'}">
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">지출의 참견</a></li>
+											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd2" style="color:#664E55">선택의 참견</a></li>
+											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
@@ -48,9 +48,9 @@
 									</c:when>
 									<c:when test="${loginID !=null}">
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">지출의 참견</a></li>
+											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd2" style="color:#664E55">선택의 참견</a></li>
+											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active" 
@@ -60,9 +60,9 @@
 									</c:when>
 									<c:otherwise>
 										<li class="nav-item nonMember"><a class="nav-link active"
-											aria-current="page" href="#" style="color:#664E55">지출의 참견</a></li>
+											aria-current="page" href="#" style="color:#664E55">살까말까</a></li>
 										<li class="nav-item nonMember"><a class="nav-link active"
-											aria-current="page" href="#" style="color:#664E55">선택의 참견</a></li>
+											aria-current="page" href="#" style="color:#664E55">최저가경매</a></li>
 										<li class="nav-item nonMember"><a class="nav-link active"
 											aria-current="page" href="#" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
@@ -101,8 +101,8 @@
 							<div class="col-12">
 								<div class="row w-100 m-0">
 									<div class="col-12" id="listbtns">
-									<button id="toBoard1Reply">지출의 참견</button>
-									<button id="toBoard2Reply">선택의 참견</button>
+									<button id="toBoard1Reply">살까 말까</button>
+									<button id="toBoard2Reply">최저가 경매</button>
 									</div>
 								</div>
 								<div class="row w-100 m-0">
@@ -145,20 +145,43 @@
 								</div>
 							</div>
 						</div>
-							
-						<div class="row w-100 m-0 board1Navi">
-							<div class="col-12">${pageNavi}</div>
-						</div>
+					</div>			
+				</div>				
+			</div>					
+		</div>						
+								
+
+		<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
+			<div class="col-12 d-lg-none">
+				<div style="margin-left:40px ; margin-top:20px;text-align:left">
+					<a href="/cscenter/csmain.jsp" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/cscenter/csmain.jsp" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/cscenter/csmain.jsp" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
+					<div style="margin-top:35px ; text-align:left">
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br>
+						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span>E-MAIL : 4989 - 4284 </span><br>
+						<span style="color:#FFF2CC">COPYRIGHT BY PHOENIX  </span>
 					</div>
 				</div>
 			</div>
+			<div class="d-none d-lg-block col-lg-9">
+				<div style="margin-left:40px ; margin-top:20px;text-align:left">
+					<a href="/cscenter/csmain.jsp" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/cscenter/csmain.jsp" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/cscenter/csmain.jsp" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
+					<div style="margin-top:30px ; text-align:left; margin-bottom:15px">
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br>
+						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span style="margin-left:20px" class="footerLetter">E-MAIL : 4989 - 4284 </span><br>
+						<span style="color:#FFF2CC">COPYRIGHT BY YUNJI AYEONG WOOHYENG JEONGYOEN HEESEUNG IN  PHOENIX  </span>
+					</div>
+				</div>
+			</div>
+			<div class="d-none d-lg-block col-lg-3" style="text-align:right">
+				<img src="/img/footerLogo.png" style="width:70%;margin-right:10px;margin-top:10%">
+			</div>
 		</div>
-		<div class="row w-100 m-0" id="footer">
-			<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
-		</div>
-	</div>
-	
 <script>
+
 	$("#toBoard1Reply").on("click", function(){
 		location.href="/adminReplysList.admin?board=1";
 	})

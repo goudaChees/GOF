@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>find PassWord</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
@@ -22,16 +22,20 @@ body {
        <input type="text" id="id" placeholder="아이디를 적어주세요"><br>
        <input type="text" id="email" placeholder="이메일을 적어주세요"><br>
        <button id="btn">메일 발송</button><br>
+       <span id="mailok" style="display: none">메일 발송 완료</span><br>
        <input type="text" id="isok" placeholder="인증번호 입력해주세요"><br>
        <input type="text" id="ck" style="display: none" value="no"><br>
        <input type="text" id="okok" style="display: none" readonly="readonly" value="확인되었습니다."><br>
        <span id="writepw" style="display: none">비밀번호를 입력해주세요</span><br>
        <input type="password" id="newpw" style="display: none"><br>
+       <span id="pwck" style="display:none">비밀번호 확인중</span><br>
        <input type="password" id="newpwck" style="display: none"><br>
-       <span id="pwck" style="display:none">비밀번호 확인중</span>
-       <button id="btn2" style="display: none">비밀번호 적용</button>
+       <span id="pwck2" style="display:none">비밀번호 확인중</span><br>
+       
+       <button id="btn2" style="display: none" disabled>비밀번호 적용</button>
        <script>
        	$("#btn").on("click",function(){
+       		$("#btn").text("매일 발송중");
        		$.ajax({
        			url:"/findpw.mail",
 				dataType:"json",
@@ -41,6 +45,7 @@ body {
        		}).always(function(resp){
        			$("#ck").val(resp);
        			$("#btn").text("메일 재발송");
+       			$("#mailok").css("display","inline");
        		})
        		$("#isok").on("keyup",function(){
        			if($("#ck").val()==$("#isok").val()){
@@ -49,18 +54,19 @@ body {
            			$("#newpwck").css("display","inline");
            			$("#btn2").css("display","inline");
            			$("#writepw").css("display","inline");
-       			}else if($("#ck").val()==$("#isok").val()){
+           			$("#okok").val("인증되었습니다.");
+       			}else if(!($("#ck").val()==$("#isok").val())){
        				$("#okok").val("인증번호를 확인해주세요.");
        			}
        		})
        		
        	})
-       
+       let isPwOk = true;
        $("#newpw").on("keyup",function(){
     	   let pw = $("#newpw").val();
            let pwRegex = /^[a-zA-Z0-9]{8,12}$/gm;
            let pwResult = pwRegex.test(pw);
-           let isPwOk = true;
+           
     	   if (!pwResult) {
         	   $("#newpw").css("border", "1px solid red");
         	   $("#pwck").css("color", "red");
@@ -77,6 +83,34 @@ body {
     					"사용할수 있는 비밀번호 입니다.");
     		   isPwOk = true;
     	   }
+    	   
+       })
+       $("#newpwck").on("keyup",function(){
+    	   let isPwOk2 = false;
+    	   if($("#newpw").val()==$("#newpwck").val()){
+    		   isPwOk2 = true;   
+    	   }else{
+    		   isPwOk2 = false;
+    	   }
+           if (!isPwOk2) {
+        	   $("#newpwck").css("border", "1px solid red");
+        	   $("#pwck2").css("color", "red");
+        	   $("#pwck2").css("display","inline");
+    			$("#pwck2").text(
+    					"비밀번호가 다릅니다.");
+           }
+           if(isPwOk2){
+    		   $("#newpwck").css("border", "1px solid blue");
+    		   $("#pwck2").css("color", "blue");
+        	   $("#pwck2").css("display","inline");
+    			$("#pwck2").text(
+    					"비밀번호가 같습니다.");
+    	   }
+           if($("#newpw").val()==$("#newpwck").val()){
+        	   $("#btn2").removeAttr("disabled");
+           }else if(!($("#newpw").val()==$("#newpwck").val())){
+        	   $("#btn2").attr("disabled");
+           }
        })
        
        	$("#btn2").on("click",function(){

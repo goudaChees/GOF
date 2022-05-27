@@ -22,7 +22,7 @@
 			<div class="col-12">
 				<nav class="navbar navbar-expand-md navbar-light bg-light">
 					<div class="container-fluid">
-						<a class="navbar-brand" href="/index.jsp" style="color:#664E55">앞날의 지침</a>
+						<a class="navbar-brand" href="/index.jsp" style="color:#664E55">땡그랑</a>
 						<button class="navbar-toggler" type="button"
 							data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 							aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -35,9 +35,9 @@
 								<c:choose>
 									<c:when test="${loginID =='admin'}">
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">지출의 참견</a></li>
+											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd2" style="color:#664E55">선택의 참견</a></li>
+											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
@@ -47,9 +47,9 @@
 									</c:when>
 									<c:when test="${loginID !=null}">
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">지출의 참견</a></li>
+											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd2" style="color:#664E55">선택의 참견</a></li>
+											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active" 
@@ -59,9 +59,9 @@
 									</c:when>
 									<c:otherwise>
 										<li class="nav-item nonMember"><a class="nav-link active"
-											aria-current="page" href="#" style="color:#664E55">지출의 참견</a></li>
+											aria-current="page" href="#" style="color:#664E55">살까말까</a></li>
 										<li class="nav-item nonMember"><a class="nav-link active"
-											aria-current="page" href="#" style="color:#664E55">선택의 참견</a></li>
+											aria-current="page" href="#" style="color:#664E55">최저가경매</a></li>
 										<li class="nav-item nonMember"><a class="nav-link active"
 											aria-current="page" href="#" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
@@ -98,8 +98,8 @@
 						<div class="col-12">
 							<div class="row w-100 m-0">
 								<div class="col-12" id="listbtns">
-									<button id="toBoard1">지출의 참견</button>
-									<button id="toBoard2">선택의 참견</button>
+									<button id="toBoard1">살까 말까</button>
+									<button id="toBoard2">최저가 경매</button>
 								</div>
 							</div>
 							<div class="row w-100 m-0">
@@ -131,8 +131,8 @@
 												<div class="col-md-2 d-none d-md-block">작성자</div>
 												<div class="col-md-2 d-none d-md-block">조회수</div>
 												<div class="col-md-3 d-none d-md-block">제한시간</div>
-												
 											</div>
+											<br>
 										</div>
 									</div>
 								</div>
@@ -143,15 +143,15 @@
 												<a href="/read.brd2?seq=${i.seq}">
 												<div class="col-12">
 													<div class="row w-100 m-0 writingTitle">
-														<div class="col-md-2 d-none d-md-block">${i.seq}</div>
-														<div class="col-8 col-md-3 title" id="title_limit" style="text-align:left">
+														<div class="col-sm-1 d-none d-md-block">${i.seq}</div>
+														<div class="col-8 col-sm-4 title" id="title_limit" style="text-align:left">
 															${i.title}
 															<c:if test="${i.reply!=0}">[${i.reply}]</c:if>
 														</div>
-														<div class="col-md-2 d-none d-md-block nickname">${i.nickname}</div>
+														<div class="col-sm-2 d-none d-md-block nickname">${i.nickname}</div>
 														<div class="col time" id="${i.write_date}" style="display:none">${i.write_date}</div>
-														<div class="col-md-2 d-none d-md-block">${i.view_count}</div>
-														<div class="col-4 col-md-3 limit" id="${i.seq}">시간 확인중</div>
+														<div class="col-sm-2 d-none d-md-block">${i.view_count}</div>
+														<div class="col-4 col-sm-3 limit" id="${i.seq}">시간 확인중</div>
 													</div>
 													<div class="row w-100 m-0 writingEtc">
 														<div class="col-12 d-md-none d-md-block">
@@ -174,10 +174,35 @@
 			</div>
 		</div>	
 	</div>							
-	
-	<div class="row w-100 m-0" id="footer">
-		<div class="col-12">Copyright by Phoenix since 2022 05 00</div>
-	</div>
+		<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
+			<div class="col-12 d-lg-none">
+				<div style="margin-left:40px ; margin-top:20px;text-align:left">
+					<a href="/cscenter/csmain.jsp" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/cscenter/csmain.jsp" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/cscenter/csmain.jsp" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
+					<div style="margin-top:35px ; text-align:left">
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br>
+						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span>E-MAIL : 4989 - 4284 </span><br>
+						<span style="color:#FFF2CC">COPYRIGHT BY PHOENIX  </span>
+					</div>
+				</div>
+			</div>
+			<div class="d-none d-lg-block col-lg-9">
+				<div style="margin-left:40px ; margin-top:20px;text-align:left">
+					<a href="/cscenter/csmain.jsp" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/cscenter/csmain.jsp" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/cscenter/csmain.jsp" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
+					<div style="margin-top:30px ; text-align:left; margin-bottom:15px">
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br>
+						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span style="margin-left:20px" class="footerLetter">E-MAIL : 4989 - 4284 </span><br>
+						<span style="color:#FFF2CC">COPYRIGHT BY YUNJI AYEONG WOOHYENG JEONGYOEN HEESEUNG IN  PHOENIX  </span>
+					</div>
+				</div>
+			</div>
+			<div class="d-none d-lg-block col-lg-3" style="text-align:right">
+				<img src="/img/footerLogo.png" style="width:70%;margin-right:10px;margin-top:10%">
+			</div>
+		</div>
 </div>
 
 	<script>
