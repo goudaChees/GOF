@@ -279,8 +279,7 @@
 		}
 		
  	if(${cck == true}){
- 		$(".text2").text("선택완료");
- 		$(".text2").css("margin-top: 50px;")
+ 		$(".text2").text("");
  		
  	}
  	

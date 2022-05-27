@@ -268,8 +268,7 @@
 					$("#pw2").css("border", "1px solid blue");
 					$("#pw2CheckResult").css("color", "blue");
 					$("#pw2CheckResult").text("패스워드가 일치합니다.");
-					isPwOk = true;
-					isPw2Ok = true;
+					return isPwOk = true;
 
 					//모든 검증 통과 시 submit 버튼 활성화
 					if (isIdOk && isPwOk && isPw2Ok && isNameOk
@@ -304,9 +303,10 @@
 				$("#pw2").css("border", "1px solid blue");
 				$("#pw2CheckResult").css("color", "blue");
 				$("#pw2CheckResult").text("패스워드가 일치합니다.");
-				isPwOk = true;
+				
 				isPw2Ok = true;
-
+				console.log(isPwOk);
+				console.log(isPw2Ok);
 				//모든 검증 통과 시 submit 버튼 활성화
 				if (isIdOk && isPwOk && isPw2Ok && isNameOk
 						&& isPhoneOk && isEmailOk && isNNOk) {
