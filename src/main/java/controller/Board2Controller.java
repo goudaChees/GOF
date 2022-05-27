@@ -86,6 +86,9 @@ public class Board2Controller extends HttpServlet {
 				request.setAttribute("loginID", loginID);
 				request.setAttribute("loginNN", loginNN);
 				
+				// rdto 댓글리스트 tojson 
+				request.setAttribute("jrdto", g.toJson(rdto));
+				
 				boolean cck = rdao.ischoice(seq);
 				// 선택체크 선택되어 있다면 true
 				boolean wck = rdao.iswrite(seq,loginNN);
