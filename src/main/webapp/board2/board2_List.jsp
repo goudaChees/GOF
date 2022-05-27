@@ -120,7 +120,7 @@
 													<div class="col time" id="${i.write_date}"  style="display:none">${i.write_date}</div>
 													<div class="col-md-2 d-none d-md-block">${i.view_count}</div>
 													<div class="col-4 col-md-3 limit" id="${i.seq}">
-														<div class="spinner-border spinner-border-sm text-light" role="status">
+														<div class="spinner-border spinner-border-sm text-secondary" role="status">
  									 						<span class="visually-hidden">Loading...</span>
 														</div>
 													</div>
