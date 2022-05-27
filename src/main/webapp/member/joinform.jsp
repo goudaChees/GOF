@@ -242,10 +242,11 @@
 			let pw = $("#pw1").val();
 			if (pw == "") {
 				$("#pw1").css("border", "1px solid red");
+				$("#pw2").css("border", "1px solid red");
 				$("#pw1CheckResult").css("color", "red");
 				$("#pw1CheckResult").text("비밀번호는 필수 입력 정보입니다.")
 				isPwOk = false;
-				
+				isPw2Ok = false;
 				$("#join").attr("disabled","true");
 				return false;
 			}
@@ -253,23 +254,26 @@
 			let pwResult = pwRegex.test(pw);
 			if (!pwResult) {
 				$("#pw1").css("border", "1px solid red");
+				$("#pw2").css("border", "1px solid red");
 				$("#pw1CheckResult").css("color", "red");
 				$("#pw1CheckResult").text(
 						"영문 소문자, 대문자, 숫자를 사용하여 8~12자로 작성");
 				isPwOk = false;
-				
+				isPw2Ok = false;
 				$("#join").attr("disabled","true");
 				return false;
 			} else {
 				$("#pw1").css("border", "1px solid blue");
 				$("#pw1CheckResult").text("");
+				isPwOk = true;
+				
 				let pw2 = $("#pw2").val();
 				if (pw2 == pw) {
 					$("#pw2").css("border", "1px solid blue");
 					$("#pw2CheckResult").css("color", "blue");
 					$("#pw2CheckResult").text("패스워드가 일치합니다.");
-					return isPwOk = true;
-
+					isPw2Ok = true;
+					
 					//모든 검증 통과 시 submit 버튼 활성화
 					if (isIdOk && isPwOk && isPw2Ok && isNameOk
 							&& isPhoneOk && isEmailOk && isNNOk) {
@@ -286,9 +290,9 @@
 				}
 			}
 		})
-
+		
 		$("#pw2").on("keyup",function() { // 비번2 일치 검증
-			let pw1 = $("#pw1").val();
+			let pw = $("#pw1").val();
 			let pw2 = $("#pw2").val();
 			if (pw2 == "") {
 				$("#pw2").css("border", "1px solid red");
@@ -299,14 +303,12 @@
 				$("#join").attr("disabled","true");
 				return false;
 			}
-			if (pw2 == pw1) {
+			if (pw2 == pw) {
 				$("#pw2").css("border", "1px solid blue");
 				$("#pw2CheckResult").css("color", "blue");
 				$("#pw2CheckResult").text("패스워드가 일치합니다.");
-				
 				isPw2Ok = true;
-				console.log(isPwOk);
-				console.log(isPw2Ok);
+				
 				//모든 검증 통과 시 submit 버튼 활성화
 				if (isIdOk && isPwOk && isPw2Ok && isNameOk
 						&& isPhoneOk && isEmailOk && isNNOk) {

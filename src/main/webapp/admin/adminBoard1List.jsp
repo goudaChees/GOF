@@ -75,6 +75,7 @@
 			</div>
 		</div>
 
+
 		<div class="row w-100 m-0" id="content">
 			<div class="d-none d-lg-block col-3"></div>
 			<div class="col-12 col-lg-6">
@@ -94,12 +95,13 @@
 								</ul>
 							</div>	
 						</div>
+						
 						<div class="row w-100 m-0" id="mywriting">
 							<div class="col-12">
 								<div class="row w-100 m-0">
 									<div class="col-12" id="listbtns">
-										<button id="toBoard1">살까말까</button>
-										<button id="toBoard2">최저가경매</button>
+										<button id="toBoard1">살까 말까</button>
+										<button id="toBoard2">최저가 경매</button>
 									</div>
 								</div>
 								<div class="row w-100 m-0">

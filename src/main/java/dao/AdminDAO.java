@@ -237,7 +237,7 @@ private static AdminDAO instance = null;
 		int startPage = cpage * 10 - 9;
 		int endPage = cpage * 10; 
 		
-		String sql = "select * from (select row_number() over(order by seq) line, board2.* from board2) where line between ? and ?";
+		String sql = "select * from (select row_number() over(order by seq desc) line, board2.* from board2) where line between ? and ?";
 
 		List<Board2DTO> list = new ArrayList<>();
 		try(
@@ -274,7 +274,7 @@ private static AdminDAO instance = null;
 		int startPage = cpage * 10 - 9;
 		int endPage = cpage * 10; 
 		
-		String sql = "select * from (select row_number() over(order by seq) line, board1.* from board1) where line between ? and ?";
+		String sql = "select * from (select row_number() over(order by seq desc) line, board1.* from board1) where line between ? and ?";
 
 		List<Board1DTO> list = new ArrayList<>();
 		try(
