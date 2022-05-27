@@ -199,6 +199,16 @@ public class MemberController extends HttpServlet {
 				int isok = dao.chpw(pw,id,email);
 				PrintWriter pws = response.getWriter();
 				pws.append(g.toJson(isok));
+			} else if (uri.equals("/idisok.member")) {
+				String id = request.getParameter("id");
+				boolean isok = dao.isidok(id);
+				PrintWriter pws = response.getWriter();
+				pws.append(g.toJson(isok));
+			} else if (uri.equals("/emailok.member")) {
+				String email = request.getParameter("email");
+				boolean isok = dao.emailidok(email);
+				PrintWriter pws = response.getWriter();
+				pws.append(g.toJson(isok));
 			}
 			
 			

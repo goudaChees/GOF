@@ -427,6 +427,26 @@ private static MemberDAO instance = null;
 				}
 			}
 		}
+		public boolean isidok(String id) throws Exception{
+			String sql = "Select * from member where id=?";
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);){
+					pstat.setString(1, id);
+					try(ResultSet rs = pstat.executeQuery()){
+						return rs.next();
+					}
+				}
+		}
+		public boolean emailidok(String email) throws Exception{
+			String sql = "Select * from member where email=?";
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);){
+					pstat.setString(1, email);
+					try(ResultSet rs = pstat.executeQuery()){
+						return rs.next();
+					}
+				}
+		}
 		public int chpw(String pw,String id,String email) throws Exception{
 			String sql = "update member set password=? where id=? and email=?";
 			try(Connection con = this.getConnection();

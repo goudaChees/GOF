@@ -20,8 +20,10 @@ body {
 </head>
 <body>
        <input type="text" id="id" placeholder="아이디를 적어주세요"><br>
+       <span id="idok" style="display: none">아이디 확인중</span><br>
        <input type="text" id="email" placeholder="이메일을 적어주세요"><br>
-       <button id="btn">메일 발송</button><br>
+       <span id="ismeailok" style="display: none">이메일 확인중</span><br>
+       <button id="btn" disabled>메일 발송</button><br>
        <span id="mailok" style="display: none">메일 발송 완료</span><br>
        <input type="text" id="isok" placeholder="인증번호 입력해주세요"><br>
        <input type="text" id="ck" style="display: none" value="no"><br>
@@ -31,16 +33,89 @@ body {
        <span id="pwck" style="display:none">비밀번호 확인중</span><br>
        <input type="password" id="newpwck" style="display: none"><br>
        <span id="pwck2" style="display:none">비밀번호 확인중</span><br>
-       
        <button id="btn2" style="display: none" disabled>비밀번호 적용</button>
        <script>
+       let idok = false;
+       let emailok = false;
+       
+       $("#id").on({
+    		   keyup : function(){
+    	   $.ajax({
+    		   url:"/idisok.member",
+    		   dataType:"json",
+    		   data:{id:$("#id").val()
+    			   }
+    	   }).always(function(resp){
+    		   if(resp){
+            	   $("#id").css("border", "1px solid blue");
+        		   $("#idok").css("color", "blue");
+            	   $("#idok").css("display","inline");
+        			$("#idok").text(
+        					"등록되어 있는 아이디 입니다.");
+        			idok = true;
+               }
+               if(!resp){
+            	   $("#id").css("border", "1px solid red");
+            	   $("#idok").css("color", "red");
+            	   $("#idok").css("display","inline");
+        			$("#idok").text(
+        					"등록되어 있지 않은 아이디 입니다.");
+        			idok = false;
+               }
+    	   })
+    	},
+    	focusout : function(){
+ 		   if(idok && emailok){
+     		   $("#btn").removeAttr("disabled");
+     	   }
+     	   if(!(idok) || !(emailok)){
+     		   $("#btn").attr("disabled","true");
+     	   }
+ 	   }
+        
+       })
+       
+       $("#email").on({
+    		   keyup : function(){
+    	   $.ajax({
+    		   url:"/emailok.member",
+    		   dataType:"json",
+    		   data:{email:$("#email").val()
+    			   }
+    	   }).always(function(resp){
+    		   if(resp){
+            	   $("#email").css("border", "1px solid blue");
+        		   $("#ismeailok").css("color", "blue");
+            	   $("#ismeailok").css("display","inline");
+        			$("#ismeailok").text(
+        					"등록되어 있는 이메일 입니다.");
+        			emailok = true;
+               }
+               if(!resp){
+            	   $("#email").css("border", "1px solid red");
+            	   $("#ismeailok").css("color", "red");
+            	   $("#ismeailok").css("display","inline");
+        			$("#ismeailok").text(
+        					"등록되어 있지 않은 이메일 입니다.");
+        			emailok = false;
+               }
+    	   })
+    	   },
+    	   focusout : function(){
+    		   if(idok && emailok){
+        		   $("#btn").removeAttr("disabled");
+        	   }
+        	   if(!(idok) || !(emailok)){
+        		   $("#btn").attr("disabled","true");
+        	   }
+    	   }
+       })
        	$("#btn").on("click",function(){
        		$("#btn").text("매일 발송중");
        		$.ajax({
        			url:"/findpw.mail",
 				dataType:"json",
-				data:{name:$("#name").val(),
-					email:$("#email").val()
+				data:{email:$("#email").val()
 					}
        		}).always(function(resp){
        			$("#ck").val(resp);
@@ -109,7 +184,7 @@ body {
            if($("#newpw").val()==$("#newpwck").val()){
         	   $("#btn2").removeAttr("disabled");
            }else if(!($("#newpw").val()==$("#newpwck").val())){
-        	   $("#btn2").attr("disabled");
+        	   $("#btn2").attr("disabled","true");
            }
        })
        
