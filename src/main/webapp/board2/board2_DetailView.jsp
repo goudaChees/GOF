@@ -88,7 +88,7 @@
 						</div>
 						<div class="row w-100 my-3 mx-0" id="board2List">
 							<div class="col-12" style="text-align:left">제한시간 : <span id="limit">
-								<div class="spinner-border spinner-border-sm text-light" role="status">
+								<div class="spinner-border spinner-border-sm text-secondary" role="status">
  									 <span class="visually-hidden">Loading...</span>
 								</div>
 							</div>
