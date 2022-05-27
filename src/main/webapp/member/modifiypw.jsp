@@ -7,27 +7,50 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
+
 body {
 	width: 500px;
 	height: 350px;
 	text-align: center;
+	margin-top: 30px;
+	background-color: #FFF4EF;
+}
+input {
+	border: 2px solid #9D8189;
+	border-radius: 15px;
+	width: 250px;
+	text-align: center;
+	margin-bottom: 5px;
+	height: 20px;
+}
+input[type=button] {
+	border: 2px solid #9D8189;
+	border-radius: 15px;
+	color: white;
+	background-color: #9D8189;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	height: 30px;
+}
+
+input:focus {
+	outline:none;
 }
 </style>
 </head>
 
 <body>
-	<br>
 	<p>현재 비밀번호</p>
 	<input type="password" name="nowpw" id="nowpw">
-	<br>
+	
 	<p>새 비밀번호</p>
 	<input type="password" name="newpw" id="newpw">
 	<div id="pw1"></div>
-	<br>
+	
 	<p>새 비밀번호 확인</p>
 	<input type="password" name="newrepw" id="newrepw">
 	<div id="pw2"></div>
-	<br>
+	
 	<br>
 	<input type="button" value="변경하기" id="modify" disabled>
 	<input type="button" value="그만두기" onclick="window.close()">

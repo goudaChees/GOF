@@ -187,11 +187,18 @@ public class MemberController extends HttpServlet {
 				String email = request.getParameter("email");
 				String id = "";
 				boolean isfindid = dao.isgetID(name, email);
+				String jointype = dao.howJoin(name, email);
 				if(isfindid) {
-					id = dao.getID(name, email);
+					if(jointype.equals("카카오")) {
+						prw.append(g.toJson(jointype+"로 가입한 회원입니다."));
+					} else if(jointype.equals("일반")){	
+						id = dao.getID(name, email);
+						prw.append(g.toJson(id));
+					}
+				} else {
+					prw.append("false");
 				}
-				PrintWriter pw = response.getWriter();
-				pw.append(g.toJson(id));
+				
 			} else if (uri.equals("/findpw.member")) {
 				String id = request.getParameter("id");
 				String email = request.getParameter("email");

@@ -149,7 +149,7 @@
 												<div class="col-12 p-0" id=best><textarea class="best" disabled >${crdto.contents}</textarea></div>
 											</div>				
 										</div>
-										<div class="col-2 p-0" style="margin-top: 10px;"><img src="/img/thumbs-up.png" style="width:80px; height:80px; "></div>
+										<div class="col-2 p-0" style="margin-top: 10px;"><img src="/img/best2.png" style="width:80px; height:80px; "></div>
 									</div>
 									<hr>
 								</c:if>

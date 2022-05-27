@@ -15,10 +15,35 @@ body {
 	width: 500px;
 	height: 300px;
 	text-align: center;
+	padding-top: 50px;
+	background-color: #FFF4EF;
+}
+input {
+	border: 2px solid #9D8189;
+	border-radius: 15px;
+	width: 200px;
+	text-align: center;
+}
+button {
+	border: 2px solid #9D8189;
+	border-radius: 15px;
+	color: white;
+	background-color: #9D8189;
+	margin-top: 20px;
+	margin-bottom: 15px;
+}
+
+input:focus {
+	outline:none;
+}
+
+idok{
+	margin-bottom: 10px;
 }
 </style>
 </head>
 <body>
+		<h5>아이디 찾기</h5>
        <input type="text" id="id" placeholder="아이디를 적어주세요"><br>
        <span id="idok" style="display: none">아이디 확인중</span><br>
        <input type="text" id="email" placeholder="이메일을 적어주세요"><br>
