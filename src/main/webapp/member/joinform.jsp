@@ -573,8 +573,6 @@
 						$("#emailCheckResult").text("이메일 인증 완료");
 						isEmailOk = true;
 						
-<<<<<<< HEAD
-=======
 						console.log(isIdOk)
 						console.log(isPwOk)
 						console.log(isPw2Ok)
@@ -583,7 +581,6 @@
 						console.log(isEmailOk)
 						console.log(isNNOk)
 					
->>>>>>> 075b9b1559ce3b940e8c70fb6c006d0c046ff7af
 						//모든 검증 통과 시 submit 버튼 활성화
 						if (isIdOk && isPwOk && isPw2Ok && isNameOk
 								&& isPhoneOk && isEmailOk && isNNOk) {
