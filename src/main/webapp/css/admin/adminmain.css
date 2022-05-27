@@ -132,6 +132,16 @@ div {
 	font-size:20px;
 }
 
+.footerLink{
+	text-decoration: none;
+	color:white;
+}
+
+.footerLink:hover{
+	cursor:pointer;
+	color:#FFF2CC;
+}
+
 .listNN{
 	color:#FFBE46;
 }
@@ -144,3 +154,4 @@ div {
 #memberlistHeader{
 	font-size:min(20px,5vw);
 }
+

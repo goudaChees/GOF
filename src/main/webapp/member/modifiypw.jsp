@@ -93,16 +93,6 @@ body {
 		}
 	})
 	
-	
-	
-	
-	
-
-
-		
-
-		
-		
 </script>
 </body>
 </html>

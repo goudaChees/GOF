@@ -140,7 +140,20 @@ div {
 	cursor:pointer;	
 }
 
-#footer{
-	background-color: #9D8189;
-	color: white;
+.footerLink{
+	text-decoration: none !important;
+	color:white !important;
+}
+
+.footerLink:hover{
+	cursor:pointer !important;
+	color:#FFF2CC !important;
+}
+
+.footerLetter{
+	color:white !important;	
+}
+
+.footerBar{
+	color:#FFF2CC !important;
 }
