@@ -165,3 +165,7 @@ div {
 	cursor:pointer;
 	color:#FFF2CC;
 }
+
+#adminTF {
+	border-style:none;
+}

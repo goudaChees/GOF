@@ -119,7 +119,11 @@
 													<div class="col-md-2 d-none d-md-block nickname">${i.nickname}</div>
 													<div class="col time" id="${i.write_date}"  style="display:none">${i.write_date}</div>
 													<div class="col-md-2 d-none d-md-block">${i.view_count}</div>
-													<div class="col-4 col-md-3 limit" id="${i.seq}">시간 확인중</div>
+													<div class="col-4 col-md-3 limit" id="${i.seq}">
+														<div class="spinner-border spinner-border-sm text-secondary" role="status">
+ 									 						<span class="visually-hidden">Loading...</span>
+														</div>
+													</div>
 												</div>
 												<div class="row w-100 m-0 writingEtc">
 													<div class="col-12 d-md-none d-md-block">
@@ -188,6 +192,7 @@
 				if (distDt < 0) {
 					clearInterval(timer);
 					document.getElementById(id).textContent = "종료";
+					document.getElementById(id).style.color="#FF595E";
 					return;
 				}
 				let days = Math.floor(distDt / _day);
@@ -199,6 +204,7 @@
 				//document.getElementById(id).textContent += hours + '시간 ';
 				document.getElementById(id).textContent = minutes + '분 ';
 				document.getElementById(id).textContent += seconds + '초';
+				document.getElementById(id).style.color="#1982C4";
 			}
 			timer = setInterval(showRemaining, 1000);
 		}

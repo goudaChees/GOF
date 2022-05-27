@@ -181,7 +181,7 @@
 		"click",
 		function() {
 			window.open("/member/modifiypw.jsp", "",
-					"top=100,left=200,width=550,height=350");
+					"top=100,left=200,width=550,height=450");
 			//location.href="/member/memberout.jsp";
 		})
 

@@ -108,7 +108,7 @@ textarea:focus{
 }
 
 #writingArea img{
-	object-fit:fill;
+	object-fit:contain;
 	position:absolute;
 	top:0;
 	right:0;

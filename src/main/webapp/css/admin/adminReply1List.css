@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
 * {
 	box-sizing: border-box;
 }
@@ -31,40 +30,40 @@ div {
 	position: relative;
 }
 
-#Board2Outline{
+#Board1Outline{
 	padding:2%;
 	height:100%;
 	border-radius: 15px;
 	background-color: #FFF4EF;
 }
 
-#Board2Header{
+#Board1Header{
 	padding-top:10px;
 	height:100px;
 	text-align:left;
 }
 
-#Board2Header .col-12{
+#Board1Header .col-12{
 	color: #806c71;
 	text-align:left;
 	position:relative;
 }
 
-#Board2Header ul{
+#Board1Header ul{
 	position:absolute;
 	left:13px;
 	bottom:-5px;
 	width:95%;
 }
 
-#Board2Header li{
+#Board1Header li{
 	margin-right:5px;
 	min-width:20%;
 	max-width:28%;
 	font-size:15px;
 }
 
-#Board2Header .nav-link{
+#Board1Header .nav-link{
 	padding-left:3px;
 	padding-right:3px;
 	border: 1px solid transparent;
@@ -75,7 +74,7 @@ div {
 	font-size:min(15px,2.8vw);
 }
 
-#Board2Header .active{
+#Board1Header .active{
 	background-color: #D8E2DC;
 	color:#516D5C;
 }
@@ -98,7 +97,7 @@ div {
 }
 
 #mywriting span{
-	font-size:min(6vw,14px);
+	font-size:min(3vw,15px);
 }
 
 #mywriting .col-12:last-child{
@@ -139,9 +138,7 @@ div {
 
 #mywriting input[type=submit]:hover{
 	background-color: #B4C8BC30;
-	
 }
-
 
 #mywriting>.col-12{
 	height:100%;
@@ -170,7 +167,7 @@ div {
 	cursor:pointer;	
 }
 
-#board2List{
+#board1List{
 	margin:0%;
 	padding:2%;
 	padding-top:3%;
@@ -182,17 +179,11 @@ div {
 	position:relative;
 }
 
-#board2List>.col-12{
+#board1List>.col-12{
 	height:100%;
 }
 
-#listTitle{
-	font-size: 15px;
-	color:#5C474D;
-	font-weight:bolder;
-}
-
-#board2List input[type="button"]{
+#board1List input[type="button"]{
 	padding:1%;
 	margin-left:1%;
 	color: white;
@@ -205,26 +196,38 @@ div {
 	width:90px;
 }
 
-#board2List input[type="button"]:hover{
+#board1List input[type="button"]:hover{
 	background-color: #F193A1;
 	cursor:pointer;	
 }
 
-#board2List .writing{
+#board1List .writing{
 	background-color:#ffffff;
-	margin-bottom:8px;
+	margin-bottom:5px;
 	margin-right:0;
 	margin-left:0;
 	border-radius:3px;
-	max-height:13vh;
+	max-height:10vh;
 	align-items:center;
 	display:flex;
+	
+}
+
+.parentLink{
+	font-size:15px;
+	color:#FFBE46;
+	font-style : bold;
+	
 }
 
 .writing .col-3{
-	padding:3%;
-	max-height:13vh;
-	max-width:13vh;
+ 	font-size:min(15px,3vw);
+ 	
+}
+
+.writing .col-4,.col-8,.col-6{
+ 	font-size:min(15px,3vw);
+ 	
 }
 
 .writing .col-9{
@@ -258,20 +261,20 @@ div {
 .writingEtc{
 	text-align:left;
 	color: #9D8189;
-	font-size:min(14px,2vw);
+	font-size:min(12px,2vw);
 	line-height: min(30px,4.5vw);
 }
 
-#board2List a{
+#board1List a{
 	color:#5C474D;
 	text-decoration:none;
 }
 
-.board2Navi a{
+.board1Navi a{
 	text-decoration:none;
 	color:#5C474D;
 	font-weight:bolder;
-	font-size:20px;
+	font-size:15px;
 }
 
 #footer{
