@@ -101,7 +101,7 @@
 										<div class="col-9">
 											<input type="text" id="email" name="email">
 											<input type="text" id="emailKey" style="display: none;" value="no">
-											<input type="text" id="emailKeyInput">
+											<input type="text" id="emailKeyInput" style="display: none;" placeholder="인증키 입력">
 											<button type="button" id="sendmail">인증메일 발송</button>
 											<button type="button" id="okbtn" style="display: none;">인증확인</button>
 										</div>
@@ -236,8 +236,8 @@
 			} else {
 				$("#pw1").css("border", "1px solid blue");
 				$("#pw1CheckResult").text("");
-				
-				if (pw2 == pw1) {
+				let pw2 = $("#pw2").val();
+				if (pw2 == pw) {
 					$("#pw2").css("border", "1px solid blue");
 					$("#pw2CheckResult").css("color", "blue");
 					$("#pw2CheckResult").text("패스워드가 일치합니다.");
@@ -408,6 +408,7 @@
 						$("#emailKey").val(resp);
 					})
 					$("#sendmail").text("인증메일 재발송");
+					$("#emailKeyInput").css("display","inline");
 				})
 				$("#emailKeyInput").on("keyup",function(){
 					 $("#okbtn").css("display","inline")
