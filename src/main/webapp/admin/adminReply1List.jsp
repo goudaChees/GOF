@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>앞날의 지침</title>
+<title>Admin Page</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
@@ -15,13 +15,10 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-<link rel="stylesheet" href="/css/index.css">
-
+<link rel="stylesheet" href="/css/admin/adminReply1List.css">
 </head>
 <body>
-
 	<div class="container w-100">
-	
 		<div class="row" id="header">
 			<div class="col-12">
 				<nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -78,73 +75,88 @@
 				</nav>
 			</div>
 		</div>
+		
+		
 		<div class="row w-100 m-0" id="content">
 			<div class="d-none d-lg-block col-3"></div>
-			<div class="col-12 col-lg-6">
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<p>Admin Page</p>
-				<ul class="nav nav-tabs">
-					<li class="nav-item"><a class="nav-link"
-						href="/adminmain.admin">회원 정보 관리</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="/adminBoardsList.admin?board=1">게시글
-							관리</a></li>
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="/adminReplyList.admin?board=1">댓글 관리</a></li>
-				</ul>
-				<div class="tab-content">
-					<div class="tab-pane fade show active">
-						<div class="row w-100 m-0">
-							<div class="col-12" id="listbtns">
-								<button id="toBoard1Reply">살까말까</button>
-								<button id="toBoard2Reply">최저가경매</button>
+				<div class="col-12 col-lg-6">
+					<div class="row w-100 m-0" id="Board1Outline">
+						<div class="col-12">
+							<div class="row w-100 m-0" id="Board1Header">
+								<div class="col-12">
+								<p>Admin Page</p>
+								<ul class="nav nav-tabs">
+									<li class="nav-item"><a class="nav-link"
+										href="/adminmain.admin">회원 정보 관리</a></li>
+									<li class="nav-item"><a class="nav-link"
+										href="/adminBoardsList.admin?board=1">게시글
+										관리</a></li>
+									<li class="nav-item"><a class="nav-link active"
+										aria-current="page" href="/adminReplyList.admin?board=1">댓글 관리</a></li>
+								</ul>
+							</div>
+						</div>	
+							
+						<div class="row w-100 m-0" id="mywriting">
+							<div class="col-12">
+								<div class="row w-100 m-0">
+									<div class="col-12" id="listbtns">
+									<button id="toBoard1Reply">살까 말까</button>
+									<button id="toBoard2Reply">최저가 경매</button>
+									</div>
+								</div>
+								<div class="row w-100 m-0">
+									<div class="col-12 p-0">
+										<form action="/searchBrdReply.admin?board=1&page=1">
+											<select class="form-select" aria-label="Default select example"
+												name="searchCategory">
+												<option value="0">선택</option>
+												<option value="1">작성자</option>
+												<option value="2">내용</option>
+											</select>
+											<input type="text" placeholder="검색하실 내용을 입력하세요"
+												name="toSearch">
+											<input type="submit" value="검색">
+										</form>
+										<div class="row w-100 m-0"><br>
+										</div>
+									</div>
+								</div>	
+								
+								<div class="row w-100 m-0" id="board1List">
+									<div class="col-12 p-0">
+										<c:forEach var="i" items="${listR1}">
+											<div class="row w-100 writing">
+												<a href ="/detail.brd1?seq=${i.parent_Seq }" >
+												<div class="col-12 parentLink" style="text-align:center;">
+													[ ${i.agree} ] - 본문 보러가기
+													
+												</div>
+											
+											<div class="row w-100">
+												<div class="col-4 d-sm-3"><b>${i.writer}</b></div>
+												<div class="col-8 d-sm-3">${i.contents}</div>
+												<div class="col-11 d-sm-3 d-none d-sm-block">${i.write_date }</div>
+												
+											</div>
+												</a>
+											</div>
+										</c:forEach>
+									</div>
+								</div>
 							</div>
 						</div>
+						<div class="row w-100 m-0 board1Navi">
+							<div class="col-12">${pageNavi}
+							</div>
+						</div>
+					</div>			
+				</div>			
+			</div>					
+		</div>
+		
+					
 								
-
-		<div id="list_Middle" style="text-align: right;">
-			<div style="width: 20%">
-				<form action="/searchBrdReply.admin?board=1&page=1">
-						<select class="form-select" aria-label="Default select example"
-							name="searchCategory">
-						<option value="0">선택</option>
-						<option value="1">작성자</option>
-						<option value="2">내용</option>
-						
-						</select>
-				</div>
-				<div style="width: 40%; text-align: left;">
-					<input type="text" placeholder="검색하실 내용을 입력하세요"
-						name="toSearch" style="width: 70%"> <input
-						type="submit" value="검색">
-				</div>
-				<br>
-				</form>
-		</div>
-
-		<div id ="replyList">
-			<div>
-				<c:forEach var="i" items="${listR1 }">
-					<div>
-						<a href ="/detail.brd1?seq=${i.parent_Seq }">본문 보러가기</a>
-					</div>
-					<div>
-						
-					</div>
-					<div>${i.writer}</div>
-					<div>${i.contents}</div>
-					<div>${i.write_date }</div>
-					<div>${i.agree }</div>
-				</c:forEach>
-		</div>
-			
-		</div>
-		<div>
-			<div>${pageNavi}
-			</div>
-		</div>
 		<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
 			<div class="col-12 d-lg-none">
 				<div style="margin-left:40px ; margin-top:20px;text-align:left">
@@ -174,7 +186,8 @@
 				<img src="/img/footerLogo.png" style="width:70%;margin-right:10px;margin-top:10%">
 			</div>
 		</div>
-	<script>
+<script>
+
 	$("#toBoard1Reply").on("click", function(){
 		location.href="/adminReplysList.admin?board=1";
 	})
@@ -183,7 +196,7 @@
 		location.href="/adminReplysList.admin?board=2";
 	})
 	
-	</script>
+</script>
 
 </body>
 </html>

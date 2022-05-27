@@ -98,8 +98,8 @@
 						<div class="col-12">
 							<div class="row w-100 m-0">
 								<div class="col-12" id="listbtns">
-									<button id="toBoard1">살까말까</button>
-									<button id="toBoard2">최저가경매</button>
+									<button id="toBoard1">살까 말까</button>
+									<button id="toBoard2">최저가 경매</button>
 								</div>
 							</div>
 							<div class="row w-100 m-0">
@@ -131,8 +131,8 @@
 												<div class="col-md-2 d-none d-md-block">작성자</div>
 												<div class="col-md-2 d-none d-md-block">조회수</div>
 												<div class="col-md-3 d-none d-md-block">제한시간</div>
-												
 											</div>
+											<br>
 										</div>
 									</div>
 								</div>
@@ -143,15 +143,15 @@
 												<a href="/read.brd2?seq=${i.seq}">
 												<div class="col-12">
 													<div class="row w-100 m-0 writingTitle">
-														<div class="col-md-2 d-none d-md-block">${i.seq}</div>
-														<div class="col-8 col-md-3 title" id="title_limit" style="text-align:left">
+														<div class="col-sm-1 d-none d-md-block">${i.seq}</div>
+														<div class="col-8 col-sm-4 title" id="title_limit" style="text-align:left">
 															${i.title}
 															<c:if test="${i.reply!=0}">[${i.reply}]</c:if>
 														</div>
-														<div class="col-md-2 d-none d-md-block nickname">${i.nickname}</div>
+														<div class="col-sm-2 d-none d-md-block nickname">${i.nickname}</div>
 														<div class="col time" id="${i.write_date}" style="display:none">${i.write_date}</div>
-														<div class="col-md-2 d-none d-md-block">${i.view_count}</div>
-														<div class="col-4 col-md-3 limit" id="${i.seq}">시간 확인중</div>
+														<div class="col-sm-2 d-none d-md-block">${i.view_count}</div>
+														<div class="col-4 col-sm-3 limit" id="${i.seq}">시간 확인중</div>
 													</div>
 													<div class="row w-100 m-0 writingEtc">
 														<div class="col-12 d-md-none d-md-block">
