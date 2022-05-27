@@ -1,0 +1,291 @@
+@charset "UTF-8";
+
+
+* {
+	box-sizing: border-box;
+}
+
+div {
+	text-align: center;
+}
+
+.container{
+	max-width: 100%; 
+	padding: 0; 
+	margin: 0; 
+	position: relative;
+}
+
+#header{
+	border-bottom: 5px solid #9D8189;
+	z-index:5;
+}
+
+#content{
+	margin:0;
+	padding-top: 3%;
+	padding-bottom: 3%;
+	min-height: 95vh;
+	max-width: 100%; 
+	background-color:#C0ADB3;
+	position: relative;
+}
+
+#Board1Outline{
+	padding:2%;
+	height:100%;
+	border-radius: 15px;
+	background-color: #FFF4EF;
+}
+
+#Board1Header{
+	padding-top:10px;
+	height:100px;
+	text-align:left;
+}
+
+#Board1Header .col-12{
+	color: #806c71;
+	text-align:left;
+	position:relative;
+}
+
+#Board1Header ul{
+	position:absolute;
+	left:13px;
+	bottom:-5px;
+	width:95%;
+}
+
+#Board1Header li{
+	margin-right:5px;
+	min-width:20%;
+	max-width:28%;
+	font-size:15px;
+}
+
+#Board1Header .nav-link{
+	padding-left:3px;
+	padding-right:3px;
+	border: 1px solid transparent;
+	border-radius: 8px;
+	background-color: #B4C8BC;
+	color:white;
+	text-align:center;
+	font-size:min(15px,2.8vw);
+}
+
+#Board1Header .active{
+	background-color: #D8E2DC;
+	color:#516D5C;
+}
+
+#mywriting{
+	margin:0%;
+	padding:2%;
+	height:80%;
+	border: 5px solid #D8E2DC;
+	border-radius: 15px;
+	background-color: white;
+	overflow:hidden;
+	position:relative;
+	z-index:5;
+}
+
+#mywriting .col-12{
+	height:100%;
+	overflow-y:auto;
+}
+
+#mywriting span{
+	font-size:min(3vw,15px);
+}
+
+#mywriting .col-12:last-child{
+	text-align:right;
+}
+
+#mywriting select{
+	width:80px;
+	background-color: white;	
+	display:inline;
+	border: 2px solid #B4C8BC;
+	color: #806c71;
+	line-height:15px;
+	font-size:min(15px,3vw);
+}
+
+#mywriting select:hover{
+	background-color: #B4C8BC30;	
+}
+
+#mywriting input[type=text]{
+	width:35%;
+	border: 2px solid #516D5C;
+	border-radius: 5px;
+	line-height:25px;
+	font-size:min(15px,3vw);
+}
+
+#mywriting input[type=submit]{
+	color: #516D5C;
+	font-size:min(15px,3vw);
+	background-color: transparent;	
+	border: 2px solid #B4C8BC;
+	border-radius: 5px;
+	width:60px;
+	line-height:25px;
+}
+
+#mywriting input[type=submit]:hover{
+	background-color: #B4C8BC30;
+	
+}
+
+
+#mywriting>.col-12{
+	height:100%;
+}
+
+#listbtns{
+	text-align: right; 
+	margin-top:2vh;
+	margin-bottom:1.5vh;
+}
+
+#mywriting button{
+	padding:1%;
+	margin-left:1%;
+	color: #516D5C;
+	font-size:14px;
+	background-color: transparent;	
+	border: 2px solid #B4C8BC;
+	border-radius: 20px;
+	width:110px;
+}
+
+#mywriting button:hover{
+	background-color: #516D5C;
+	color: white;
+	cursor:pointer;	
+}
+
+#board1List{
+	margin:0%;
+	padding:2%;
+	padding-top:3%;
+	padding-bottom:3%;
+	min-height:50%;
+	border: 5px solid #B4C8BC30;
+	border-radius: 15px;
+	background-color: #B4C8BC30;
+	position:relative;
+}
+
+#board1List>.col-12{
+	height:100%;
+}
+
+#board1List input[type="button"]{
+	padding:1%;
+	margin-left:1%;
+	color: white;
+	font-weight:bold;
+	font-size:min(17px,3.5vw);
+	line-height:23px;
+	background-color: #F193A190;	
+	border: 3px solid #F193A199;
+	border-radius: 20px;
+	width:90px;
+}
+
+#board1List input[type="button"]:hover{
+	background-color: #F193A1;
+	cursor:pointer;	
+}
+
+#board1List .writing{
+	background-color:#ffffff;
+	margin-bottom:8px;
+	margin-right:0;
+	margin-left:0;
+	border-radius:3px;
+	max-height:13vh;
+	align-items:center;
+	display:flex;
+}
+
+.writing .col-3{
+	padding:3%;
+	max-height:13vh;
+	max-width:13vh;
+}
+
+.writing .thumbnail{
+	position:relative;
+	padding-top: 100%; 
+	overflow: hidden;
+	height:100%;
+	border-radius:5px;
+}
+
+.thumbnail img{
+	object-fit:cover;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+
+.writing .col-9{
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+.writingTitle {
+	text-align:left;
+	color: #806c71;
+	overflow:hidden;
+	text-overflow:ellipsis;
+    white-space:nowrap;
+	font-size:min(16px,3.5vw);
+	line-height: min(45px,9vw);
+}
+
+.writingTitle p{
+	display:inline;
+	padding:2px;
+	padding-left:5px;
+	padding-right:5px;
+	font-size:10px;
+	border:2px solid #D8E2DC;
+	border-radius:10px;
+	background-color:#FFF4EF90;
+	color:#9D8189;
+	max-width:40px;
+}
+
+.writingEtc{
+	text-align:left;
+	color: #9D8189;
+	font-size:min(12px,2vw);
+	line-height: min(30px,4.5vw);
+}
+
+#board1List a{
+	color:#5C474D;
+	text-decoration:none;
+}
+
+.board1Navi a{
+	text-decoration:none;
+	color:#5C474D;
+	font-weight:bolder;
+	font-size:20px;
+}
+
+#footer{
+	background-color: #9D8189;
+	color: white;
+}

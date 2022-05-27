@@ -101,7 +101,7 @@
 										<div class="col-9">
 											<input type="text" id="email" name="email">
 											<input type="text" id="emailKey" style="display: none;" value="no">
-											<input type="text" id="emailKeyInput">
+											<input type="text" id="emailKeyInput" style="display: none;" placeholder="인증키 입력">
 											<button type="button" id="sendmail">인증메일 발송</button>
 											<button type="button" id="okbtn" style="display: none;">인증확인</button>
 										</div>
@@ -254,19 +254,32 @@
 				$("#pw1").css("border", "1px solid red");
 				$("#pw1CheckResult").css("color", "red");
 				$("#pw1CheckResult").text(
-						"영문 소문자, 대문자, 숫자를 조합하여 8~12자로 작성");
+						"영문 소문자, 대문자, 숫자를 사용하여 8~12자로 작성");
 				isPwOk = false;
 				$("#join").attr("disabled","true");
 				return false;
 			} else {
 				$("#pw1").css("border", "1px solid blue");
 				$("#pw1CheckResult").text("");
-				isPwOk = true;
+				let pw2 = $("#pw2").val();
+				if (pw2 == pw) {
+					$("#pw2").css("border", "1px solid blue");
+					$("#pw2CheckResult").css("color", "blue");
+					$("#pw2CheckResult").text("패스워드가 일치합니다.");
+					isPw2Ok = true;
 
-				//모든 검증 통과 시 submit 버튼 활성화
-				if (isIdOk && isPwOk && isPw2Ok && isNameOk
-						&& isPhoneOk && isEmailOk && isNNOk) {
-					$("#join").removeAttr("disabled");
+					//모든 검증 통과 시 submit 버튼 활성화
+					if (isIdOk && isPwOk && isPw2Ok && isNameOk
+							&& isPhoneOk && isEmailOk && isNNOk) {
+						$("#join").removeAttr("disabled");
+					}
+				} else {
+					$("#pw2").css("border", "1px solid red");
+					$("#pw2CheckResult").css("color", "red");
+					$("#pw2CheckResult").text("패스워드가 일치하지 않습니다.");
+					isPw2Ok = false;
+					$("#join").attr("disabled","true");
+					return false;
 				}
 			}
 		})
@@ -408,26 +421,29 @@
 					if(email == ""){
 						 alert("메일칸을 작성해주세요.");
 						 isEmailOk = false;
-						$("#join").attr("disabled","true");
+						 $("#join").attr("disabled","true");
 						 return false;
 					}
-					$("#sendmail").text("인증메일 재발송");
-					alert("메일이 발송되었습니다.");
-					
 					$.ajax({
 						url:"/send.mail",
 						dataType:"json",
 						data:{email:$("#email").val()}
 					}).always(function(resp){
+						alert("메일이 발송되었습니다.");
 						$("#emailKey").val(resp);
 					})
+					$("#sendmail").text("인증메일 재발송");
+					$("#emailKeyInput").css("display","inline");
 				})
-				$("#sendmail").on("keyup",function(){
+				$("#emailKeyInput").on("keyup",function(){
 					 $("#okbtn").css("display","inline")
 				})
 				$("#okbtn").on("click",function(){
 					if($("#emailKey").val()==$("#emailKeyInput").val()){
-						alert("메일이 인증되었습니다.")
+						alert("메일이 인증되었습니다.");
+						$("#emailKeyInput").css("display", "none");
+						$("#emailCheckResult").css("color", "blue");
+						$("#emailCheckResult").text("이메일 인증 완료");
 						isEmailOk = true;
 					
 						//모든 검증 통과 시 submit 버튼 활성화
@@ -437,6 +453,7 @@
 						}
 					}else if(!($("#emailKey").val()==$("#emailKeyInput").val())){
 						alert("메일 인증이 실패하였습니다.");
+						$("#emailKeyInput").css("border", "1px solid red");
 						isEmailOk = false;
 						$("#join").attr("disabled","true");
 						return false;
