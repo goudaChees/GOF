@@ -199,16 +199,6 @@
 							$("#idCheckResult").text("사용가능한 아이디입니다.")
 							isIdOk = true;
 							
-							console.log(isIdOk)
-							console.log(isPwOk)
-							console.log(isPw2Ok)
-							console.log(isNameOk)
-							console.log(isPhoneOk)
-							console.log(isEmailOk)
-							console.log(isNNOk)
-							
-									
-							
 							//모든 검증 통과 시 submit 버튼 활성화
 							if (isIdOk && isPwOk
 									&& isPw2Ok
@@ -231,14 +221,6 @@
 				$("#pw1CheckResult").text("비밀번호는 필수 입력 정보입니다.")
 				isPwOk = false;
 				
-				console.log(isIdOk)
-				console.log(isPwOk)
-				console.log(isPw2Ok)
-				console.log(isNameOk)
-				console.log(isPhoneOk)
-				console.log(isEmailOk)
-				console.log(isNNOk)
-				
 				$("#join").attr("disabled","true");
 				return false;
 			}
@@ -251,14 +233,6 @@
 						"영문 소문자, 대문자, 숫자를 사용하여 8~12자로 작성");
 				isPwOk = false;
 				
-				console.log(isIdOk)
-				console.log(isPwOk)
-				console.log(isPw2Ok)
-				console.log(isNameOk)
-				console.log(isPhoneOk)
-				console.log(isEmailOk)
-				console.log(isNNOk)
-				
 				$("#join").attr("disabled","true");
 				return false;
 			} else {
@@ -269,15 +243,8 @@
 					$("#pw2").css("border", "1px solid blue");
 					$("#pw2CheckResult").css("color", "blue");
 					$("#pw2CheckResult").text("패스워드가 일치합니다.");
+					isPwOk = true;
 					isPw2Ok = true;
-					
-					console.log(isIdOk)
-					console.log(isPwOk)
-					console.log(isPw2Ok)
-					console.log(isNameOk)
-					console.log(isPhoneOk)
-					console.log(isEmailOk)
-					console.log(isNNOk)
 
 					//모든 검증 통과 시 submit 버튼 활성화
 					if (isIdOk && isPwOk && isPw2Ok && isNameOk
@@ -289,14 +256,6 @@
 					$("#pw2CheckResult").css("color", "red");
 					$("#pw2CheckResult").text("패스워드가 일치하지 않습니다.");
 					isPw2Ok = false;
-					
-					console.log(isIdOk)
-					console.log(isPwOk)
-					console.log(isPw2Ok)
-					console.log(isNameOk)
-					console.log(isPhoneOk)
-					console.log(isEmailOk)
-					console.log(isNNOk)
 					
 					$("#join").attr("disabled","true");
 					return false;
@@ -313,14 +272,6 @@
 				$("#pw2CheckResult").text("비밀번호 입력을 확인해주세요.")
 				isPw2Ok = false;
 				
-				console.log(isIdOk)
-				console.log(isPwOk)
-				console.log(isPw2Ok)
-				console.log(isNameOk)
-				console.log(isPhoneOk)
-				console.log(isEmailOk)
-				console.log(isNNOk)
-				
 				$("#join").attr("disabled","true");
 				return false;
 			}
@@ -328,15 +279,8 @@
 				$("#pw2").css("border", "1px solid blue");
 				$("#pw2CheckResult").css("color", "blue");
 				$("#pw2CheckResult").text("패스워드가 일치합니다.");
+				isPwOk = true;
 				isPw2Ok = true;
-				
-				console.log(isIdOk)
-				console.log(isPwOk)
-				console.log(isPw2Ok)
-				console.log(isNameOk)
-				console.log(isPhoneOk)
-				console.log(isEmailOk)
-				console.log(isNNOk)
 
 				//모든 검증 통과 시 submit 버튼 활성화
 				if (isIdOk && isPwOk && isPw2Ok && isNameOk
@@ -348,14 +292,6 @@
 				$("#pw2CheckResult").css("color", "red");
 				$("#pw2CheckResult").text("패스워드가 일치하지 않습니다.");
 				isPw2Ok = false;
-				
-				console.log(isIdOk)
-				console.log(isPwOk)
-				console.log(isPw2Ok)
-				console.log(isNameOk)
-				console.log(isPhoneOk)
-				console.log(isEmailOk)
-				console.log(isNNOk)
 				
 				$("#join").attr("disabled","true");
 				return false;
@@ -370,14 +306,6 @@
 				$("#nameCheckResult").text("이름은 필수 입력 정보입니다.")
 				isNameOk = false;
 				
-				console.log(isIdOk)
-				console.log(isPwOk)
-				console.log(isPw2Ok)
-				console.log(isNameOk)
-				console.log(isPhoneOk)
-				console.log(isEmailOk)
-				console.log(isNNOk)
-				
 				$("#join").attr("disabled","true");
 				return false;
 			}
@@ -389,28 +317,12 @@
 				$("#nameCheckResult").text("이름의 입력형식이 올바르지 않습니다.");
 				isNameOk = false;
 				
-				console.log(isIdOk)
-				console.log(isPwOk)
-				console.log(isPw2Ok)
-				console.log(isNameOk)
-				console.log(isPhoneOk)
-				console.log(isEmailOk)
-				console.log(isNNOk)
-				
 				$("#join").attr("disabled","true");
 				return false;
 			} else {
 				$("#name").css("border", "1px solid blue");
 				$("#nameCheckResult").text("");
 				isNameOk = true;
-				
-				console.log(isIdOk)
-				console.log(isPwOk)
-				console.log(isPw2Ok)
-				console.log(isNameOk)
-				console.log(isPhoneOk)
-				console.log(isEmailOk)
-				console.log(isNNOk)
 
 				//모든 검증 통과 시 submit 버튼 활성화
 				if (isIdOk && isPwOk && isPw2Ok && isNameOk
@@ -428,14 +340,6 @@
 				$("#phoneCheckResult").css("color", "red");
 				$("#phoneCheckResult").text("전화번호는 필수 입력 정보입니다.");
 				isPhoneOk = false;
-				
-				console.log(isIdOk)
-				console.log(isPwOk)
-				console.log(isPw2Ok)
-				console.log(isNameOk)
-				console.log(isPhoneOk)
-				console.log(isEmailOk)
-				console.log(isNNOk)
 				
 				$("#join").attr("disabled","true");
 				return false;
@@ -457,14 +361,6 @@
 				$("#phoneCheckResult").text("전화번호의 입력형식이 올바르지 않습니다.");
 				isPhoneOk = false;
 				
-				console.log(isIdOk)
-				console.log(isPwOk)
-				console.log(isPw2Ok)
-				console.log(isNameOk)
-				console.log(isPhoneOk)
-				console.log(isEmailOk)
-				console.log(isNNOk)
-				
 				$("#join").attr("disabled","true");
 				return false;
 			} else {
@@ -473,14 +369,6 @@
 				$("#phone3").css("border", "1px solid blue");
 				$("#phoneCheckResult").text("");
 				isPhoneOk = true;
-				
-				console.log(isIdOk)
-				console.log(isPwOk)
-				console.log(isPw2Ok)
-				console.log(isNameOk)
-				console.log(isPhoneOk)
-				console.log(isEmailOk)
-				console.log(isNNOk)
 
 				//모든 검증 통과 시 submit 버튼 활성화
 				if (isIdOk && isPwOk && isPw2Ok && isNameOk
@@ -499,14 +387,6 @@
 						.text("이메일은 필수 입력 정보입니다.")
 				isEmailOk = false;
 				
-				console.log(isIdOk)
-				console.log(isPwOk)
-				console.log(isPw2Ok)
-				console.log(isNameOk)
-				console.log(isPhoneOk)
-				console.log(isEmailOk)
-				console.log(isNNOk)
-				
 				$("#join").attr("disabled","true");
 				return false;
 			}
@@ -519,14 +399,6 @@
 						"이메일의 입력형식이 올바르지 않습니다.");
 				isEmailOk = false;
 				
-				console.log(isIdOk)
-				console.log(isPwOk)
-				console.log(isPw2Ok)
-				console.log(isNameOk)
-				console.log(isPhoneOk)
-				console.log(isEmailOk)
-				console.log(isNNOk)
-				
 				$("#join").attr("disabled","true");
 				return false;
 			} else {
@@ -538,14 +410,6 @@
 					if(email == ""){
 						 alert("메일칸을 작성해주세요.");
 						 isEmailOk = false;
-						 
-						 console.log(isIdOk)
-							console.log(isPwOk)
-							console.log(isPw2Ok)
-							console.log(isNameOk)
-							console.log(isPhoneOk)
-							console.log(isEmailOk)
-							console.log(isNNOk)
 						 
 						 $("#join").attr("disabled","true");
 						 return false;
@@ -572,18 +436,7 @@
 						$("#emailCheckResult").css("color", "blue");
 						$("#emailCheckResult").text("이메일 인증 완료");
 						isEmailOk = true;
-						
-<<<<<<< HEAD
-=======
-						console.log(isIdOk)
-						console.log(isPwOk)
-						console.log(isPw2Ok)
-						console.log(isNameOk)
-						console.log(isPhoneOk)
-						console.log(isEmailOk)
-						console.log(isNNOk)
-					
->>>>>>> 075b9b1559ce3b940e8c70fb6c006d0c046ff7af
+
 						//모든 검증 통과 시 submit 버튼 활성화
 						if (isIdOk && isPwOk && isPw2Ok && isNameOk
 								&& isPhoneOk && isEmailOk && isNNOk) {
@@ -593,14 +446,6 @@
 						alert("메일 인증이 실패하였습니다.");
 						$("#emailKeyInput").css("border", "1px solid red");
 						isEmailOk = false;
-						
-						console.log(isIdOk)
-						console.log(isPwOk)
-						console.log(isPw2Ok)
-						console.log(isNameOk)
-						console.log(isPhoneOk)
-						console.log(isEmailOk)
-						console.log(isNNOk)
 						
 						$("#join").attr("disabled","true");
 						return false;
@@ -617,14 +462,6 @@
 				$("#nnCheckResult").text("닉네임은 필수 입력 정보입니다.")
 				isNNOk = false;
 				
-				console.log(isIdOk)
-				console.log(isPwOk)
-				console.log(isPw2Ok)
-				console.log(isNameOk)
-				console.log(isPhoneOk)
-				console.log(isEmailOk)
-				console.log(isNNOk)
-				
 				$("#join").attr("disabled","true");
 				return false;
 			}
@@ -637,14 +474,6 @@
 				$("#nnCheckResult").text(
 						"한글, 영문, 숫자, 특수기호(_)를 조합하여 3~8자로 작성");
 				isNNOk = false;
-				
-				console.log(isIdOk)
-				console.log(isPwOk)
-				console.log(isPw2Ok)
-				console.log(isNameOk)
-				console.log(isPhoneOk)
-				console.log(isEmailOk)
-				console.log(isNNOk)
 				
 				$("#join").attr("disabled","true");
 				return false;
@@ -659,14 +488,6 @@
 						$("#nnCheckResult").css("color","red");
 						$("#nnCheckResult").text("이미 존재하는 닉네임입니다.")
 						isNNOk = false;
-						
-						console.log(isIdOk)
-						console.log(isPwOk)
-						console.log(isPw2Ok)
-						console.log(isNameOk)
-						console.log(isPhoneOk)
-						console.log(isEmailOk)
-						console.log(isNNOk)
 					
 						$("#join").attr("disabled","true");
 						return false;
@@ -675,14 +496,6 @@
 						$("#nnCheckResult").css("color","blue");
 						$("#nnCheckResult").text("사용가능한 닉네임입니다.")
 						isNNOk = true;
-						
-						console.log(isIdOk)
-						console.log(isPwOk)
-						console.log(isPw2Ok)
-						console.log(isNameOk)
-						console.log(isPhoneOk)
-						console.log(isEmailOk)
-						console.log(isNNOk)
 
 						//모든 검증 통과 시 submit 버튼 활성화
 						if (isIdOk && isPwOk
