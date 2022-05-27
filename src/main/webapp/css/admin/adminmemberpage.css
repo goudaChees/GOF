@@ -144,3 +144,13 @@ div {
 	background-color: #9D8189;
 	color: white;
 }
+
+.footerLink{
+	text-decoration: none;
+	color:white;
+}
+
+.footerLink:hover{
+	cursor:pointer;
+	color:#FFF2CC;
+}

@@ -128,3 +128,13 @@ div {
 	color:#516D5C;
 }
 
+.footerLink{
+	text-decoration: none;
+	color:white;
+}
+
+.footerLink:hover{
+	cursor:pointer;
+	color:#FFF2CC;
+}
+
