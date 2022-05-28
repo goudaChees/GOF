@@ -397,8 +397,7 @@
 			});
 			
 			ok.on("click",function(){//댓글 공백 제한 처리
-				if($(this).
-						if($(this).parent().parent().prev().children().eq(1).val().trim()==''){
+				if($(this).parent().parent().prev().children().eq(1).val().trim()==''){
 					alert("댓글 내용을 입력해주세요.");
 					return false;
 				}
