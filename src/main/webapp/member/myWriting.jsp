@@ -34,32 +34,16 @@
 						<div class="collapse navbar-collapse justify-content-end"
 							id="navbarNavDropdown">
 							<ul class="navbar-nav">
-								<c:choose>
-									<c:when test="${loginID =='admin'}">
-										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
-										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
-										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
-										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/adminmain.admin" style="color:#664E55">관리자페이지</a></li>
-										<li class="nav-item"><a class="nav-link active"
-										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
-									</c:when>
-									<c:otherwise>
-										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
-										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
-										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
-										<li class="nav-item"><a class="nav-link active" 
-											aria-current="page" href="/mypage.member" style="color:#664E55">마이페이지</a></li>
-										<li class="nav-item"><a class="nav-link active"
-										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
-									</c:otherwise>
-								</c:choose>
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+								<li class="nav-item"><a class="nav-link active" 
+									aria-current="page" href="/mypage.member" style="color:#664E55">마이페이지</a></li>
+								<li class="nav-item"><a class="nav-link active"
+								aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
 							</ul>
 						</div>
 					</div>
