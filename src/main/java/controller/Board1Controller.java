@@ -134,7 +134,7 @@ public class Board1Controller extends HttpServlet {
 				list.add(0,rdto);
 				request.setAttribute("list", list);//댓글 목록 list에 담기
 				request.setAttribute("glist", g.toJson(list));
-
+				
 				boolean didIDwrite = rdao.didIDwrite(seq,nickname);//해당 게시글에 댓글을 달았는지 검사
 				
 				//4. 차트를 위한 결과값 뽑기

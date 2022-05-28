@@ -269,7 +269,7 @@ public class Board1_ReplyDAO {
 	}
 	
 	public Board1_ReplyDTO getBestReplyByParentSeq(int parent_Seq)throws Exception{
-		String sql = "select * from (select  row_number() over(order by good desc) 순위,board1_reply.* from board1_reply where parent_seq = ?) where 순위 = 1 order by write_date";
+		String sql = "select * from (select  row_number() over(order by good desc,write_date) 순위,board1_reply.* from board1_reply where parent_seq = ?) where 순위 = 1";
 		try(
 			Connection con = this.getConnection();
 			PreparedStatement pstat = con.prepareStatement(sql);
@@ -297,7 +297,7 @@ public class Board1_ReplyDAO {
 	}
 	
 	public List<Board1_ReplyDTO> getReplyExceptBest(int parent_Seq)throws Exception{
-		String sql = "select * from (select  row_number() over(order by good desc) 순위,board1_reply.* from board1_reply where parent_seq =?) where 순위 != 1 order by write_date";
+		String sql = "select * from (select  row_number() over(order by good desc,write_date) 순위,board1_reply.* from board1_reply where parent_seq =?) where 순위 != 1";
 		try(
 			Connection con = this.getConnection();
 			PreparedStatement pstat = con.prepareStatement(sql);

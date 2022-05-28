@@ -243,6 +243,7 @@
 	<script>
 	<!--  게시글 script-------------------------------------------------------------------- -->
 		window.onload = function(){	
+			console.log(${glist});
 			if(${nickname==null}){
 				alert("로그인 후 이용 가능합니다.")
 				location.href="/index.jsp"
