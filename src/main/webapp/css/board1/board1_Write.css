@@ -1,21 +1,12 @@
 @charset "UTF-8";
 
-.container{
-	max-width: 100%; 
-	padding: 0; 
-	margin: 0; 
-	position: relative;
-	overflow-y:auto;
-}
-
 #header{
 	border-bottom: 5px solid #A2BAAC;
-	z-index:5;
 }
 
 #content{
 	margin:0;
-	padding-top: 3%;
+	padding-top: 15vh;
 	padding-bottom: 3%;
 	min-height: 95vh;
 	max-width: 100%; 
