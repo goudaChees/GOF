@@ -1,18 +1,6 @@
 @charset "UTF-8";
 
 
-* {
-	box-sizing: border-box;
-}
-
-*:focus {
-    box-shadow: none !important;
-}
-
-div {
-	text-align: center;
-}
-
 .container{
 	max-width: 100%; 
 	padding: 0; 
