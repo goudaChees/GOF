@@ -40,10 +40,21 @@ input:focus {
 idok{
 	margin-bottom: 10px;
 }
+
+a{
+	text-decoration: none;
+	color:#9D8189;
+}
+
+a:hover{
+	font-weight: bold;
+	color:#9D8189;
+}
 </style>
 </head>
 <body>
-		<h5>아이디 찾기</h5>
+		<h5>비밀번호 찾기</h5>
+		<p><a href="https://accounts.kakao.com/weblogin/find_account_guide?continue=http://www.kakao.com/main#pageFindAccountSelect">카카오 간편 로그인 회원은 여기를 클릭해주세요</a></p>
        <input type="text" id="id" placeholder="아이디를 적어주세요"><br>
        <span id="idok" style="display: none">아이디 확인중</span><br>
        <input type="text" id="email" placeholder="이메일을 적어주세요"><br>

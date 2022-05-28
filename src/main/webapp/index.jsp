@@ -153,7 +153,7 @@
 		})
 		$("#findPW").on("click",function(){
 			window.open("/member/findpw.jsp", "",
-			"top=100,left=200,width=550,height=350");
+			"top=100,left=200,width=550,height=500");
 		})
     	$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업
     		Swal.fire({
