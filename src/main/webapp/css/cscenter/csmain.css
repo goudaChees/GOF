@@ -211,6 +211,27 @@ div {
 	cursor:pointer;
 }
 
+#cscontact {
+	height:90%;
+	padding-top:30px;
+	background-color:#C7B7BB40;
+	border-radius:15px;
+}
+
+.csmapArea {
+	height:60%;
+	width:90%;
+	margin:auto;
+	padding-top:30px;
+	background-color: white;
+	border-radius:15px;
+	text-align :left;
+}
+
+.csmapArea2 {
+
+}
+
 
 .footerLink{
 	text-decoration: none !important;
