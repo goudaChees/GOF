@@ -15,12 +15,35 @@ body {
 	width: 500px;
 	height: 300px;
 	text-align: center;
+	padding-top: 50px;
+	background-color: #FFF4EF;
 }
+input {
+	border: 2px solid #9D8189;
+	border-radius: 15px;
+	width: 250px;
+	text-align: center;
+	margin-bottom: 10px;
+}
+button {
+	border: 2px solid #9D8189;
+	border-radius: 15px;
+	color: white;
+	background-color: #9D8189;
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+
+input:focus {
+	outline:none;
+}
+
 </style>
 </head>
 <body>
+	<h5>아이디 찾기</h5>
 	이름 : <input type="text" id="name" placeholder="이름을 적어주세요"><br>
-	이메일 :  <input type="text" id="email" placeholder="가입하신 이메일을 적어주세요"><br>
+	이메일 : <input type="text" id="email" placeholder="가입하신 이메일을 적어주세요"><br>
 	<button type="button" id="btn">아이디 찾기</button><br>
 	<span style="display:none;" id="findid">찾으시는 ID : </span><input type="text" id="id" readonly="readonly" style="display: none;">
 	<script>
@@ -43,8 +66,10 @@ body {
 					}
 			}).always(function(resp){
 				if(resp==''){
-					alert("아이디,이메일을 확인해주세요");
+					console.log(resp);
+					alert("올바르지 않거나 가입되어있지 않은 회원입니다.");
 				}else{
+					console.log(resp);
 					$("#id").val(resp);	
 				}
 			})
