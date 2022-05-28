@@ -36,7 +36,7 @@ public class MailController extends HttpServlet {
 			String title = "[땡그랑]회원가입 인증 메일입니다.";
 			String content = "<h2>안녕하세요. 땡그랑 관리자입니다.</h2>"
 					+ "회원가입 인증 번호는 다음과 같습니다.<br>[ "
-					+ random + "]입니다.<br>";
+					+ random + " ]입니다.<br>";
 			Message message = new MimeMessage(dao.getSession());
 			
 			message.setFrom(new InternetAddress("sendMail@gmail.com", "관리자", "utf-8"));

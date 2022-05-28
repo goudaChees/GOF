@@ -47,12 +47,12 @@
 				<div class="d-none d-lg-block col-3"></div>
 				<div class="col-12 col-lg-6">
 					<div class="row w-100 m-0" id="joinFormOutline">
-						<div class="col-12">
+						<div class="col-12" style="height:100%;">
 							<div class="row" id="joinFormHeader">
 								<div class="col-12">회원 가입 정보 입력</div>
 							</div>
 							<div class="row" id="joinFormArea">
-								<div class="col-12">
+								<div class="col-12" style="height:100%;">
 									<form method="post" action="join.member">
 									<div class="row">
 										<div class="col-3">아이디</div>
@@ -96,13 +96,16 @@
 										<div class="col-3"></div>
 										<div class="col-9" id="phoneCheckResult"></div>
 									</div>
-									<div class="row">
+									<div class="row" id="emailInputArea">
 										<div class="col-3">이메일</div>
 										<div class="col-9">
 											<input type="text" id="email" name="email">
+											<button type="button" id="sendmail" disabled>인증메일 발송</button>
+										</div>
+										<div class="col-3"></div>
+										<div class="col-9">
 											<input type="text" id="emailKey" style="display: none;" value="no">
 											<input type="text" id="emailKeyInput" style="display: none;" placeholder="인증키 입력">
-											<button type="button" id="sendmail">인증메일 발송</button>
 											<button type="button" id="okbtn" style="display: none;">인증확인</button>
 										</div>
 										<div class="col-3"></div>
@@ -119,7 +122,7 @@
 									<div class="row">
 										<div class="col-3"></div>
 										<div class="col-9" style="text-align: center;">
-											<input type="reset"	value="다시 입력" class="order-1 order-lg-2">
+											<input type="reset"	value="다시 입력" id="reset" class="order-1 order-lg-2">
 											<input type="submit" value="회원가입" id="join" class="order-2 order-lg-1" disabled> 
 										</div>
 									</div>
@@ -130,7 +133,7 @@
 					</div>
 				</div>
 				<div class="d-none d-lg-block col-3">
-					<img src="/img/tmp_frontpig.png" id="frontpig">
+					<img src="/img/frontpig.png" id="frontpig">
 				</div>
 			</div>
 		<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
@@ -415,6 +418,9 @@
 				isEmailOk = false;
 				
 				$("#join").attr("disabled","true");
+				$("#sendmail").attr("disabled","true");
+				$("#emailKeyInput").css("display","none");
+				$("#okbtn").css("display","none")
 				return false;
 			}
 			let emailRegex = /^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/;
@@ -427,18 +433,23 @@
 				isEmailOk = false;
 				
 				$("#join").attr("disabled","true");
+				$("#sendmail").attr("disabled","true");
+				$("#emailKeyInput").css("display","none");
+				$("#okbtn").css("display","none")
 				return false;
 			} else {
 				$("#email").css("border", "1px solid blue");
 				$("#emailCheckResult").text("");
-				
+				$("#sendmail").removeAttr("disabled");
 				$("#sendmail").on("click",function(){
 					let email = $("#email").val();
 					if(email == ""){
 						 alert("메일칸을 작성해주세요.");
 						 isEmailOk = false;
-						 
 						 $("#join").attr("disabled","true");
+						 $("#sendmail").attr("disabled","true");
+						 $("#emailKeyInput").css("display","none");
+						 $("#okbtn").css("display","none")
 						 return false;
 					}
 					$.ajax({
@@ -536,6 +547,11 @@
 					}
 				})
 			}
+		})
+		
+		
+		$("#reset").on("click",function(){
+			location.reload();       
 		})
 	
 	</script>

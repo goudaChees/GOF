@@ -5,6 +5,10 @@
 	box-sizing: border-box;
 }
 
+*:focus{
+	outline:none !important;
+}
+
 div {
 	text-align: center;
 }
@@ -39,8 +43,8 @@ div {
 }
 
 #joinFormHeader{
-	height:5%;
-	margin:3%;
+	height:7%;
+	padding:3%;
 }
 
 #joinFormHeader .col-12{
@@ -50,7 +54,7 @@ div {
 
 #joinFormArea{
 	margin:2%;
-	height:85%;
+/* 	height:90%; */
 	border: 5px solid #D8E2DC;
 	border-radius: 15px;
 	background-color: white;
@@ -62,13 +66,14 @@ div {
 }
 
 #joinFormArea .row{
-	height: 12.5%;
-	border-bottom: 1px solid #e1e9e4;
+/* 	height: 12.5%; */
+	border-bottom: 1.5px dotted #e1e9e4;
 }
 
 #joinFormArea .col-3{
 	background-color: #e1e9e4;
 	padding-top:4%;
+	font-size:min(15px,3vw);
 }
 
 #joinFormArea .col-9{
@@ -77,8 +82,9 @@ div {
 }
 
 #joinFormArea input{
+	font-size:min(15px,3vw);
 	padding:0;
-	margin-top: 5%;
+	margin-top: 3%;
 }
 
 #phone1,#phone2,#phone3{
@@ -90,6 +96,35 @@ div {
 #phoneCheckResult, #emailCheckResult,
 #nnCheckResult{
 	font-size: 13px;
+}
+
+#emailInputArea input{
+	margin-top: 1.5%;
+}
+
+#emailInputArea button{
+/* 	width:130px; */
+	background-color: #B4C8BC20;
+	border: 2px solid #B4C8BC;
+	border-radius:5px;
+	color: #806c71;
+	line-height:25px;
+	font-size:min(15px,3vw);
+}
+
+#emailInputArea button:hover{
+	background-color: #B4C8BC50;	
+	cursor:pointer;
+}
+
+#emailInputArea button[disabled]{
+	background-color: white;
+	border: 2px solid #B4C8BC60;
+	color: #806c7160;
+}
+
+#emailInputArea button[disabled]:hover{
+	cursor:default;
 }
 
 #joinFormArea input[type=submit],
@@ -110,8 +145,8 @@ div {
 #frontpig{
 	position: absolute;
 	width: 150px;
-	right: 13%;
-	bottom:8%;
+	right: 15%;
+	bottom:5%;
 }
 
 .footerLink{
