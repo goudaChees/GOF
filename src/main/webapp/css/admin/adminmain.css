@@ -83,7 +83,7 @@ div {
 #memberManagement{
 	margin:0%;
 	padding:2%;
-	height:70%;
+	height:80%;
 	border: 5px solid #D8E2DC;
 	border-radius: 15px;
 	background-color:white;
@@ -98,6 +98,53 @@ div {
 	height:100%;
 	overflow-y:auto;
 }
+
+#memberManagement .col-6{
+
+	font-size:min(15px,3.5vw);
+}
+
+#memberManagement #searchBar {
+	text-align:right;
+}
+
+#memberManagement #searchBar select{
+	width:80px;
+	background-color: white;	
+	display:inline;
+	border: 2px solid #B4C8BC;
+	color: #806c71;
+	line-height:15px;
+	font-size:min(15px,3vw);
+}
+
+#memberManagement #searchBar select:hover{
+	background-color: #B4C8BC30;	
+}
+
+#memberManagement #searchBar input[type=text]{
+	width:35%;
+	border: 2px solid #516D5C;
+	border-radius: 5px;
+	line-height:25px;
+	font-size:min(15px,3vw);
+}
+
+#memberManagement #searchBar input[type=submit]{
+	color: #516D5C;
+	font-size:min(15px,3vw);
+	background-color: transparent;	
+	border: 2px solid #B4C8BC;
+	border-radius: 5px;
+	width:60px;
+	line-height:25px;
+}
+
+#memberManagement #searchBar input[type=submit]:hover{
+	background-color: #B4C8BC30;
+	
+}
+
 
 #memberManagement .row{
 	border-bottom:1px solid #D8E2DC;
@@ -117,7 +164,7 @@ div {
 #memberlistHeader{
 	font-weight:bolder;
 	color:#516D5C;
-	font-size:25px;
+	font-size:20px;
 }
 
 #memberManagement a{
@@ -152,6 +199,6 @@ div {
 }
 
 #memberlistHeader{
-	font-size:min(20px,5vw);
+	font-size:min(20px,4vw);
 }
 
