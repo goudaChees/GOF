@@ -111,7 +111,7 @@
 									<li class="nav-item"><a class="nav-link" data-toggle="tab"
 										href="#csmail">1:1 문의하기</a></li>
 									<li class="nav-item"><a class="nav-link" data-toggle="tab"
-										href="#cscontact">찾아 오시는 길</a></li>
+										href="#cscontact">찾아오시는 길</a></li>
 								</ul>
 							</div>
 						</div>
