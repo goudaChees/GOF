@@ -263,34 +263,43 @@
 											<div class="col-12"><b>오시는 길</b></div>
 											<div class="col-12"><br></div>
 										</div>
-										<div class="row w-100 m-0">
-											<div class="col-12">주소 : 서울특별시 중구 남대문로 120 대일빌딩 2F, 3F</div>
-										</div>
-										<div class="row w-100 m-0">
-											<div class="col-12"><b>버스</b> - 우리은행 종로지점 정류장 </div>
-											<div class="col-12"><b>지선</b> 163 / 172 / 201
-												/ 262 / 401 / 406 / 701 / 704 / N15 / N62</div>
-											<div class="col-12">
-												<b>마을</b> 7017 / 7021 / 7022 
+										<div class="csmapArea">
+											<div class="row w-100 m-0">
+												<div class="col-12"><h5><b>주소 : 서울특별시 중구 남대문로 120 대일빌딩 2F, 3F</b></h5></div>
+												<div class="col-12"><br></div>
 											</div>
-											<div class="col-12">
-												<b>간선</b> 8110
+											<div class="row w-100 m-0">
+												<div class="col-12"><h6><b>버스</b></h6></div>
+												<div class="col-12"></div>
+												<div class="col-12"> <b>우리은행 종로지점 정류장</b> </div>
+												<div class="col-12"><b>지선</b> 163 / 172 / 201
+													/ 262 / 401 / 406 / 701 / 704 / N15 / N62</div>
+												<div class="col-12">
+													<b>마을</b> 7017 / 7021 / 7022 
+												</div>
+												<div class="col-12">
+													<b>간선</b> 8110
+												</div>
+											</div>
+											<div class="row w-100 m-0">
+												<div class="col-12"><br></div>
+											</div>
+											<div class="row w-100 m-0">
+												<div class="col-12"><h6><b>지하철</b></h6></div>
+												<div class="col-12"></div>
+												<div class="col-12"> 2호선 을지로입구역 3번출구 100M </div>
+												<div class="col-12"> 1호선
+													종각역 4번, 5번 출구 200M </div>
 											</div>
 										</div>
-										<div class="row w-100 m-0">
-											<div class="col-12"></div>
-										</div>
-										<div class="row w-100 m-0">
-											<div class="col-12"><b>지하철</b> </div>
-											<div class="col-12"> 2호선 을지로입구역 3번출구 100M / 1호선
-												종각역 4번, 5번 출구 200M</div>
-										</div>
-										<div class="row w-100 m-0">
-											<div class="col-12">
-												<div id="map" style="width:500px;height:400px;"></div>
+										<div class="csmapArea2">
+											<div class="row w-100 m-0">
+												<div class="col-12">
+													<div id="map" style="width:500px;height:400px;"></div>
+												</div>
 											</div>
-										</div>
 										<!--  지도 api 마감 -->
+										</div>
 									</div>
 								</div>
 							</div>
