@@ -105,10 +105,10 @@
 								<ul class="nav nav-tabs">
 									<li class="nav-item"><a class="nav-link"
 										href="/csmain.cscenter">자주 묻는 질문</a></li>
-									<li class="nav-item"><a class="nav-link active" data-toggle="tab"
-										href="#csmail">1:1 문의하기</a></li>
 									<li class="nav-item"><a class="nav-link" 
-										href="/csmap.cscenter">찾아 오시는 길</a></li>
+										href="/csemail.cscenter">1:1 문의하기</a></li>
+									<li class="nav-item"><a class="nav-link active" data-toggle="tab"
+										href="#csmap">찾아 오시는 길</a></li>
 								</ul>
 							</div>
 						</div>
@@ -116,44 +116,42 @@
 							<div class="col-12">
 								<!-- 				탭1 자주묻는질문 -->
 								<div class="tab-content">
-									<!-- 						탭2 1:1메일문의		 -->
-									<div class="tab-pane fade show active" id="csmail">
-										<form action="/sendmail.cscenter" method="post">
-											<div class="row w-100 m-0">
-												<div class="col-12">사이트 관련 문의사항을 보내주세요.</div>
+<!-- 								탭2 1:1 메일문의 -->
+									<div class="tab-pane fade"></div>
+									<div class="tab-pane fade"></div>
+									<!-- 						탭3 오시는길		 -->
+									<div class="tab-pane fade show active" id="csmap">
+										<div class="row w-100 m-0">
+											<div class="col-12"><b>오시는 길</b></div>
+											<div class="col-12"><br></div>
+										</div>
+										<div class="row w-100 m-0">
+											<div class="col-12">주소 : 서울특별시 중구 남대문로 120 대일빌딩 2F, 3F</div>
+										</div>
+										<div class="row w-100 m-0">
+											<div class="col-12"><b>버스</b> - 우리은행 종로지점 정류장 </div>
+											<div class="col-12"><b>지선</b> 163 / 172 / 201
+												/ 262 / 401 / 406 / 701 / 704 / N15 / N62</div>
+											<div class="col-12">
+												<b>마을</b> 7017 / 7021 / 7022 
 											</div>
-											<div class="row w-100 m-0" id="emailBox">
-												<div class="col-2">제목</div>
-												<div class="col-10">
-													<input type=text name="emailTitle" id="emailTitleBox"
-														placeholder="제목을 작성해 주세요">
-												</div>
-												<div class="col-2">내용</div>
-												<div class="col-10">
-													<textarea name="emailContents" id="emailContentsBox"
-														placeholder="내용을 작성해 주세요"></textarea>
-												</div>
-											
-											<c:choose>
-												<c:when test="${loginID == null}">
-													<div class="row w-100 m-0">
-														<div class="col-2">메일 주소</div>
-														<div class="col-10">
-															<input type=text name="emailAddr" id="emailAddrBox"
-																placeholder="연락 받을 메일 주소를 작성해 주세요">
-														</div>
-													</div>
-												</c:when>
-											</c:choose>
+											<div class="col-12">
+												<b>간선</b> 8110
 											</div>
-											<div class="row w-100 m-0"><br><br></div>
-											<div class="row w-100 m-0">
-												<div class="col-12">
-													<button type=submit>Send Email</button>
-												</div>
+										</div>
+										<div class="row w-100 m-0">
+											<div class="col-12"></div>
+										</div>
+										<div class="row w-100 m-0">
+											<div class="col-12"><b>지하철</b> </div>
+											<div class="col-12"> 2호선 을지로입구역 3번출구 100M / 1호선
+												종각역 4번, 5번 출구 200M</div>
+										</div>
+										<div class="row w-100 m-0">
+											<div class="col-12">
+												<div id="map" style="width:500px;height:400px;"></div>
 											</div>
-										</form>
-										<div class="tab-content"></div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -193,6 +191,16 @@
 		</div>
 	</div>
 	<script>
+		var container = document.getElementById('map');
+		var options = { 
+			center: new kakao.maps.LatLng(37.56792863494778, 126.98304380248652), //지도의 중심좌표.
+			level: 3 
+			};
+
+		var map = new kakao.maps.Map(container, options);
+		//지도 api 스크립트
+	
+	
 		$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업
 			Swal.fire({
 			  icon: 'info',

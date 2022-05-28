@@ -227,14 +227,29 @@
 												<div class="col-2">제목</div>
 												<div class="col-10">
 													<input type=text name="emailTitle" id="emailTitleBox"
-														placeholder="Input Mail Title">
+														placeholder="제목을 작성해 주세요">
 												</div>
 												<div class="col-2">내용</div>
 												<div class="col-10">
 													<textarea name="emailContents" id="emailContentsBox"
-														placeholder="input Mail Contents"></textarea>
+														placeholder="내용을 작성해 주세요"></textarea>
 												</div>
+											
+											
+											<c:choose>
+												<c:when test="${loginID == null}">
+													<div class="row w-100 m-0">
+														<div class="col-2">메일 주소</div>
+														<div class="col-10">
+															<input type=text name="emailAddr" id="emailAddrBox"
+																placeholder="연락 받을 메일 주소를 작성해 주세요">
+														</div>
+													</div>
+												</c:when>
+											</c:choose>
+											
 											</div>
+											<div class="row w-100 m-0"><br><br></div>											
 											<div class="row w-100 m-0">
 												<div class="col-12">
 													<button type=submit>Send Email</button>
@@ -244,23 +259,34 @@
 									</div>
 									<!-- 지도 api 추가 -->
 									<div class="tab-pane fade" id="cscontact">
-										<div class=row>
-											<div class=col-12>오시는 길</div>
+										<div class="row w-100 m-0">
+											<div class="col-12"><b>오시는 길</b></div>
+											<div class="col-12"><br></div>
 										</div>
-										<div class=row>
-											<div class=col-12>주소 : 서울특별시 중구 남대문로 120 대일빌딩 2F, 3F</div>
+										<div class="row w-100 m-0">
+											<div class="col-12">주소 : 서울특별시 중구 남대문로 120 대일빌딩 2F, 3F</div>
 										</div>
-										<div class=row>
-											<div class=col-12>버스 : 우리은행 종로지점 정류장 지선 163 / 172 / 201
-												/ 262 / 401 / 406 / 701 / 704 / N15 / N62 마을 7017 / 7021 /
-												7022 간선 8110</div>
+										<div class="row w-100 m-0">
+											<div class="col-12"><b>버스</b> - 우리은행 종로지점 정류장 </div>
+											<div class="col-12"><b>지선</b> 163 / 172 / 201
+												/ 262 / 401 / 406 / 701 / 704 / N15 / N62</div>
+											<div class="col-12">
+												<b>마을</b> 7017 / 7021 / 7022 
+											</div>
+											<div class="col-12">
+												<b>간선</b> 8110
+											</div>
 										</div>
-										<div class=row>
-											<div class=col-12>지하철 : 지하철 2호선 을지로입구역 3번출구 100M / 1호선
+										<div class="row w-100 m-0">
+											<div class="col-12"></div>
+										</div>
+										<div class="row w-100 m-0">
+											<div class="col-12"><b>지하철</b> </div>
+											<div class="col-12"> 2호선 을지로입구역 3번출구 100M / 1호선
 												종각역 4번, 5번 출구 200M</div>
 										</div>
-										<div class=row>
-											<div class=col-12>
+										<div class="row w-100 m-0">
+											<div class="col-12">
 												<div id="map" style="width:500px;height:400px;"></div>
 											</div>
 										</div>

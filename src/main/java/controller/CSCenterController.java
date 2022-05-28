@@ -31,17 +31,27 @@ public class CSCenterController extends HttpServlet {
 				String emailTitle = request.getParameter("emailTitle");
 				String emailContents = request.getParameter("emailContents");
 				
+				String useremail = "";
+				
 				HttpSession session = request.getSession();
-				String id = (String)session.getAttribute("loginID");
-				
-				String useremail = mdao.searchEmail(id);
-				
-				
-				System.out.println(emailTitle +"   "+emailContents);
-				
-				SendMail sm = new SendMail(id, useremail, emailTitle, emailContents);
-				
-				response.sendRedirect("/csmain.cscenter");
+				if ((String)session.getAttribute("loginID") == null) {
+					useremail = request.getParameter("emailAddr");
+					SendMail sm = new SendMail(useremail, emailTitle, emailContents);
+					
+					response.sendRedirect("/csmain.cscenter");
+					
+				}else {
+					String id = (String)session.getAttribute("loginID");
+					useremail = mdao.searchEmail(id);
+					SendMail sm = new SendMail(id, useremail, emailTitle, emailContents);
+					
+					response.sendRedirect("/csmain.cscenter");
+				}			
+
+			}else if (uri.equals("/csmap.cscenter")) {
+				response.sendRedirect("/cscenter/csmap.jsp");
+			}else if (uri.equals("/csemail.cscenter")) {
+				response.sendRedirect("/cscenter/csemail.jsp");
 			}
 			
 			
