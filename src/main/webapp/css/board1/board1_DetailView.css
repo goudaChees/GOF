@@ -6,24 +6,6 @@
 	cursor:pointer;
 }
 
-* {
-	box-sizing: border-box;
-	color: #806c71;
-}
-
-*:focus {
-    box-shadow: none !important;
-}
-
-input[type=text]:focus{
-	outline:2px solid #F4ACB7;
-}
-
-
-div {
-	text-align: center;
-}
-
 .container{
 	max-width: 100%; 
 	padding: 0; 

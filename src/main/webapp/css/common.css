@@ -17,11 +17,13 @@
 
 * {
 	box-sizing: border-box;
+	color: #806c71;
 	font-family: 'nanumR';
 }
 
 *:focus{
 	outline:none;
+	box-shadow: none !important;
 }
 
 div {
