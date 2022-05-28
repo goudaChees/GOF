@@ -114,7 +114,25 @@ public class AdminController extends HttpServlet {
 					request.getRequestDispatcher("/admin/adminBoard2List.jsp").forward(request, response);
 				}	
 				
-			}else if (uri.equals("/searchbrd.admin")) {
+			}else if (uri.equals("/searchMember.admin")) {
+				int cpage = 1;
+				if (request.getParameter("cpage") != null) {
+					cpage =  Integer.parseInt(request.getParameter("cpage"));
+				}
+				
+				int searchCategory = Integer.parseInt(request.getParameter("searchCategory"));
+				String toSearch = request.getParameter("toSearch");
+				
+				List<MemberDTO> listSearch = adao.selectByMemberSearchPage(searchCategory, toSearch, cpage);
+				
+				String searchPageNavi = adao.getSearchPageNavi(cpage, searchCategory, toSearch);
+				
+				request.setAttribute("list", listSearch);
+				request.setAttribute("pageNavi", searchPageNavi);
+				request.getRequestDispatcher("/admin/adminmain.jsp?cpage=1").forward(request, response);
+				
+				
+			}else  if (uri.equals("/searchbrd.admin")) {
 				int board = 1;
 				if (request.getParameter("board") != null ) {
 					board = Integer.parseInt(request.getParameter("board"));

@@ -231,6 +231,149 @@ private static AdminDAO instance = null;
 		}
 	}
 	
+	//검색 멤버 총 숫자
+	private int getSearchMemberTotalCount(int searchCategory, String toSearch) throws Exception {
+		
+		String sql = "";
+		int result = 0;
+		
+		if (searchCategory == 1) {
+			sql = "select count(*) from member where id like ?";
+		}else if (searchCategory == 2) {
+			sql = "select count(*) from member where name like ?";
+		}else if (searchCategory == 3) {
+			sql = "select count(*) from member where nickname like ?";
+		}
+		
+		try (
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, "%"+toSearch+"%");
+			try (
+					ResultSet rs = pstat.executeQuery();
+					){
+				rs.next();
+				result = rs.getInt(1);
+			}
+			
+		}
+		return result;
+	}
+	
+	//검색 멤버 페이지네이션
+	
+	public String getSearchPageNavi (int currentPage, int searchCategory, String toSearch) throws Exception {
+		int recordTotalCount = this.getSearchMemberTotalCount(searchCategory, toSearch); 
+		
+		int recordCountPerPage = 10; // 한 페이지에 몇명의 회원
+		
+		int naviCountPerPage = 10; // 한 페이지에 몇개의 네비를 보여줄 것인지
+		int pageTotalCount = 0; // 총 몇개의 페이지가 필요한가?
+		
+		if(recordTotalCount % recordCountPerPage > 0) {
+			pageTotalCount = recordTotalCount / recordCountPerPage +1;
+		}else {
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+
+		if(currentPage < 1) {
+			currentPage= 1;
+		}else if(currentPage > pageTotalCount) {
+			currentPage = pageTotalCount;
+		}
+		
+		int startNavi = (currentPage-1) / naviCountPerPage * naviCountPerPage + 1;
+		int endNavi = startNavi + naviCountPerPage - 1;
+		
+		if (endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+		
+		boolean needNext = true;
+		boolean needPrev = true;
+		
+		if (startNavi == 1) {
+			needPrev = false;
+		}
+		
+		if (endNavi == pageTotalCount) {
+			needNext = false;
+		}
+		
+		StringBuilder sb = new StringBuilder();
+
+		
+		if (needPrev) {
+			sb.append("<a href='adminmain.admin?cpage="+(startNavi-1)+"'>< </a>");
+		}
+		
+		for (int i = startNavi ; i <= endNavi; i++) {
+			if (currentPage == i) {
+
+				sb.append("<a href=\'adminmain.admin?cpage="+i+"\'>[" + i + "] </a>");
+			}else {
+
+				sb.append("<a href=\'adminmain.admin?cpage="+i+"\'>"+ i +" </a>");
+			}
+		}
+		if (needNext) {
+
+			sb.append("<a href='adminmain.admin?cpage="+(endNavi+1)+"'>> </a>");
+		}
+		
+		return sb.toString();
+		
+	}
+
+	// 멤버 검색 페이지 
+	
+	public List<MemberDTO> selectByMemberSearchPage(int searchCategory, String toSearch, int cpage) throws Exception {
+		
+		int startPage = cpage * 10 - 9;
+		int endPage = cpage * 10;
+		String sql = "";
+		
+		if (searchCategory == 1) {
+			sql = "select * from (select row_number() over(order by seq ) line, member.* from member where id like ?) where line between ? and ?";
+		}else if (searchCategory == 2) {
+			sql = "select * from (select row_number() over(order by seq ) line, member.* from member where name like ?) where line between ? and ?";
+		}else if (searchCategory == 3) {
+			sql = "select * from (select row_number() over(order by seq ) line, member.* from member where nickname like ?) where line between ? and ?";
+		}
+		
+		try (
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, "%"+toSearch+"%");
+			pstat.setInt(2, startPage);
+			pstat.setInt(3, endPage);
+			try (
+					ResultSet rs = pstat.executeQuery();
+					){
+				List<MemberDTO> list = new ArrayList<>();
+				while(rs.next()) {
+					MemberDTO mdto = new MemberDTO();
+					mdto.setId(rs.getString("id"));
+					mdto.setSeq(rs.getInt("seq"));
+					mdto.setPassword(rs.getString("password"));
+					mdto.setName(rs.getString("name"));
+					mdto.setPhone(rs.getString("phone"));
+					mdto.setEmail(rs.getString("email"));
+					mdto.setNickname(rs.getString("nickname"));
+					mdto.setJoindate(rs.getDate("joindate"));
+					list.add(mdto);
+				}
+				return list;
+			}
+		}
+		 
+	}
+	
+	
+	
+	
 	// 보드 2 리스트
 	public List<Board2DTO> selectBoard2Page (int cpage) throws Exception{
 		
@@ -561,8 +704,7 @@ private static AdminDAO instance = null;
 					result = rs.getInt(1);
 				}
 			}
-			
-			
+
 		}
 		return result;
 	}

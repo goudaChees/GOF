@@ -87,11 +87,11 @@
 							<div class="col-12">
 								<div class="row w-100 m-0">
 									<div class="col-12">
-										<input type="text" name="title" placeholder="${dto.title}">
+										<input type="text" name="title" placeholder="${dto.title}" maxlength="100">
 									</div>
 									
 									<div class="col-12" id="note_content">
-										<textarea id="summernote" name="contents" style="resize: none">${dto.contents}</textarea>
+										<textarea id="summernote" name="contents" style="resize: none" maxlength="1300">${dto.contents}</textarea>
 									</div>
 								
 								</div>
