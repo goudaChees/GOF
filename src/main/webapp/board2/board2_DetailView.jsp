@@ -407,11 +407,7 @@
 	        let dateObj = new Date(time);
 	        dateObj.setMinutes(dateObj.getMinutes() +30);
 			countDownTimer("limit", dateObj);
-	
-			
-		
-			
-	
+
 	</script>
 </body>
 </html>
