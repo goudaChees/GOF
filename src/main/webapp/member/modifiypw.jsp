@@ -36,6 +36,10 @@ input[type=button] {
 input:focus {
 	outline:none;
 }
+
+input[type=button]:disabled{
+	background-color: #C7B7BB;
+}
 </style>
 </head>
 
@@ -56,7 +60,13 @@ input:focus {
 	<input type="button" value="그만두기" onclick="window.close()">
 
 	<script>
+	
 	$("#modify").on("click", function() {
+		if($("#nowpw").val()==""){
+			alert("현재비밀번호가 입력되지 않았습니다.");
+			return false;
+		}
+		
 		$.ajax({
 			type:"POST",
 			url: "/pwCheck.member",
@@ -89,15 +99,31 @@ input:focus {
 
 	$("#newpw").on("keyup", function() {
 		let newpw = $("#newpw").val();
+		
+		if(newpw == ""){
+			$("#pw1").css("color", "red");
+			$("#pw1").text("비밀번호는 필수 입력 정보입니다.");
+			$("#pw2").css("color", "red");
+			$("#pw2").text("");
+			$("#newpw").css("border", "1px solid red");
+			$("#newrepw").css("border", "1px solid red");
+			isPwOk = false;
+			isPw2Ok = false;
+			$("#modify").attr("disabled","true");
+			return false;
+		}
+		
 		let pwRegex = /^[a-zA-Z0-9]{8,12}$/gm;
 		let pwResult = pwRegex.test(newpw);
 		
 		if(!pwResult){
 			$("#pw1").text(
 			"영문 소문자, 대문자, 숫자를 사용하여 8~12자로 작성");
+			$("#pw1").css("color", "red");
+			$("#pw2").text("");
+			$("#pw2").css("color", "red");
 			$("#newpw").css("border", "1px solid red");
 			$("#newrepw").css("border", "1px solid red");
-			$("#pw1").css("color", "red");
 			isPwOk = false;
 			isPw2Ok = false;
 			$("#modify").attr("disabled","true");
@@ -105,9 +131,9 @@ input:focus {
 		} else {
 			$("#pw1").text("");
 			$("#newpw").css("border", "1px solid blue");
-			let check = $("#newrepw").val();
 			isPwOk = true;				
 			
+			let check = $("#newrepw").val();
 			if (check == newpw) {
 				$("#newrepw").css("border", "1px solid blue");
 				$("#pw2").css("color", "blue");
@@ -127,9 +153,9 @@ input:focus {
 				$("#modify").attr("disabled","true");
 				return false;
 			}
-			}
+		}
 	
-		})
+	})
 		
 		
 		$("#newrepw").on("keyup",function() { // 비번2 일치 검증
@@ -165,6 +191,7 @@ input:focus {
 							}
 
 					})
+	
 	
 </script>
 </body>
