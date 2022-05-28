@@ -50,10 +50,9 @@
 									<c:when test="${loginID =='admin'}">
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd1?cpage=1"
-											style="color: #664E55">지출의 참견</a></li>
+											style="color: #664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd2" style="color: #664E55">선택의
-												참견</a></li>
+											aria-current="page" href="/list.brd2" style="color: #664E55">최저가 경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/csmain.cscenter"
 											style="color: #664E55">고객센터</a></li>
@@ -67,10 +66,9 @@
 									<c:when test="${loginID !=null}">
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd1?cpage=1"
-											style="color: #664E55">지출의 참견</a></li>
+											style="color: #664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd2" style="color: #664E55">선택의
-												참견</a></li>
+											aria-current="page" href="/list.brd2" style="color: #664E55">최저가 경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/csmain.cscenter"
 											style="color: #664E55">고객센터</a></li>
@@ -83,11 +81,9 @@
 									</c:when>
 									<c:otherwise>
 										<li class="nav-item nonMember"><a class="nav-link active"
-											aria-current="page" href="#" style="color: #664E55">지출의
-												참견</a></li>
+											aria-current="page" href="#" style="color: #664E55">살까말까</a></li>
 										<li class="nav-item nonMember"><a class="nav-link active"
-											aria-current="page" href="#" style="color: #664E55">선택의
-												참견</a></li>
+											aria-current="page" href="#" style="color: #664E55">최저가 경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="#" style="color: #664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
@@ -323,7 +319,7 @@
 		})
 	})
 	
-	$(".bi-box-arrow-right").on("click",function(){
+		$(".bi-box-arrow-right").on("click",function(){
 			  if (!Kakao.Auth.getAccessToken()) {
 			  Swal.fire({
 				  text: '로그아웃 하시겠습니까?',

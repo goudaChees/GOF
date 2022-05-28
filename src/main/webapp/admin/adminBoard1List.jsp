@@ -109,7 +109,7 @@
 										<form action="/searchbrd.admin?board=1&page=1">
 											<select class="form-select" aria-label="Default select example"
 												name="searchCategory">
-												<option value="0">선택</option>
+												
 												<option value="1">작성자</option>
 												<option value="2">제목</option>
 												<option value="3">물건명</option>

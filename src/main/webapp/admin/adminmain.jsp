@@ -105,6 +105,26 @@
 									<div class="col-12"></div>
 								</div>
 
+								<div class="row w-100 m-0">
+									<div class="col-12 p-0" id="searchBar">								
+										<form action="/searchMember.admin">
+											<select class="form-select" aria-label="Default select example"
+												name="searchCategory">
+												
+												<option value="1">ID</option>
+												<option value="2">이름</option>
+												<option value="3">닉네임</option>
+											</select>
+											<input type="text" placeholder="검색하실 내용을 입력하세요"
+												name="toSearch"> 
+											<input type="submit" value="검색">
+										</form>
+										<div class="row w-100 m-0">
+										</div>
+									</div>
+								</div>
+
+
 								<div class="row w-100 m-0" id="memberHeader">
 									<div class="d-none d-lg-block col-1">No.</div>
 									<div class="d-none d-lg-block col-lg-3">ID</div>
