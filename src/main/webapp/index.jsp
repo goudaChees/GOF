@@ -161,7 +161,6 @@
 			  text: '로그인 후 사용 가능합니다.'
 			})
     	})
-
     	$("#login").on("click",function(){ // 일반회원 로그인시
     		$.ajax({
     			url:"/login.member",
@@ -191,7 +190,6 @@
 	    function saveToDos(token) { 
     		typeof(Storage) !== 'undefined' && sessionStorage.setItem('AccessKEY', JSON.stringify(token)); 
 		};
-
 	    $("#kakao-login-btn").on("click", function(){
 	    //1. 로그인 시도
 	    Kakao.Auth.login({
