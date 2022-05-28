@@ -427,6 +427,22 @@ private static MemberDAO instance = null;
 				}
 			}
 		}
+		
+		public String howJoin(String name, String email) throws Exception{
+			String sql = "Select * from member where name=? and email=?";
+			try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+					pstat.setString(1, name);
+					pstat.setString(2, email);
+					try(ResultSet rs = pstat.executeQuery()){
+						if (rs.next()) {
+							return rs.getString("jointype");
+						} 
+						return null;	
+					}
+				}
+		}
+		
 		public boolean isidok(String id) throws Exception{
 			String sql = "Select * from member where id=?";
 			try(Connection con = this.getConnection();

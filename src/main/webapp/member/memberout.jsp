@@ -7,11 +7,35 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
-      body{
-        width: 500px;
-        height: 300px;
-        text-align: center;
-      }
+body {
+	width: 500px;
+	height: 350px;
+	text-align: center;
+	margin-top: 30px;
+	background-color: #FFF4EF;
+}
+input {
+	border: 2px solid #9D8189;
+	border-radius: 15px;
+	width: 250px;
+	text-align: center;
+	margin-bottom: 5px;
+	height: 20px;
+}
+
+input[type=button], input[type=submit] {
+	border: 2px solid #9D8189;
+	border-radius: 15px;
+	color: white;
+	background-color: #9D8189;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	height: 30px;
+}
+
+input:focus {
+	outline:none;
+}
 </style>
 </head>
 

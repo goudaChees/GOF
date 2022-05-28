@@ -181,7 +181,7 @@
 		"click",
 		function() {
 			window.open("/member/modifiypw.jsp", "",
-					"top=100,left=200,width=550,height=450");
+					"top=100,left=200,width=550,height=500");
 			//location.href="/member/memberout.jsp";
 		})
 
@@ -191,7 +191,7 @@
 			function() {
 				if(sessionStorage.getItem('AccessKEY') == null) {
 					window.open("/member/memberout.jsp", "",
-					"top=100,left=200,width=550,height=350");
+					"top=100,left=200,width=550,height=450");
 		    	} else {
 		    		let result = confirm("정말로 탈퇴하시겠습니까?");
 		    		if(result){
