@@ -130,8 +130,8 @@
 
 												<div class="col-12 parentLink" style="text-align:center;">
 													<div>
-														<c:if test="${i.choice == Y}">[채택된 댓글]]</c:if>
-														<c:if test="${!(i.choice == Y)}">[일반 댓글]</c:if>
+														<c:if test="${i.choice eq 'Y'.charAt(0)}"><b>[채택된 댓글]</b></c:if>
+														<c:if test="${i.choice eq 'N'.charAt(0)}"><b>[일반 댓글]</b></c:if>
 														본문 보러가기
 													</div>
 												</div>

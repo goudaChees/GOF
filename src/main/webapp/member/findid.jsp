@@ -38,10 +38,20 @@ input:focus {
 	outline:none;
 }
 
+a{
+	text-decoration: none;
+	color:#9D8189;
+}
+a:hover{
+	font-weight: bold;
+	color:#9D8189;
+}
+
 </style>
 </head>
 <body>
 	<h5>아이디 찾기</h5>
+	<p><a href="https://accounts.kakao.com/weblogin/find_account_guide?continue=http://www.kakao.com/main#pageFindAccountSelect">카카오 간편 로그인 회원은 여기를 클릭해주세요</a></p>
 	이름 : <input type="text" id="name" placeholder="이름을 적어주세요"><br>
 	이메일 : <input type="text" id="email" placeholder="가입하신 이메일을 적어주세요"><br>
 	<button type="button" id="btn">아이디 찾기</button><br>
