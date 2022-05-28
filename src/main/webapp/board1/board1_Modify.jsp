@@ -76,11 +76,7 @@
 									<div id="img_Box" class="thumbnail">
 										<c:choose>
 											<c:when test="${dto.fileName==null }">
-<<<<<<< HEAD
 												<img src="/img/pig2.png"  id="i${dto.seq}">
-=======
-												<img src="/img/pig2.png" id="i${dto.seq}">
->>>>>>> 625fc181f349d96bbae0ca449bf47bbf5fd1422b
 											</c:when>
 											<c:otherwise>
 												<img src="files/${dto.fileName }"  id="i${dto.seq}">
