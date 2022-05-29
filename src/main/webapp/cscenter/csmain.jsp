@@ -110,7 +110,7 @@
 										data-toggle="tab" href="#csmain">자주 묻는 질문</a></li>
 									<li class="nav-item"><a class="nav-link" data-toggle="tab"
 										href="#csmail">1:1 문의하기</a></li>
-									<li class="nav-item"><a class="nav-link" data-toggle="tab"
+									<li class="nav-item" id="mapck"><a class="nav-link" data-toggle="tab"
 										href="#cscontact">찾아 오시는 길</a></li>
 								</ul>
 							</div>
@@ -349,12 +349,32 @@
 		</div>
 	</div>
 	<script>
+	setTimeout(function(){ map.relayout(); }, 1500);
+		function relayout() {    
+		    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+		    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
+		    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+		    map.relayout();
+		}
 	var container = document.getElementById('map');
 	var options = { 
 		center: new kakao.maps.LatLng(37.56792863494778, 126.98304380248652), //지도의 중심좌표.
 		level: 3 
 		};
-
+	var map = new kakao.maps.Map(container, options);
+	//지도 api 스크립트
+	function resizeMap() {
+		 var mapContainer = document.getElementById('map');
+	mapContainer.style.width = '650px';
+	mapContainer.style.height = '650px'; 
+	}
+	function relayout() {    
+	    
+	    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+	    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
+	    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+	    map.relayout();
+	}
 	var map = new kakao.maps.Map(container, options);
 	//지도 api 스크립트
 		$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업		

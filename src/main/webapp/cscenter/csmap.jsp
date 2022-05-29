@@ -155,8 +155,8 @@
 										</div>
 										<div class="csmapArea2">
 											<div class="row w-100 m-0">
-												<div class="col-12" style="width:500px;height:400px;">
-													<div id="map" style="width:100%;heigth:100%"></div>
+												<div class="col-12">
+													<div id="map" style="width:500px;height:400px;"></div>
 												</div>
 											</div>
 										</div>
@@ -199,6 +199,7 @@
 		</div>
 	</div>
 	<script>
+	setTimeout(function(){ map.relayout(); }, 1500);
 		var container = document.getElementById('map');
 		var options = { 
 			//center: new kakao.maps.LatLng(37.56792863494778, 126.98304380248652), //지도의 중심좌표.
