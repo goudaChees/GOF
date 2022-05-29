@@ -66,8 +66,7 @@ a:hover{
 				alert("이메일을 적어주세요")
 				return
 			}
-			$("#id").css("display","inline");
-			$("#findid").css("display","inline");
+			
 			$.ajax({
 				url:"/findid.member",
 				dataType:"json",
@@ -78,6 +77,8 @@ a:hover{
 				if(resp==''){
 					alert("올바르지 않거나 가입되어있지 않은 회원입니다.");
 				}else{
+					$("#id").css("display","inline");
+					$("#findid").css("display","inline");
 					$("#id").val(resp);	
 				}
 			})
