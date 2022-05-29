@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Board2 Write page</title>
+<title>최저가경매 - 글쓰기</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -17,20 +17,21 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/css/board2/board2_Write.css">
+<link rel="stylesheet" href="/css/common.css">
+
 </head>
 <body>
 <c:if test="${seq==null}"><form action="write2.brd2" method="post"></c:if>
 <c:if test="${seq!=null}"><form action="modi2.brd2" method="post"></c:if>
-	<div id="container">
-		<div class="row">
-			<div class="row w-100 m-0" >
-			<div class="col-12 p-0" >
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<div id="container w-100">
+		<div class="row w-100 m-0" id="header">
+			<div class="col-12 p-0">
+				<nav class="navbar navbar-expand-md navbar-light bg-light">
 					<div class="container-fluid">
-						<a class="navbar-brand" href="/index.jsp" style="color: #664E55">앞날의
-							지침</a>
+						<a class="navbar-brand" href="/index.jsp" style="color:#664E55"><img src="/img/logo.png" id="logo"></a>
 						<button class="navbar-toggler" type="button"
 							data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 							aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -40,31 +41,31 @@
 						<div class="collapse navbar-collapse justify-content-end"
 							id="navbarNavDropdown">
 							<ul class="navbar-nav">
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/list.brd1?cpage=1"
-									style="color: #664E55">살까말까</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/list.brd2" style="color: #664E55">최저가 경매</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="csmain.cscenter"
-									style="color: #664E55">고객센터</a></li>
-
 								<c:choose>
 									<c:when test="${loginID =='admin'}">
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="#" style="color: #664E55">관리자페이지</a></li>
+											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="logout.member"><i
-												class="bi bi-box-arrow-right"></i></a></li>
+											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/adminmain.admin" style="color:#664E55">관리자페이지</a></li>
+										<li class="nav-item"><a class="nav-link active"
+										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
 									</c:when>
-									<c:when test="${loginID !=null}">
+									<c:otherwise>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="mypage.member"
-											style="color: #664E55">마이페이지</a></li>
+											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="logout.member"><i
-												class="bi bi-box-arrow-right"></i></a></li>
-									</c:when>
+											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+										<li class="nav-item"><a class="nav-link active" 
+											aria-current="page" href="/mypage.member" style="color:#664E55">마이페이지</a></li>
+										<li class="nav-item"><a class="nav-link active"
+										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
+									</c:otherwise>
 								</c:choose>
 							</ul>
 						</div>
@@ -168,6 +169,46 @@
 		$("#back").on("click", function(){
 			location.href="/list.brd2";
 		})
+		
+		
+	//로그아웃 관련 공통기능
+
+      	// SDK를 초기화. 사용할 앱의 JavaScript 키
+      	Kakao.init('b956cab5ef7dbe5bc1f861614a4b2061');
+	    //console.log(Kakao.isInitialized());
+	    
+	    //item을 localStorage에 저장하는 메소드
+	    function saveToDos(token) { 
+    		typeof(Storage) !== 'undefined' && sessionStorage.setItem('AccessKEY', JSON.stringify(token)); 
+		};
+
+
+		  $(".bi-box-arrow-right").on("click",function(){
+			  if (!Kakao.Auth.getAccessToken()) {
+			  Swal.fire({
+				  text: '로그아웃 하시겠습니까?',
+				  showCancelButton: true,
+				  confirmButtonText: '로그아웃',
+				  cancelButtonText: '취소',
+				}).then((result) => {
+				  if (result.isConfirmed) {				
+				    location.href="/logout.member";				  
+				  } 
+				})
+				return
+			  }
+			// -- 로그아웃 버튼 클릭시 카카오톡으로 로그인한 사용자의 토큰을 반납.
+			let result = confirm("로그아웃 하시겠습니까?");
+			if(!result){
+				return false;
+			} else {
+			  Kakao.Auth.logout(function() {
+	      			alert("로그아웃 되었습니다.");
+	      			location.href="/logout.member";
+	   		 	})
+			}
+		  })
+
 		
 	  </script>
 </body>
