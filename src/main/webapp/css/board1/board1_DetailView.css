@@ -333,21 +333,3 @@
 	background-color: #FFC4A999;
 	cursor:pointer;	
 }
-
-#footer .footerLink{
-	text-decoration: none !important;
-	color:white !important;
-}
-
-#footer .footerLink:hover{
-	cursor:pointer !important;
-	color:#FFF2CC !important;
-}
-
-#footer .footerLetter{
-	color:white !important;	
-}
-
-#footer .footerBar{
-	color:#FFF2CC !important;
-}

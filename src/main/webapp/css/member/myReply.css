@@ -145,21 +145,3 @@
 	color:#5C474D;
 	text-decoration:none;
 }
-
-.footerLink{
-	text-decoration: none !important;
-	color:white !important;
-}
-
-.footerLink:hover{
-	cursor:pointer !important;
-	color:#FFF2CC !important;
-}
-
-.footerLetter{
-	color:white !important;	
-}
-
-.footerBar{
-	color:#FFF2CC !important;
-}

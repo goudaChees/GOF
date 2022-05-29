@@ -122,21 +122,3 @@
 	background-color: #FED7DC80;
 	cursor:pointer;	
 }
-
-.footerLink{
-	text-decoration: none !important;
-	color:white !important;
-}
-
-.footerLink:hover{
-	cursor:pointer !important;
-	color:#FFF2CC !important;
-}
-
-.footerLetter{
-	color:white !important;	
-}
-
-.footerBar{
-	color:#FFF2CC !important;
-}
