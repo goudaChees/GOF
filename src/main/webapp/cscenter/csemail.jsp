@@ -79,6 +79,7 @@
 				</nav>
 			</div>
 		</div>
+		
 		<div class="row w-100 m-0" id="content">
 			<div class="d-none d-lg-block col-3"></div>
 			<div class="col-12 col-lg-6">
