@@ -16,13 +16,14 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/common.css">
 
 </head>
 <body>
 
 	<div class="container w-100">
-		<div class="row" id="header">
-			<div class="col-12">
+		<div class="row w-100 m-0" id="header">
+			<div class="col-12 p-0">
 				<nav class="navbar navbar-expand-md navbar-light bg-light">
 					<div class="container-fluid">
 						<a class="navbar-brand" href="/index.jsp" style="color:#664E55"><img src="/img/logo.png" id="logo"></a>
@@ -65,7 +66,7 @@
 											aria-current="page" href="#" style="color:#664E55">살까말까</a></li>
 										<li class="nav-item nonMember"><a class="nav-link active"
 											aria-current="page" href="#" style="color:#664E55">최저가경매</a></li>
-										<li class="nav-item nonMember"><a class="nav-link active"
+										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/joinform.member" style="color:#664E55">회원가입</a></li>
@@ -106,7 +107,7 @@
 									<img src="/img/kakao_login.png" id="kakao-login-btn"><br>
 								</div>
 								<div class="col-4"></div>
-								<div class="col-4 loginlastline"><a href="#" id="findId">아이디</a><a href="#" id="findPW">/비밀번호 찾기</a>  <a href="/joinform.member" id="joinbtn">회원가입</a></div>
+								<div class="col-4 loginlastline"><a href="#" id="findId">아이디</a> / <a href="#" id="findPW">비밀번호 찾기</a>   <a href="/joinform.member" id="joinbtn">회원가입</a></div>
 								<div class="col-4"></div>
 							</div>
 						</form>
