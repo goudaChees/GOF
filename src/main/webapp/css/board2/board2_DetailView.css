@@ -1,37 +1,15 @@
 @charset "UTF-8";
 
-* {
-	box-sizing: border-box;
-}
-
-*:focus {
-    box-shadow: none !important;
-}
-
-div {
- 	/*border: 1px solid black;*/
- 	text-align: center;
-}
-
-.container{
-	max-width: 100%; 
-	padding: 0; 
-	margin: 0; 
-	position: relative;
-	overflow-y:auto;
-}
-
 #header{
 	border-bottom: 5px solid #A2BAAC;
-	z-index:5;
 }
 
 #content{
 	margin:0;
-	padding-top: 3%;
+	padding-top: 15vh;
 	padding-bottom: 3%;
 	background-color: #D8E2DC;
-	min-height: 95vh;
+	min-height: 100vh;
 	position: relative;
 	overflow:hidden;
 	
@@ -198,24 +176,12 @@ div {
 	text-decoration:none;
 }
 
-
-
 .writingEtc{
 	margin-top: 5px;
 	text-align:left;
 	color: #9D8189;
 	font-size:min(3vw,17px);
 }
-
-
-
-#footer{
-	text-align:center;
-	background-color: #A2BAAC;
-	color:white;
-}
-
-
 
 input:focus {outline:1px solid #F4ACB7;}
 
