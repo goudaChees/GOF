@@ -48,7 +48,7 @@ input:focus {
     <br>그렇다면 비밀번호를 입력해주세요</p>
   <br><br>
 
-  <input type="text" name="pw" id="pw"><br><br>
+  <input type="password" name="pw" id="pw"><br><br>
   <input type="submit" value="탈퇴하기" id="realout">
   <input type="button" value="그만두기" onclick="window.close()">
 
