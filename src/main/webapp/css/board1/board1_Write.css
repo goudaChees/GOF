@@ -1,36 +1,14 @@
 @charset "UTF-8";
 
-
-* {
-	box-sizing: border-box;
-}
-
-*:focus {
-    box-shadow: none !important;
-}
-
-div {
-	text-align: center;
-}
-
-.container{
-	max-width: 100%; 
-	padding: 0; 
-	margin: 0; 
-	position: relative;
-	overflow-y:auto;
-}
-
 #header{
 	border-bottom: 5px solid #A2BAAC;
-	z-index:5;
 }
 
 #content{
 	margin:0;
-	padding-top: 3%;
+	padding-top: 15vh;
 	padding-bottom: 3%;
-	min-height: 95vh;
+	min-height: 100vh;
 	max-width: 100%; 
 	background-color:#D8E2DC;
 	position: relative;
@@ -204,22 +182,4 @@ textarea:focus{
 .writingBtns:hover{
 	background-color: #F193A1;
 	cursor:pointer;	
-}
-
-.footerLink{
-	text-decoration: none !important;
-	color:white !important;
-}
-
-.footerLink:hover{
-	cursor:pointer !important;
-	color:#FFF2CC !important;
-}
-
-.footerLetter{
-	color:white !important;	
-}
-
-.footerBar{
-	color:#FFF2CC !important;
 }

@@ -10,8 +10,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/css/member/joinform.css">
+<link rel="stylesheet" href="/css/common.css">
 
 </head>
 <body>
@@ -20,22 +22,24 @@
 			<div class="col-12 p-0">
 				<nav class="navbar navbar-expand-md navbar-light bg-light">
 					<div class="container-fluid">
-						<a class="navbar-brand" href="/index.jsp" style="color:#664E55">앞날의 지침</a>
-						<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-							data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-							aria-expanded="false" aria-label="Toggle navigation">
+						<a class="navbar-brand" href="/index.jsp" style="color:#664E55"><img src="/img/logo.png" id="logo"></a>
+						<button class="navbar-toggler" type="button"
+							data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+							aria-controls="navbarNavDropdown" aria-expanded="false"
+							aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 						</button>
-						<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+						<div class="collapse navbar-collapse justify-content-end"
+							id="navbarNavDropdown">
 							<ul class="navbar-nav">
-								<li class="nav-item nonMember"><a class="nav-link active" aria-current="page"
-										href="#" style="color:#664E55">지출의 참견</a></li>
-								<li class="nav-item nonMember"><a class="nav-link active" aria-current="page"
-										href="#" style="color:#664E55">선택의 참견</a></li>
-								<li class="nav-item"><a class="nav-link active" aria-current="page"
-										href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
-								<li class="nav-item"><a class="nav-link active" aria-current="page"
-										href="/joinform.member" style="color:#664E55">회원가입</a></li>
+								<li class="nav-item nonMember"><a class="nav-link active"
+									aria-current="page" href="#" style="color:#664E55">살까말까</a></li>
+								<li class="nav-item nonMember"><a class="nav-link active"
+									aria-current="page" href="#" style="color:#664E55">최저가경매</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="/joinform.member" style="color:#664E55">회원가입</a></li>
 							</ul>
 						</div>
 					</div>

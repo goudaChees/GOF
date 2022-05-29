@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'nanumR';
+    src: url('/css/NanumSquareRoundR.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'nanumB';
+    src: url('/css/NanumSquareRoundB.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'nanumEB';
+    src: url('/css/NanumSquareRoundEB.ttf') format('truetype');
+}
+
+* {
+	box-sizing: border-box;
+	color: #806c71;
+	font-family: 'nanumR';
+}
+
+*:focus{
+	outline:none;
+	box-shadow: none !important;
+}
+
+div {
+	text-align: center;
+}
+
+.container{
+	max-width: 100%; 
+	padding: 0; 
+	margin: 0; 
+	position: relative;
+	overflow-y:auto;
+}
+
+#header{
+	z-index:5;
+	position:fixed;
+	top:0;
+}
+
+/* padding-top: 15vh; */
+
+#header a{
+	font-family: 'nanumB';
+}
+
+#logo{
+	height:45px;
+}
+
+.footerLink{
+	text-decoration: none !important;
+	color:white !important;
+}
+
+.footerLink:hover{
+	cursor:pointer !important;
+	color:#FFF2CC !important;
+}
+
+.footerLetter{
+	color:white !important;	
+}
+
+.footerBar{
+	color:#FFF2CC !important;
+}
