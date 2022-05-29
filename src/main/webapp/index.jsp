@@ -103,10 +103,10 @@
 					</div>
 					<div class="col-12">
 					<div class="row w-100 m-0" id="content_title">
-						<div class="col-8" align=left>
+						<div class="col-12 col-sm-8" align=left>
 							<div class="row">
 								<div class="col-12" style="text-align: left">
-									<img src="/img/logoname.png" style="width: 50%;">
+									<img src="/img/logoname.png" style="width: 250px;">
 									<h3 style="padding-left: 30px;">당신이 부자가 될 때 까지</h3>
 									<h5 style="padding-left: 30px;">
 										<img src="/img/pinkpig_front.png" style="width: 8%">
@@ -116,13 +116,13 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-4">
-							<img src="/img/flyingPig.png" id=flyingpig style="width: 50%">
+						<div class="col-sm-4">
+							<img src="/img/flyingPig.png" id=flyingpig style="width: 200px">
 						</div>
 					</div>
 					<div class="row w-100 m-0">
 						<div class="col-12" id=imgbox>
-							<div class="row" style="padding-left: 30px;">
+							<div class="row">
 								<div class="col-6 col-md-3">
 									<div id=card>
 										<img src="/img/basket.jpg" class="cardimg">
@@ -188,49 +188,33 @@
 			</c:otherwise>
 		</c:choose>
 
-		<div class="row w-100 m-0" id="footer"
-			style="background-color: #A2BAAC; font-weight: bold">
-			<div class="col-12 p-0 d-lg-none">
-				<div style="margin-left: 40px; margin-top: 20px; text-align: left">
-					<a href="/cscenter/csmain.jsp" class="footerLink"><span>자주
-							묻는 질문</span></a><span style="margin-left: 20px" class="footerBar">|</span> <a
-						href="/cscenter/csmain.jsp" class="footerLink"><span
-						style="margin-left: 20px">1 : 1 문의</span></a><span
-						style="margin-left: 20px" class="footerBar">|</span> <a
-						href="/cscenter/csmain.jsp" class="footerLink"><span
-						style="margin-left: 20px">찾아오시는 길</span></a><br>
-					<div style="margin-top: 35px; text-align: left">
-						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩
-							2층, 3층</span><br> <span class="footerLetter">대 표 전 화 : 4989
-							- 4284</span><span style="margin-left: 20px" class="footerLetter">|</span><span>E-MAIL
-							: 4989 - 4284 </span><br> <span style="color: #FFF2CC">COPYRIGHT
-							BY PHOENIX </span>
+		<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
+			<div class="col-12 d-lg-none">
+				<div style="margin-left:40px ; margin-top:20px;text-align:left">
+					<a href="/csmain.cscenter" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csemail.cscenter" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csmap.cscenter" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
+					<div style="margin-top:35px ; text-align:left">
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br>
+						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span>E-MAIL : 4989 - 4284 </span><br>
+						<span style="color:#FFF2CC">COPYRIGHT BY PHOENIX  </span>
 					</div>
 				</div>
 			</div>
-			<div class="d-none d-lg-block col-lg-9 ">
-				<div style="margin-left: 40px; margin-top: 20px; text-align: left">
-					<a href="/cscenter/csmain.jsp" class="footerLink"><span>자주
-							묻는 질문</span></a><span style="margin-left: 20px" class="footerBar">|</span> <a
-						href="/cscenter/csmain.jsp" class="footerLink"><span
-						style="margin-left: 20px">1 : 1 문의</span></a><span
-						style="margin-left: 20px" class="footerBar">|</span> <a
-						href="/cscenter/csmain.jsp" class="footerLink"><span
-						style="margin-left: 20px">찾아오시는 길</span></a><br>
-					<div
-						style="margin-top: 30px; text-align: left; margin-bottom: 15px">
-						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩
-							2층, 3층</span><br> <span class="footerLetter">대 표 전 화 : 4989
-							- 4284</span><span style="margin-left: 20px" class="footerLetter">|</span><span
-							style="margin-left: 20px" class="footerLetter">E-MAIL :
-							4989 - 4284 </span><br> <span style="color: #FFF2CC">COPYRIGHT
-							BY YUNJI AYEONG WOOHYENG JEONGYOEN HEESEUNG IN PHOENIX </span>
+			<div class="d-none d-lg-block col-lg-9">
+				<div style="margin-left:40px ; margin-top:20px;text-align:left">
+					<a href="/csmain.cscenter" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csemail.cscenter" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csmap.cscenter" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
+					<div style="margin-top:30px ; text-align:left; margin-bottom:15px">
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br>
+						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span style="margin-left:20px" class="footerLetter">E-MAIL : 4989 - 4284 </span><br>
+						<span style="color:#FFF2CC">COPYRIGHT BY YUNJI AYEONG WOOHYENG JEONGYOEN HEESEUNG IN  PHOENIX  </span>
 					</div>
 				</div>
 			</div>
-			<div class="d-none d-lg-block col-lg-3" style="text-align: right">
-				<img src="/img/footerLogo.png"
-					style="width: 70%; margin-right: 10px; margin-top: 10%">
+			<div class="d-none d-lg-block col-lg-3" style="text-align:right">
+				<img src="/img/footerLogo.png" style="width:70%;margin-right:10px;margin-top:10%">
 			</div>
 		</div>
 	</div>
