@@ -88,7 +88,7 @@
 							<div class="col-12">
 								<div class="row w-100 m-0">
 									<div class="col-12">
-										<input type="text" name="title" placeholder="${dto.title}" maxlength="100" id="title">
+										<input type="text" name="title" maxlength="100" id="title" value="${dto.title}">
 									</div>
 									
 									<div class="col-12" id="note_content">
