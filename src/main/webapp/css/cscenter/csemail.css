@@ -3,17 +3,6 @@
 #header{
 	border-bottom: 5px solid #9D8189;
 	z-index:10 !important;
-	
-}
-
-.footerLink{
-	text-decoration: none;
-	color:white;
-}
-
-.footerLink:hover{
-	cursor:pointer;
-	color:#FFF2CC;
 }
 
 #content{
