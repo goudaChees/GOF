@@ -196,14 +196,14 @@
 }
 
 #cscontact {
-	height:90%;
+	height:140%;
 	padding-top:30px;
 	background-color:#C7B7BB40;
 	border-radius:15px;
 }
 
 .csmapArea {
-	height:60%;
+	height:35%;
 	width:90%;
 	margin:auto;
 	padding-top:30px;
@@ -212,6 +212,25 @@
 	text-align :left;
 }
 
-.csmapArea2 {
+#map {
+	width:300px;
+	height:300px;
+	margin:auto;
+}
 
+#map2 {
+	width:200px;
+	height:200px;
+	margin:auto;
+	margin-top:70px;
+}
+
+.csmapArea2 {
+	height:40%;
+	width:90%;
+	margin:auto;
+	padding-top:30px;
+	background-color: white;
+	border-radius:15px;
+	text-align :left;
 }

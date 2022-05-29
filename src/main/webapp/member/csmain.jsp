@@ -286,14 +286,19 @@
 													종각역 4번, 5번 출구 200M </div>
 											</div>
 										</div>
+										
 										<div class="csmapArea2">
 											<div class="row w-100 m-0">
-												<div class="col-12">
-													<div id="map" style="width:500px;height:400px;"></div>
+												<div class="col-12 d-none d-sm-block">
+													<div id="map"></div>													
+												</div>
+												<div class="col-12 d-block d-sm-none">
+													<div id="map2"></div>
 												</div>
 											</div>
 										<!--  지도 api 마감 -->
 										</div>
+								
 									</div>
 								</div>
 							</div>
@@ -354,6 +359,20 @@
 		};
 	var map = new kakao.maps.Map(container, options);
 	//지도 api 스크립트
+	
+	setTimeout(function(){ map.relayout(); }, 1500);
+		function relayout() {    
+		    map.relayout();
+		}
+	var container = document.getElementById('map2');
+	var options = { 
+		center: new kakao.maps.LatLng(37.56792863494778, 126.98304380248652), 
+		level: 3 
+		};
+	var map = new kakao.maps.Map(container, options);
+	
+	
+	
 		$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업		
 			Swal.fire({
 		 	 icon: 'info',

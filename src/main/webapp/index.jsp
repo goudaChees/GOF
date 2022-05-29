@@ -14,8 +14,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/css/index.css">
 <link rel="stylesheet" href="/css/common.css">
 
@@ -99,10 +98,10 @@
 					</div>
 					<div class="col-12">
 					<div class="row w-100 m-0" id="content_title">
-						<div class="col-8" align=left>
+						<div class="col-12 col-sm-8" align=left>
 							<div class="row">
 								<div class="col-12" style="text-align: left">
-									<img src="/img/logoname.png" style="width: 50%;">
+									<img src="/img/logoname.png" style="width: 250px;">
 									<h3 style="padding-left: 30px;">당신이 부자가 될 때 까지</h3>
 									<h5 style="padding-left: 30px;">
 										<img src="/img/pinkpig_front.png" style="width: 8%">
@@ -112,13 +111,13 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-4">
-							<img src="/img/flyingPig.png" id=flyingpig style="width: 50%">
+						<div class="col-sm-4">
+							<img src="/img/flyingPig.png" id=flyingpig style="width: 200px">
 						</div>
 					</div>
 					<div class="row w-100 m-0">
 						<div class="col-12" id=imgbox>
-							<div class="row" style="padding-left: 30px;">
+							<div class="row">
 								<div class="col-6 col-md-3">
 									<div id=card>
 										<img src="/img/basket.jpg" class="cardimg">
@@ -184,8 +183,7 @@
 			</c:otherwise>
 		</c:choose>
 
-		<div class="row w-100 m-0" id="footer"
-			style="background-color: #A2BAAC; font-weight: bold;">
+		<div class="row w-100 m-0" id="footer" style="background-color: #A2BAAC; font-weight: bold;">
 			<div class="col-12 p-0 d-lg-none">
 				<div style="margin-left: 20px; padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
 					<a href="/csmain.cscenter" class="footerLink">
@@ -205,29 +203,20 @@
 					</div>
 				</div>
 			</div>
-			<div class="d-none d-lg-block col-lg-9 ">
-				<div style="margin-left: 40px; margin-top: 20px; text-align: left">
-					<a href="/cscenter/csmain.jsp" class="footerLink"><span>자주
-							묻는 질문</span></a><span style="margin-left: 20px" class="footerBar">|</span> <a
-						href="/cscenter/csmain.jsp" class="footerLink"><span
-						style="margin-left: 20px">1 : 1 문의</span></a><span
-						style="margin-left: 20px" class="footerBar">|</span> <a
-						href="/cscenter/csmain.jsp" class="footerLink"><span
-						style="margin-left: 20px">찾아오시는 길</span></a><br>
-					<div
-						style="margin-top: 30px; text-align: left; margin-bottom: 15px">
-						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩
-							2층, 3층</span><br> <span class="footerLetter">대 표 전 화 : 4989
-							- 4284</span><span style="margin-left: 20px" class="footerLetter">|</span><span
-							style="margin-left: 20px" class="footerLetter">E-MAIL :
-							4989 - 4284 </span><br> <span style="color: #FFF2CC">COPYRIGHT
-							BY YUNJI AYEONG WOOHYENG JEONGYOEN HEESEUNG IN PHOENIX </span>
+			<div class="d-none d-lg-block col-lg-9">
+				<div style="margin-left:40px ; margin-top:20px;text-align:left">
+					<a href="/csmain.cscenter" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csemail.cscenter" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csmap.cscenter" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
+					<div style="margin-top:30px ; text-align:left; margin-bottom:15px">
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br>
+						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span style="margin-left:20px" class="footerLetter">E-MAIL : 4989 - 4284 </span><br>
+						<span style="color:#FFF2CC">COPYRIGHT BY YUNJI AYEONG WOOHYENG JEONGYOEN HEESEUNG IN  PHOENIX  </span>
 					</div>
 				</div>
 			</div>
-			<div class="d-none d-lg-block col-lg-3" style="text-align: right">
-				<img src="/img/footerLogo.png"
-					style="width: 70%; margin-right: 10px; margin-top: 10%">
+			<div class="d-none d-lg-block col-lg-3" style="text-align:right">
+				<img src="/img/footerLogo.png" style="width:70%;margin-right:10px;margin-top:10%">
 			</div>
 		</div>
 	</div>
@@ -258,7 +247,7 @@
     				Swal.fire({
     					  icon: 'error',
     					  title: 'Oops...',
-    					  text: '입력하신 회원정보가 존재하지 않습니다.'
+    					  text: '아이디와 비밀번호가 존재하지 않습니다.'
    					})
     				$("#id").val("");
     				$("#pw").val("");
@@ -312,7 +301,6 @@
 	        }
 	      });
 	    })
-	    
 		  
 		  $(".bi-box-arrow-right").on("click",function(){
 			  if (!Kakao.Auth.getAccessToken()) {
