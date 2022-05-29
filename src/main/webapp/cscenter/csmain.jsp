@@ -85,7 +85,7 @@
 										<li class="nav-item nonMember"><a class="nav-link active"
 											aria-current="page" href="#" style="color: #664E55">최저가 경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="#" style="color: #664E55">고객센터</a></li>
+											aria-current="page" href="/csmain.cscenter" style="color: #664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/joinform.member"
 											style="color: #664E55">회원가입</a></li>
@@ -111,7 +111,7 @@
 									<li class="nav-item"><a class="nav-link" data-toggle="tab"
 										href="#csmail">1:1 문의하기</a></li>
 									<li class="nav-item"><a class="nav-link" data-toggle="tab"
-										href="#cscontact">찾아오시는 길</a></li>
+										href="#cscontact">찾아 오시는 길</a></li>
 								</ul>
 							</div>
 						</div>
@@ -157,13 +157,23 @@
 													class="accordion-collapse collapse"
 													aria-labelledby="panelsStayOpen-headingTwo">
 													<div class="accordion-body">
-														게시판 이용 방법 입니다. <br> <strong>지출의 참견 >> </strong> <br>
+														게시판 이용 방법 입니다. <br> <strong>살까? 말까? >> </strong> <br>
 														살까 말까 고민되는 물건이 있으신가요? <br> 혼자서 답이 전혀 나오지 않는다면 참견러들에게
-														물어보세요! <br> 고민하는 물건의 사진을 한장 찍어서 업로드 하면 끝! <br> <a
-															href="#">지출의 참견 바로가기</a> <br> <br> <strong>선택의
-															참견 >> </strong> <br> 지금 이 가격 맞나? 고민 되신다면!? <br> 숨은 고수들이
-														더 싼곳을 찾아주실거에요! <br> 경매를 시작하고! 낙찰까지 진행해보세요. 숨은 혜택이
-														있을지도!? <a href="#"><br>선택의 참견 바로가기</a> <br>
+														물어보세요! <br> 고민하는 물건의 사진을 한장 찍어서 업로드 하면 끝! <br> 
+														<c:choose>
+															<c:when test="${loginID !=null}">
+																<a href="/list.brd1?cpage=1">살까말까 바로가기</a> <br> <br> 
+																<strong>최저가 경매! >> </strong> <br> 더 저렴한 곳 어디 없나~?  <br> 숨은 고수들이
+																더 저렴한 곳을 찾아주실거에요! <br> 경매를 시작하고! 낙찰까지 진행해보세요. 숨은 혜택이
+																있을지도!? <a href="/list.brd2"><br>최저가 경매 바로가기</a> <br>
+															</c:when>
+															<c:when test="${loginID == null}">
+																<a class="nonMember" href="#" >살까말까 바로가기</a> <br> <br> 
+																<strong>최저가 경매! >> </strong> <br> 더 저렴한 곳 어디 없나~?  <br> 숨은 고수들이
+																더 저렴한 곳을 찾아주실거에요! <br> 경매를 시작하고! 낙찰까지 진행해보세요. 숨은 혜택이
+																있을지도!? <a class="nonMember" href="#" ><br>최저가 경매 바로가기</a> <br>
+															</c:when>
+														</c:choose>
 													</div>
 												</div>
 											</div>
@@ -347,12 +357,12 @@
 
 	var map = new kakao.maps.Map(container, options);
 	//지도 api 스크립트
-	$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업
-		Swal.fire({
-		  icon: 'info',
-		  text: '로그인 후 사용 가능합니다.'
+		$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업		
+			Swal.fire({
+		 	 icon: 'info',
+		  	text: '로그인 후 사용 가능합니다.'
+			})
 		})
-	})
 	
 		$(".bi-box-arrow-right").on("click",function(){
 			  if (!Kakao.Auth.getAccessToken()) {
