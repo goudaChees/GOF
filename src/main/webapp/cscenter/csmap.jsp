@@ -9,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>고객센터</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed298afa01dbe436406160c176a6dde2"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" >
@@ -185,7 +186,7 @@
 		</div>
 	</div>
 	<script>
-	setTimeout(function(){ map.relayout(); }, 1500);
+	setTimeout(function(){ map.relayout(); }, 2000);
 	function relayout() {    
 	    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
 	    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
