@@ -81,7 +81,7 @@
 								</div>
 								<div class="row w-100 m-0">
 									<div class="col-12 p-0">								
-										<form action="/searchbrd.admin?board=1&page=1">
+										<form action="/searchbrd.admin?board=1&page=1" method="post">
 											<select class="form-select" aria-label="Default select example"
 												name="searchCategory">
 												
