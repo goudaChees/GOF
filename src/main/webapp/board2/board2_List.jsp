@@ -109,15 +109,15 @@
 								<div class="col-12 p-0">
 									<c:forEach var="i" items="${dto}">
 										<div class="row w-100 writing">
-											<a href="/read.brd2?seq=${i.seq}">
+											<a href="/read.brd2?seq=${i.seq}" style="padding:0px;">
 											<div class="col">
 												<div class="row w-100 m-0 writingTitle">
-													<div class="col-md-2 d-none d-md-block">${i.seq}</div>
+													<div class="col-md-2 d-none d-md-block ">${i.seq}</div>
 													<div class="col-8 col-md-3 title" id="title_limit" style="text-align:left">
 														${i.title}
 														<c:if test="${i.reply!=0}">[${i.reply}]</c:if>
 													</div>
-													<div class="col-md-2 d-none d-md-block nickname">${i.nickname}</div>
+													<div class="col-md-2 d-none d-md-block nickname" id=nickname_limit>${i.nickname}</div>
 													<div class="col time" id="${i.write_date}"  style="display:none">${i.write_date}</div>
 													<div class="col-md-2 d-none d-md-block">${i.view_count}</div>
 													<div class="col-4 col-md-3 limit" id="${i.seq}">

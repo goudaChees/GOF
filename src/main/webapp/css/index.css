@@ -132,5 +132,11 @@
 
 .cardimg{
 	width: 80%;
+	height: 100%;
 	margin-bottom: 20px;
+}
+
+a{
+	text-decoration: none;
+	color:#7F626A;
 }
