@@ -18,6 +18,7 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/css/board2/board2_Write.css">
 <link rel="stylesheet" href="/css/common.css">
@@ -88,7 +89,7 @@
 							<div class="col-12">
 								<div class="row w-100 m-0">
 									<div class="col-12">
-										<input type="text" name="title" placeholder="${dto.title}" maxlength="100" id="title">
+										<input type="text" name="title" maxlength="100" id="title" value="${dto.title}">
 									</div>
 									
 									<div class="col-12" id="note_content">
@@ -111,15 +112,22 @@
 			</div>
 		</div>
 		<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
-			<div class="col-12 d-lg-none">
-				<div style="margin-left:40px ; margin-top:20px;text-align:left">
-					<a href="/csmain.cscenter" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
-					<a href="/csemail.cscenter" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
-					<a href="/csmap.cscenter" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
-					<div style="margin-top:35px ; text-align:left">
-						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br>
-						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span>E-MAIL : 4989 - 4284 </span><br>
-						<span style="color:#FFF2CC">COPYRIGHT BY PHOENIX  </span>
+			<div class="col-12 p-0 d-lg-none">
+				<div style="margin-left: 20px; padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
+					<a href="/csmain.cscenter" class="footerLink">
+						<span>자주 묻는 질문</span></a>
+					<span style="margin-left: 20px" class="footerBar">|</span> 
+					<a href="/csemail.cscenter" class="footerLink">
+						<span style="margin-left: 20px">1 : 1 문의</span></a>
+					<span style="margin-left: 20px" class="footerBar">|</span> 
+					<a href="/csmap.cscenter" class="footerLink">
+						<span style="margin-left: 20px;">찾아오시는 길</span></a><br>
+					<div style="margin-top: 15px; text-align: center">
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br> 
+						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span>
+						<span style="margin-left: 10px; margin-right:10px" class="footerLetter">|</span>
+						<span>E-MAIL : 4989 - 4284 </span><br> 
+						<span style="color: #FFF2CC;font-size:min(15px,4vw);line-height:40px;">COPYRIGHT BY PHOENIX </span>
 					</div>
 				</div>
 			</div>
