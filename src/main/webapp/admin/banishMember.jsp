@@ -59,7 +59,7 @@ input:focus {
 		<br>추방하시려면 비밀번호를 입력해주세요
 	</p>
 	<br>
-	<input type="text" name="pw" id="pw">
+	<input type="password" name="pw" id="pw">
 	<br>
 	<br>
 

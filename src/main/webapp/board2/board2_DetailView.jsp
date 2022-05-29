@@ -100,8 +100,10 @@
 											<a href="list.brd2" style="color: #9D8189;">목록보기</a>
 										</button>
 										<c:if
-											test="${(dto.nickname == loginNN && cck== false)||(loginID == admin)}">
+											test="${(dto.nickname == loginNN && cck== false)||(loginID == 'admin')}">
 											<button type="button" id="modi" class=write>수정하기</button>
+										</c:if>
+										<c:if test="${dto.nickname == loginNN || loginID == 'admin'}">	
 											<button type="button" id="del" class=write>삭제하기</button>
 										</c:if>
 									</div>
@@ -117,15 +119,18 @@
 													<div class="row">
 														<div class="col-12 col-sm-3 p-0 px-1">
 															<input type="text" id="writer" value="${loginNN}" style="display: none"> 
-															<input type="text" required="required" placeholder="가격 ex)1000" maxlength="10" name="price" id="wprice" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /> 
+															<input type="text" required="required" placeholder="가격 ex)1000" maxlength="13" name="price" id="wprice" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /> 
 															<input type="text" name="pseq" value="${dto.seq}" style="display: none">
 															
 														</div>
 														<div class="col-12 col-sm-7 p-0 px-1">
-															<textarea placeholder="내용을 입력해주세요" name="contents" id="contents" required="required"></textarea>
+															<textarea placeholder="내용을 입력해주세요" maxlength="100" name="contents" id="contents" required="required"></textarea>
 														</div>
 														<div class="col-12 col-sm-2 p-0 px-1">
-															<button type="submit" id="btn1">작성</button>
+															<c:if test="${wck == false }">
+																<button type="submit" id="btn1">작성</button>
+															</c:if>
+															
 														</div>
 													</div>
 													<hr>
@@ -181,8 +186,10 @@
 												</div>
 												<div class="col-12  p-0 text2 writingEtc">
 													<div style="float:right;">
-													<c:if test="${(i.nickname == loginNN && cck== false)||(loginID == admin)}">
+													<c:if test="${(i.nickname == loginNN && cck== false)||(loginID == 'admin')}">
 														<button class="modibtn write">수정</button>
+													</c:if>
+													<c:if test="${i.nickname == loginNN || loginID == 'admin'}">
 														<button class="delbtn write" value="${i.seq}" >삭제</button>	
 													</c:if>
 													</div>
@@ -204,7 +211,7 @@
 		</div>
 		<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
 			<div class="col-12 p-0 d-lg-none">
-				<div style="margin-left: 20px; padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
+				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
 					<a href="/csmain.cscenter" class="footerLink">
 						<span>자주 묻는 질문</span></a>
 					<span style="margin-left: 20px" class="footerBar">|</span> 
@@ -265,7 +272,7 @@
 		$(".text2").css("text-align","center");
 		
 		$("#wprice").attr("disabled",true);
-		$("#contents").attr({"disabled":"true","placeholder":"작성시간이 마감된 게시글입니다."});
+		$("#contents").attr({"disabled":"true","placeholder":"작성시간이 마감된 글에는 작성할수 없습니다."});
 	}
 		if(${wck}){
 			$("#contents").attr("disabled",true);

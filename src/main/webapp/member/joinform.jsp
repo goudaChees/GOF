@@ -57,7 +57,7 @@
 							</div>
 							<div class="row" id="joinFormArea">
 								<div class="col-12" style="height:100%;">
-									<form method="post" action="join.member">
+									<form method="post" action="join.member" onsubmit="joinok()">
 									<div class="row">
 										<div class="col-3">아이디</div>
 										<div class="col-9">
@@ -85,15 +85,15 @@
 									<div class="row">
 										<div class="col-3">이름</div>
 										<div class="col-9">
-											<input type="text" id="name" name="name">
+											<input type="text" id="name" name="name" placeholder="한글 성명 2~5자">
 										</div>
 										<div class="col-3"></div>
 										<div class="col-9" id="nameCheckResult"></div>
 									</div>
 									<div class="row">
-										<div class="col-3">전화번호</div>
+										<div class="col-3">핸드폰 번호</div>
 										<div class="col-9">
-											<input type="text" id="phone1" name="phone1"> - <input type="text"
+											<input type="text" id="phone1" name="phone1" value="010"> - <input type="text"
 												id="phone2" name="phone2"> - <input type="text" id="phone3"
 												name="phone3">
 										</div>
@@ -142,7 +142,7 @@
 			</div>
 		<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
 			<div class="col-12 p-0 d-lg-none">
-				<div style="margin-left: 20px; padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
+				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
 					<a href="/csmain.cscenter" class="footerLink">
 						<span>자주 묻는 질문</span></a>
 					<span style="margin-left: 20px" class="footerBar">|</span> 
@@ -259,6 +259,7 @@
 				$("#pw2").css("border", "1px solid red");
 				$("#pw1CheckResult").css("color", "red");
 				$("#pw1CheckResult").text("비밀번호는 필수 입력 정보입니다.")
+				$("#pw2CheckResult").text("");
 				isPwOk = false;
 				isPw2Ok = false;
 				$("#join").attr("disabled","true");
@@ -272,6 +273,7 @@
 				$("#pw1CheckResult").css("color", "red");
 				$("#pw1CheckResult").text(
 						"영문 소문자, 대문자, 숫자를 사용하여 8~12자로 작성");
+				$("#pw2CheckResult").text("");
 				isPwOk = false;
 				isPw2Ok = false;
 				$("#join").attr("disabled","true");
@@ -372,8 +374,100 @@
 				}
 			}
 		})
+		
+		$("#phone1").on("keyup",function() { // 전화번호1 검증
+			if($("#phone1")==""||$("#phone2")==""||$("#phone3")==""){
+				$("#phone1").css("border", "1px solid red");
+				$("#phone2").css("border", "1px solid red");
+				$("#phone3").css("border", "1px solid red");
+				$("#phoneCheckResult").css("color", "red");
+				$("#phoneCheckResult").text("전화번호는 필수 입력 정보입니다.");
+				isPhoneOk = false;
+				
+				$("#join").attr("disabled","true");
+				return false;
+			}
+			
+			let phoneRegex1 = /^01[0-9]{1}$/;
+			let phoneRegex2 = /^[0-9]{3,4}$/;
+			let phoneRegex3 = /^[0-9]{4}$/;
 
-		$("#phone3").on("keyup",function() { // 전화번호 검증
+			let phoneResult1 = phoneRegex1.test($("#phone1").val());
+			let phoneResult2 = phoneRegex2.test($("#phone2").val());
+			let phoneResult3 = phoneRegex3.test($("#phone3").val());
+
+			if (!phoneResult1 || !phoneResult2 || !phoneResult3) {
+				$("#phone1").css("border", "1px solid red");
+				$("#phone2").css("border", "1px solid red");
+				$("#phone3").css("border", "1px solid red");
+				$("#phoneCheckResult").css("color", "red");
+				$("#phoneCheckResult").text("전화번호의 입력형식이 올바르지 않습니다.");
+				isPhoneOk = false;
+				
+				$("#join").attr("disabled","true");
+				return false;
+			} else {
+				$("#phone1").css("border", "1px solid blue");
+				$("#phone2").css("border", "1px solid blue");
+				$("#phone3").css("border", "1px solid blue");
+				$("#phoneCheckResult").text("");
+				isPhoneOk = true;
+
+				//모든 검증 통과 시 submit 버튼 활성화
+				if (isIdOk && isPwOk && isPw2Ok && isNameOk
+						&& isPhoneOk && isEmailOk && isNNOk) {
+					$("#join").removeAttr("disabled");
+				}
+			}
+		})
+		
+		$("#phone2").on("keyup",function() { // 전화번호2 검증
+			if($("#phone1")==""||$("#phone2")==""||$("#phone3")==""){
+				$("#phone1").css("border", "1px solid red");
+				$("#phone2").css("border", "1px solid red");
+				$("#phone3").css("border", "1px solid red");
+				$("#phoneCheckResult").css("color", "red");
+				$("#phoneCheckResult").text("전화번호는 필수 입력 정보입니다.");
+				isPhoneOk = false;
+				
+				$("#join").attr("disabled","true");
+				return false;
+			}
+			
+			let phoneRegex1 = /^01[0-9]{1}$/;
+			let phoneRegex2 = /^[0-9]{3,4}$/;
+			let phoneRegex3 = /^[0-9]{4}$/;
+
+			let phoneResult1 = phoneRegex1.test($("#phone1").val());
+			let phoneResult2 = phoneRegex2.test($("#phone2").val());
+			let phoneResult3 = phoneRegex3.test($("#phone3").val());
+
+			if (!phoneResult1 || !phoneResult2 || !phoneResult3) {
+				$("#phone1").css("border", "1px solid red");
+				$("#phone2").css("border", "1px solid red");
+				$("#phone3").css("border", "1px solid red");
+				$("#phoneCheckResult").css("color", "red");
+				$("#phoneCheckResult").text("전화번호의 입력형식이 올바르지 않습니다.");
+				isPhoneOk = false;
+				
+				$("#join").attr("disabled","true");
+				return false;
+			} else {
+				$("#phone1").css("border", "1px solid blue");
+				$("#phone2").css("border", "1px solid blue");
+				$("#phone3").css("border", "1px solid blue");
+				$("#phoneCheckResult").text("");
+				isPhoneOk = true;
+
+				//모든 검증 통과 시 submit 버튼 활성화
+				if (isIdOk && isPwOk && isPw2Ok && isNameOk
+						&& isPhoneOk && isEmailOk && isNNOk) {
+					$("#join").removeAttr("disabled");
+				}
+			}
+		})
+
+		$("#phone3").on("keyup",function() { // 전화번호3 검증
 			if($("#phone1")==""||$("#phone2")==""||$("#phone3")==""){
 				$("#phone1").css("border", "1px solid red");
 				$("#phone2").css("border", "1px solid red");
@@ -565,6 +659,10 @@
 		$("#reset").on("click",function(){
 			location.reload();       
 		})
+		
+		function joinok(){
+			Swal.fire('회원 가입이 완료되었습니다.');
+		}
 	
 	</script>
 </body>
