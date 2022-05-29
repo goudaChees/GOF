@@ -9,16 +9,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/css/board2/board2_DetailView.css">
 <link rel="stylesheet" href="/css/common.css">
 
@@ -207,15 +203,22 @@
 			</div>
 		</div>
 		<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
-			<div class="col-12 d-lg-none">
-				<div style="margin-left:40px ; margin-top:20px;text-align:left">
-					<a href="/csmain.cscenter" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
-					<a href="/csemail.cscenter" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
-					<a href="/csmap.cscenter" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
-					<div style="margin-top:35px ; text-align:left">
-						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br>
-						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span>E-MAIL : 4989 - 4284 </span><br>
-						<span style="color:#FFF2CC">COPYRIGHT BY PHOENIX  </span>
+			<div class="col-12 p-0 d-lg-none">
+				<div style="margin-left: 20px; padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
+					<a href="/csmain.cscenter" class="footerLink">
+						<span>자주 묻는 질문</span></a>
+					<span style="margin-left: 20px" class="footerBar">|</span> 
+					<a href="/csemail.cscenter" class="footerLink">
+						<span style="margin-left: 20px">1 : 1 문의</span></a>
+					<span style="margin-left: 20px" class="footerBar">|</span> 
+					<a href="/csmap.cscenter" class="footerLink">
+						<span style="margin-left: 20px;">찾아오시는 길</span></a><br>
+					<div style="margin-top: 15px; text-align: center">
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br> 
+						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span>
+						<span style="margin-left: 10px; margin-right:10px" class="footerLetter">|</span>
+						<span>E-MAIL : 4989 - 4284 </span><br> 
+						<span style="color: #FFF2CC;font-size:min(15px,4vw);line-height:40px;">COPYRIGHT BY PHOENIX </span>
 					</div>
 				</div>
 			</div>

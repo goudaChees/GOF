@@ -61,7 +61,7 @@ a:hover{
        <span id="ismeailok" style="display: none">이메일 확인중</span><br>
        <button id="btn" disabled>메일 발송</button><br>
        <span id="mailok" style="display: none">메일 발송 완료</span><br>
-       <input type="text" id="isok" placeholder="인증번호 입력해주세요"><br>
+       <input type="text" id="isok" placeholder="인증번호를 입력해주세요"><br>
        <input type="text" id="ck" style="display: none" value="no"><br>
        <input type="text" id="okok" style="display: none" readonly="readonly" value="확인되었습니다."><br>
        <span id="writepw" style="display: none">비밀번호를 입력해주세요</span><br>
