@@ -10,6 +10,7 @@
 <title>고객센터</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed298afa01dbe436406160c176a6dde2"></script>
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
@@ -246,7 +247,7 @@
 											<div class="row w-100 m-0"><br><br></div>											
 											<div class="row w-100 m-0">
 												<div class="col-12">
-													<button type=submit>Send Email</button>
+													<button type=submit id="sendbtn">Send Email</button>
 												</div>
 											</div>
 										</form>
@@ -398,7 +399,30 @@
 	   		 	})
 			}
 		  })
-
+			
+		  
+		  $("#sendbtn").on("click", function(){
+			let text = $("#emailAddrBox").val();
+			
+    		Swal.fire({
+    			title: '작성하신 메일주소가 맞나요?',
+    			text: text,
+    			icon: 'warning',
+    			showCancelButton: true,
+    			cancelButtonText: '취소',
+    			confirmButtonColor: '#3085d6',
+    			cancelButtonColor: '#d33',
+    			confirmButtonText: '네, 맞습니다'
+    		}).then((result) => {
+    			if (result.isConfirmed) {
+    				Swal.fire(
+    					'발송 완료!',
+    					'문의해 주셔서 감사합니다.',
+    					'success'
+    				)	
+    			}
+    		})
+		})
 	</script>
 </body>
 

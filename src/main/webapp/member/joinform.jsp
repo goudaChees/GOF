@@ -558,10 +558,11 @@
 						 return false;
 					}
 					$.ajax({
+						type:"post",
 						url:"/send.mail",
 						dataType:"json",
 						data:{email:$("#email").val()}
-					}).always(function(resp){
+					}).done(function(resp){
 						alert("메일이 발송되었습니다.");
 						$("#emailKey").val(resp);
 						return false;
