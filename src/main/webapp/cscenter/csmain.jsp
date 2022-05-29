@@ -10,33 +10,25 @@
 <title>고객센터</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed298afa01dbe436406160c176a6dde2"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<link
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/css/cscenter/csmain.css">
+<link rel="stylesheet" href="/css/common.css">
 
 </head>
 <body>
 	<div class="container w-100">
-		<div class="row" id="header">
-			<div class="col-12">
+		<div class="row w-100 m-0" id="header">
+			<div class="col-12 p-0">
 				<nav class="navbar navbar-expand-md navbar-light bg-light">
 					<div class="container-fluid">
-						<a class="navbar-brand" href="/index.jsp" style="color: #664E55">앞날의
-							지침</a>
+						<a class="navbar-brand" href="/index.jsp" style="color:#664E55"><img src="/img/logo.png" id="logo"></a>
 						<button class="navbar-toggler" type="button"
 							data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 							aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -49,46 +41,37 @@
 								<c:choose>
 									<c:when test="${loginID =='admin'}">
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd1?cpage=1"
-											style="color: #664E55">살까말까</a></li>
+											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd2" style="color: #664E55">최저가 경매</a></li>
+											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter"
-											style="color: #664E55">고객센터</a></li>
+											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/adminmain.admin"
-											style="color: #664E55">관리자페이지</a></li>
+											aria-current="page" href="/adminmain.admin" style="color:#664E55">관리자페이지</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="#"><i
-												class="bi bi-box-arrow-right" style="color: #664E55"></i></a></li>
+										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
 									</c:when>
 									<c:when test="${loginID !=null}">
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd1?cpage=1"
-											style="color: #664E55">살까말까</a></li>
+											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd2" style="color: #664E55">최저가 경매</a></li>
+											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter"
-											style="color: #664E55">고객센터</a></li>
+											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+										<li class="nav-item"><a class="nav-link active" 
+											aria-current="page" href="/mypage.member" style="color:#664E55">마이페이지</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/mypage.member"
-											style="color: #664E55">마이페이지</a></li>
-										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="#"><i
-												class="bi bi-box-arrow-right" style="color: #664E55"></i></a></li>
+										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
 									</c:when>
 									<c:otherwise>
 										<li class="nav-item nonMember"><a class="nav-link active"
-											aria-current="page" href="#" style="color: #664E55">살까말까</a></li>
+											aria-current="page" href="#" style="color:#664E55">살까말까</a></li>
 										<li class="nav-item nonMember"><a class="nav-link active"
-											aria-current="page" href="#" style="color: #664E55">최저가 경매</a></li>
+											aria-current="page" href="#" style="color:#664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter" style="color: #664E55">고객센터</a></li>
+											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/joinform.member"
-											style="color: #664E55">회원가입</a></li>
+											aria-current="page" href="/joinform.member" style="color:#664E55">회원가입</a></li>
 									</c:otherwise>
 								</c:choose>
 							</ul>
@@ -97,6 +80,7 @@
 				</nav>
 			</div>
 		</div>
+		
 		<div class="row w-100 m-0" id="content">
 			<div class="d-none d-lg-block col-3"></div>
 			<div class="col-12 col-lg-6">
@@ -370,7 +354,19 @@
 			})
 		})
 	
-		$(".bi-box-arrow-right").on("click",function(){
+	//로그아웃 관련 공통기능
+
+      	// SDK를 초기화. 사용할 앱의 JavaScript 키
+      	Kakao.init('b956cab5ef7dbe5bc1f861614a4b2061');
+	    //console.log(Kakao.isInitialized());
+	    
+	    //item을 localStorage에 저장하는 메소드
+	    function saveToDos(token) { 
+    		typeof(Storage) !== 'undefined' && sessionStorage.setItem('AccessKEY', JSON.stringify(token)); 
+		};
+
+
+		  $(".bi-box-arrow-right").on("click",function(){
 			  if (!Kakao.Auth.getAccessToken()) {
 			  Swal.fire({
 				  text: '로그아웃 하시겠습니까?',
@@ -395,6 +391,7 @@
 	   		 	})
 			}
 		  })
+
 	</script>
 </body>
 
