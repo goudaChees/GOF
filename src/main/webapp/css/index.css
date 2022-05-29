@@ -101,7 +101,6 @@
 }
 
 .loginlastline{
-	white-space:pre;
 	padding:0;
 }
 
@@ -117,7 +116,7 @@
 }
 
 #main{
-	padding-top: 5vh;	
+	padding-top: 20vh;	
 	position: relative;
 }
 
@@ -127,11 +126,11 @@
 	text-align:center;
 	padding-top: 15px;
 	padding-bottom: 15px;
-	margin-bottom: 30px;
+	margin-bottom: 50px;
 	box-shadow:5px 5px #9D8189;
 }
 
 .cardimg{
 	width: 80%;
-	margin-bottom: 15px;
+	margin-bottom: 20px;
 }
