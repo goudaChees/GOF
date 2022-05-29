@@ -115,3 +115,23 @@
 #loginInput a:hover{
 	text-decoration:underline !important;
 }
+
+#main{
+	padding-top: 5vh;	
+	position: relative;
+}
+
+#card{
+	background-color: white;
+	border-radius: 10px;
+	text-align:center;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-bottom: 30px;
+	box-shadow:5px 5px #9D8189;
+}
+
+.cardimg{
+	width: 80%;
+	margin-bottom: 15px;
+}
