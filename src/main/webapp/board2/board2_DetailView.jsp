@@ -100,7 +100,7 @@
 											<a href="list.brd2" style="color: #9D8189;">목록보기</a>
 										</button>
 										<c:if
-											test="${(dto.nickname == loginNN && cck== false)||(loginID == admin)}">
+											test="${(dto.nickname == loginNN && cck== false)||(loginID == 'admin')}">
 											<button type="button" id="modi" class=write>수정하기</button>
 											<button type="button" id="del" class=write>삭제하기</button>
 										</c:if>
@@ -181,7 +181,7 @@
 												</div>
 												<div class="col-12  p-0 text2 writingEtc">
 													<div style="float:right;">
-													<c:if test="${(i.nickname == loginNN && cck== false)||(loginID == admin)}">
+													<c:if test="${(i.nickname == loginNN && cck== false)||(loginID == 'admin')}">
 														<button class="modibtn write">수정</button>
 														<button class="delbtn write" value="${i.seq}" >삭제</button>	
 													</c:if>
