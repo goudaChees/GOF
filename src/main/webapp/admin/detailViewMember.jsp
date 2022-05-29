@@ -134,15 +134,6 @@
 											<div class="col-8" id="emailCheckResult"></div>
 										</div>
 										<div class="row">
-											<div class="col-4">PHONE</div>
-											<div class="col-8">
-												<input type=text value="${mdto.phone}" class="editable"
-													name=phone id="phoneTD" disabled>
-											</div>
-											<div class="col-4"></div>
-											<div class="col-8" id="phoneCheckResult"></div>
-										</div>
-										<div class="row">
 											<div class="col-4">NICKNAME</div>
 											<div class="col-8">
 												<input type=text value="${mdto.nickname}" class="editable"
