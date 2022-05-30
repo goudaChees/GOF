@@ -178,12 +178,7 @@ p:hover{
        })
        let inok = false;
        	$("#btn").on("click",function(){
-<<<<<<< HEAD
-
        		$("#btn").text("메일 발송중");
-=======
-			$("#btn").text("메일 발송중");
->>>>>>> ff83cf43b9a14f8d4ab444c73f5ddb0ef906e981
        		$("#btn").attr("disabled","true");
        		$("#isok").css("display","inline");
        		$.ajax({

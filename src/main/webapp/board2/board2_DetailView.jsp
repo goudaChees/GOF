@@ -193,7 +193,7 @@
 													<c:if test="${(i.nickname == loginNN && cck== false)||(loginID == 'admin')}">
 														<button class="modibtn write">수정</button>
 													</c:if>
-													<c:if test="${i.nickname == loginNN || loginID == 'admin'}">
+													<c:if test="${(i.nickname == loginNN) || (loginID == 'admin')}">
 														<button class="delbtn write" value="${i.seq}" >삭제</button>	
 													</c:if>
 													</div>
@@ -276,7 +276,6 @@
 		$(".choice").children("display","none");
 		
 		$(".modibtn").css("display","none");
-		$(".text2").text("시간종료");
 		$(".text2").css("text-align","center");
 		
 		$("#wprice").attr("disabled",true);
@@ -375,7 +374,7 @@
 				url : "/modi.brd2_reply",
 				dataType:"json",
 				data:{
-					rseq:$(this).parent().siblings().val(),
+					rseq:$($(this).parent().siblings().siblings().children()[1]).val(),
 					price:$(this).parent().parent().parent().siblings(".reply").children(".price").children()[1].value,
 					contents:$(this).parent().parent().siblings(".contents").children().children(".incontents").children()[0].value
 				}
