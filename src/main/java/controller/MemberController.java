@@ -204,24 +204,29 @@ public class MemberController extends HttpServlet {
 				String email = request.getParameter("email");
 				String pw = eUtil.SHA512(request.getParameter("newpw"));
 				int isok = dao.chpw(pw,id,email);
-				PrintWriter pws = response.getWriter();
-				pws.append(g.toJson(isok));
+				prw.append(g.toJson(isok));
+				
 			} else if (uri.equals("/idisok.member")) {
 				String id = request.getParameter("id");
 				boolean isok = dao.isidok(id);
-				PrintWriter pws = response.getWriter();
-				pws.append(g.toJson(isok));
+				prw.append(g.toJson(isok));
+				
 			} else if (uri.equals("/emailok.member")) {
 				String email = request.getParameter("email");
 				boolean isok = dao.emailidok(email);
-				PrintWriter pws = response.getWriter();
-				pws.append(g.toJson(isok));
+				prw.append(g.toJson(isok));
+				
 			} else if (uri.equals("/idandmailok.member")) {
 				String id = request.getParameter("id");
 				String email = request.getParameter("email");
 				boolean isok = dao.isallok(id,email);
-				PrintWriter pws = response.getWriter();
-				pws.append(g.toJson(isok));
+				prw.append(g.toJson(isok));
+				
+			} else if(uri.equals("/joinCheck.member")) {
+				String name = request.getParameter("name");
+				String email = request.getParameter("email");
+				String jointype = dao.howJoin(name, email);
+				prw.append(g.toJson(jointype));
 			}
 			
 			

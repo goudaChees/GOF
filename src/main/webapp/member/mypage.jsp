@@ -84,7 +84,7 @@
 											</div>
 											<div class="row">
 												<div class="col-4">NAME</div>
-												<div class="col-8">${dto.name }</div>
+												<div class="col-8" id=name>${dto.name }</div>
 											</div>
 											<div class="row">
 												<div class="col-4">PHONE</div>
@@ -180,13 +180,26 @@
 	window.Kakao.Auth.setAccessToken(JSON.parse(sessionStorage.getItem('AccessKEY')));
 	
 	// 비밀번호 변경 버튼 클릭시 비밀번호 입력 창 띄우기
-	$("#pw_modify").on(
-		"click",
-		function() {
-			window.open("/member/modifiypw.jsp", "",
-					"top=100,left=200,width=550,height=500");
-			//location.href="/member/memberout.jsp";
+	$("#pw_modify").on("click",function() {
+		$.ajax({
+			url : "/joinCheck.member",
+			data : {name : $("#name").text(), email : $("#emailTD").val()}
+		}).done(function(resp) {
+			let result = JSON.parse(resp);
+			if (result=='카카오') {
+				let modi = confirm("카카오로 가입한 회원은 카카오계정 관리에서 변경가능합니다.\n이동하시겠습니까?");
+				if(modi){
+					location.href="https://accounts.kakao.com/weblogin/account/security";
+				} else {
+					return false;
+				}
+			} else {
+				window.open("/member/modifiypw.jsp", "",
+				"top=100,left=200,width=550,height=500");
+			}
+		
 		})
+	})
 
 	// 탈퇴 버튼 클릭시 비밀번호 입력 창 띄우기
 	$("#member_out").on(

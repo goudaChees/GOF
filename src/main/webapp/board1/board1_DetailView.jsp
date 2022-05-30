@@ -77,7 +77,7 @@
 						<!-- 게시글--------------------------------------------------------------------------------------------- -->
 						<div class="row w-100" id="writingContent">
 							<div class="col-12" id="title">${dto.title }</div>
-							<div class="col-12" id="writingInfo">${writer }<i class="bi bi-dot"></i>${dto.write_date }<i class="bi bi-dot"></i>조회 ${dto.view_count }</div>
+							<div class="col-12" id="writingInfo">${dto.writer }<i class="bi bi-dot"></i>${dto.write_date }<i class="bi bi-dot"></i>조회 ${dto.view_count }</div>
 							<div class="col-5">
 								<div id="img_Box" class="thumbnail">
 									<c:choose>

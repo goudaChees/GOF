@@ -105,47 +105,47 @@
 									<h3 style="padding-left: 30px;">당신이 부자가 될 때 까지</h3>
 									<h5 style="padding-left: 30px;">
 										<img src="/img/pinkpig_front.png" style="width: 8%">
-										${loginNN }님환영합니다! <img src="/img/pinkpig_paw.png"
+										${loginNN }님 환영합니다! <img src="/img/pinkpig_paw.png"
 											style="width: 8%">
 									</h5>
 								</div>
 							</div>
 						</div>
 						<div class="col-sm-4">
-							<img src="/img/flyingPig.png" id=flyingpig style="width: 200px">
+							<img src="/img/flyingPig_small.png" id=flyingpig style="width: 200px">
 						</div>
 					</div>
-					<div class="row w-100 m-0 my-5" >
-						<div class="col-12 col-md-10" id=imgbox>
+					<div class="row w-100 m-0 my-5 px-3" >
+						<div class="col-12 col-md-8" id=imgbox>
 							<div class="row">
 								<div class="col-6 col-md-3">
 									<a href="/list.brd1?cpage=1">
-									<div id=card>
-										<img src="/img/basket.jpg" class="cardimg">
+									<div class="card">
+										<img src="/img/card_basket.png" class="cardimg px-3">
 										<p>살까말까</p>
 									</div>
 									</a>
 								</div>
 								<div class="col-6 col-md-3">
 									<a href="/list.brd2">
-									<div id=card>
-										<img src="/img/shopping-bag.jpg" class="cardimg">
+									<div class="card">
+										<img src="/img/card_shoppingbag.png" class="cardimg px-3">
 										<p>최저가경매</p>
 									</div>
 									</a>
 								</div>
 								<div class="col-6 col-md-3">
 									<a href="/csmain.cscenter">
-									<div id=card>
-										<img src="/img/clipboard.jpg" class="cardimg">
+									<div class="card">
+										<img src="/img/card_clipboard.png" class="cardimg px-3">
 										<p>고객센터</p>
 									</div>
 									</a>
 								</div>
 								<div class="col-6 col-md-3">
-									<a href="/joinform.member">
-									<div id=card>
-										<img src="/img/follower.jpg" class="cardimg">
+									<a href="/mypage.member">
+									<div class="card">
+										<img src="/img/card_mypage.png" class="cardimg px-3">
 										<p>마이페이지</p>
 									</div>
 									</a>
