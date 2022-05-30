@@ -144,7 +144,7 @@
 										<div class="csmapArea2">
 											<div class="row w-100 m-0">
 												<div class="col-12 d-none d-sm-block">
-													<div id="map"></div>
+													<div id="map" style="over-flow:hidden"></div>
 												</div>
 												<div class="col-12 d-block d-sm-none">
 													<div id="map2"></div>

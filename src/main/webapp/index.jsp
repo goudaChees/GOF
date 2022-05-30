@@ -97,7 +97,7 @@
 						<img src="/img/after_main.png" id="bgImg">
 					</div>
 					<div class="col-12">
-					<div class="row w-100 m-0" style="margin-bottom:50px;">
+					<div class="row w-100 m-0">
 						<div class="col-12 col-sm-8" align=left>
 							<div class="row">
 								<div class="col-12" style="text-align: left">
@@ -115,7 +115,7 @@
 							<img src="/img/flyingPig.png" id=flyingpig style="width: 200px">
 						</div>
 					</div>
-					<div class="row w-100 m-0" >
+					<div class="row w-100 m-0 my-5" >
 						<div class="col-12 col-md-10" id=imgbox>
 							<div class="row">
 								<div class="col-6 col-md-3">
@@ -145,7 +145,7 @@
 								<div class="col-6 col-md-3">
 									<a href="/joinform.member">
 									<div id=card>
-										<img src="/img/user.jpg" class="cardimg">
+										<img src="/img/follower.jpg" class="cardimg">
 										<p>마이페이지</p>
 									</div>
 									</a>
