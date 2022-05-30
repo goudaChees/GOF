@@ -115,8 +115,8 @@
 							<img src="/img/flyingPig_small.png" id=flyingpig style="width: 200px">
 						</div>
 					</div>
-					<div class="row w-100 m-0 my-5" >
-						<div class="col-12 col-md-10" id=imgbox>
+					<div class="row w-100 m-0 my-5 px-3" >
+						<div class="col-12 col-md-8" id=imgbox>
 							<div class="row">
 								<div class="col-6 col-md-3">
 									<a href="/list.brd1?cpage=1">
@@ -143,7 +143,7 @@
 									</a>
 								</div>
 								<div class="col-6 col-md-3">
-									<a href="/joinform.member">
+									<a href="/mypage.member">
 									<div class="card">
 										<img src="/img/card_mypage.png" class="cardimg px-3">
 										<p>마이페이지</p>
