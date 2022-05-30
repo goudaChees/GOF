@@ -206,7 +206,7 @@
 						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br> 
 						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span>
 						<span style="margin-left: 10px; margin-right:10px" class="footerLetter">|</span>
-						<span>E-MAIL : 4989 - 4284 </span><br> 
+						<span class="footerLetter">E-MAIL : ttaengerang@gmail.com </span><br> 
 						<span style="color: #FFF2CC;font-size:min(15px,4vw);line-height:40px;">COPYRIGHT BY PHOENIX </span>
 					</div>
 				</div>
@@ -218,7 +218,7 @@
 					<a href="/csmap.cscenter" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
 					<div style="margin-top:30px ; text-align:left; margin-bottom:15px">
 						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br>
-						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span style="margin-left:20px" class="footerLetter">E-MAIL : 4989 - 4284 </span><br>
+						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span style="margin-left:20px" class="footerLetter">E-MAIL : ttaengerang@gmail.com </span><br>
 						<span style="color:#FFF2CC">COPYRIGHT BY YUNJI AYEONG WOOHYENG JEONGYOEN HEESEUNG IN  PHOENIX  </span>
 					</div>
 				</div>
