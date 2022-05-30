@@ -194,30 +194,57 @@
 		})
 		
 		  function mailConfirm(){
-			let text = $("#emailAddrBox").val();
-			
-    		Swal.fire({
-    			title: '작성하신 메일주소가 맞나요?',
-    			text: text,
-    			icon: 'warning',
-    			showCancelButton: true,
-    			cancelButtonText: '취소',
-    			confirmButtonColor: '#3085d6',
-    			cancelButtonColor: '#d33',
-    			confirmButtonText: '네, 맞습니다'
-    		}).then((result) => {
-    			if (result.isConfirmed) {
-    				Swal.fire(
-    					'발송 완료!',
-    					'문의해 주셔서 감사합니다.',
-    					'success'
-    				)
-    				document.form_mail.submit();
-    			}else if (result.isDenied) {
-    				window.reload()
-    			}
-    		})
-		}	
+			  if (${loginID != null}) {
+				  
+				  
+				  Swal.fire({
+		    			title: '메일을 보내시겠습니까?',
+		    			
+		    			icon: 'warning',
+		    			showCancelButton: true,
+		    			cancelButtonText: '취소',
+		    			confirmButtonColor: '#3085d6',
+		    			cancelButtonColor: '#d33',
+		    			confirmButtonText: '네, 맞습니다'
+		    		}).then((result) => {
+		    			if (result.isConfirmed) {
+		    				Swal.fire(
+		    					'발송 완료!',
+		    					'문의해 주셔서 감사합니다.',
+		    					'success'
+		    				)
+		    				document.form_mail.submit();
+		    			}else if (result.isDenied) {
+		    				window.reload()
+		    			}
+		    		})
+				    
+			  }else {
+					let text = $("#emailAddrBox").val();
+					
+		    		Swal.fire({
+		    			title: '작성하신 메일주소가 맞나요?',
+		    			text: text,
+		    			icon: 'warning',
+		    			showCancelButton: true,
+		    			cancelButtonText: '취소',
+		    			confirmButtonColor: '#3085d6',
+		    			cancelButtonColor: '#d33',
+		    			confirmButtonText: '네, 맞습니다'
+		    		}).then((result) => {
+		    			if (result.isConfirmed) {
+		    				Swal.fire(
+		    					'발송 완료!',
+		    					'문의해 주셔서 감사합니다.',
+		    					'success'
+		    				)
+		    				document.form_mail.submit();
+		    			}else if (result.isDenied) {
+		    				window.reload()
+		    			}
+		    		})				  
+			  }
+		}
 		
 	//로그아웃 관련 공통기능
 

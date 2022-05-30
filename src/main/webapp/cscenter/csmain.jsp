@@ -10,7 +10,7 @@
 <title>고객센터</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed298afa01dbe436406160c176a6dde2"></script>
-
+<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e3b2ec1cbf323959f82484d3c09baa42"></script> -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
@@ -291,8 +291,11 @@
 										</div>
 										<div class="csmapArea2">
 											<div class="row w-100 m-0">
-												<div class="col-12">
-													<div id="map" style="width:500px;height:400px;"></div>
+												<div class="col-12 d-none d-sm-block">
+													<div id="map"></div>
+												</div>
+												<div class="col-12 d-block d-sm-none">
+													<div id="map2"></div>
 												</div>
 											</div>
 										<!--  지도 api 마감 -->
@@ -363,7 +366,29 @@
 		  	text: '로그인 후 사용 가능합니다.'
 			})
 		})
-	
+	setTimeout(function(){ map.relayout(); }, 1500);
+		function relayout() {    
+		    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+		    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
+		    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+		    map.relayout();
+		}
+	var container = document.getElementById('map2');
+	var options = { 
+		center: new kakao.maps.LatLng(37.56792863494778, 126.98304380248652), //지도의 중심좌표.
+		level: 3 
+		};
+	var map = new kakao.maps.Map(container, options);
+	//지도 api 스크립트
+		$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업		
+			Swal.fire({
+		 	 icon: 'info',
+		  	text: '로그인 후 사용 가능합니다.'
+			})
+		})
+		
+		
+		
 	//로그아웃 관련 공통기능
 
       	// SDK를 초기화. 사용할 앱의 JavaScript 키
@@ -404,40 +429,59 @@
 			
 		  
 		  function mailConfirm(){
-			let text = $("#emailAddrBox").val();
-			
-    		Swal.fire({
-    			title: '작성하신 메일주소가 맞나요?',
-    			text: text,
-    			icon: 'warning',
-    			showCancelButton: true,
-    			cancelButtonText: '취소',
-    			confirmButtonColor: '#3085d6',
-    			cancelButtonColor: '#d33',
-    			confirmButtonText: '네, 맞습니다'
-    		}).then((result) => {
-    			if (result.isConfirmed) {
-    				Swal.fire(
-    					'발송 완료!',
-    					'문의해 주셔서 감사합니다.',
-    					'success'
-    				)
-    				document.form_mail.submit();
-    			}else if (result.isDenied) {
-    				window.reload()
-    			}
-    		})
+			  if (${loginID != null}) {
+				  
+				  
+				  Swal.fire({
+		    			title: '메일을 보내시겠습니까?',
+		    			
+		    			icon: 'warning',
+		    			showCancelButton: true,
+		    			cancelButtonText: '취소',
+		    			confirmButtonColor: '#3085d6',
+		    			cancelButtonColor: '#d33',
+		    			confirmButtonText: '네, 맞습니다'
+		    		}).then((result) => {
+		    			if (result.isConfirmed) {
+		    				Swal.fire(
+		    					'발송 완료!',
+		    					'문의해 주셔서 감사합니다.',
+		    					'success'
+		    				)
+		    				document.form_mail.submit();
+		    			}else if (result.isDenied) {
+		    				window.reload()
+		    			}
+		    		})
+				    
+			  }else {
+					let text = $("#emailAddrBox").val();
+					
+		    		Swal.fire({
+		    			title: '작성하신 메일주소가 맞나요?',
+		    			text: text,
+		    			icon: 'warning',
+		    			showCancelButton: true,
+		    			cancelButtonText: '취소',
+		    			confirmButtonColor: '#3085d6',
+		    			cancelButtonColor: '#d33',
+		    			confirmButtonText: '네, 맞습니다'
+		    		}).then((result) => {
+		    			if (result.isConfirmed) {
+		    				Swal.fire(
+		    					'발송 완료!',
+		    					'문의해 주셔서 감사합니다.',
+		    					'success'
+		    				)
+		    				document.form_mail.submit();
+		    			}else if (result.isDenied) {
+		    				window.reload()
+		    			}
+		    		})				  
+			  }
 		}
 
-// 		$("#sendbtn").on("click", function(){
-// 			let mailaddr = $("#emailAddrBox").val();
-// 			let result = confirm("메일주소 확인"+mailaddr);
-// 			if (result) {
-// 				window.reload()
-// 			}else {
-				
-// 			}			
-// 		})
+
 		
 	</script>
 </body>
