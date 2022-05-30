@@ -115,7 +115,7 @@
 							<img src="/img/flyingPig.png" id=flyingpig style="width: 200px">
 						</div>
 					</div>
-					<div class="row w-100 m-0">
+					<div class="row w-100 m-0" >
 						<div class="col-12 col-md-10" id=imgbox>
 							<div class="row">
 								<div class="col-6 col-md-3">
