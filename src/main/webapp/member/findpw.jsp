@@ -59,9 +59,10 @@ a:hover{
        <span id="idok" style="display: none">아이디 확인중</span><br>
        <input type="text" id="email" placeholder="이메일을 적어주세요"><br>
        <span id="ismeailok" style="display: none">이메일 확인중</span><br>
+       <span id="isidmeailok" style="display: none">아이디 이메일 확인중</span><br>
        <button id="btn" disabled>메일 발송</button><br>
        <span id="mailok" style="display: none">메일 발송 완료</span><br>
-       <input type="text" id="isok" placeholder="인증번호를 입력해주세요"><br>
+       <input type="text" id="isok" placeholder="인증번호를 입력해주세요" style="display: none"><br>
        <input type="text" id="ck" style="display: none" value="no"><br>
        <input type="text" id="okok" style="display: none" readonly="readonly" value="확인되었습니다."><br>
        <span id="writepw" style="display: none">비밀번호를 입력해주세요</span><br>
@@ -101,12 +102,27 @@ a:hover{
     	   })
     	},
     	focusout : function(){
- 		   if(idok && emailok){
-     		   $("#btn").removeAttr("disabled");
-     	   }
-     	   if(!(idok) || !(emailok)){
-     		   $("#btn").attr("disabled","true");
-     	   }
+    		$.ajax({
+		  		url:"/idandmailok.member",
+		  		dataType:"json",
+		  		data:{id:$("#id").val(),
+		  			email:$("#email").val()}
+		  	}).done(function(resp){
+		  		if(resp){
+		  			if(idok && emailok){
+		        		   $("#btn").removeAttr("disabled");
+		        		   $("#isidmeailok").css("display","none");
+		        	   }
+		        	   if(!(idok) || !(emailok)){
+		        		   $("#btn").attr("disabled","true");
+		        	   }		
+		  		}else{
+		  			$("#isidmeailok").css("display","inline");
+		  			$("#isidmeailok").text("등록한 사용자의 아이디와 이메일이 다릅니다.");
+		  			$("#btn").attr("disabled","true");
+		  		}
+		  	
+		  	})
  	   } 
        })
        
@@ -137,17 +153,34 @@ a:hover{
     	   })
     	   },
     	   focusout : function(){
-    		   if(idok && emailok){
-        		   $("#btn").removeAttr("disabled");
-        	   }
-        	   if(!(idok) || !(emailok)){
-        		   $("#btn").attr("disabled","true");
-        	   }
+    		  	$.ajax({
+    		  		url:"/idandmailok.member",
+    		  		dataType:"json",
+    		  		data:{id:$("#id").val(),
+    		  			email:$("#email").val()}
+    		  	}).done(function(resp){
+    		  		if(resp){
+    		  			if(idok && emailok){
+    		        		   $("#btn").removeAttr("disabled");
+    		        		   $("#isidmeailok").css("display","none");
+    		        	   }
+    		        	   if(!(idok) || !(emailok)){
+    		        		   $("#btn").attr("disabled","true");
+    		        	   }		
+    		  		}else{
+    		  			$("#isidmeailok").css("display","inline");
+    		  			$("#isidmeailok").text("등록한 사용자의 아이디와 이메일이 다릅니다.");
+    		  			$("#btn").attr("disabled","true");
+    		  		}
+    		  	
+    		  	})
+ 
     	   }
        })
        let inok = false;
        	$("#btn").on("click",function(){
        		$("#btn").text("매일 발송중");
+       		$("#isok").css("display","inline");
        		$.ajax({
        			url:"/findpw.mail",
 				dataType:"json",
@@ -168,6 +201,7 @@ a:hover{
            			$("#okok").val("인증되었습니다.");
            			inok = true;
        			}else if(!($("#ck").val()==$("#isok").val())){
+       				$("#okok").css("display","inline");
        				$("#okok").val("인증번호를 확인해주세요.");
        				inok = false;
        			}

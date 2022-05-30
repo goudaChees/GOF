@@ -135,7 +135,7 @@
 											<div class="row w-100 m-0"><br><br></div>
 											<div class="row w-100 m-0">
 												<div class="col-12">
-													<button type=submit>Send Email</button>
+													<button type=submit id="sendbtn">Send Email</button>
 												</div>
 											</div>
 										</form>
@@ -150,7 +150,7 @@
 		</div>
 		<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
 			<div class="col-12 p-0 d-lg-none">
-				<div style="margin-left: 20px; padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
+				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
 					<a href="/csmain.cscenter" class="footerLink">
 						<span>자주 묻는 질문</span></a>
 					<span style="margin-left: 20px" class="footerBar">|</span> 
@@ -185,13 +185,36 @@
 			</div>
 		</div>
 	</div>
-	<script>
+<script>
 		$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업
 			Swal.fire({
 			  icon: 'info',
 			  text: '로그인 후 사용 가능합니다.'
 			})
 		})
+		
+		$("#sendbtn").on("click", function(){
+			let text = $("#emailAddrBox").val();
+			
+    		Swal.fire({
+    			title: '작성하신 메일주소가 맞나요?',
+    			text: text,
+    			icon: 'warning',
+    			showCancelButton: true,
+    			cancelButtonText: '취소',
+    			confirmButtonColor: '#3085d6',
+    			cancelButtonColor: '#d33',
+    			confirmButtonText: '네, 맞습니다'
+    		}).then((result) => {
+    			if (result.isConfirmed) {
+    				Swal.fire(
+    					'발송 완료!',
+    					'문의해 주셔서 감사합니다.',
+    					'success'
+    				)	
+    			}
+    		})
+		})	
 		
 	//로그아웃 관련 공통기능
 
@@ -231,7 +254,7 @@
 			}
 		  })
 
-	</script>
+</script>
 </body>
 
 </html>

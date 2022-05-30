@@ -10,6 +10,7 @@
 <title>고객센터</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed298afa01dbe436406160c176a6dde2"></script>
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" >
@@ -160,7 +161,7 @@
 		</div>
 		<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
 			<div class="col-12 p-0 d-lg-none">
-				<div style="margin-left: 20px; padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
+				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
 					<a href="/csmain.cscenter" class="footerLink">
 						<span>자주 묻는 질문</span></a>
 					<span style="margin-left: 20px" class="footerBar">|</span> 

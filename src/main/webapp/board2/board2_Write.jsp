@@ -89,11 +89,13 @@
 							<div class="col-12">
 								<div class="row w-100 m-0">
 									<div class="col-12">
+
 										<input type="text" name="title" maxlength="100" id="title" placeholder="제목은 최대 100자 까지 입력가능합니다." value="${dto.title}">
+
 									</div>
 									
 									<div class="col-12" id="note_content">
-										<textarea id="summernote" name="contents" style="resize: none" maxlength="1300">${dto.contents}</textarea>
+										<textarea id="summernote" name="contents" style="resize: none" maxlength="1000">${dto.contents}</textarea>
 									</div>
 								
 								</div>
@@ -113,7 +115,7 @@
 		</div>
 		<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
 			<div class="col-12 p-0 d-lg-none">
-				<div style="margin-left: 20px; padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
+				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
 					<a href="/csmain.cscenter" class="footerLink">
 						<span>자주 묻는 질문</span></a>
 					<span style="margin-left: 20px" class="footerBar">|</span> 
@@ -150,6 +152,7 @@
 	</div>
 	<c:if test="${seq!=null}"><input type="text" style="display:none" name="seq" value="${seq}"></c:if>
 </form>
+
 	<script>
 		$('#summernote').summernote({
 		  placeholder: '구매하고 싶은 상품정보를 입력해주세요. 최대 1300자까지 입력가능합니다.',
@@ -160,16 +163,42 @@
 					['font',[ 'bold', 'underline','clear' ] ],
 					[ 'color', [ 'color' ] ],
 					[ 'para',[ 'ul', 'ol', 'paragraph' ] ],
-			]
+			],
 		});
+		//에디터 내용 텍스트 제거
+		function f_SkipTags_html(input, allowed) {
+		// 허용할 태그는 다음과 같이 소문자로 넘겨받습니다. (<a><b><c>)
+    	allowed = (((allowed || "") + "").toLowerCase().match(/<[a-z][a-z0-9]*>/g) || []).join('');
+    	var tags = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi,
+   		 commentsAndPhpTags = /<!--[\s\S]*?-->|<\?(?:php)?[\s\S]*?\?>/gi;
+    	return input.replace(commentsAndPhpTags, '').replace(tags, function ($0, $1) {
+        return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : '';
+    	});
+		}
 		
-		//$(".note-editor").height($("#note_content").height()*0.8);
 		
 		$("#submit").on("click",function(){
 			if($("#summernote").val()=='' || $("#title").val()==''){
 				alert("제목, 내용은 필수 입력 사항입니다.");
 		    	 return false;
 			}
+			var status = false;
+			var textCnt = 0; //총 글자수
+			var maxCnt = 1200; //최대 글자수
+			var editorText = f_SkipTags_html($("#summernote").val()); //에디터에서 태그를 삭제하고 내용만 가져오기
+			    editorText = editorText.replace(/\s/gi,""); //줄바꿈 제거
+			    editorText = editorText.replace(/&nbsp;/gi, ""); //공백제거
+
+		        textCnt = editorText.length;
+			    if(maxCnt > 0) {
+		        	if(textCnt > maxCnt) {
+		                status = true;
+		        	}
+			    }
+			if(status) {
+				alert("등록오류 : 글자수는 최대 "+maxCnt+"까지 등록이 가능합니다. / 현재 글자수 : "+textCnt+"자");
+	        	return false;
+		    }
 			
 		})
 		

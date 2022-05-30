@@ -10,6 +10,7 @@
 <title>고객센터</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed298afa01dbe436406160c176a6dde2"></script>
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
@@ -246,7 +247,7 @@
 											<div class="row w-100 m-0"><br><br></div>											
 											<div class="row w-100 m-0">
 												<div class="col-12">
-													<button type=submit>Send Email</button>
+													<button type=submit id="sendbtn">Send Email</button>
 												</div>
 											</div>
 										</form>
@@ -286,19 +287,14 @@
 													종각역 4번, 5번 출구 200M </div>
 											</div>
 										</div>
-										
 										<div class="csmapArea2">
 											<div class="row w-100 m-0">
-												<div class="col-12 d-none d-sm-block">
-													<div id="map"></div>													
-												</div>
-												<div class="col-12 d-block d-sm-none">
-													<div id="map2"></div>
+												<div class="col-12">
+													<div id="map" style="width:500px;height:400px;"></div>
 												</div>
 											</div>
 										<!--  지도 api 마감 -->
 										</div>
-								
 									</div>
 								</div>
 							</div>
@@ -309,7 +305,7 @@
 		</div>
 		<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
 			<div class="col-12 p-0 d-lg-none">
-				<div style="margin-left: 20px; padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
+				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
 					<a href="/csmain.cscenter" class="footerLink">
 						<span>자주 묻는 질문</span></a>
 					<span style="margin-left: 20px" class="footerBar">|</span> 
@@ -359,20 +355,6 @@
 		};
 	var map = new kakao.maps.Map(container, options);
 	//지도 api 스크립트
-	
-	setTimeout(function(){ map.relayout(); }, 1500);
-		function relayout() {    
-		    map.relayout();
-		}
-	var container = document.getElementById('map2');
-	var options = { 
-		center: new kakao.maps.LatLng(37.56792863494778, 126.98304380248652), 
-		level: 3 
-		};
-	var map = new kakao.maps.Map(container, options);
-	
-	
-	
 		$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업		
 			Swal.fire({
 		 	 icon: 'info',
@@ -417,7 +399,30 @@
 	   		 	})
 			}
 		  })
-
+			
+		  
+		  $("#sendbtn").on("click", function(){
+			let text = $("#emailAddrBox").val();
+			
+    		Swal.fire({
+    			title: '작성하신 메일주소가 맞나요?',
+    			text: text,
+    			icon: 'warning',
+    			showCancelButton: true,
+    			cancelButtonText: '취소',
+    			confirmButtonColor: '#3085d6',
+    			cancelButtonColor: '#d33',
+    			confirmButtonText: '네, 맞습니다'
+    		}).then((result) => {
+    			if (result.isConfirmed) {
+    				Swal.fire(
+    					'발송 완료!',
+    					'문의해 주셔서 감사합니다.',
+    					'success'
+    				)	
+    			}
+    		})
+		})
 	</script>
 </body>
 

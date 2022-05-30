@@ -474,8 +474,17 @@ private static MemberDAO instance = null;
 				con.commit();
 				return result;
 			}
-			
-			
-			
+
+		}
+		public boolean isallok(String id,String email)throws Exception{
+			String sql = "Select * from member where id=? and email=?";
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(sql);){
+					pstat.setString(1, id);
+					pstat.setString(2, email);
+					try(ResultSet rs = pstat.executeQuery()){
+						return rs.next();
+					}
+				}
 		}
 }

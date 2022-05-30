@@ -142,7 +142,7 @@
 			</div>
 		<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
 			<div class="col-12 p-0 d-lg-none">
-				<div style="margin-left: 20px; padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
+				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
 					<a href="/csmain.cscenter" class="footerLink">
 						<span>자주 묻는 질문</span></a>
 					<span style="margin-left: 20px" class="footerBar">|</span> 
@@ -558,10 +558,11 @@
 						 return false;
 					}
 					$.ajax({
+						type:"post",
 						url:"/send.mail",
 						dataType:"json",
 						data:{email:$("#email").val()}
-					}).always(function(resp){
+					}).done(function(resp){
 						alert("메일이 발송되었습니다.");
 						$("#emailKey").val(resp);
 						return false;

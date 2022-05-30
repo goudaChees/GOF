@@ -216,6 +216,12 @@ public class MemberController extends HttpServlet {
 				boolean isok = dao.emailidok(email);
 				PrintWriter pws = response.getWriter();
 				pws.append(g.toJson(isok));
+			} else if (uri.equals("/idandmailok.member")) {
+				String id = request.getParameter("id");
+				String email = request.getParameter("email");
+				boolean isok = dao.isallok(id,email);
+				PrintWriter pws = response.getWriter();
+				pws.append(g.toJson(isok));
 			}
 			
 			
