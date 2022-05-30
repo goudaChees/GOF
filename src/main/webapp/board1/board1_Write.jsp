@@ -86,14 +86,14 @@
 								</div>
 								<div class="col-4">
 									<div id="img_Box" class="thumbnail">
-					            		<img src="/img/pig2.png" id="img_section">
+					            		<img src="/img/pig2.png" id="img_section" vlaue="N">
 					            	</div>
 								</div>
 								<div class="col-8">
 									<input type="text" placeholder="물건명을 입력해주세요" name="item" id="item" maxlength=30><br>  	
 					            	<input type="text" placeholder="가격을 입력해주세요" name="item_price" id="item_price" maxlength=10 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /><br>
 					            	<label for="upload_file">파일 첨부</label>
-					            	<input type="file" name="file" id="upload_file" accept="image/*">
+					            	<input type="file" name="file" id="upload_file" accept="image/*" onchange=isFileImg(this)>
 								</div>
 								<div class="col-12">
 									<textarea placeholder="이 물건을 꼭 사야하는 이유" name="contents" rows="10" cols="70" maxlength=1000></textarea>
@@ -141,6 +141,17 @@
      </div>	
 	
 	 <script>
+	  console.log($("#upload_file").val())
+	 	const reader = new FileReader();
+	 	reader.onload = (readerEvent) =>{
+	 		document.querySelector("#img_section").setAttribute("src",readerEvent.target.result);
+	 		console.log(readerEvent.target.result);
+	 	}
+	     document.querySelector("#upload_file").addEventListener("change",(changeEvent) => {
+	       const imgFile = changeEvent.target.files[0];
+	       reader.readAsDataURL(imgFile);
+	     })  
+	 	
 		$("#toList").on("click",function(){
 			location.href="/list.brd1?cpage=1";
 		})
@@ -155,20 +166,6 @@
 	    	 return false;
 	     }
 	   })
-
-	 	
-	 	const reader = new FileReader();
-	 	reader.onload = (readerEvent) =>{
-	 		document.querySelector("#img_section").setAttribute("src",readerEvent.target.result);
-	 		console.log(readerEvent.target.result);
-	 	}
-
-	     document.querySelector("#upload_file").addEventListener("change",(changeEvent) => {
-	       const imgFile = changeEvent.target.files[0];
-	       reader.readAsDataURL(imgFile);
-	     })
-	     
-	    
 	    //로그아웃 관련 공통기능
 
       	// SDK를 초기화. 사용할 앱의 JavaScript 키
@@ -206,7 +203,24 @@
 	   		 	})
 			}
 		  })
+			
+			function isFileImg(obj){
+			  pathPoint = obj.value.lastIndexOf('.');
+			  filePoint = obj.value.substring(pathPoint+1,obj.length);
+			  fileType=filePoint.toLowerCase();
+			  console.log($("#upload_file").val())
+			  if(fileType!='jpg'&&fileType!='png'&&fileType!='jpeg'&&fileType!='gif'){
+				$("#img_section").attr("src","/img/pig2.png");
+				 alert("이미지 파일만 등록이 가능합니다.");
+// 				 parentObj = obj.parentNode;
+// 				 node = parentObj.replaceChild(obj.cloneNode(true),obj);
+					console.log($("#upload_file").val())
+					$("#upload_file").val("");
+					console.log($("#upload_file").val())
+				 return false;
+			  }
 
+	  			}
 
 
 	 </script>
