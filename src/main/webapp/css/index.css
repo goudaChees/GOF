@@ -120,7 +120,7 @@
 	position: relative;
 }
 
-#card{
+.card{
 	background-color: white;
 	border-radius: 10px;
 	text-align:center;
@@ -128,10 +128,11 @@
 	padding-bottom: 15px;
 	margin-bottom: 50px;
 	box-shadow:5px 5px #9D8189;
+	
 }
 
 .cardimg{
-	width: 80%;
+	width: 100%;
 	height: 100%;
 	margin-bottom: 20px;
 }
