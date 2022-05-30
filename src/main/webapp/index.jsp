@@ -129,7 +129,7 @@
 								<div class="col-6 col-md-3">
 									<a href="/list.brd2">
 									<div class="card">
-										<img src="/img/card_shoppingbag.png" class="cardimg px-2">
+										<img src="/img/card_shoppingbag.png" class="cardimg px-3">
 										<p>최저가경매</p>
 									</div>
 									</a>
@@ -137,7 +137,7 @@
 								<div class="col-6 col-md-3">
 									<a href="/csmain.cscenter">
 									<div class="card">
-										<img src="/img/card_clipboard.png" class="cardimg px-2">
+										<img src="/img/card_clipboard.png" class="cardimg px-3">
 										<p>고객센터</p>
 									</div>
 									</a>
@@ -145,7 +145,7 @@
 								<div class="col-6 col-md-3">
 									<a href="/joinform.member">
 									<div class="card">
-										<img src="/img/card_mypage.png" class="cardimg px-2">
+										<img src="/img/card_mypage.png" class="cardimg px-3">
 										<p>마이페이지</p>
 									</div>
 									</a>
