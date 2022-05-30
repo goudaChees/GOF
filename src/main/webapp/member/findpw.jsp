@@ -56,12 +56,11 @@ a:hover{
 		<h5>비밀번호 찾기</h5>
 		<p><a href="https://accounts.kakao.com/weblogin/find_account_guide?continue=http://www.kakao.com/main#pageFindAccountSelect">카카오 간편 로그인 회원은 여기를 클릭해주세요</a></p>
        <input type="text" id="id" placeholder="아이디를 적어주세요"><br>
-       <span id="idok" style="display: none">아이디 확인중</span><br>
        <input type="text" id="email" placeholder="이메일을 적어주세요"><br>
-       <span id="ismeailok" style="display: none">이메일 확인중</span><br>
+       <span id="isidmeailok" style="display: none">아이디 이메일 확인중</span><br>
        <button id="btn" disabled>메일 발송</button><br>
        <span id="mailok" style="display: none">메일 발송 완료</span><br>
-       <input type="text" id="isok" placeholder="인증번호 입력해주세요"><br>
+       <input type="text" id="isok" placeholder="인증번호를 입력해주세요" style="display: none"><br>
        <input type="text" id="ck" style="display: none" value="no"><br>
        <input type="text" id="okok" style="display: none" readonly="readonly" value="확인되었습니다."><br>
        <span id="writepw" style="display: none">비밀번호를 입력해주세요</span><br>
@@ -83,30 +82,35 @@ a:hover{
     			   }
     	   }).always(function(resp){
     		   if(resp){
-            	   $("#id").css("border", "1px solid blue");
-        		   $("#idok").css("color", "blue");
-            	   $("#idok").css("display","inline");
-        			$("#idok").text(
-        					"등록되어 있는 아이디 입니다.");
         			idok = true;
                }
                if(!resp){
-            	   $("#id").css("border", "1px solid red");
-            	   $("#idok").css("color", "red");
-            	   $("#idok").css("display","inline");
-        			$("#idok").text(
-        					"등록되어 있지 않은 아이디 입니다.");
         			idok = false;
                }
     	   })
     	},
     	focusout : function(){
- 		   if(idok && emailok){
-     		   $("#btn").removeAttr("disabled");
-     	   }
-     	   if(!(idok) || !(emailok)){
-     		   $("#btn").attr("disabled","true");
-     	   }
+    		$.ajax({
+		  		url:"/idandmailok.member",
+		  		dataType:"json",
+		  		data:{id:$("#id").val(),
+		  			email:$("#email").val()}
+		  	}).done(function(resp){
+		  		if(resp){
+		  			if(idok && emailok){
+		        		   $("#btn").removeAttr("disabled");
+		        		   $("#isidmeailok").css("display","none");
+		        	   }
+		        	   if(!(idok) || !(emailok)){
+		        		   $("#btn").attr("disabled","true");
+		        	   }		
+		  		}else{
+		  			$("#isidmeailok").css("display","inline");
+		  			$("#isidmeailok").text("등록한 사용자의 아이디와 이메일이 다릅니다.");
+		  			$("#btn").attr("disabled","true");
+		  		}
+		  	
+		  	})
  	   } 
        })
        
@@ -117,43 +121,53 @@ a:hover{
     		   dataType:"json",
     		   data:{email:$("#email").val()
     			   }
-    	   }).always(function(resp){
+
+    	   }).done(function(resp){
     		   if(resp){
-            	   $("#email").css("border", "1px solid blue");
-        		   $("#ismeailok").css("color", "blue");
-            	   $("#ismeailok").css("display","inline");
-        			$("#ismeailok").text(
-        					"등록되어 있는 이메일 입니다.");
         			emailok = true;
                }
                if(!resp){
-            	   $("#email").css("border", "1px solid red");
-            	   $("#ismeailok").css("color", "red");
-            	   $("#ismeailok").css("display","inline");
-        			$("#ismeailok").text(
-        					"등록되어 있지 않은 이메일 입니다.");
         			emailok = false;
                }
     	   })
     	   },
     	   focusout : function(){
-    		   if(idok && emailok){
-        		   $("#btn").removeAttr("disabled");
-        	   }
-        	   if(!(idok) || !(emailok)){
-        		   $("#btn").attr("disabled","true");
-        	   }
+    		  	$.ajax({
+    		  		url:"/idandmailok.member",
+    		  		dataType:"json",
+    		  		data:{id:$("#id").val(),
+    		  			email:$("#email").val()}
+    		  	}).done(function(resp){
+    		  		if(resp){
+    		  			if(idok && emailok){
+    		        		   $("#btn").removeAttr("disabled");
+    		        		   $("#isidmeailok").css("color","blue");
+    		        		   $("#isidmeailok").text("등록된 아이디와 이메일입니다.");
+    		        	   }
+    		        	   if(!(idok) || !(emailok)){
+    		        		   $("#btn").attr("disabled","true");
+    		        	   }		
+    		  		}else{
+    		  			$("#isidmeailok").css("display","inline");
+    		  			$("#isidmeailok").css("color","red");
+    		  			$("#isidmeailok").text("등록한 아이디와 이메일이 다릅니다.");
+    		  			$("#btn").attr("disabled","true");
+    		  		}
+    		  	
+    		  	})
+ 
     	   }
        })
        let inok = false;
        	$("#btn").on("click",function(){
        		$("#btn").text("매일 발송중");
+       		$("#isok").css("display","inline");
        		$.ajax({
        			url:"/findpw.mail",
 				dataType:"json",
 				data:{email:$("#email").val()
 					}
-       		}).always(function(resp){
+       		}).done(function(resp){
        			$("#ck").val(resp);
        			$("#btn").text("메일 재발송");
        			$("#mailok").css("display","inline");
@@ -168,6 +182,7 @@ a:hover{
            			$("#okok").val("인증되었습니다.");
            			inok = true;
        			}else if(!($("#ck").val()==$("#isok").val())){
+       				$("#okok").css("display","inline");
        				$("#okok").val("인증번호를 확인해주세요.");
        				inok = false;
        			}
@@ -272,7 +287,7 @@ a:hover{
        				email:$("#email").val(),
        				newpw:$("#newpw").val()
        				}
-       		}).always(function(resp){
+       		}).done(function(resp){
        			if(resp==1){
        			alert("비밀번호가 변경되었습니다.");
        			window.close();

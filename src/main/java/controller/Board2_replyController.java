@@ -52,7 +52,7 @@ public class Board2_replyController extends HttpServlet {
 			
 		}catch (Exception e) {
 			e.printStackTrace();
-			response.sendRedirect("/error.jsp");
+			response.sendRedirect("/error.html");
 		}
 		
 		

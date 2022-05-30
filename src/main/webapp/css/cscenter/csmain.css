@@ -1,31 +1,15 @@
 @charset "UTF-8";
 
-
-* {
-	box-sizing: border-box;
-}
-
-div {
-	text-align: center;
-}
-
-.container{
-	max-width: 100%; 
-	padding: 0; 
-	margin: 0; 
-	position: relative;
-}
-
 #header{
 	border-bottom: 5px solid #9D8189;
-	z-index:5;
+	z-index:10 !important;
 }
 
 #content{
 	margin:0;
-	padding-top: 3%;
+	padding-top: 15vh;
 	padding-bottom: 3%;
-	min-height: 95vh;
+	min-height: 100vh;
 	max-width: 100%; 
 	background-color:#C0ADB3;
 	position: relative;
@@ -212,14 +196,14 @@ div {
 }
 
 #cscontact {
-	height:90%;
+	height:140%;
 	padding-top:30px;
 	background-color:#C7B7BB40;
 	border-radius:15px;
 }
 
 .csmapArea {
-	height:60%;
+	height:35%;
 	width:90%;
 	margin:auto;
 	padding-top:30px;
@@ -228,25 +212,25 @@ div {
 	text-align :left;
 }
 
+#map {
+	width:300px;
+	height:300px;
+	margin:auto;
+}
+
+#map2 {
+	width:200px;
+	height:200px;
+	margin:auto;
+	margin-top:70px;
+}
+
 .csmapArea2 {
-
-}
-
-
-.footerLink{
-	text-decoration: none !important;
-	color:white !important;
-}
-
-.footerLink:hover{
-	cursor:pointer !important;
-	color:#FFF2CC !important;
-}
-
-.footerLetter{
-	color:white !important;	
-}
-
-.footerBar{
-	color:#FFF2CC !important;
+	height:50%;
+	width:90%;
+	margin:auto;
+	padding-top:30px;
+	background-color: white;
+	border-radius:15px;
+	text-align :left;
 }

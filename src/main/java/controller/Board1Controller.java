@@ -272,7 +272,7 @@ public class Board1Controller extends HttpServlet {
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
-
+			response.sendRedirect("/error.html");
 		}
 	}
 

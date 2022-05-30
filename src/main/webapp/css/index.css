@@ -39,7 +39,7 @@
 	left: 50%;
     top: 0;
     transform: translate(-50%, -50%);
-	width:500px;
+	width:520px;
 	z-index:-1;
 }
 
@@ -101,7 +101,6 @@
 }
 
 .loginlastline{
-	white-space:pre;
 	padding:0;
 }
 
@@ -114,4 +113,30 @@
 
 #loginInput a:hover{
 	text-decoration:underline !important;
+}
+
+#main{
+	padding-top: 20vh;	
+	position: relative;
+}
+
+#card{
+	background-color: white;
+	border-radius: 10px;
+	text-align:center;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-bottom: 50px;
+	box-shadow:5px 5px #9D8189;
+}
+
+.cardimg{
+	width: 80%;
+	height: 100%;
+	margin-bottom: 20px;
+}
+
+a{
+	text-decoration: none;
+	color:#7F626A;
 }

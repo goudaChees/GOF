@@ -18,26 +18,61 @@
 		opener.document.getElementById("adminTF").value = document.getElementById("cTF").value; 
 	}
 
-
-
-		
+	function close_reload(){
+		window.opener.location.reload();
+	}
+	
 
 </script>
+
+<style>
+body {
+	width: 500px;
+	height: 350px;
+	text-align: center;
+	margin-top: 30px;
+	background-color: #FFF4EF;
+}
+input {
+	border: 2px solid #9D8189;
+	border-radius: 15px;
+	width: 250px;
+	text-align: center;
+	margin-bottom: 5px;
+	height: 20px;
+}
+
+input[type=button], input[type=submit] {
+	border: 2px solid #9D8189;
+	border-radius: 15px;
+	color: white;
+	background-color: #9D8189;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	height: 30px;
+}
+
+input:focus {
+	outline:none;
+}
+</style>
+
 </head>
-<body>
+<body onBeforeUnload="close_reload()">
 	<br>
 	<b><font size="5" color="gray">관리자 확인이 필요합니다.</font></b>
 	<br>
 	<p>
-		<br><input type="text" id="cUserId" disabled>님의 정보를 수정하려면 비밀번호를 입력해주세요
+		<br><input type="text" id="cUserId" disabled>님의
+		<br> 정보를 수정하려면 비밀번호를 입력해주세요
 	</p>
 	<br>
-	<input type="text" name="pw" id="pw">
+	<input type="password" name="pw" id="pw">
 	<br>
 	<br>
 	<input type="hidden" value="" id ="cTF">
-	<input type="button" value="확인" onclick="AdminPwSend()">
-	<input type="button" value="취소" onclick="window.close()">
+	<input type="button" value="확인" onclick="AdminPwSend()" id="submit">
+	<input type="button" value="취소" onclick="window.opener.location.reload(); window.close()">
 
 	<script>
 	
@@ -62,7 +97,7 @@
 					$("#cTF").attr("value", " ");
 					setParentText();
 					let tf = parent.document.getElementById('adminTF');
-					tf.removeAttribute("readonly");
+					tf.removeAttribute("disabled");
 					tf.focus();
 					
 					let cls = parent.document.getElementsByClassName('editable');
@@ -77,6 +112,10 @@
 			
 		})
 	}
+	
+	$("#submit").on("click", function(event){
+        window.onbeforeunload = null;
+	});
 	</script>
 </body>
 </html>

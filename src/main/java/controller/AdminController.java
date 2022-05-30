@@ -133,10 +133,9 @@ public class AdminController extends HttpServlet {
 				
 				
 			}else  if (uri.equals("/searchbrd.admin")) {
-				int board = 1;
-				if (request.getParameter("board") != null ) {
-					board = Integer.parseInt(request.getParameter("board"));
-				}
+				int board = Integer.parseInt(request.getParameter("board"));
+				System.out.println(board);
+				
 				
 				int page = 1;
 				if (request.getParameter("page") != null) {
@@ -234,13 +233,9 @@ public class AdminController extends HttpServlet {
 				}
 				
 			}
-				
-
-			
-			
-			
 		}catch(Exception e) {
 			e.printStackTrace();
+			response.sendRedirect("/error.html");
 		}
 	}
 

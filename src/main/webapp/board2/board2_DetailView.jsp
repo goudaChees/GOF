@@ -5,31 +5,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Board2 DetailView Page</title>
+<title>최저가경매</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-<script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/css/board2/board2_DetailView.css">
+<link rel="stylesheet" href="/css/common.css">
 
 </head>
 <body>
 	<div id="container">
-		<div class="row w-100 m-0" id=header>
+		<div class="row w-100 m-0" id="header">
 			<div class="col-12 p-0">
-				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<nav class="navbar navbar-expand-md navbar-light bg-light">
 					<div class="container-fluid">
-						<a class="navbar-brand" href="/index.jsp">앞날의 지침</a>
+						<a class="navbar-brand" href="/index.jsp" style="color:#664E55"><img src="/img/logo.png" id="logo"></a>
 						<button class="navbar-toggler" type="button"
 							data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 							aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -39,32 +35,31 @@
 						<div class="collapse navbar-collapse justify-content-end"
 							id="navbarNavDropdown">
 							<ul class="navbar-nav">
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/list.brd1?cpage=1"
-									style="color: #664E55">살까말까</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/list.brd2" style="color: #664E55">최저가
-										경매</a></li>
-								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="csmain.cscenter"
-									style="color: #664E55">고객센터</a></li>
-
 								<c:choose>
 									<c:when test="${loginID =='admin'}">
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="#" style="color: #664E55">관리자페이지</a></li>
+											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="logout.member"><i
-												class="bi bi-box-arrow-right"></i></a></li>
+											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/adminmain.admin" style="color:#664E55">관리자페이지</a></li>
+										<li class="nav-item"><a class="nav-link active"
+										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
 									</c:when>
-									<c:when test="${loginID !=null}">
+									<c:otherwise>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="mypage.member"
-											style="color: #664E55">마이페이지</a></li>
+											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="logout.member"><i
-												class="bi bi-box-arrow-right"></i></a></li>
-									</c:when>
+											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+										<li class="nav-item"><a class="nav-link active" 
+											aria-current="page" href="/mypage.member" style="color:#664E55">마이페이지</a></li>
+										<li class="nav-item"><a class="nav-link active"
+										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
+									</c:otherwise>
 								</c:choose>
 							</ul>
 						</div>
@@ -72,6 +67,7 @@
 				</nav>
 			</div>
 		</div>
+		
 		<div class="row w-100 m-0" id="content">
 			<div class="d-none d-lg-block col-3"></div>
 			<div class="col-12 col-lg-6">
@@ -93,8 +89,12 @@
 								</div>
 							</div>
 							<div class="col-12">
-								<div class="row" style="height:50%">
-									<div class="col-12 my-2" >${dto.contents}</div>
+								<div class="row" style="height:50% ">
+									<div class="col-12 my-2" style="width:100%;">
+										<pre style="white-space: pre-wrap;">
+											<c:out value="${dto.contents}" escapeXml="false"/>
+										</pre>
+									</div>
 								</div>	
 							</div>
 							<div class="col-12">
@@ -104,8 +104,10 @@
 											<a href="list.brd2" style="color: #9D8189;">목록보기</a>
 										</button>
 										<c:if
-											test="${(dto.nickname == loginNN && cck== false)||(loginID == admin)}">
+											test="${(dto.nickname == loginNN && cck== false)||(loginID == 'admin')}">
 											<button type="button" id="modi" class=write>수정하기</button>
+										</c:if>
+										<c:if test="${dto.nickname == loginNN || loginID == 'admin'}">	
 											<button type="button" id="del" class=write>삭제하기</button>
 										</c:if>
 									</div>
@@ -121,15 +123,18 @@
 													<div class="row">
 														<div class="col-12 col-sm-3 p-0 px-1">
 															<input type="text" id="writer" value="${loginNN}" style="display: none"> 
-															<input type="text" required="required" placeholder="가격 ex)1000" maxlength="10" name="price" id="wprice" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /> 
+															<input type="text" required="required" placeholder="가격 ex)1000" maxlength="13" name="price" id="wprice" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /> 
 															<input type="text" name="pseq" value="${dto.seq}" style="display: none">
 															
 														</div>
 														<div class="col-12 col-sm-7 p-0 px-1">
-															<textarea placeholder="내용을 입력해주세요" name="contents" id="contents" required="required"></textarea>
+															<textarea placeholder="내용을 입력해주세요.(최대 100글자)" maxlength="100" name="contents" id="contents" required="required"></textarea>
 														</div>
 														<div class="col-12 col-sm-2 p-0 px-1">
-															<button type="submit" id="btn1">작성</button>
+															<c:if test="${wck == false }">
+																<button type="submit" id="btn1">작성</button>
+															</c:if>
+															
 														</div>
 													</div>
 													<hr>
@@ -146,7 +151,7 @@
 												<div class="col-12 col-sm-6">닉네임 : ${crdto.nickname}</div>
 											</div>
 											<div class="row p-0">
-												<div class="col-12 p-0" id=best><textarea class="best" disabled >${crdto.contents}</textarea></div>
+												<div class="col-12 p-0" id=best><textarea class="best" style="white-space:pre" disabled >${crdto.contents}</textarea></div>
 											</div>				
 										</div>
 										<div class="col-2 p-0" style="margin-top: 10px;"><img src="/img/best2.png" style="width:80px; height:80px; "></div>
@@ -185,8 +190,10 @@
 												</div>
 												<div class="col-12  p-0 text2 writingEtc">
 													<div style="float:right;">
-													<c:if test="${(i.nickname == loginNN && cck== false)||(loginID == admin)}">
+													<c:if test="${(i.nickname == loginNN && cck== false)||(loginID == 'admin')}">
 														<button class="modibtn write">수정</button>
+													</c:if>
+													<c:if test="${i.nickname == loginNN || loginID == 'admin'}">
 														<button class="delbtn write" value="${i.seq}" >삭제</button>	
 													</c:if>
 													</div>
@@ -207,23 +214,30 @@
 			</div>
 		</div>
 		<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
-			<div class="col-12 d-lg-none">
-				<div style="margin-left:40px ; margin-top:20px;text-align:left">
-					<a href="/cscenter/csmain.jsp" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
-					<a href="/cscenter/csmain.jsp" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
-					<a href="/cscenter/csmain.jsp" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
-					<div style="margin-top:35px ; text-align:left">
-						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br>
-						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span>E-MAIL : 4989 - 4284 </span><br>
-						<span style="color:#FFF2CC">COPYRIGHT BY PHOENIX  </span>
+			<div class="col-12 p-0 d-lg-none">
+				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
+					<a href="/csmain.cscenter" class="footerLink">
+						<span>자주 묻는 질문</span></a>
+					<span style="margin-left: 20px" class="footerBar">|</span> 
+					<a href="/csemail.cscenter" class="footerLink">
+						<span style="margin-left: 20px">1 : 1 문의</span></a>
+					<span style="margin-left: 20px" class="footerBar">|</span> 
+					<a href="/csmap.cscenter" class="footerLink">
+						<span style="margin-left: 20px;">찾아오시는 길</span></a><br>
+					<div style="margin-top: 15px; text-align: center">
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br> 
+						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span>
+						<span style="margin-left: 10px; margin-right:10px" class="footerLetter">|</span>
+						<span>E-MAIL : 4989 - 4284 </span><br> 
+						<span style="color: #FFF2CC;font-size:min(15px,4vw);line-height:40px;">COPYRIGHT BY PHOENIX </span>
 					</div>
 				</div>
 			</div>
 			<div class="d-none d-lg-block col-lg-9">
 				<div style="margin-left:40px ; margin-top:20px;text-align:left">
-					<a href="/cscenter/csmain.jsp" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
-					<a href="/cscenter/csmain.jsp" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
-					<a href="/cscenter/csmain.jsp" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
+					<a href="/csmain.cscenter" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csemail.cscenter" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csmap.cscenter" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
 					<div style="margin-top:30px ; text-align:left; margin-bottom:15px">
 						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br>
 						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span style="margin-left:20px" class="footerLetter">E-MAIL : 4989 - 4284 </span><br>
@@ -262,7 +276,7 @@
 		$(".text2").css("text-align","center");
 		
 		$("#wprice").attr("disabled",true);
-		$("#contents").attr({"disabled":"true","placeholder":"작성시간이 마감된 게시글입니다."});
+		$("#contents").attr({"disabled":"true","placeholder":"작성시간이 마감된 글에는 작성할수 없습니다."});
 	}
 		if(${wck}){
 			$("#contents").attr("disabled",true);
@@ -407,7 +421,45 @@
 	        let dateObj = new Date(time);
 	        dateObj.setMinutes(dateObj.getMinutes() +30);
 			countDownTimer("limit", dateObj);
+			
+			
+			//로그아웃 관련 공통기능
 
+		  	// SDK를 초기화. 사용할 앱의 JavaScript 키
+		  	Kakao.init('b956cab5ef7dbe5bc1f861614a4b2061');
+		    //console.log(Kakao.isInitialized());
+		    
+		    //item을 localStorage에 저장하는 메소드
+		    function saveToDos(token) { 
+				typeof(Storage) !== 'undefined' && sessionStorage.setItem('AccessKEY', JSON.stringify(token)); 
+			};
+
+
+			  $(".bi-box-arrow-right").on("click",function(){
+				  if (!Kakao.Auth.getAccessToken()) {
+				  Swal.fire({
+					  text: '로그아웃 하시겠습니까?',
+					  showCancelButton: true,
+					  confirmButtonText: '로그아웃',
+					  cancelButtonText: '취소',
+					}).then((result) => {
+					  if (result.isConfirmed) {				
+					    location.href="/logout.member";				  
+					  } 
+					})
+					return
+				  }
+				// -- 로그아웃 버튼 클릭시 카카오톡으로 로그인한 사용자의 토큰을 반납.
+				let result = confirm("로그아웃 하시겠습니까?");
+				if(!result){
+					return false;
+				} else {
+				  Kakao.Auth.logout(function() {
+		      			alert("로그아웃 되었습니다.");
+		      			location.href="/logout.member";
+		   		 	})
+				}
+			  })
 	</script>
 </body>
 </html>

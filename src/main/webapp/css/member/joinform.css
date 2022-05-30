@@ -110,7 +110,7 @@
 	cursor:default;
 }
 
-#joinFormArea input[type=submit],
+#joinFormArea input[type=button],
 #joinFormArea input[type=reset]{
 	padding:1.5%;
 	margin:2%;
