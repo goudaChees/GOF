@@ -95,7 +95,7 @@
 						<div class="row w-100 m-0" id="board1List">
 							<div class="col-12 p-0">
 								<c:forEach var="i" items="${list}">
-									<a href="/detail.brd1?seq=${i.seq}">
+									<a href="/detail.brd1?seq=${i.seq}" class="list">
 										<div class="row w-100 writing">
 											<div class="col-3">
 												<div class="thumbnail">
@@ -214,9 +214,17 @@
 				}
 			}
 		}	
-	
+		
+		$(".list").on("click",function(){
+			if(${loginID==null}){
+				alert("로그인 후 이용가능합니다.");
+				location.href="/index.jsp"
+			}
+		})
+		
 		$("#write").on("click",function(){
-			if(${nickname==null}){
+			if(${loginID==null}){
+				alert("로그인 후 이용가능합니다.")
 				location.href="/index.jsp"
 			}
 			location.href="/board1/board1_Write.jsp";

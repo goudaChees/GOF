@@ -75,8 +75,8 @@
 					<div class="col-12">
 						<div class="row w-100 m-0" id="writingHeader">
 							<div class="col-12">
-								<p>지출의참견</p>
-								<span>구매가 고민되는 상품의 정보를 입력해주세요.</span>
+								<p>살까말까</p>
+								<span>살까말까 고민하고 있니? </span>
 							</div>
 						</div>
 						<form action="/modify.brd1" enctype="multipart/form-data" method="post">
@@ -173,11 +173,19 @@
 	     
 
 	     $("#delete").on("click",function(){
+				if(${nickname==null}){
+					alert("로그인 후 이용가능합니다.");
+					location.href="/index.jsp"
+				}
 	    	 $("#i"+${dto.seq}).attr("src","/img/pig2.png");//삭제 버튼 클릭 시 이미지 바꿈
 	    	 $("#isImgDeleted").val("Y");//이미지 삭제 하는 경우
 	     })
 		
 	  	$("#goToList").on("click",function(){
+			if(${nickname==null}){
+				alert("로그인 후 이용가능합니다.");
+				location.href="/index.jsp"
+			}
 	    	 location.href="/list.brd1?cpage=1";
 	     })
 	     

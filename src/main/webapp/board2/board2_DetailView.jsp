@@ -76,7 +76,7 @@
 						<div class="row w-100 m-0">
 							<div class="col-12 round_title" align=center>${dto.title}</div>
 						</div>
-						<div class="row w-100 my-2 ">
+						<div class="row w-100 my-2">
 							<div class="col-6 col-md-2">글번호 : ${dto.seq }</div>
 							<div class="col-6 col-md-4">작성자 : ${dto.nickname }</div>
 							<div class="col-6 col-md-4" id="wtime">작성일 : ${dto.write_date}</div>
@@ -213,7 +213,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row w-100 m-0" id="footer" style="background-color: #A2BAAC; font-weight: bold;">
+		<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
 			<div class="col-12 p-0 d-lg-none">
 				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
 					<a href="/csmain.cscenter" class="footerLink">
@@ -228,7 +228,7 @@
 						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br> 
 						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span>
 						<span style="margin-left: 10px; margin-right:10px" class="footerLetter">|</span>
-						<span class="footerLetter">E-MAIL : ttaengerang@gmail.com </span><br> 
+						<span>E-MAIL : 4989 - 4284 </span><br> 
 						<span style="color: #FFF2CC;font-size:min(15px,4vw);line-height:40px;">COPYRIGHT BY PHOENIX </span>
 					</div>
 				</div>
@@ -240,7 +240,7 @@
 					<a href="/csmap.cscenter" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
 					<div style="margin-top:30px ; text-align:left; margin-bottom:15px">
 						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br>
-						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span style="margin-left:20px" class="footerLetter">E-MAIL : ttaengerang@gmail.com </span><br>
+						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span style="margin-left:20px" class="footerLetter">E-MAIL : 4989 - 4284 </span><br>
 						<span style="color:#FFF2CC">COPYRIGHT BY YUNJI AYEONG WOOHYENG JEONGYOEN HEESEUNG IN  PHOENIX  </span>
 					</div>
 				</div>
@@ -263,8 +263,7 @@
 			let money = $("#"+seq).val();
 			let moneyForm = money + "원";
 			$("#w"+seq).text(moneyForm);
-		}
-			
+		}		
 	}
 	
 	if(${timeover}){
