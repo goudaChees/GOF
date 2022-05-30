@@ -90,7 +90,7 @@
 								<div class="row w-100 m-0">
 									<div class="col-12">
 
-										<input type="text" name="title" maxlength="30" id="title" placeholder="제목은 최대 100자 까지 입력가능합니다." value="${dto.title}">
+										<input type="text" name="title" maxlength="30" id="title" placeholder="제목은 최대 30자 까지 입력가능합니다." value="${dto.title}">
 
 									</div>
 									
@@ -154,6 +154,12 @@
 </form>
 
 	<script>
+	window.onload = function(){
+	if(${loginNN==null}){
+		alert("로그인 후 이용 가능합니다.")
+		location.href="/index.jsp"
+	}
+	}
 		$('#summernote').summernote({
 		  placeholder: '구매하고 싶은 상품정보를 입력해주세요. 최대 1300자까지 입력가능합니다.',
 		  tabsize: 2,

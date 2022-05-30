@@ -161,6 +161,7 @@ a:hover{
        let inok = false;
        	$("#btn").on("click",function(){
        		$("#btn").text("매일 발송중");
+       		$("#btn").attr("disabled","true");
        		$("#isok").css("display","inline");
        		$.ajax({
        			url:"/findpw.mail",
@@ -170,6 +171,7 @@ a:hover{
        		}).done(function(resp){
        			$("#ck").val(resp);
        			$("#btn").text("메일 재발송");
+       			$("#btn").removeAttr("disabled");
        			$("#mailok").css("display","inline");
        		})
        		$("#isok").on("keyup",function(){
