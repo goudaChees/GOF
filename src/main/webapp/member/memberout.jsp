@@ -31,10 +31,16 @@ input[type=button], input[type=submit] {
 	margin-top: 10px;
 	margin-bottom: 5px;
 	height: 30px;
+	cursor:pointer;
+}
+
+input[type=button]:hover, input[type=submit]:hover {
+	background-color: #7F626A;
 }
 
 input:focus {
 	outline:none;
+	cursor:default;
 }
 </style>
 </head>
