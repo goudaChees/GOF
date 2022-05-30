@@ -113,7 +113,7 @@
 												<div class="row">
 													<input type="hidden" value=${i.seq }>
 													<div class="col-12 itemLine" id="itemName_${i.seq }">${i.item}</div>
-													<div class="col-12 writingTitle"><span id="n${i.seq }" style="display:none;">  new!</span> ${i.title} <p class="d-none d-sm-inline">${i.reply_count }</p></div>
+													<div class="col-12 writingTitle"><span id="n${i.seq }" style="display:none;"><img src="/img/new.gif" style="width:25px;"></span> ${i.title} <p class="d-none d-sm-inline">${i.reply_count }</p></div>
 													<div class="col-12 writingEtc">
 														${i.writer} <i class="bi bi-dot"></i><span id="w${i.seq }"> ${i.write_date} </span><i class="bi bi-dot"></i> 조회 ${i.view_count}
 													</div>
