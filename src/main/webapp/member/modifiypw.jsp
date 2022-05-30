@@ -31,6 +31,11 @@ input[type=button] {
 	margin-top: 10px;
 	margin-bottom: 5px;
 	height: 30px;
+	cursor:pointer;
+}
+
+input[type=button]:hover {
+	background-color: #7F626A;
 }
 
 input:focus {
@@ -39,6 +44,7 @@ input:focus {
 
 input[type=button]:disabled{
 	background-color: #C7B7BB;
+	cursor:default;
 }
 </style>
 </head>

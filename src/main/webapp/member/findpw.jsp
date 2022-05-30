@@ -23,6 +23,7 @@ input {
 	border-radius: 15px;
 	width: 200px;
 	text-align: center;
+	margin-bottom: 5px;
 }
 button {
 	border: 2px solid #9D8189;
@@ -31,6 +32,16 @@ button {
 	background-color: #9D8189;
 	margin-top: 20px;
 	margin-bottom: 15px;
+	cursor:pointer;
+}
+
+button:hover {
+	background-color: #7F626A;
+}
+
+button:disabled{
+	background-color: #C7B7BB;
+	cursor:default;
 }
 
 input:focus {
@@ -160,7 +171,7 @@ a:hover{
        })
        let inok = false;
        	$("#btn").on("click",function(){
-       		$("#btn").text("매일 발송중");
+       		$("#btn").text("메일 발송중");
        		$("#isok").css("display","inline");
        		$.ajax({
        			url:"/findpw.mail",

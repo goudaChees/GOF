@@ -32,7 +32,13 @@ button {
 	background-color: #9D8189;
 	margin-top: 20px;
 	margin-bottom: 30px;
+	cursor:pointer;
 }
+
+button:hover {
+	background-color: #7F626A;
+}
+
 
 input:focus {
 	outline:none;
