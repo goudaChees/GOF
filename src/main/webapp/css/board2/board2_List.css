@@ -159,7 +159,7 @@
 }
 
 
-#title_limit{
+#title_limit, #nickname_limit{
 	white-space : nowrap;
 	overflow:hidden;
 	text-overflow: ellipsis;

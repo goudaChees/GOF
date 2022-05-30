@@ -89,8 +89,12 @@
 								</div>
 							</div>
 							<div class="col-12">
-								<div class="row" style="height:50%">
-									<div class="col-12 my-2" >${dto.contents}</div>
+								<div class="row" style="height:50% ">
+									<div class="col-12 my-2" style="width:100%;">
+										<pre style="white-space: pre-wrap;">
+											<c:out value="${dto.contents}" escapeXml="false"/>
+										</pre>
+									</div>
 								</div>	
 							</div>
 							<div class="col-12">
@@ -147,7 +151,7 @@
 												<div class="col-12 col-sm-6">닉네임 : ${crdto.nickname}</div>
 											</div>
 											<div class="row p-0">
-												<div class="col-12 p-0" id=best><textarea class="best" disabled >${crdto.contents}</textarea></div>
+												<div class="col-12 p-0" id=best><textarea class="best" style="white-space:pre" disabled >${crdto.contents}</textarea></div>
 											</div>				
 										</div>
 										<div class="col-2 p-0" style="margin-top: 10px;"><img src="/img/best2.png" style="width:80px; height:80px; "></div>

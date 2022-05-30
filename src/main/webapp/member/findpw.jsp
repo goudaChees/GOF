@@ -121,8 +121,9 @@ a:hover{
     		   dataType:"json",
     		   data:{email:$("#email").val()
     			   }
-    	   }).always(function(resp){
-    		   if(resp){   
+
+    	   }).done(function(resp){
+    		   if(resp){
         			emailok = true;
                }
                if(!resp){
@@ -166,7 +167,7 @@ a:hover{
 				dataType:"json",
 				data:{email:$("#email").val()
 					}
-       		}).always(function(resp){
+       		}).done(function(resp){
        			$("#ck").val(resp);
        			$("#btn").text("메일 재발송");
        			$("#mailok").css("display","inline");
@@ -286,7 +287,7 @@ a:hover{
        				email:$("#email").val(),
        				newpw:$("#newpw").val()
        				}
-       		}).always(function(resp){
+       		}).done(function(resp){
        			if(resp==1){
        			alert("비밀번호가 변경되었습니다.");
        			window.close();

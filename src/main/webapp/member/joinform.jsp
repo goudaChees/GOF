@@ -104,7 +104,7 @@
 										<div class="col-3">이메일</div>
 										<div class="col-9">
 											<input type="text" id="email" name="email">
-											<button type="button" id="sendmail" disabled>인증메일 발송</button>
+											<button type="button" id="sendmail" disabled>인증메일 발송</button><span id="emailresult"></span>
 										</div>
 										<div class="col-3"></div>
 										<div class="col-9">
@@ -524,6 +524,7 @@
 				
 				$("#join").attr("disabled","true");
 				$("#sendmail").attr("disabled","true");
+				$("#emailresult").text("");
 				$("#emailKeyInput").css("display","none");
 				$("#okbtn").css("display","none")
 				return false;
@@ -539,6 +540,7 @@
 				
 				$("#join").attr("disabled","true");
 				$("#sendmail").attr("disabled","true");
+				$("#emailresult").text("");
 				$("#emailKeyInput").css("display","none");
 				$("#okbtn").css("display","none")
 				return false;
@@ -546,27 +548,37 @@
 				$("#email").css("border", "1px solid blue");
 				$("#emailCheckResult").text("");
 				$("#sendmail").removeAttr("disabled");
-				$("#sendmail").on("click",function(){
+				
+				$("#sendmail").on("click",function(){ // 메일 발송 버튼 클릭시
 					let email = $("#email").val();
 					if(email == ""){
 						 alert("메일칸을 작성해주세요.");
 						 isEmailOk = false;
 						 $("#join").attr("disabled","true");
 						 $("#sendmail").attr("disabled","true");
+						 $("#emailresult").text("");
 						 $("#emailKeyInput").css("display","none");
 						 $("#okbtn").css("display","none")
 						 return false;
 					}
+					this.attr("disabled","true");
+					$("#emailresult").css("color","orange");
+					$("#emailresult").text("발송중...");					
+					
 					$.ajax({
 						type:"post",
 						url:"/send.mail",
 						dataType:"json",
 						data:{email:$("#email").val()}
+					
 					}).done(function(resp){
-						alert("메일이 발송되었습니다.");
+						
 						$("#emailKey").val(resp);
+						$("#emailresult").css("color","blue");
+						$("#emailresult").text("발송완료");
 						return false;
 					})
+					$("#sendmail").removeAttr("disabled");
 					$("#sendmail").text("인증메일 재발송");
 					$("#emailKeyInput").css("display","inline");
 				})
@@ -575,7 +587,6 @@
 				})
 				$("#okbtn").on("click",function(){
 					if($("#emailKey").val()==$("#emailKeyInput").val()){
-						alert("메일이 인증되었습니다.");
 						$("#emailKeyInput").css("display", "none");
 						$("#emailCheckResult").css("color", "blue");
 						$("#emailCheckResult").text("이메일 인증 완료");
@@ -587,8 +598,9 @@
 							$("#join").removeAttr("disabled");
 						}
 					}else if(!($("#emailKey").val()==$("#emailKeyInput").val())){
-						alert("메일 인증이 실패하였습니다.");
 						$("#emailKeyInput").css("border", "1px solid red");
+						$("#emailCheckResult").css("color", "red");
+						$("#emailCheckResult").text("인증키가 일치하지 않습니다.");
 						isEmailOk = false;
 						
 						$("#join").attr("disabled","true");
@@ -609,14 +621,14 @@
 				$("#join").attr("disabled","true");
 				return false;
 			}
-			let nnRegex = /^[가-힣A-Za-z0-9_]{3,8}$/;
+			let nnRegex = /^[가-힣A-Za-z0-9_]{3,6}$/;
 			let nnResult = nnRegex.test(nickname);
 
 			if (!nnResult) {
 				$("#nickname").css("border", "1px solid red");
 				$("#nnCheckResult").css("color", "red");
 				$("#nnCheckResult").text(
-						"한글, 영문, 숫자, 특수기호(_)를 조합하여 3~8자로 작성");
+						"한글, 영문, 숫자, 특수기호(_)를 조합하여 3~6자로 작성");
 				isNNOk = false;
 				
 				$("#join").attr("disabled","true");
