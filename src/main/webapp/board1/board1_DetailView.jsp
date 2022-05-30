@@ -420,14 +420,14 @@
 			cancel.text("취소");
 			cancel.attr("class","cancel_btn");
 			$(".cancel_btn").on("click",function(){
-				location.reload;
+				location.reload();
 			})
 			$(this).parent().append(cancel);
 			
 			agreeRadio.children().change(function() {//radio 선택 변경 때마다 해당 이미지 변경
 			    if (agreeRadio.children()[0].checked) {
 			    	agreeRadio.children().parent().prev().children().attr("src","/img/승인.png")
-			    }else if(agreeRadio.children()[1].checked) {
+			    }else if(agreeRadio.children()[2].checked) {
  			    	agreeRadio.children().parent().prev().children().attr("src","/img/불가.png")
 			    }
 			});
