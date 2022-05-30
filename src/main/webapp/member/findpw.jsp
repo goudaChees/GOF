@@ -171,7 +171,7 @@ a:hover{
        })
        let inok = false;
        	$("#btn").on("click",function(){
-       		$("#btn").text("매일 발송중");
+			$("#btn").text("메일 발송중");
        		$("#btn").attr("disabled","true");
        		$("#isok").css("display","inline");
        		$.ajax({

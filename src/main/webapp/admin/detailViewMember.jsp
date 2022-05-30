@@ -172,42 +172,42 @@
 		</div>
 	</div>
 		
-	<div class="row w-100 m-0" id="footer" style="background-color:#A2BAAC; font-weight:bold">
-		<div class="col-12 p-0 d-lg-none">
-			<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
-				<a href="/csmain.cscenter" class="footerLink">
-					<span>자주 묻는 질문</span></a>
-				<span style="margin-left: 20px" class="footerBar">|</span> 
-				<a href="/csemail.cscenter" class="footerLink">
-					<span style="margin-left: 20px">1 : 1 문의</span></a>
-				<span style="margin-left: 20px" class="footerBar">|</span> 
-				<a href="/csmap.cscenter" class="footerLink">
-					<span style="margin-left: 20px;">찾아오시는 길</span></a><br>
-				<div style="margin-top: 15px; text-align: center">
-					<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br> 
-					<span class="footerLetter">대 표 전 화 : 4989 - 4284</span>
-					<span style="margin-left: 10px; margin-right:10px" class="footerLetter">|</span>
-					<span>E-MAIL : 4989 - 4284 </span><br> 
-					<span style="color: #FFF2CC;font-size:min(15px,4vw);line-height:40px;">COPYRIGHT BY PHOENIX </span>
+	<div class="row w-100 m-0" id="footer" style="background-color: #A2BAAC; font-weight: bold;">
+			<div class="col-12 p-0 d-lg-none">
+				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
+					<a href="/csmain.cscenter" class="footerLink">
+						<span>자주 묻는 질문</span></a>
+					<span style="margin-left: 20px" class="footerBar">|</span> 
+					<a href="/csemail.cscenter" class="footerLink">
+						<span style="margin-left: 20px">1 : 1 문의</span></a>
+					<span style="margin-left: 20px" class="footerBar">|</span> 
+					<a href="/csmap.cscenter" class="footerLink">
+						<span style="margin-left: 20px;">찾아오시는 길</span></a><br>
+					<div style="margin-top: 15px; text-align: center">
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br> 
+						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span>
+						<span style="margin-left: 10px; margin-right:10px" class="footerLetter">|</span>
+						<span class="footerLetter">E-MAIL : ttaengerang@gmail.com </span><br> 
+						<span style="color: #FFF2CC;font-size:min(15px,4vw);line-height:40px;">COPYRIGHT BY PHOENIX </span>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="d-none d-lg-block col-lg-9">
-			<div style="margin-left:40px ; margin-top:20px;text-align:left">
-				<a href="/csmain.cscenter" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
-				<a href="/csemail.cscenter" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
-				<a href="/csmap.cscenter" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
-				<div style="margin-top:30px ; text-align:left; margin-bottom:15px">
-					<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br>
-					<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span style="margin-left:20px" class="footerLetter">E-MAIL : 4989 - 4284 </span><br>
-					<span style="color:#FFF2CC">COPYRIGHT BY YUNJI AYEONG WOOHYENG JEONGYOEN HEESEUNG IN  PHOENIX  </span>
+			<div class="d-none d-lg-block col-lg-9">
+				<div style="margin-left:40px ; margin-top:20px;text-align:left">
+					<a href="/csmain.cscenter" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csemail.cscenter" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csmap.cscenter" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
+					<div style="margin-top:30px ; text-align:left; margin-bottom:15px">
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br>
+						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span style="margin-left:20px" class="footerLetter">E-MAIL : ttaengerang@gmail.com </span><br>
+						<span style="color:#FFF2CC">COPYRIGHT BY YUNJI AYEONG WOOHYENG JEONGYOEN HEESEUNG IN  PHOENIX  </span>
+					</div>
 				</div>
 			</div>
+			<div class="d-none d-lg-block col-lg-3" style="text-align:right">
+				<img src="/img/footerLogo.png" style="width:70%;margin-right:10px;margin-top:10%">
+			</div>
 		</div>
-		<div class="d-none d-lg-block col-lg-3" style="text-align:right">
-			<img src="/img/footerLogo.png" style="width:70%;margin-right:10px;margin-top:10%">
-		</div>
-	</div>
 </div>
 
 </body>
