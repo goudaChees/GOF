@@ -561,7 +561,7 @@
 						 $("#okbtn").css("display","none")
 						 return false;
 					}
-					this.attr("disabled","true");
+					$("#sendmail").attr("disabled","true");
 					$("#emailresult").css("color","orange");
 					$("#emailresult").text("발송중...");					
 					
