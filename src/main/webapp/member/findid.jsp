@@ -44,11 +44,11 @@ input:focus {
 	outline:none;
 }
 
-a{
+p{
 	text-decoration: none;
 	color:#9D8189;
 }
-a:hover{
+p:hover{
 	font-weight: bold;
 	color:#9D8189;
 }
@@ -57,12 +57,19 @@ a:hover{
 </head>
 <body>
 	<h5>아이디 찾기</h5>
-	<p><a href="https://accounts.kakao.com/weblogin/find_account_guide?continue=http://www.kakao.com/main#pageFindAccountSelect">카카오 간편 로그인 회원은 여기를 클릭해주세요</a></p>
+	<p onclick='move()'>카카오 간편 로그인 회원은 여기를 클릭해주세요</p>
 	이름 : <input type="text" id="name" placeholder="이름을 적어주세요"><br>
 	이메일 : <input type="text" id="email" placeholder="가입하신 이메일을 적어주세요"><br>
 	<button type="button" id="btn">아이디 찾기</button><br>
 	<span style="display:none;" id="findid">찾으시는 ID : </span><input type="text" id="id" readonly="readonly" style="display: none;">
 	<script>
+	
+	function move(){
+		window.close();
+ 		let link = 'https://accounts.kakao.com/weblogin/find_account_guide?continue=http://www.kakao.com/main#pageFindAccountSelect';
+ 		window.open(link);
+ 	} 	
+	
 		$("#btn").on("click",function(){
 			if($("#name").val()==''){
 				alert("아이디를 적어주세요")
