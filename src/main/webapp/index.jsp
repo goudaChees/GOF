@@ -105,7 +105,7 @@
 									<h3 style="padding-left: 30px;">당신이 부자가 될 때 까지</h3>
 									<h5 style="padding-left: 30px;">
 										<img src="/img/pinkpig_front.png" style="width: 8%">
-										${loginNN }님환영합니다! <img src="/img/pinkpig_paw.png"
+										${loginNN }님 환영합니다! <img src="/img/pinkpig_paw.png"
 											style="width: 8%">
 									</h5>
 								</div>
