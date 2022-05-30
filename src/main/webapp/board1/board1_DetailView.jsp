@@ -403,9 +403,9 @@
 			
 			
 			if($(this).prev().val()=='승인'){//원래의 선택 값 부분에 dafault로 선택 처리
-				agreeRadio.children()[0].checked=true;
+				$(agreeRadio.children()[0]).is(":checked");
 			}else if($(this).prev().val()=='불가'){
-				agreeRadio.children()[1].checked=true;
+				$(agreeRadio.children()[1]).is(":checked");
 			}
 			
 			//수정 버튼 클릭 시 수정 버튼 대신 완료버튼으로 치환
