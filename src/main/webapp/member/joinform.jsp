@@ -57,7 +57,7 @@
 							</div>
 							<div class="row" id="joinFormArea">
 								<div class="col-12" style="height:100%;">
-									<form method="post" action="join.member" onsubmit="joinok()">
+									<form method="post" action="join.member" id="joinform">
 									<div class="row">
 										<div class="col-3">아이디</div>
 										<div class="col-9">
@@ -127,7 +127,7 @@
 										<div class="col-3"></div>
 										<div class="col-9" style="text-align: center;">
 											<input type="reset"	value="다시 입력" id="reset" class="order-1 order-lg-2">
-											<input type="submit" value="회원가입" id="join" class="order-2 order-lg-1" disabled> 
+											<input type="button" value="회원가입" id="join" class="order-2 order-lg-1" disabled> 
 										</div>
 									</div>
 									</form>
@@ -212,7 +212,7 @@
 				$("#id").css("border", "1px solid red");
 				$("#idCheckResult").css("color", "red");
 				$("#idCheckResult").text(
-						"영문 소문자, 숫자, 특수기호(_)를 조합하여 5~11자로 작성");
+						"영문 소문자, 숫자, 특수기호(_)를 사용하여 5~11자로 작성");
 				isIdOk = false;
 				$("#join").attr("disabled","true");
 				return false;
@@ -265,14 +265,14 @@
 				$("#join").attr("disabled","true");
 				return false;
 			}
-			let pwRegex = /^[a-zA-Z0-9]{8,12}$/gm; // 비밀번호 기본 검증
+			let pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,12}$/gm; // 비밀번호 기본 검증
 			let pwResult = pwRegex.test(pw);
 			if (!pwResult) {
 				$("#pw1").css("border", "1px solid red");
 				$("#pw2").css("border", "1px solid red");
 				$("#pw1CheckResult").css("color", "red");
 				$("#pw1CheckResult").text(
-						"영문 소문자, 대문자, 숫자를 사용하여 8~12자로 작성");
+						"영문 소문자, 대문자, 숫자를 조합하여 8~12자로 작성");
 				$("#pw2CheckResult").text("");
 				isPwOk = false;
 				isPw2Ok = false;
@@ -660,9 +660,16 @@
 			location.reload();       
 		})
 		
-		function joinok(){
-			Swal.fire('회원 가입이 완료되었습니다.');
-		}
+		
+		$("#join").on("click",function(){
+			Swal.fire('회원 가입이 완료되었습니다.').then((result) => {
+			  if (result.isConfirmed) {
+				  $("#joinform").submit();
+				  }
+			})
+		})
+		
+		
 	
 	</script>
 </body>
