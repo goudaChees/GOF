@@ -322,7 +322,7 @@
 	// 닉네임 검증
 	$("#nicknameTD").on("keyup",function() { 
 			let nickname = $("#nicknameTD").val();
-			let nicknameRegex = /^[가-힣a-zA-Z0-9_]{3,8}$/;
+			let nicknameRegex = /^[가-힣a-zA-Z0-9_]{3,6}$/;
 			
 			if (nickname == "") {
 				$("#ok").attr("disabled", true);
@@ -334,7 +334,7 @@
 			
 			if(!nicknameRegex.test(nickname)) {
 				$("#ok").attr("disabled", true);
-				$("#nicknameCheckResult").text("형식이 올바르지 않습니다.");
+				$("#nicknameCheckResult").text("한글, 영문, 숫자, 특수기호(_)를 사용하여 3~6자로 작성");
 				$("#nicknameCheckResult").css("color", "red");
 				isNNOk = false;
 				return false;
