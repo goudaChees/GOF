@@ -76,7 +76,7 @@
 						<div class="row w-100 m-0">
 							<div class="col-12 round_title" align=center>${dto.title}</div>
 						</div>
-						<div class="row w-100 my-2">
+						<div class="row w-100 my-2 ">
 							<div class="col-6 col-md-2">글번호 : ${dto.seq }</div>
 							<div class="col-6 col-md-4">작성자 : ${dto.nickname }</div>
 							<div class="col-6 col-md-4" id="wtime">작성일 : ${dto.write_date}</div>

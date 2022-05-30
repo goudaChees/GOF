@@ -52,12 +52,12 @@ idok{
 	margin-bottom: 10px;
 }
 
-a{
+p{
 	text-decoration: none;
 	color:#9D8189;
 }
 
-a:hover{
+p:hover{
 	font-weight: bold;
 	color:#9D8189;
 }
@@ -65,7 +65,7 @@ a:hover{
 </head>
 <body>
 		<h5>비밀번호 찾기</h5>
-		<p><a href="https://accounts.kakao.com/weblogin/find_account_guide?continue=http://www.kakao.com/main#pageFindAccountSelect">카카오 간편 로그인 회원은 여기를 클릭해주세요</a></p>
+		<p onclick='move()'>카카오 간편 로그인 회원은 여기를 클릭해주세요</p>
        <input type="text" id="id" placeholder="아이디를 적어주세요"><br>
        <input type="text" id="email" placeholder="이메일을 적어주세요"><br>
        <span id="isidmeailok" style="display: none">아이디 이메일 확인중</span><br>
@@ -81,8 +81,15 @@ a:hover{
        <span id="pwck2" style="display:none">비밀번호 확인중</span><br>
        <button id="btn2" style="display: none" disabled>비밀번호 적용</button>
        <script>
+       function move(){
+    	   	window.close();
+    		let link = 'https://accounts.kakao.com/weblogin/find_account_guide?continue=http://www.kakao.com/main#pageFindAccountSelect';
+    		window.open(link);
+    	} 
+       
        let idok = false;
        let emailok = false;
+      
        
        $("#id").on({
     		   keyup : function(){
@@ -171,7 +178,12 @@ a:hover{
        })
        let inok = false;
        	$("#btn").on("click",function(){
+<<<<<<< HEAD
+
+       		$("#btn").text("메일 발송중");
+=======
 			$("#btn").text("메일 발송중");
+>>>>>>> ff83cf43b9a14f8d4ab444c73f5ddb0ef906e981
        		$("#btn").attr("disabled","true");
        		$("#isok").css("display","inline");
        		$.ajax({
