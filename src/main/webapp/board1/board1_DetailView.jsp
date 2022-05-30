@@ -158,8 +158,8 @@
 																<img src="/img/${i.agree}.png">
 															</div>
 															<div class="radio" style="display: none">
-																<input type="radio" name="agree_re" value="승인">승인<br>
-																<input type="radio" name="agree_re" value="불가">불가
+																<input type="radio" name="agree_re" value="승인" id="r1${i.seq }">승인<br>
+																<input type="radio" name="agree_re" value="불가" id="r2${i.seq }">불가
 															</div>
 														</div>
 														<div class="col-8">
@@ -173,6 +173,8 @@
 														<div class="col-2">
 															<c:if test="${i.writer==nickname || id=='admin'}">
 																<div class="reply_btns">
+																	<input type="hidden" value=${i.contents }>
+																	<input type="hidden" value=${i.seq }>
 																	<input type="hidden" name="preAgree" value=${i.agree }>
 																	<input type="button" value="수정" class="modify_btn">
 																	<input type="button" value="삭제" class="delete_btn">
@@ -400,12 +402,15 @@
 			let agreeRadio = $(this).parent().parent().prev().prev().children().eq(1);
 			agreeRadio.css('display','inline-block');
 			//라디오 선택 부분 활성화
-			
-			
-			if($(this).prev().val()=='승인'){//원래의 선택 값 부분에 dafault로 선택 처리
-				agreeRadio.children()[0].checked=true;
+			let rseq = $(this).prev().prev().val();
+			console.log(rseq);
+			console.log($(this).prev().val());
+ 			if($(this).prev().val()=='승인'){//원래의 선택 값 부분에 dafault로 선택 처리
+ 				agreeRadio.children()[0].checked=true;
+//  				$("#r1"+rseq).attr("checked",true);
 			}else if($(this).prev().val()=='불가'){
-				agreeRadio.children()[1].checked=true;
+ 				agreeRadio.children()[2].checked=true;
+// 				$("#r2"+rseq).attr("checked",true);
 			}
 			
 			//수정 버튼 클릭 시 수정 버튼 대신 완료버튼으로 치환
@@ -418,8 +423,10 @@
 			//수정 버튼 클릭 시 삭제 버튼 대신 취소버튼으로 치환
 			let cancel = $("<button>");
 			cancel.text("취소");
-			cancel.attr("class","cancel_btn");
-			$(".cancel_btn").on("click",function(){
+
+			cancel.attr({"class":"cancel_btn","type":"button"});
+			
+			cancel.on("click",function(){
 				location.reload();
 			})
 			$(this).parent().append(cancel);

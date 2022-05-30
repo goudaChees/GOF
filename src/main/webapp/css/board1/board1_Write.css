@@ -183,3 +183,15 @@ textarea:focus{
 	background-color: #F193A1;
 	cursor:pointer;	
 }
+
+#cancel_Btn{
+	padding:1%;
+	margin-bottom:10px;
+	color: #806c71;
+	font-size:15px;
+	background-color: #FFF0F0;	
+	border: 2px solid #F193A199;
+	border-radius: 20px;
+	width:100px;
+	text-align:center;
+}
