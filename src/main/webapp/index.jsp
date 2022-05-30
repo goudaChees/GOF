@@ -41,7 +41,7 @@
 									<c:when test="${loginID =='admin'}">
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd1?cpage=1"
-											style="color: #664E55">살까말까</a></li>
+											style="color: #664E55">살가말가</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd2" style="color: #664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
@@ -116,7 +116,7 @@
 						</div>
 					</div>
 					<div class="row w-100 m-0 my-5 px-3" >
-						<div class="col-12 col-md-10" id=imgbox>
+						<div class="col-12 col-md-8" id=imgbox>
 							<div class="row">
 								<div class="col-6 col-md-3">
 									<a href="/list.brd1?cpage=1">

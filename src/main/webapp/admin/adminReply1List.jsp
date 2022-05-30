@@ -57,7 +57,7 @@
 						<div class="col-12">
 							<div class="row w-100 m-0" id="Board1Header">
 								<div class="col-12">
-								<p>Admin Page</p>
+								<p>[관리자 전용] 페이지 입니다.</p>
 								<ul class="nav nav-tabs">
 									<li class="nav-item"><a class="nav-link"
 										href="/adminmain.admin">회원 정보 관리</a></li>
@@ -65,7 +65,7 @@
 										href="/adminBoardsList.admin?board=1">게시글
 										관리</a></li>
 									<li class="nav-item"><a class="nav-link active"
-										aria-current="page" href="/adminReplyList.admin?board=1">댓글 관리</a></li>
+										aria-current="page" href="/adminReplysList.admin?board=1">댓글 관리</a></li>
 								</ul>
 							</div>
 						</div>	
