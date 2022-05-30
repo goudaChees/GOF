@@ -85,7 +85,7 @@
 								<span>최저가 링크를 올려주세요</span>
 							</div>
 						</div>
-						<div class="row w-100 m-0" id=board2List align=center>
+						<div class="row w-100 m-0" id=board2List>
 							<div class="col-12">
 								<div class="row w-100 m-0">
 									<div class="col-12">

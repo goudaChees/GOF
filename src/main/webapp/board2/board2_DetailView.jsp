@@ -74,7 +74,7 @@
 				<div class="row w-100 m-0" id="board2Outline">
 					<div class="col-12">
 						<div class="row w-100 m-0">
-							<div class="col-12 round_title" align=center>${dto.title}</div>
+							<div class="col-12 round_title" style="border-bottom: 2px dashed #FFC4A9;" align=center>${dto.title}</div>
 						</div>
 						<div class="row w-100 my-2 ">
 							<div class="col-6 col-md-2">글번호 : ${dto.seq }</div>
