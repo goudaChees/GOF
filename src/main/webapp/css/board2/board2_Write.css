@@ -201,6 +201,7 @@ input:focus {outline:1px solid #F4ACB7;}
 
 .note-editable{
 	height: 37vh !important ;
+	text-align:left;
 }
 
 #summernote::placeholder{
