@@ -24,6 +24,7 @@
 		
 		openWin = window.open("/admin/banishMember.jsp", "",
 				"top=100,left=200,width=550,height=350");	
+
 	}
 	
 	function openChild2(){
@@ -31,7 +32,7 @@
 		
 		openWin2 = window.open("/admin/adminModifyMember.jsp", "",
 				"top=100,left=200,width=550,height=350");
-		
+
 // 		openWin2 = window.open("/admin/adminPwCheck.jsp", "",
 // 				"top=100,left=200,width=550,height=350");	임시로 가려둠
 
@@ -151,7 +152,7 @@
 								<br>
 								<div class="row">
 									<div class="col-12">
-										<input id="adminTF" type="text" style="color: red; width:200px;" value="관리자 확인이 필요합니다. " readonly>
+										<input id="adminTF" type="text" style="color: red; width:200px; background-color:white;" value="관리자 확인이 필요합니다. " disabled>
 									</div>
 								</div>
 									
@@ -241,7 +242,6 @@
 			
 		})
 
-
 	})
 	
 	$("#banish").on("click", function(){
@@ -271,7 +271,7 @@
 				}).then((result) => {
 				  if (result.isConfirmed) {				
 				    location.href="/logout.member";				  
-				  } 
+				  }
 				})
 				return
 			  }

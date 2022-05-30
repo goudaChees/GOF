@@ -117,13 +117,15 @@
 														data-bs-target="#panelsStayOpen-collapseOne"
 														aria-expanded="true"
 														aria-controls="panelsStayOpen-collapseOne">안녕하세요!
-														앞날의 지침입니다.</button>
+														<b>땡그랑</b> 입니다.</button>
 												</h2>
 												<div id="panelsStayOpen-collapseOne"
 													class="accordion-collapse collapse show"
 													aria-labelledby="panelsStayOpen-headingOne">
 													<div class="accordion-body">
-														<strong>앞날의 지침</strong> 에 오신 것을 환영합니다!
+														당신이 부자가 될 때 까지! <br>
+														<strong>땡그랑</strong> 에 오신 것을 환영합니다! 
+														
 													</div>
 												</div>
 											</div>
@@ -214,7 +216,7 @@
 									</div>
 									<!-- 						탭2 1:1메일문의		 -->
 									<div class="tab-pane fade" id="csmail">
-										<form action="/sendmail.cscenter" method="post">
+										<form name="form_mail" action="/sendmail.cscenter" method="post">
 											<div class="row w-100 m-0">
 												<div class="col-12">사이트 관련 문의사항을 보내주세요.</div>
 											</div>
@@ -247,7 +249,7 @@
 											<div class="row w-100 m-0"><br><br></div>											
 											<div class="row w-100 m-0">
 												<div class="col-12">
-													<button type=submit id="sendbtn">Send Email</button>
+													<button type=button id="sendbtn" onclick="mailConfirm()">Send Email</button>
 												</div>
 											</div>
 										</form>
@@ -401,7 +403,7 @@
 		  })
 			
 		  
-		  $("#sendbtn").on("click", function(){
+		  function mailConfirm(){
 			let text = $("#emailAddrBox").val();
 			
     		Swal.fire({
@@ -419,10 +421,24 @@
     					'발송 완료!',
     					'문의해 주셔서 감사합니다.',
     					'success'
-    				)	
+    				)
+    				document.form_mail.submit();
+    			}else if (result.isDenied) {
+    				window.reload()
     			}
     		})
-		})
+		}
+
+// 		$("#sendbtn").on("click", function(){
+// 			let mailaddr = $("#emailAddrBox").val();
+// 			let result = confirm("메일주소 확인"+mailaddr);
+// 			if (result) {
+// 				window.reload()
+// 			}else {
+				
+// 			}			
+// 		})
+		
 	</script>
 </body>
 
