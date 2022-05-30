@@ -69,8 +69,13 @@ input:focus {
 				$("#id").val("");
 				$("#id").focus();
 			} else {
-				window.close();
-				opener.location.href="/realOut.member"
+				let result = confirm("탈퇴하시겠습니까?");
+				if(result){
+					window.close();
+					opener.location.href="/realOut.member"
+				} else {
+					return false;
+				}
 			}
 
 		})

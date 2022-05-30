@@ -97,7 +97,7 @@
 						<img src="/img/after_main.png" id="bgImg">
 					</div>
 					<div class="col-12">
-					<div class="row w-100 m-0" id="content_title">
+					<div class="row w-100 m-0" style="margin-bottom:50px;">
 						<div class="col-12 col-sm-8" align=left>
 							<div class="row">
 								<div class="col-12" style="text-align: left">
@@ -115,32 +115,40 @@
 							<img src="/img/flyingPig.png" id=flyingpig style="width: 200px">
 						</div>
 					</div>
-					<div class="row w-100 m-0">
-						<div class="col-12" id=imgbox>
+					<div class="row w-100 m-0" >
+						<div class="col-12 col-md-10" id=imgbox>
 							<div class="row">
 								<div class="col-6 col-md-3">
+									<a href="/list.brd1?cpage=1">
 									<div id=card>
 										<img src="/img/basket.jpg" class="cardimg">
 										<p>살까말까</p>
 									</div>
+									</a>
 								</div>
 								<div class="col-6 col-md-3">
+									<a href="/list.brd2">
 									<div id=card>
-										<img src="/img/basket.jpg" class="cardimg">
+										<img src="/img/shopping-bag.jpg" class="cardimg">
 										<p>최저가경매</p>
 									</div>
+									</a>
 								</div>
 								<div class="col-6 col-md-3">
+									<a href="/csmain.cscenter">
 									<div id=card>
-										<img src="/img/basket.jpg" class="cardimg">
+										<img src="/img/clipboard.jpg" class="cardimg">
 										<p>고객센터</p>
 									</div>
+									</a>
 								</div>
 								<div class="col-6 col-md-3">
+									<a href="/joinform.member">
 									<div id=card>
-										<img src="/img/basket.jpg" class="cardimg">
+										<img src="/img/user.jpg" class="cardimg">
 										<p>마이페이지</p>
 									</div>
+									</a>
 								</div>
 							</div>
 						</div>

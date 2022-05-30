@@ -89,7 +89,9 @@
 							<div class="col-12">
 								<div class="row w-100 m-0">
 									<div class="col-12">
-										<input type="text" name="title" maxlength="30" id="title" value="${dto.title}">
+
+										<input type="text" name="title" maxlength="100" id="title" placeholder="제목은 최대 100자 까지 입력가능합니다." value="${dto.title}">
+
 									</div>
 									
 									<div class="col-12" id="note_content">
@@ -153,7 +155,7 @@
 
 	<script>
 		$('#summernote').summernote({
-		  placeholder: '내용을 작성해주세요',
+		  placeholder: '구매하고 싶은 상품정보를 입력해주세요. 최대 1300자까지 입력가능합니다.',
 		  tabsize: 2,
 		  height : $("#note_content").height()*1,
 			//disableResizeEditor:true,
