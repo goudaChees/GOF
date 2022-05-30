@@ -667,7 +667,6 @@
 			}
 		})
 		
-		
 		$("#reset").on("click",function(){
 			location.reload();       
 		})
