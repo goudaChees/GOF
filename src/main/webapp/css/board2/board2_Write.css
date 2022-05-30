@@ -203,3 +203,6 @@ input:focus {outline:1px solid #F4ACB7;}
 	height: 37vh !important ;
 }
 
+#summernote::placeholder{
+	text-align:center;
+}
