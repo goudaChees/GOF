@@ -414,10 +414,10 @@
 			//수정 버튼 클릭 시 삭제 버튼 대신 취소버튼으로 치환
 			let cancel = $("<button>");
 			cancel.text("취소");
+
 			cancel.attr({"class":"cancel_btn","type":"button"});
 			
 			cancel.on("click",function(){
-
 				location.reload();
 			})
 			$(this).parent().append(cancel);
