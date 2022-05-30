@@ -264,11 +264,6 @@
 	<script>
 	<!--  게시글 script-------------------------------------------------------------------- -->
 		window.onload = function(){	
-			console.log(${glist});
-			if(${nickname==null}){
-				alert("로그인 후 이용 가능합니다.")
-				location.href="/index.jsp"
-			}
 //          0. 날짜 변환(오늘날짜는 시간, 전날은 연,월,일 표시)
 			let today=new Date();//오늘날짜
 			
@@ -440,6 +435,10 @@
 			});
 			
 			ok.on("click",function(){//댓글 공백 제한 처리
+				if(${nickname==null}){
+					alert("로그인 후 이용가능합니다.");
+					location.href="/index.jsp"
+				}
 				if($(this).parent().parent().prev().children().eq(1).val().trim()==''){
 					alert("댓글 내용을 입력해주세요.");
 					return false;

@@ -89,8 +89,8 @@
 					<div class="col-12">
 						<div class="row w-100 m-0" id="writingHeader">
 							<div class="col-12">
-								<p>지출의참견</p>
-								<span>구매가 고민되는 상품의 정보를 입력해주세요.</span>
+								<p>살까말까</p>
+								<span>살까말까 고민하고 있니? </span>
 							</div>
 						</div>
 						<form action="/write.brd1" enctype="multipart/form-data"
@@ -195,10 +195,18 @@
 	     })  
 	 	
 		$("#toList").on("click",function(){
+			if(${loginID==null}){
+				alert("로그인 후 이용가능합니다.");
+				location.href="/index.jsp"
+			}
 			location.href="/list.brd1?cpage=1";
 		})
 	     
 	   $("#submit").on("click",function(){
+			if(${loginID==null}){
+				alert("로그인 후 이용가능합니다.");
+				location.href="/index.jsp"
+			}
 	     let item_price = $("#item_price").val().trim();
 	     let title= $("#title").val().trim();
 	     let item = $("#item").val().trim();
@@ -262,14 +270,11 @@
 			  }
 			  $("#cancel_Btn").css("display","inline-block");
 		  }
-		  
 			// 파일 업로드 취소
 			  $("#cancel_Btn").on("click",function(){
 					$("#img_section").attr("src","/img/pig2.png");
 					$("#upload_file").val("");
 			  })
-
-
 	 </script>
 </body>
 </html>

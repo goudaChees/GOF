@@ -254,6 +254,8 @@
 	<script>
 	// 머니폼
 	window.onload = function(){
+		console.log(loginNN);
+		console.log(loginID);
 		if(${loginNN==null}){
 			alert("로그인 후 이용 가능합니다.")
 			location.href="/index.jsp"
