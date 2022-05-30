@@ -176,7 +176,9 @@ public class Board1Controller extends HttpServlet {
 			}else if(uri.equals("/toModifyForm.brd1")) {
 				//--------------------------------------수정 폼으로 가기
 				int seq = Integer.parseInt(request.getParameter("seq"));
+				String nickname = (String)session.getAttribute("loginNN");
 				Board1DTO dto = dao.selectBySeq(seq);
+				request.setAttribute("nickname", nickname);
 				request.setAttribute("dto", dto);
 				request.getRequestDispatcher("/board1/board1_Modify.jsp").forward(request, response);
 

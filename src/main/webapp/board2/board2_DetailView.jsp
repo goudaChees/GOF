@@ -254,6 +254,10 @@
 	<script>
 	// 머니폼
 	window.onload = function(){
+		if(${loginNN==null}){
+			alert("로그인 후 이용 가능합니다.")
+			location.href="/index.jsp"
+		}
 		for(let i=0;i<${jrdto}.length;i++){
 			let seq = ${jrdto}[i].seq;
 			let money = $("#"+seq).val();
@@ -305,10 +309,7 @@
 		//글 삭제
 	})
 	$("#modi").on("click",function(){
-		result = window.confirm("정말 수정하시겟습니까?");
-		if(result){
 			location.href = "/modi.brd2?seq="+${dto.seq}
-		}
 		//글 수정
 	})
 	$(".delbtn").on("click",function(){
@@ -340,8 +341,6 @@
 	})
 	//댓글 선택
 	$(".modibtn").on("click",function(){
-		result = window.confirm("수정 하시겟습니까?");
-		if(result){
 			$(this).parent().parent().parent().siblings(".reply").children(".price").children().removeAttr("disabled");
 			$(this).parent().parent().siblings(".contents").children().children(".incontents").children().removeAttr("disabled");
 			$(this).css("display","none");
@@ -384,7 +383,7 @@
 				location.reload();
 			})
 			})
-		}
+		
 	})
 	//댓글 수정
 	const countDownTimer = function(id, date) {

@@ -105,7 +105,7 @@
 				            			<input type="button" value="파일 제거" id="delete">
 				            		</c:if>
 				            		<label for="upload_file">파일 첨부</label>
-				            		<input type="file" name="file" id="upload_file" accept="image/*">
+				            		<input type="file" name="file" id="upload_file" accept="image/*" onchange="isFileImg(this)">
 								</div>
 								<div class="col-12">
 									<textarea placeholder="이 물건을 꼭 사야하는 이유" name="contents" rows="10" cols="70" maxlength=1000 value=${dto.contents }></textarea><br>
@@ -184,7 +184,7 @@
 		$("#submit").on("click",function(){
 			if(${nickname==null}){
 				alert("로그인 후 이용가능합니다.");
-				location.href="/index.jsp"
+				location.href="/index.jsp";
 			}
 			
          let item_price = $("#item_price").val().trim();
@@ -235,6 +235,33 @@
 	   		 	})
 			}
 		  })
+		  
+		  let uploadFile = $("#upload_file").val();
+		  	function isFileImg(obj){
+		  		
+			  pathPoint = obj.value.lastIndexOf('.');
+			  filePoint = obj.value.substring(pathPoint+1,obj.length);
+			  fileType=filePoint.toLowerCase();
+			  console.log($("#upload_file").val())
+			  
+			  if(fileType!='jpg'&&fileType!='png'&&fileType!='jpeg'&&fileType!='gif'){
+
+				  if(${dto.fileName!=null}){
+					$("#img_section").attr("src","files/${dto.fileName }");
+				  }else{
+					$("#img_section").attr("src","/img/pig2.png");	  
+				  }
+				 alert("이미지 파일만 등록이 가능합니다.");
+// 				 parentObj = obj.parentNode;
+// 				 node = parentObj.replaceChild(obj.cloneNode(true),obj);
+					console.log($("#upload_file").val())
+					$("#upload_file").val("");
+					console.log($("#upload_file").val())
+				 return false;
+			  }
+
+
+	  			}
        
 	 </script>
 </body>

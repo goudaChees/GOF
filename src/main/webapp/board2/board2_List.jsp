@@ -185,7 +185,7 @@
 		</div>
 	</div>
 	<script>
-	window.onload=function(){
+	
 		const countDownTimer = function(id, date) {
 			let _vDate = new Date(date);
 			// 전달 받은 일자 
@@ -246,7 +246,7 @@
 //  			mystring.replace(regex, "<em class='highlight'>" + SearchString + "</em>");
 //  		}
 // 		}
-	}
+	
 	
 	
 	//로그아웃 관련 공통기능
