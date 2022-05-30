@@ -235,6 +235,10 @@
 	$("#modify").on("click", function() {
 		$(".editable").removeAttr("disabled");
 		
+		$("#pw_modify").css("display","none");
+		$("#member_out").css("display","none");
+		
+		
 		//$("#phoneTD").attr("contenteditable", "true");
 		$("#emailTD").attr("contenteditable", "true");
 		$("#nicknameTD").attr("contenteditable", "true");

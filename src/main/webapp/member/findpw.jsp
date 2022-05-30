@@ -171,12 +171,10 @@ a:hover{
        })
        let inok = false;
        	$("#btn").on("click",function(){
-<<<<<<< HEAD
+
        		$("#btn").text("매일 발송중");
        		$("#btn").attr("disabled","true");
-=======
-       		$("#btn").text("메일 발송중");
->>>>>>> a29a7b47cfa4ab1df523ebccadff8a8d5de7fcde
+
        		$("#isok").css("display","inline");
        		$.ajax({
        			url:"/findpw.mail",
