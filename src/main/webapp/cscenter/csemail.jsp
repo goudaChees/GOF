@@ -104,7 +104,7 @@
 								<div class="tab-content">
 									<!-- 						탭2 1:1메일문의		 -->
 									<div class="tab-pane fade show active" id="csmail">
-										<form action="/sendmail.cscenter" method="post">
+										<form name="form_mail" action="/sendmail.cscenter" method="post">
 											<div class="row w-100 m-0">
 												<div class="col-12">사이트 관련 문의사항을 보내주세요.</div>
 											</div>
@@ -135,7 +135,7 @@
 											<div class="row w-100 m-0"><br><br></div>
 											<div class="row w-100 m-0">
 												<div class="col-12">
-													<button type=submit id="sendbtn">Send Email</button>
+													<button type=button id="sendbtn" onclick="mailConfirm()">Send Email</button>
 												</div>
 											</div>
 										</form>
@@ -193,7 +193,7 @@
 			})
 		})
 		
-		$("#sendbtn").on("click", function(){
+		  function mailConfirm(){
 			let text = $("#emailAddrBox").val();
 			
     		Swal.fire({
@@ -211,10 +211,13 @@
     					'발송 완료!',
     					'문의해 주셔서 감사합니다.',
     					'success'
-    				)	
+    				)
+    				document.form_mail.submit();
+    			}else if (result.isDenied) {
+    				window.reload()
     			}
     		})
-		})	
+		}	
 		
 	//로그아웃 관련 공통기능
 

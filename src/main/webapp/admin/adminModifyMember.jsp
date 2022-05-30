@@ -17,9 +17,14 @@
 	function setParentText(){
 		opener.document.getElementById("adminTF").value = document.getElementById("cTF").value; 
 	}
+
+	function close_reload(){
+		window.opener.location.reload();
+	}
 	
 
 </script>
+
 <style>
 body {
 	width: 500px;
@@ -53,7 +58,7 @@ input:focus {
 </style>
 
 </head>
-<body>
+<body onBeforeUnload="close_reload()">
 	<br>
 	<b><font size="5" color="gray">관리자 확인이 필요합니다.</font></b>
 	<br>
@@ -66,8 +71,8 @@ input:focus {
 	<br>
 	<br>
 	<input type="hidden" value="" id ="cTF">
-	<input type="button" value="확인" onclick="AdminPwSend()">
-	<input type="button" value="취소" onclick="window.close()">
+	<input type="button" value="확인" onclick="AdminPwSend()" id="submit">
+	<input type="button" value="취소" onclick="window.opener.location.reload(); window.close()">
 
 	<script>
 	
@@ -92,7 +97,7 @@ input:focus {
 					$("#cTF").attr("value", " ");
 					setParentText();
 					let tf = parent.document.getElementById('adminTF');
-					tf.removeAttribute("readonly");
+					tf.removeAttribute("disabled");
 					tf.focus();
 					
 					let cls = parent.document.getElementsByClassName('editable');
@@ -107,6 +112,10 @@ input:focus {
 			
 		})
 	}
+	
+	$("#submit").on("click", function(event){
+        window.onbeforeunload = null;
+	});
 	</script>
 </body>
 </html>
