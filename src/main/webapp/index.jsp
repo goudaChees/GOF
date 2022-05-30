@@ -112,7 +112,7 @@
 							</div>
 						</div>
 						<div class="col-sm-4">
-							<img src="/img/flyingPig.png" id=flyingpig style="width: 200px">
+							<img src="/img/flyingPig_small.png" id=flyingpig style="width: 200px">
 						</div>
 					</div>
 					<div class="row w-100 m-0 my-5" >
@@ -120,32 +120,32 @@
 							<div class="row">
 								<div class="col-6 col-md-3">
 									<a href="/list.brd1?cpage=1">
-									<div id=card>
-										<img src="/img/basket.jpg" class="cardimg">
+									<div class="card">
+										<img src="/img/card_basket.png" class="cardimg px-3">
 										<p>살까말까</p>
 									</div>
 									</a>
 								</div>
 								<div class="col-6 col-md-3">
 									<a href="/list.brd2">
-									<div id=card>
-										<img src="/img/shopping-bag.jpg" class="cardimg">
+									<div class="card">
+										<img src="/img/card_shoppingbag.png" class="cardimg px-2">
 										<p>최저가경매</p>
 									</div>
 									</a>
 								</div>
 								<div class="col-6 col-md-3">
 									<a href="/csmain.cscenter">
-									<div id=card>
-										<img src="/img/clipboard.jpg" class="cardimg">
+									<div class="card">
+										<img src="/img/card_clipboard.png" class="cardimg px-2">
 										<p>고객센터</p>
 									</div>
 									</a>
 								</div>
 								<div class="col-6 col-md-3">
 									<a href="/joinform.member">
-									<div id=card>
-										<img src="/img/follower.jpg" class="cardimg">
+									<div class="card">
+										<img src="/img/card_mypage.png" class="cardimg px-2">
 										<p>마이페이지</p>
 									</div>
 									</a>
