@@ -93,9 +93,9 @@
 									<div class="row">
 										<div class="col-3">핸드폰 번호</div>
 										<div class="col-9">
-											<input type="text" id="phone1" name="phone1" value="010"> - <input type="text"
-												id="phone2" name="phone2"> - <input type="text" id="phone3"
-												name="phone3">
+											<input type="text" id="phone1" name="phone1" value="010" maxlength="3"> - <input type="text"
+												id="phone2" name="phone2" maxlength="4"> - <input type="text" id="phone3"
+												name="phone3" maxlength="4">
 										</div>
 										<div class="col-3"></div>
 										<div class="col-9" id="phoneCheckResult"></div>
@@ -563,7 +563,7 @@
 					}
 					$("#sendmail").attr("disabled","true");
 					$("#emailresult").css("color","orange");
-					$("#emailresult").text("발송중...");					
+					$("#emailresult").text(" 발송중...");					
 					
 					$.ajax({
 						type:"post",
@@ -574,8 +574,8 @@
 					}).done(function(resp){
 						
 						$("#emailKey").val(resp);
-						$("#emailresult").css("color","blue");
-						$("#emailresult").text("발송완료");
+						$("#emailresult").css("color","green");
+						$("#emailresult").text(" 발송완료");
 						return false;
 					})
 					$("#sendmail").removeAttr("disabled");
@@ -628,7 +628,7 @@
 				$("#nickname").css("border", "1px solid red");
 				$("#nnCheckResult").css("color", "red");
 				$("#nnCheckResult").text(
-						"한글, 영문, 숫자, 특수기호(_)를 조합하여 3~6자로 작성");
+						"한글, 영문, 숫자, 특수기호(_)를 사용하여 3~6자로 작성");
 				isNNOk = false;
 				
 				$("#join").attr("disabled","true");
