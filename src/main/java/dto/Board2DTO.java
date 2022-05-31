@@ -9,13 +9,15 @@ public class Board2DTO {
 	private String item;
 	private int view_count;
 	private int reply;
+	private String id;
 	
 	public Board2DTO() {
 		super();
 	}
 	
+
 	public Board2DTO(int seq, String nickname, String title, String contents, String write_date, String item,
-			int view_count, int reply) {
+			int view_count, int reply, String id) {
 		super();
 		this.seq = seq;
 		this.nickname = nickname;
@@ -25,6 +27,18 @@ public class Board2DTO {
 		this.item = item;
 		this.view_count = view_count;
 		this.reply = reply;
+		this.id = id;
+	}
+
+	
+
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 
