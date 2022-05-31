@@ -92,8 +92,21 @@ public class CSCenterController extends HttpServlet {
 				System.out.println(contents);
 				ndao.insert(new NoticeDTO(0, nickname, title, contents, null, 0));
 				response.sendRedirect("/csnotice.cscenter");
-			}	
 			
+				// 공지사항 글 삭제
+			} else if (uri.equals("/delNotice.cscenter")) {
+				int seq = Integer.parseInt(request.getParameter("seq")); 
+				int dto = ndao.delNotice(seq);
+				response.sendRedirect("/csnotice.cscenter");
+				
+				// 공지사항 글 수정
+			} else if (uri.equals("/udtNotice.board")) {
+				int seq = Integer.parseInt(request.getParameter("seq"));				
+				String title = request.getParameter("title");
+				String contents = request.getParameter("contents");				
+				ndao.udtNotice(seq, title, contents);
+				response.sendRedirect("/opencontent.board?seq="+seq);
+			}
 			
 		}catch (Exception e) {
 			e.printStackTrace();
