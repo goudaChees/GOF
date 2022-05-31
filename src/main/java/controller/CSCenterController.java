@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.MemberDAO;
+import dao.NoticeDAO;
+import dto.NoticeDTO;
 import utils.SendMail;
 
 
@@ -20,9 +24,12 @@ public class CSCenterController extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		response.setCharacterEncoding("utf-8");
 		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
 		
 		String uri = request.getRequestURI();
 		MemberDAO mdao = MemberDAO.getInstance();
+		NoticeDAO ndao = NoticeDAO.getInstance();
+		
 		try {
 			if(uri.equals("/csmain.cscenter"))  {
 				response.sendRedirect("/cscenter/csmain.jsp");
@@ -33,7 +40,6 @@ public class CSCenterController extends HttpServlet {
 				
 				String useremail = "";
 				
-				HttpSession session = request.getSession();
 				if ((String)session.getAttribute("loginID") == null) {
 					useremail = request.getParameter("emailAddr");
 					SendMail sm = new SendMail(useremail, emailTitle, emailContents);
@@ -50,9 +56,43 @@ public class CSCenterController extends HttpServlet {
 
 			}else if (uri.equals("/csmap.cscenter")) {
 				response.sendRedirect("/cscenter/csmap.jsp");
+			
 			}else if (uri.equals("/csemail.cscenter")) {
 				response.sendRedirect("/cscenter/csemail.jsp");
-			}
+			
+			} else if (uri.equals("/csnotice.cscenter")) {
+				int cpage = 1;
+				if (request.getParameter("cpage") != null) {
+					cpage = Integer.parseInt(request.getParameter("cpage"));
+				}
+				ArrayList<NoticeDTO> dto = ndao.selectByPage(cpage);
+				// 글 리스트
+				String pageNavi = ndao.navi(cpage);
+				
+				session.setAttribute("cpage", cpage);
+				request.setAttribute("navi", pageNavi);
+				List<NoticeDTO> list = ndao.selectAll();
+				request.setAttribute("list", list);
+				request.getRequestDispatcher("/cscenter/csnotice.jsp").forward(request, response);
+				
+			} else if (uri.equals("/detailNotice.cscenter")) {
+				int seq = Integer.parseInt(request.getParameter("seq"));
+				String loginID = (String) request.getSession().getAttribute("loginID");
+				NoticeDTO dto = ndao.SelectPage(seq);
+				request.setAttribute("dto", dto);
+				request.setAttribute("loginID", loginID);
+				request.getRequestDispatcher("/cscenter/detailNotice.jsp").forward(request, response);
+			
+			} else if (uri.equals("/writeNotice.cscenter")) {
+				String title = request.getParameter("title");
+				String contents = request.getParameter("contents");
+				String nickname = (String) session.getAttribute("loginNN");
+				System.out.println(nickname);
+				System.out.println(title);
+				System.out.println(contents);
+				ndao.insert(new NoticeDTO(0, nickname, title, contents, null, 0));
+				response.sendRedirect("/csnotice.cscenter");
+			}	
 			
 			
 		}catch (Exception e) {
