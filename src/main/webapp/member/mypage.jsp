@@ -218,7 +218,7 @@
 		                    console.log(response);
 		                    //callback(); //연결끊기(탈퇴)성공시 서버에서 처리할 함수
 		                    Kakao.Auth.logout();
-		                    window.location.href='/logout.member'
+		                    window.location.href='/realOut.member'
 		                },
 		                fail: function(error) {
 		                    console.log('탈퇴 미완료')
