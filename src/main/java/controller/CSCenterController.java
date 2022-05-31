@@ -86,11 +86,13 @@ public class CSCenterController extends HttpServlet {
 			} else if (uri.equals("/writeNotice.cscenter")) {
 				String title = request.getParameter("title");
 				String contents = request.getParameter("contents");
-				String nickname = (String) session.getAttribute("loginNN");
+				String loginID = (String) request.getSession().getAttribute("loginID");
+                String nickname = ndao.findNicknameById(loginID);
+                ndao.insert(new NoticeDTO(0, nickname, title, contents, null, 0, loginID));
 				System.out.println(nickname);
 				System.out.println(title);
 				System.out.println(contents);
-				ndao.insert(new NoticeDTO(0, nickname, title, contents, null, 0));
+				
 				response.sendRedirect("/csnotice.cscenter");
 			
 				// 공지사항 글 삭제
@@ -105,7 +107,7 @@ public class CSCenterController extends HttpServlet {
 				String title = request.getParameter("title");
 				String contents = request.getParameter("contents");				
 				ndao.udtNotice(seq, title, contents);
-				response.sendRedirect("/opencontent.board?seq="+seq);
+				response.sendRedirect("/detailNotice.cscenter?seq="+seq);
 				
 				// 공지사항 글 검색
 			} else if (uri.equals("/searchNotice.notice")) {

@@ -47,7 +47,8 @@ public class NoticeDAO {
 						String contents = rs.getString("contents");
 						Timestamp write_date = rs.getTimestamp("write_date");
 						int view_count = rs.getInt("view_count");
-						dto = new NoticeDTO(seq, writer, title, contents, write_date, view_count);
+						String id = rs.getString("id");
+						dto = new NoticeDTO(seq, writer, title, contents, write_date, view_count, id);
 					}
 					con.commit();
 					return dto;
@@ -57,11 +58,12 @@ public class NoticeDAO {
 	
 	// 글쓰기
 	public int insert(NoticeDTO dto) throws Exception {
-		String sql = "insert into notice values(notice_seq.nextval,?,?,?,default,0)";
+		String sql = "insert into notice values(notice_seq.nextval,?,?,?,default,0,?)";
 		try (Connection con = this.getConnection(); PreparedStatement stat = con.prepareStatement(sql);) {
 			stat.setString(1, dto.getWriter());
 			stat.setString(2, dto.getTitle());
 			stat.setString(3, dto.getContents());
+			stat.setString(4, dto.getId());
 			int result = stat.executeUpdate();
 			con.commit();
 			return result;
@@ -84,7 +86,8 @@ public class NoticeDAO {
 				String contents = rs.getString("contents");
 				Timestamp write_date = rs.getTimestamp("write_date");
 				int view_count = rs.getInt("view_count");
-				NoticeDTO dto = new NoticeDTO(seq, writer, title, contents, write_date, view_count);
+				String id = rs.getString("id");
+				NoticeDTO dto = new NoticeDTO(seq, writer, title, contents, write_date, view_count, id);
 				list.add(dto);
 			}
 			con.commit();
@@ -160,7 +163,7 @@ public class NoticeDAO {
 			}
 		}
 		if (needNext) {
-			sb.append("<a href='csnotice.cscenter>cpage=" + (endNavi + 1) + "'>></a>");
+			sb.append("<a href='csnotice.cscenter?cpage=" + (endNavi + 1) + "'>></a>");
 		}
 		return sb.toString();
 	}
@@ -193,7 +196,8 @@ public class NoticeDAO {
 					String contents = rs.getString("contents");
 					Timestamp write_date = rs.getTimestamp("write_date");
 					int view_count = rs.getInt("view_count");
-					arr.add(new NoticeDTO(seq, writer, title, contents, write_date, view_count));
+					String id = rs.getString("id");
+					arr.add(new NoticeDTO(seq, writer, title, contents, write_date, view_count, id));
 					
 				}
 			}
@@ -230,5 +234,18 @@ public class NoticeDAO {
 	}
 	
 	// 공지사항 검색하기
-	
+	public String findNicknameById(String id) throws Exception{
+        String sql = "select nickname from member where id=?";
+        try (Connection con = this.getConnection(); 
+                PreparedStatement pstat = con.prepareStatement(sql);) {
+            pstat.setString(1, id);
+            try (ResultSet rs = pstat.executeQuery();) {
+                String nickname = null;
+                if (rs.next()) {
+                    nickname = rs.getString("nickname");
+                }
+                return nickname;
+            }
+        }
+    }
 }
