@@ -41,7 +41,7 @@
 									<c:when test="${loginID =='admin'}">
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd1?cpage=1"
-											style="color: #664E55">살가말가</a></li>
+											style="color: #664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd2" style="color: #664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
@@ -57,7 +57,7 @@
 									<c:when test="${loginID !=null}">
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd1?cpage=1"
-											style="color: #664E55">살가말가</a></li>
+											style="color: #664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd2" style="color: #664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
