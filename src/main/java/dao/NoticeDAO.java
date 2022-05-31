@@ -201,4 +201,35 @@ public class NoticeDAO {
 		}
 		return arr;
 	}
+	
+	// 공지사항 글 삭제
+	public int delNotice(int seq) throws Exception {
+		String sql = "delete notice where seq = ?";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, seq);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
+	// 공지사항 글 수정
+	public int udtNotice(int seq, String title, String contents) throws Exception {
+		String sql = "update notice set title=?, contents=? where seq=?";
+		try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1,title);
+			pstat.setString(2,contents);
+			pstat.setInt(3, seq);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
+	// 공지사항 검색하기
+	
 }

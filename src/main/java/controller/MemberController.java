@@ -95,8 +95,10 @@ public class MemberController extends HttpServlet {
 			} else if(uri.equals("/realOut.member")) { // 탈퇴진행
 				String id = (String) request.getSession().getAttribute("loginID");
 				dao.deleteById(id);
-				dao.deleteAllContents(id);
-				dao.deleteAllReplys(id);
+				dao.deleteBoard1Contents(id);
+				dao.deleteBoard2Contents(id);
+				dao.deleteBoard1Replys(id);
+				dao.deleteBoard2Replys(id);
 				request.getSession().invalidate();
 				response.sendRedirect("/index.jsp");
 				

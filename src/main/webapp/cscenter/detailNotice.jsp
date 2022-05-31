@@ -131,17 +131,19 @@
 									<div class="tab-pane fade show active" id="csnoticeDetail">
 
 										<div class="row w-100 m-0">
-											<div class="col-12"></div>
-
+											<div class="col-12">
+												<form action="/searchNotice.notice">
+													<input type="text" placeholder="검색하실 글제목을 입력하세요" name="searchTarget">
+													<input type="submit" value="검색">
+												</form>
+											</div>
 										</div>
-										<!-- 										dto로 내용 받아 오는 곳 -->
-										<!-- 										dto.writer , dto.title, dto.contents, dto.write_date, dto.view_count									 -->
-										<!-- 											name 과 form 활용 -->
+										
 										<div class="row w-100 m-0">
 											<div class="col-12">${dto.title}</div>
 											<div class="col-12">작성자 : ${dto.writer} 작성일 :
 												${dto.write_date}</div>
-											<div claa="col-12">${dto.contents }</div>
+											<div class="col-12">${dto.contents }</div>
 										</div>
 
 
@@ -149,7 +151,7 @@
 										<div class="row w-100 m-0" id="writingFooter">
 											<div class="col-12">
 												<input type="button" id="toList" value="목록으로">
-												<c:if test="${id=='admin'}">
+												<c:if test="${loginID=='admin'}">
 													<input type="button" id="modify" value="수정하기">
 													<input type="button" id="delete" value="삭제하기">
 												</c:if>
