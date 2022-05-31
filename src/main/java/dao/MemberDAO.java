@@ -487,4 +487,29 @@ private static MemberDAO instance = null;
 					}
 				}
 		}
+		
+		// -- 회원탈퇴시 내 글 모두 삭제
+		public int deleteAllContents(String id) throws Exception {
+			String seq = "delete * from board1, board2 where id=?";
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(seq);){
+				pstat.setString(1, id);
+				int result = pstat.executeUpdate();
+				con.commit();
+				return result;
+			}
+		}
+		
+		// -- 회원탈퇴시 내 댓글 모두 삭제
+		public int deleteAllReplys(String id) throws Exception {
+			String seq = "delete * from board1_reply,board2_reply board2 where id=?";
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(seq);){
+				pstat.setString(1, id);
+				int result = pstat.executeUpdate();
+				con.commit();
+				return result;
+			}
+		}
+
 }
