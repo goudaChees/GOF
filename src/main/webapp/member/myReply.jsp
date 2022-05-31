@@ -75,8 +75,8 @@
 							<div class="col-12">
 								<div class="row w-100 m-0">
 									<div class="col-12" id="listbtns">
-										<button id="toBoard1">지출의 참견</button>
-										<button id="toBoard2">선택의 참견</button>
+										<button id="toBoard1">살까말까</button>
+										<button id="toBoard2">최저가경매</button>
 									</div>
 								</div>
 								<div class="row w-100 m-0" id="myreplylist">
