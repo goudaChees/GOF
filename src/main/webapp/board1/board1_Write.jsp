@@ -184,7 +184,7 @@
 		$("#toList").on("click",function(){
 			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");
-				location.href="/index.jsp"
+				location.href="/index.jsp";
 			}
 			location.href="/list.brd1?cpage=1";
 		})
@@ -192,7 +192,8 @@
 	   $("#submit").on("click",function(){
 			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");
-				location.href="/index.jsp"
+				location.href="/index.jsp";
+				return false;
 			}
 	     let item_price = $("#item_price").val().trim();
 	     let title= $("#title").val().trim();

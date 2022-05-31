@@ -16,6 +16,7 @@ public class Board1DTO {
 	private int view_count;
 	private String fileName;
 	private int reply_count;
+	private String id;
 	public int getSeq() {
 		return seq;
 	}
@@ -88,8 +89,15 @@ public class Board1DTO {
 	public void setReply_count(int reply_count) {
 		this.reply_count = reply_count;
 	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public Board1DTO(int seq, String writer, String title, String contents, Timestamp write_date, String item,
-			long item_price, int agree_count, int disagree_count, int view_count, String fileName, int reply_count) {
+			long item_price, int agree_count, int disagree_count, int view_count, String fileName, int reply_count,
+			String id) {
 		super();
 		this.seq = seq;
 		this.writer = writer;
@@ -103,6 +111,7 @@ public class Board1DTO {
 		this.view_count = view_count;
 		this.fileName = fileName;
 		this.reply_count = reply_count;
+		this.id = id;
 	}
 	public Board1DTO() {
 		super();

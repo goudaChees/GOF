@@ -151,6 +151,7 @@
 		</div>
 	</div>
 	<c:if test="${seq!=null}"><input type="text" style="display:none" name="seq" value="${seq}"></c:if>
+	<input type="text" style="display:none" name="id" value="${loginID}">
 </form>
 
 	<script>
@@ -184,6 +185,10 @@
 		
 		
 		$("#submit").on("click",function(){
+			if(${loginNN==null}){
+				alert("로그인 후 이용 가능합니다.")
+				location.href="/index.jsp"
+			}
 			if($("#summernote").val()=='' || $("#title").val()==''){
 				alert("제목, 내용은 필수 입력 사항입니다.");
 		    	 return false;

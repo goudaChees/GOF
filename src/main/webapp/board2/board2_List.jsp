@@ -219,7 +219,7 @@
 			let id = $(document.querySelectorAll(".limit")[i]).attr('id');
 			let time = $(document.querySelectorAll(".time")[i]).attr('id');
 			let dateObj = new Date(time);
-			dateObj.setMinutes(dateObj.getMinutes() + 30);
+			dateObj.setMinutes(dateObj.getMinutes() + 5);
 			countDownTimer(id, dateObj);
 		}
 		// 내일까지 countDownTimer('sample02', '04/01/2024 00:00 AM'); 

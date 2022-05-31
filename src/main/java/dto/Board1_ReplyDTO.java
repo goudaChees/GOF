@@ -10,6 +10,7 @@ public class Board1_ReplyDTO {
 		private int good;
 		private String agree;
 		private int parent_Seq;
+		private String id;
 		public int getSeq() {
 			return seq;
 		}
@@ -52,8 +53,14 @@ public class Board1_ReplyDTO {
 		public void setParent_Seq(int parent_Seq) {
 			this.parent_Seq = parent_Seq;
 		}
+		public String getId() {
+			return id;
+		}
+		public void setId(String id) {
+			this.id = id;
+		}
 		public Board1_ReplyDTO(int seq, String writer, String contents, Timestamp write_date, int good, String agree,
-				int parent_Seq) {
+				int parent_Seq, String id) {
 			super();
 			this.seq = seq;
 			this.writer = writer;
@@ -62,10 +69,13 @@ public class Board1_ReplyDTO {
 			this.good = good;
 			this.agree = agree;
 			this.parent_Seq = parent_Seq;
+			this.id = id;
 		}
 		public Board1_ReplyDTO() {
 			super();
 			// TODO Auto-generated constructor stub
 		}
+
+		
 
 }

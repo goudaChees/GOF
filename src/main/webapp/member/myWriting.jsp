@@ -17,6 +17,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/css/member/myWriting.css">
 <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/message">
 </head>
 <body>
 	<div class="container w-100">
@@ -74,8 +75,8 @@
 							<div class="col-12">
 								<div class="row w-100 m-0">
 									<div class="col-12" id="listbtns">
-										<button id="toBoard1">지출의 참견</button>
-										<button id="toBoard2">선택의 참견</button>
+										<button id="toBoard1">살까말까</button>
+										<button id="toBoard2">최저가경매</button>
 									</div>
 								</div>
 								<div class="row w-100 m-0" id="mywritinglist">
