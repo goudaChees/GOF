@@ -234,3 +234,7 @@
 	border-radius:15px;
 	text-align :left;
 }
+
+a:hover {
+	cursor : pointer;
+}

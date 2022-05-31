@@ -90,6 +90,8 @@
 								<p>고객센터</p>
 								<ul class="nav nav-tabs">
 									<li class="nav-item"><a class="nav-link"
+										href="/csnotice.cscenter">공지 사항</a></li>
+									<li class="nav-item"><a class="nav-link"
 										href="/csmain.cscenter">자주 묻는 질문</a></li>
 									<li class="nav-item"><a class="nav-link active" data-toggle="tab"
 										href="#csmail">1:1 문의하기</a></li>

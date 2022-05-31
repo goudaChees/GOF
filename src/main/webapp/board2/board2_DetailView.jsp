@@ -300,7 +300,7 @@
  	}
  	
 	$("#del").on("click",function(){
-		result = window.confirm("정말 삭제하시겟습니까?");
+		result = window.confirm("정말 삭제하시겠습니까?");
 		if(result){
 			location.href = "/del.brd2?seq="+${dto.seq}
 		}
@@ -311,7 +311,7 @@
 		//글 수정
 	})
 	$(".delbtn").on("click",function(){
-		reulst = window.confirm("정말 삭제하시겟습니까?");
+		reulst = window.confirm("정말 삭제하시겠습니까?");
 		if(reulst){
 		$.ajax({
 			url:"/del.brd2_reply",
@@ -325,7 +325,7 @@
 	})
 	//댓글 삭제
 	$(".choice").on("click",function(){
-		result = window.confirm("정말 선택하시겟습니까?");
+		result = window.confirm("정말 선택하시겠습니까?");
 		if(result){
 			$.ajax({
 				url:"/choice.brd2_reply",

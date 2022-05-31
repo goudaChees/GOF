@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>고객센터</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed298afa01dbe436406160c176a6dde2"></script>
+<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed298afa01dbe436406160c176a6dde2"></script> -->
 <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e3b2ec1cbf323959f82484d3c09baa42"></script> -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -91,12 +91,14 @@
 							<div class="col-12">
 								<p>고객센터</p>
 								<ul class="nav nav-tabs">
+									<li class="nav-item"><a class="nav-link"
+										href="/csnotice.cscenter">공지 사항</a></li>
 									<li class="nav-item"><a class="nav-link active"
 										data-toggle="tab" href="#csmain">자주 묻는 질문</a></li>
-									<li class="nav-item"><a class="nav-link" data-toggle="tab"
-										href="#csmail">1:1 문의하기</a></li>
-									<li class="nav-item" id="mapck"><a class="nav-link" data-toggle="tab"
-										href="#cscontact">찾아 오시는 길</a></li>
+									<li class="nav-item"><a class="nav-link" 
+										href="/csemail.cscenter">1:1 문의하기</a></li>
+									<li class="nav-item" id="mapck"><a class="nav-link" 
+										href="/csmap.cscenter">찾아 오시는 길</a></li>
 								</ul>
 							</div>
 						</div>
@@ -182,11 +184,18 @@
 													<div class="accordion-body">
 														댓글이 안써지는 경우는 크게 두가지로 나뉩니다. <br> <strong>1.
 															회원 가입을 해주세요! </strong> <br> 회원가입의 절차는 매우 빠르답니다. 회원가입을 진행해
-														주세요! <br> <a href="/joinform.member">회원 가입 하러 가기</a>
+														주세요! <br> 
+														<c:choose>
+															<c:when test="${loginID !=null}">
+																<a href="#" onclick="loginMember()">회원 가입 하러 가기</a>
+															</c:when>
+															<c:when test="${loginID == null}">
+																<a href="/joinform.member">회원 가입 하러 가기</a>
+															</c:when>
+														</c:choose>	
 														<br> <br> <strong>2. 댓글을 이미 다셨어요! </strong> <br>
-														혹시 댓글을 이미 다신 것은 아니신가요? <br> 저희는 한 컨텐츠에 한개의 댓글만 작성할 수
-														있답니다! <br>
-
+																혹시 댓글을 이미 다신 것은 아니신가요? <br> 저희는 한 컨텐츠에 한개의 댓글만 작성할 수
+																있답니다! <br>
 													</div>
 												</div>
 											</div>
@@ -214,93 +223,93 @@
 											</div>
 										</div>
 									</div>
-									<!-- 						탭2 1:1메일문의		 -->
-									<div class="tab-pane fade" id="csmail">
-										<form name="form_mail" action="/sendmail.cscenter" method="post">
-											<div class="row w-100 m-0">
-												<div class="col-12">사이트 관련 문의사항을 보내주세요.</div>
-											</div>
-											<div class="row w-100 m-0" id="emailBox">
-												<div class="col-2">제목</div>
-												<div class="col-10">
-													<input type=text name="emailTitle" id="emailTitleBox"
-														placeholder="제목을 작성해 주세요">
-												</div>
-												<div class="col-2">내용</div>
-												<div class="col-10">
-													<textarea name="emailContents" id="emailContentsBox"
-														placeholder="내용을 작성해 주세요"></textarea>
-												</div>
+<!-- 															탭2 1:1메일문의		 -->
+<!-- 									<div class="tab-pane fade" id="csmail"> -->
+<!-- 										<form name="form_mail" action="/sendmail.cscenter" method="post"> -->
+<!-- 											<div class="row w-100 m-0"> -->
+<!-- 												<div class="col-12">사이트 관련 문의사항을 보내주세요.</div> -->
+<!-- 											</div> -->
+<!-- 											<div class="row w-100 m-0" id="emailBox"> -->
+<!-- 												<div class="col-2">제목</div> -->
+<!-- 												<div class="col-10"> -->
+<!-- 													<input type=text name="emailTitle" id="emailTitleBox" -->
+<!-- 														placeholder="제목을 작성해 주세요"> -->
+<!-- 												</div> -->
+<!-- 												<div class="col-2">내용</div> -->
+<!-- 												<div class="col-10"> -->
+<!-- 													<textarea name="emailContents" id="emailContentsBox" -->
+<!-- 														placeholder="내용을 작성해 주세요"></textarea> -->
+<!-- 												</div> -->
 											
 											
-											<c:choose>
-												<c:when test="${loginID == null}">
-													<div class="row w-100 m-0">
-														<div class="col-2">메일 주소</div>
-														<div class="col-10">
-															<input type=text name="emailAddr" id="emailAddrBox"
-																placeholder="연락 받을 메일 주소를 작성해 주세요">
-														</div>
-													</div>
-												</c:when>
-											</c:choose>
+<%-- 											<c:choose> --%>
+<%-- 												<c:when test="${loginID == null}"> --%>
+<!-- 													<div class="row w-100 m-0"> -->
+<!-- 														<div class="col-2">메일 주소</div> -->
+<!-- 														<div class="col-10"> -->
+<!-- 															<input type=text name="emailAddr" id="emailAddrBox" -->
+<!-- 																placeholder="연락 받을 메일 주소를 작성해 주세요"> -->
+<!-- 														</div> -->
+<!-- 													</div> -->
+<%-- 												</c:when> --%>
+<%-- 											</c:choose> --%>
 											
-											</div>
-											<div class="row w-100 m-0"><br><br></div>											
-											<div class="row w-100 m-0">
-												<div class="col-12">
-													<button type=button id="sendbtn" onclick="mailConfirm()">Send Email</button>
-												</div>
-											</div>
-										</form>
-									</div>
-									<!-- 지도 api 추가 -->
-									<div class="tab-pane fade" id="cscontact">
-										<div class="row w-100 m-0">
-											<div class="col-12"><b>오시는 길</b></div>
-											<div class="col-12"><br></div>
-										</div>
-										<div class="csmapArea">
-											<div class="row w-100 m-0">
-												<div class="col-12"><h5><b>주소 : 서울특별시 중구 남대문로 120 대일빌딩 2F, 3F</b></h5></div>
-												<div class="col-12"><br></div>
-											</div>
-											<div class="row w-100 m-0">
-												<div class="col-12"><h6><b>버스</b></h6></div>
-												<div class="col-12"></div>
-												<div class="col-12"> <b>우리은행 종로지점 정류장</b> </div>
-												<div class="col-12"><b>지선</b> 163 / 172 / 201
-													/ 262 / 401 / 406 / 701 / 704 / N15 / N62</div>
-												<div class="col-12">
-													<b>마을</b> 7017 / 7021 / 7022 
-												</div>
-												<div class="col-12">
-													<b>간선</b> 8110
-												</div>
-											</div>
-											<div class="row w-100 m-0">
-												<div class="col-12"><br></div>
-											</div>
-											<div class="row w-100 m-0">
-												<div class="col-12"><h6><b>지하철</b></h6></div>
-												<div class="col-12"></div>
-												<div class="col-12"> 2호선 을지로입구역 3번출구 100M </div>
-												<div class="col-12"> 1호선
-													종각역 4번, 5번 출구 200M </div>
-											</div>
-										</div>
-										<div class="csmapArea2">
-											<div class="row w-100 m-0">
-												<div class="col-12 d-none d-sm-block">
-													<div id="map"></div>
-												</div>
-												<div class="col-12 d-block d-sm-none">
-													<div id="map2"></div>
-												</div>
-											</div>
-										<!--  지도 api 마감 -->
-										</div>
-									</div>
+<!-- 											</div> -->
+<!-- 											<div class="row w-100 m-0"><br><br></div>											 -->
+<!-- 											<div class="row w-100 m-0"> -->
+<!-- 												<div class="col-12"> -->
+<!-- 													<button type=button id="sendbtn" onclick="mailConfirm()">Send Email</button> -->
+<!-- 												</div> -->
+<!-- 											</div> -->
+<!-- 										</form> -->
+<!-- 									</div> -->
+<!-- 									지도 api 추가 -->
+<!-- 									<div class="tab-pane fade" id="cscontact"> -->
+<!-- 										<div class="row w-100 m-0"> -->
+<!-- 											<div class="col-12"><b>오시는 길</b></div> -->
+<!-- 											<div class="col-12"><br></div> -->
+<!-- 										</div> -->
+<!-- 										<div class="csmapArea"> -->
+<!-- 											<div class="row w-100 m-0"> -->
+<!-- 												<div class="col-12"><h5><b>주소 : 서울특별시 중구 남대문로 120 대일빌딩 2F, 3F</b></h5></div> -->
+<!-- 												<div class="col-12"><br></div> -->
+<!-- 											</div> -->
+<!-- 											<div class="row w-100 m-0"> -->
+<!-- 												<div class="col-12"><h6><b>버스</b></h6></div> -->
+<!-- 												<div class="col-12"></div> -->
+<!-- 												<div class="col-12"> <b>우리은행 종로지점 정류장</b> </div> -->
+<!-- 												<div class="col-12"><b>지선</b> 163 / 172 / 201 -->
+<!-- 													/ 262 / 401 / 406 / 701 / 704 / N15 / N62</div> -->
+<!-- 												<div class="col-12"> -->
+<!-- 													<b>마을</b> 7017 / 7021 / 7022  -->
+<!-- 												</div> -->
+<!-- 												<div class="col-12"> -->
+<!-- 													<b>간선</b> 8110 -->
+<!-- 												</div> -->
+<!-- 											</div> -->
+<!-- 											<div class="row w-100 m-0"> -->
+<!-- 												<div class="col-12"><br></div> -->
+<!-- 											</div> -->
+<!-- 											<div class="row w-100 m-0"> -->
+<!-- 												<div class="col-12"><h6><b>지하철</b></h6></div> -->
+<!-- 												<div class="col-12"></div> -->
+<!-- 												<div class="col-12"> 2호선 을지로입구역 3번출구 100M </div> -->
+<!-- 												<div class="col-12"> 1호선 -->
+<!-- 													종각역 4번, 5번 출구 200M </div> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+<!-- 										<div class="csmapArea2"> -->
+<!-- 											<div class="row w-100 m-0"> -->
+<!-- 												<div class="col-12 d-none d-sm-block"> -->
+<!-- 													<div id="map"></div> -->
+<!-- 												</div> -->
+<!-- 												<div class="col-12 d-block d-sm-none"> -->
+<!-- 													<div id="map2"></div> -->
+<!-- 												</div> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+									<!--  지도 api 마감 -->
 								</div>
 							</div>
 						</div>
@@ -360,12 +369,16 @@
 		};
 	var map = new kakao.maps.Map(container, options);
 	//지도 api 스크립트
+	
+	
 		$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업		
 			Swal.fire({
 		 	 icon: 'info',
 		  	text: '로그인 후 사용 가능합니다.'
 			})
 		})
+		
+		
 	setTimeout(function(){ map.relayout(); }, 1500);
 		function relayout() {    
 		    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
@@ -387,6 +400,13 @@
 			})
 		})
 		
+		// 로그인한 멤버는 아코디언의 회원가입 차단
+		function loginMember(){
+			Swal.fire({
+			 	 icon: 'info',
+			  	text: '로그인이 되어있어요.'
+				})
+		}
 		
 		
 	//로그아웃 관련 공통기능
