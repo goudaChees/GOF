@@ -117,16 +117,20 @@
 										<c:forEach var="i" items="${list}">
 											<a href="/detailNotice.cscenter?seq=${i.seq}" >		
 												<div class="row w-100 m-0">
-													<div class="col-8">제목</div>
-													<div class="col-4">작성자</div>
+													<div class="col-8">제목 ${i.title }</div>
+													<div class="col-4">작성자 ${i.writer }</div>
 													<div class="col-4"></div>
-													<div class="col-4">작성일</div>
-													<div class="col-4">조회수</div>
+													<div class="col-4">작성일 ${i.write_date }</div>
+													<div class="col-4">조회수 ${i.view_count }</div>
 												</div>
 											</a>
 										</c:forEach>
 										<div class="row w-100 m-0 noticePageNavi">
-											<div class="col-12">${pageNavi}</div>
+											<div class="col-12">${navi}</div>
+										</div>
+										<div class="col-12" style="text-align:right">
+											<%-- <c:if test="${id=='admin'}"> --%>
+											<input type="button" id="write" value="글쓰기">
 										</div>
 									</div>
 								</div>
@@ -182,9 +186,10 @@
 		})
 	})
 
-	
-	
-	
+	$("#write").on("click",function(){
+		location.href="/cscenter/writeNotice.jsp";
+	})
+		
 	
 	//로그아웃 관련 공통기능
 

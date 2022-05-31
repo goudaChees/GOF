@@ -98,7 +98,7 @@
 							<div class="row w-100 m-0" id="writingArea">
 								<div class="col-12">
 									<input type="text" placeholder="글 제목을 입력해주세요" name="title"
-										size="70" id="title" maxlength=100><br>
+										size="70" id="title" maxlength=30><br>
 								</div>
 								<div class="col-4">
 									<div id="img_Box" class="thumbnail">

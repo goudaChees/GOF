@@ -183,9 +183,16 @@
 											<div class="row w-100 m-0">
 												<div class="col-12  contents">
 													<div class="row">
-														<div class="col-12 incontents">
+													<div class="col-12 incontents">
+														${dto.contents}
+													<%--<pre class="content_editable" disabled style="white-space: normal;">
+															<c:out value="${dto.contents}" escapeXml="false"/>
+														</pre>--%>
+													</div>
+														
+													 <div class="col-12 incontents">
 															<textarea class="content_editable" disabled maxlength="100">${i.contents}</textarea>
-														</div>
+														</div> 
 													</div>
 												</div>
 												<div class="col-12  p-0 text2 writingEtc">

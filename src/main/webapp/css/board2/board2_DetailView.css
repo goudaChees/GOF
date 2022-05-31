@@ -141,9 +141,7 @@
 	color:#5C474D;
 	padding: 1%;
 	resize:none;
-	height: 80%;
 	margin-top: 6px;
-	
 }
 
 .editable{
@@ -164,9 +162,8 @@
 	border: 2px solid #9D8189;
 	border-radius: 15px;
 	color:#5C474D;
-	margin:0px;
+	margin:1%;
 	resize:none;
-	height: 80%;
 	margin-top: 6px;
 }
 
@@ -184,5 +181,4 @@
 }
 
 input:focus {outline:1px solid #F4ACB7;}
-
 

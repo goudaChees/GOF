@@ -265,8 +265,12 @@ public class Board1Controller extends HttpServlet {
 				String contents = multi.getParameter("contents");
 				String item = multi.getParameter("item");
 				long item_price = Long.parseLong(multi.getParameter("item_price"));
-
-				dao.modify(new Board1DTO(seq,writer,title,contents,null,item,item_price,0,0,0,null,0,id));
+				if(id.equals("admin")) {
+					dao.modify_admin(new Board1DTO(seq,writer,title,contents,null,item,item_price,0,0,0,null,0,id));
+				}else {
+					dao.modify(new Board1DTO(seq,writer,title,contents,null,item,item_price,0,0,0,null,0,id));
+				}
+				
 
 				response.sendRedirect("/list.brd1?cpage=1");
 

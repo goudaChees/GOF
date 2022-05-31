@@ -332,4 +332,20 @@ public class Board1_ReplyDAO {
 			}
 		}
 	}
+	
+	public int modifyReply_admin(int seq,String agree,String contents)throws Exception {
+		String sql = "update board1_reply set agree=?, contents=?,where seq =? ";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, agree);
+			pstat.setString(2, contents);
+			pstat.setInt(3, seq);
+			
+			int result = pstat.executeUpdate();
+			return result;
+		}
+		
+	}
 }

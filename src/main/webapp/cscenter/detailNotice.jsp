@@ -9,14 +9,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>고객센터</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed298afa01dbe436406160c176a6dde2"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed298afa01dbe436406160c176a6dde2"></script>
 <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e3b2ec1cbf323959f82484d3c09baa42"></script> -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/css/cscenter/csmain.css">
@@ -25,12 +34,13 @@
 </head>
 <body>
 
-<div class="container w-100">
+	<div class="container w-100">
 		<div class="row w-100 m-0" id="header">
 			<div class="col-12 p-0">
 				<nav class="navbar navbar-expand-md navbar-light bg-light">
 					<div class="container-fluid">
-						<a class="navbar-brand" href="/index.jsp" style="color:#664E55"><img src="/img/logo.png" id="logo"></a>
+						<a class="navbar-brand" href="/index.jsp" style="color: #664E55"><img
+							src="/img/logo.png" id="logo"></a>
 						<button class="navbar-toggler" type="button"
 							data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 							aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -43,37 +53,47 @@
 								<c:choose>
 									<c:when test="${loginID =='admin'}">
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
+											aria-current="page" href="/list.brd1?cpage=1"
+											style="color: #664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
+											aria-current="page" href="/list.brd2" style="color: #664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+											aria-current="page" href="/csmain.cscenter"
+											style="color: #664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/adminmain.admin" style="color:#664E55">관리자페이지</a></li>
+											aria-current="page" href="/adminmain.admin"
+											style="color: #664E55">관리자페이지</a></li>
 										<li class="nav-item"><a class="nav-link active"
-										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
+											aria-current="page" href="#"><i
+												class="bi bi-box-arrow-right" style="color: #664E55"></i></a></li>
 									</c:when>
 									<c:when test="${loginID !=null}">
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
+											aria-current="page" href="/list.brd1?cpage=1"
+											style="color: #664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
+											aria-current="page" href="/list.brd2" style="color: #664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
-										<li class="nav-item"><a class="nav-link active" 
-											aria-current="page" href="/mypage.member" style="color:#664E55">마이페이지</a></li>
+											aria-current="page" href="/csmain.cscenter"
+											style="color: #664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
-										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
+											aria-current="page" href="/mypage.member"
+											style="color: #664E55">마이페이지</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="#"><i
+												class="bi bi-box-arrow-right" style="color: #664E55"></i></a></li>
 									</c:when>
 									<c:otherwise>
 										<li class="nav-item nonMember"><a class="nav-link active"
-											aria-current="page" href="#" style="color:#664E55">살까말까</a></li>
+											aria-current="page" href="#" style="color: #664E55">살까말까</a></li>
 										<li class="nav-item nonMember"><a class="nav-link active"
-											aria-current="page" href="#" style="color:#664E55">최저가경매</a></li>
+											aria-current="page" href="#" style="color: #664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+											aria-current="page" href="/csmain.cscenter"
+											style="color: #664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/joinform.member" style="color:#664E55">회원가입</a></li>
+											aria-current="page" href="/joinform.member"
+											style="color: #664E55">회원가입</a></li>
 									</c:otherwise>
 								</c:choose>
 							</ul>
@@ -82,7 +102,7 @@
 				</nav>
 			</div>
 		</div>
-		
+
 		<div class="row w-100 m-0" id="content">
 			<div class="d-none d-lg-block col-3"></div>
 			<div class="col-12 col-lg-6">
@@ -94,11 +114,11 @@
 								<ul class="nav nav-tabs">
 									<li class="nav-item"><a class="nav-link active"
 										data-toggle="tab" href="#csnotice">공지 사항</a></li>
+									<li class="nav-item"><a class="nav-link" data-toggle="tab"
+										href="/csmain.cscenter">자주 묻는 질문</a></li>
 									<li class="nav-item"><a class="nav-link"
-										data-toggle="tab" href="/csmain.cscenter">자주 묻는 질문</a></li>
-									<li class="nav-item"><a class="nav-link" 
 										href="/csemail.cscenter">1:1 문의하기</a></li>
-									<li class="nav-item" id="mapck"><a class="nav-link" 
+									<li class="nav-item" id="mapck"><a class="nav-link"
 										href="/csmap.cscenter">찾아 오시는 길</a></li>
 								</ul>
 							</div>
@@ -109,74 +129,92 @@
 								<div class="tab-content">
 									<!-- 						탭2 1:1메일문의		 -->
 									<div class="tab-pane fade show active" id="csnoticeDetail">
-										
+
 										<div class="row w-100 m-0">
 											<div class="col-12"></div>
-											
+
 										</div>
-<!-- 										dto로 내용 받아 오는 곳 -->
-<!-- 										dto.writer , dto.title, dto.contents, dto.write_date, dto.view_count									 -->
-<!-- 											name 과 form 활용 -->
-										
-										
-										
-						<div class="row w-100 m-0" id="writingFooter">
-							<div class="col-12">
-								<input type="button" id="toList" value="목록으로">
-								<c:if test="${id=='admin'}">
-									<input type="button" id="modify" value="수정하기">
-									<input type="button" id="delete" value="삭제하기">
-								</c:if>
+										<!-- 										dto로 내용 받아 오는 곳 -->
+										<!-- 										dto.writer , dto.title, dto.contents, dto.write_date, dto.view_count									 -->
+										<!-- 											name 과 form 활용 -->
+										<div class="row w-100 m-0">
+											<div class="col-12">${dto.title}</div>
+											<div class="col-12">작성자 : ${dto.writer} 작성일 :
+												${dto.write_date}</div>
+											<div claa="col-12">${dto.contents }</div>
+										</div>
+
+
+
+										<div class="row w-100 m-0" id="writingFooter">
+											<div class="col-12">
+												<input type="button" id="toList" value="목록으로">
+												<c:if test="${id=='admin'}">
+													<input type="button" id="modify" value="수정하기">
+													<input type="button" id="delete" value="삭제하기">
+												</c:if>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		</div>
-		</div>
-		</div>
-		</div>
-		
-		<div class="row w-100 m-0" id="footer" style="background-color: #A2BAAC; font-weight: bold;">
+
+		<div class="row w-100 m-0" id="footer"
+			style="background-color: #A2BAAC; font-weight: bold;">
 			<div class="col-12 p-0 d-lg-none">
-				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
-					<a href="/csmain.cscenter" class="footerLink">
-						<span>자주 묻는 질문</span></a>
-					<span style="margin-left: 20px" class="footerBar">|</span> 
-					<a href="/csemail.cscenter" class="footerLink">
-						<span style="margin-left: 20px">1 : 1 문의</span></a>
-					<span style="margin-left: 20px" class="footerBar">|</span> 
-					<a href="/csmap.cscenter" class="footerLink">
-						<span style="margin-left: 20px;">찾아오시는 길</span></a><br>
+				<div
+					style="padding-top: 20px; padding-bottom: 10px; text-align: center; font-size: min(14px, 3.5vw);">
+					<a href="/csmain.cscenter" class="footerLink"> <span>자주
+							묻는 질문</span></a> <span style="margin-left: 20px" class="footerBar">|</span>
+					<a href="/csemail.cscenter" class="footerLink"> <span
+						style="margin-left: 20px">1 : 1 문의</span></a> <span
+						style="margin-left: 20px" class="footerBar">|</span> <a
+						href="/csmap.cscenter" class="footerLink"> <span
+						style="margin-left: 20px;">찾아오시는 길</span></a><br>
 					<div style="margin-top: 15px; text-align: center">
-						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br> 
-						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span>
-						<span style="margin-left: 10px; margin-right:10px" class="footerLetter">|</span>
-						<span class="footerLetter">E-MAIL : ttaengerang@gmail.com </span><br> 
-						<span style="color: #FFF2CC;font-size:min(15px,4vw);line-height:40px;">COPYRIGHT BY PHOENIX </span>
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩
+							2층, 3층</span><br> <span class="footerLetter">대 표 전 화 : 4989
+							- 4284</span> <span style="margin-left: 10px; margin-right: 10px"
+							class="footerLetter">|</span> <span class="footerLetter">E-MAIL
+							: ttaengerang@gmail.com </span><br> <span
+							style="color: #FFF2CC; font-size: min(15px, 4vw); line-height: 40px;">COPYRIGHT
+							BY PHOENIX </span>
 					</div>
 				</div>
 			</div>
 			<div class="d-none d-lg-block col-lg-9">
-				<div style="margin-left:40px ; margin-top:20px;text-align:left">
-					<a href="/csmain.cscenter" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
-					<a href="/csemail.cscenter" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
-					<a href="/csmap.cscenter" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
-					<div style="margin-top:30px ; text-align:left; margin-bottom:15px">
-						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층, 3층</span><br>
-						<span class="footerLetter">대 표 전 화 : 4989 - 4284</span><span style="margin-left:20px" class="footerLetter">|</span><span style="margin-left:20px" class="footerLetter">E-MAIL : ttaengerang@gmail.com </span><br>
-						<span style="color:#FFF2CC">COPYRIGHT BY YUNJI AYEONG WOOHYENG JEONGYOEN HEESEUNG IN  PHOENIX  </span>
+				<div style="margin-left: 40px; margin-top: 20px; text-align: left">
+					<a href="/csmain.cscenter" class="footerLink"><span>자주
+							묻는 질문</span></a><span style="margin-left: 20px" class="footerBar">|</span> <a
+						href="/csemail.cscenter" class="footerLink"><span
+						style="margin-left: 20px">1 : 1 문의</span></a><span
+						style="margin-left: 20px" class="footerBar">|</span> <a
+						href="/csmap.cscenter" class="footerLink"><span
+						style="margin-left: 20px">찾아오시는 길</span></a><br>
+					<div
+						style="margin-top: 30px; text-align: left; margin-bottom: 15px">
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩
+							2층, 3층</span><br> <span class="footerLetter">대 표 전 화 : 4989
+							- 4284</span><span style="margin-left: 20px" class="footerLetter">|</span><span
+							style="margin-left: 20px" class="footerLetter">E-MAIL :
+							ttaengerang@gmail.com </span><br> <span style="color: #FFF2CC">COPYRIGHT
+							BY YUNJI AYEONG WOOHYENG JEONGYOEN HEESEUNG IN PHOENIX </span>
 					</div>
 				</div>
 			</div>
-			<div class="d-none d-lg-block col-lg-3" style="text-align:right">
-				<img src="/img/footerLogo.png" style="width:70%;margin-right:10px;margin-top:10%">
+			<div class="d-none d-lg-block col-lg-3" style="text-align: right">
+				<img src="/img/footerLogo.png"
+					style="width: 70%; margin-right: 10px; margin-top: 10%">
 			</div>
 		</div>
-	</div>								
-				
-<script>
+	</div>
+
+	<script>
 
 $("#modify").on("click", function() {
 	$(".editable").removeAttr("disabled");
@@ -224,8 +262,8 @@ $("#toList").on("click", function(){
 })
 
 
-</script>				
-										
+</script>
+
 
 </body>
 </html>
