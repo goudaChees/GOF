@@ -17,6 +17,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/css/member/myWriting.css">
 <link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/message">
 </head>
 <body>
 	<div class="container w-100">

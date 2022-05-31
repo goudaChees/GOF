@@ -171,7 +171,7 @@
 															<div id="w${i.seq }" class="reply_time"></div>
 														</div>
 														<div class="col-2">
-															<c:if test="${i.writer==nickname || id=='admin'}">
+															<c:if test="${i.id==loginID|| loginID=='admin'}">
 																<div class="reply_btns">
 																	<input type="hidden" value=${i.contents }>
 																	<input type="hidden" value=${i.seq }>
@@ -211,7 +211,7 @@
 						<div class="row w-100 m-0" id="writingFooter">
 							<div class="col-12">
 								<input type="button" id="toList" value="목록으로">
-								<c:if test="${nickname==dto.writer || id=='admin'}">
+								<c:if test="${loginID==dto.id || loginID=='admin'}">
 									<input type="button" id="modify" value="수정하기">
 									<input type="button" id="delete" value="삭제하기">
 								</c:if>
