@@ -167,7 +167,7 @@ public class MemberController extends HttpServlet {
 				if(isLoginOk) {
 					HttpSession session = request.getSession();
 					session.setAttribute("loginID", id); // 로그인
-//					String nickname = dao.getNickname(id);
+					String nickname = dao.getNickname(id);
 //					session.setAttribute("loginNN", nickname);
 				}
 				response.sendRedirect("/index.jsp");

@@ -103,10 +103,10 @@
 								<div class="col-12" style="text-align: left">
 									<img src="/img/logoname.png" style="width: 250px;">
 									<h3 style="padding-left: 30px;">당신이 부자가 될 때 까지</h3>
-									<h5 style="padding-left: 30px;">
-										<img src="/img/pinkpig_front.png" style="width: 8%">
-										${loginNN }님 환영합니다! <img src="/img/pinkpig_paw.png"
-											style="width: 8%">
+									<h5 style="padding-left: 30px;" id="hello">
+										<img src='/img/pinkpig_front.png' style='width: 8%'>
+										${loginID }님 환영합니다!
+										<img src='/img/pinkpig_paw.png' style='width: 8%'>
 									</h5>
 								</div>
 							</div>
@@ -282,7 +282,7 @@
 	          Kakao.API.request({
 	            url: '/v2/user/me',
 	            success: function(res) {
-	              console.log(res);
+// 	              console.log(res);
 	              let id = res.id;
 				  scope : 'profile_nickname, account_email';
 				
@@ -299,7 +299,7 @@
 	            	})
 	        	}
 	          })
-	          console.log(authObj); //access 토큰 값
+// 	          console.log(authObj); //access 토큰 값
 			  Kakao.Auth.setAccessToken(authObj.access_token); //access 토큰 값 저장
 			  var token = authObj.access_token;
 			  saveToDos(token);
