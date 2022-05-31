@@ -9,22 +9,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>고객센터</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed298afa01dbe436406160c176a6dde2"></script> -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e3b2ec1cbf323959f82484d3c09baa42"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed298afa01dbe436406160c176a6dde2"></script>
+<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e3b2ec1cbf323959f82484d3c09baa42"></script> -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" >
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/css/cscenter/csmain.css">
 <link rel="stylesheet" href="/css/common.css">
 
 </head>
 <body>
-	<div class="container w-100">
+
+<div class="container w-100">
 		<div class="row w-100 m-0" id="header">
 			<div class="col-12 p-0">
 				<nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -91,14 +92,14 @@
 							<div class="col-12">
 								<p>고객센터</p>
 								<ul class="nav nav-tabs">
+									<li class="nav-item"><a class="nav-link active"
+										data-toggle="tab" href="#csnotice">공지 사항</a></li>
 									<li class="nav-item"><a class="nav-link"
-										href="/csnotice.cscenter">공지 사항</a></li>
-									<li class="nav-item"><a class="nav-link"
-										href="/csmain.cscenter">자주 묻는 질문</a></li>
+										data-toggle="tab" href="/csmain.cscenter">자주 묻는 질문</a></li>
 									<li class="nav-item"><a class="nav-link" 
 										href="/csemail.cscenter">1:1 문의하기</a></li>
-									<li class="nav-item"><a class="nav-link active" data-toggle="tab"
-										href="#csmap">찾아 오시는 길</a></li>
+									<li class="nav-item" id="mapck"><a class="nav-link" 
+										href="/csmap.cscenter">찾아 오시는 길</a></li>
 								</ul>
 							</div>
 						</div>
@@ -106,61 +107,35 @@
 							<div class="col-12">
 								<!-- 				탭1 자주묻는질문 -->
 								<div class="tab-content">
-<!-- 								탭2 1:1 메일문의 -->
-									<div class="tab-pane fade"></div>
-									<div class="tab-pane fade"></div>
-									<!-- 						탭3 오시는길		 -->
-									<div class="tab-pane fade show active" id="cscontact">
+									<!-- 						탭2 1:1메일문의		 -->
+									<div class="tab-pane fade show active" id="csnotice">
+										
 										<div class="row w-100 m-0">
-											<div class="col-12"><b>오시는 길</b></div>
-											<div class="col-12"><br></div>
+											<div class="col-12"></div>
+											
 										</div>
-										<div class="csmapArea">
-											<div class="row w-100 m-0">
-												<div class="col-12"><h5><b>주소 : 서울특별시 중구 남대문로 120 대일빌딩 2F, 3F</b></h5></div>
-												<div class="col-12"><br></div>
-											</div>
-											<div class="row w-100 m-0">
-												<div class="col-12"><h6><b>버스</b></h6></div>
-												<div class="col-12"></div>
-												<div class="col-12"><b>우리은행 종로지점 정류장</b> </div>
-												<div class="col-12"><b>지선</b> 163 / 172 / 201
-													/ 262 / 401 / 406 / 701 / 704 / N15 / N62</div>
-												<div class="col-12">
-													<b>마을</b> 7017 / 7021 / 7022 
+										<c:forEach var="i" items="${list}">
+											<a href="/detailNotice.cscenter?seq=${i.seq}" >		
+												<div class="row w-100 m-0">
+													<div class="col-8">제목</div>
+													<div class="col-4">작성자</div>
+													<div class="col-4"></div>
+													<div class="col-4">작성일</div>
+													<div class="col-4">조회수</div>
 												</div>
-												<div class="col-12">
-													<b>간선</b> 8110
-												</div>
-											</div>
-											<div class="row w-100 m-0">
-												<div class="col-12"><br></div>
-											</div>
-											<div class="row w-100 m-0">
-												<div class="col-12"><h6><b>지하철</b></h6> </div>
-												<div class="col-12"></div>
-												<div class="col-12"> 2호선 을지로입구역 3번출구 100M / 1호선
-													종각역 4번, 5번 출구 200M</div>
-											</div>
-										</div>
-										<div class="csmapArea2">
-											<div class="row w-100 m-0">
-												<div class="col-12 d-none d-sm-block">
-													<div id="map" style="over-flow:hidden"></div>
-												</div>
-												<div class="col-12 d-block d-sm-none">
-													<div id="map2"></div>
-												</div>
-											</div>
+											</a>
+										</c:forEach>
+										<div class="row w-100 m-0 noticePageNavi">
+											<div class="col-12">${pageNavi}</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				</div>			
 			</div>
-		</div>
+		</div>					
 		<div class="row w-100 m-0" id="footer" style="background-color: #A2BAAC; font-weight: bold;">
 			<div class="col-12 p-0 d-lg-none">
 				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
@@ -197,40 +172,20 @@
 				<img src="/img/footerLogo.png" style="width:70%;margin-right:10px;margin-top:10%">
 			</div>
 		</div>
-	</div>
-	<script>
-	setTimeout(function(){ map.relayout(); }, 1500);
-	function relayout() {    
-	    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
-	    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
-	    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
-	    map.relayout();
-	}
-var container = document.getElementById('map');
-var options = { 
-	center: new kakao.maps.LatLng(37.56792863494778, 126.98304380248652), //지도의 중심좌표.
-	level: 3 
-	};
-var map = new kakao.maps.Map(container, options);
-//지도 api 스크립트
-
-	setTimeout(function(){ map.relayout(); }, 1500);
-		function relayout() {    
-		    map.relayout();
-		}
-	var container = document.getElementById('map2');
-	var options = { 
-		center: new kakao.maps.LatLng(37.56792863494778, 126.98304380248652), 
-		level: 3 
-		};
-	var map = new kakao.maps.Map(container, options);
-		$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업
-			Swal.fire({
-			  icon: 'info',
-			  text: '로그인 후 사용 가능합니다.'
-			})
+	</div>							
+									
+<script>
+	$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업
+		Swal.fire({
+	  	icon: 'info',
+	  	text: '로그인 후 사용 가능합니다.'
 		})
-		
+	})
+
+	
+	
+	
+	
 	//로그아웃 관련 공통기능
 
       	// SDK를 초기화. 사용할 앱의 JavaScript 키
@@ -268,7 +223,9 @@ var map = new kakao.maps.Map(container, options);
 	   		 	})
 			}
 		  })
-</script>
-</body>
+	
 
+</script>												
+
+</body>
 </html>
