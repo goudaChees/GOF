@@ -47,8 +47,10 @@ public class Board1_ReplyController extends HttpServlet {
 			
 			}else if(uri.equals("/modify.brd1_reply")) {//댓글 수정
 				String id = (String) session.getAttribute("loginID");
+				
 				String writer = dao.selectNicknameById(id);
 				
+
 				//1. 댓글 내용 수정
 				int seq = Integer.parseInt(request.getParameter("replySeqToUpdate"));//댓글 seq
 				String agree = request.getParameter("agree_re");//승인/불가 여부
@@ -56,7 +58,16 @@ public class Board1_ReplyController extends HttpServlet {
 				int parent_Seq = Integer.parseInt(request.getParameter("parent_seq2"));				
 				//이전의 승인, 불가 여부와 비교하기 위해 seq에 따른 바뀌기 전 agree 뽑기
 				String preAgree = rdao.getAgreeByseq(seq); 
-				int result = rdao.modifyReply(seq,agree,contents,writer);
+				int result = 
+				
+				if(id.equals("admin")) {
+					rdao.modifyReply_admin(seq,agree,contents);
+				}else {
+					rdao.modifyReply(seq,agree,contents,writer);
+				}
+
+				
+				
 				
 				//2.Board1 테이블의 찬반 내용 바꾸기
 				
