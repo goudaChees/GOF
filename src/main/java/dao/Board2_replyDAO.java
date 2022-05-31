@@ -50,14 +50,14 @@ public class Board2_replyDAO {
 	}
 
 	// 댓글 선택 여부 매서드
-	public boolean iswrite(int pseq,String nickname) throws Exception {
-		String sql = "select * from board2_reply where parent_seq=? and writer=?";
+	public boolean iswrite(int pseq,String id) throws Exception {
+		String sql = "select * from board2_reply where parent_seq=? and id=?";
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
 			pstat.setInt(1, pseq);
-			pstat.setString(2, nickname);
+			pstat.setString(2, id);
 			try(
 				ResultSet rs = pstat.executeQuery();
 					){
