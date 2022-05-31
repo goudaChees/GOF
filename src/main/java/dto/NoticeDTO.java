@@ -9,12 +9,13 @@ public class NoticeDTO {
 	private String contents;
 	private Timestamp write_date;
 	private int view_count;
+	private String id;
 	
 	public NoticeDTO() {
 		
 	}
 	
-	public NoticeDTO(int seq, String writer, String title, String contents, Timestamp write_date, int view_count) {
+	public NoticeDTO(int seq, String writer, String title, String contents, Timestamp write_date, int view_count, String id) {
 		super();
 		this.seq = seq;
 		this.writer = writer;
@@ -22,6 +23,7 @@ public class NoticeDTO {
 		this.contents = contents;
 		this.write_date = write_date;
 		this.view_count = view_count;
+		this.id = id;
 	}
 	public int getSeq() {
 		return seq;
@@ -58,6 +60,14 @@ public class NoticeDTO {
 	}
 	public void setView_count(int view_count) {
 		this.view_count = view_count;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	

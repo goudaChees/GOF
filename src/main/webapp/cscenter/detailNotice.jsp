@@ -131,12 +131,7 @@
 									<div class="tab-pane fade show active" id="csnoticeDetail">
 
 										<div class="row w-100 m-0">
-											<div class="col-12">
-												<form action="/searchNotice.notice">
-													<input type="text" placeholder="검색하실 글제목을 입력하세요" name="searchTarget">
-													<input type="submit" value="검색">
-												</form>
-											</div>
+											
 										</div>
 										
 										<div class="row w-100 m-0">

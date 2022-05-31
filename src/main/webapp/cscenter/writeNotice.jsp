@@ -1,31 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<title>공지사항 - 글쓰기</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>고객센터</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed298afa01dbe436406160c176a6dde2"></script>
-<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e3b2ec1cbf323959f82484d3c09baa42"></script> -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" href="/css/cscenter/csmain.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="/css/board2/board2_Write.css">
 <link rel="stylesheet" href="/css/common.css">
-
 </head>
 <body>
-
-<div class="container w-100">
+	<div id="container w-100">
 		<div class="row w-100 m-0" id="header">
 			<div class="col-12 p-0">
 				<nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -53,7 +52,7 @@
 										<li class="nav-item"><a class="nav-link active"
 										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
 									</c:when>
-									<c:when test="${loginID !=null}">
+									<c:otherwise>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
@@ -64,16 +63,6 @@
 											aria-current="page" href="/mypage.member" style="color:#664E55">마이페이지</a></li>
 										<li class="nav-item"><a class="nav-link active"
 										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
-									</c:when>
-									<c:otherwise>
-										<li class="nav-item nonMember"><a class="nav-link active"
-											aria-current="page" href="#" style="color:#664E55">살까말까</a></li>
-										<li class="nav-item nonMember"><a class="nav-link active"
-											aria-current="page" href="#" style="color:#664E55">최저가경매</a></li>
-										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
-										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/joinform.member" style="color:#664E55">회원가입</a></li>
 									</c:otherwise>
 								</c:choose>
 							</ul>
@@ -86,71 +75,39 @@
 		<div class="row w-100 m-0" id="content">
 			<div class="d-none d-lg-block col-3"></div>
 			<div class="col-12 col-lg-6">
-				<div class="row w-100 m-0" id="CsCenterOutline">
+				<div class="row w-100 m-0" id="board2Outline">
 					<div class="col-12">
-						<div class="row w-100 m-0" id="CsCenterHeader">
+						<div class="row w-100 m-0" id="header_title">
 							<div class="col-12">
-								<p>고객센터</p>
-								<ul class="nav nav-tabs">
-									<li class="nav-item"><a class="nav-link active"
-										data-toggle="tab" href="#csnotice">공지 사항</a></li>
-									<li class="nav-item"><a class="nav-link"
-										data-toggle="tab" href="/csmain.cscenter">자주 묻는 질문</a></li>
-									<li class="nav-item"><a class="nav-link" 
-										href="/csemail.cscenter">1:1 문의하기</a></li>
-									<li class="nav-item" id="mapck"><a class="nav-link" 
-										href="/csmap.cscenter">찾아 오시는 길</a></li>
-								</ul>
+								<p>공지사항 작성</p>
 							</div>
 						</div>
-						<div class="row w-100 m-0" id="CsArea">
+						<form action="/writeNotice.cscenter" method="post">
+						<div class="row w-100 m-0" id=board2List>
 							<div class="col-12">
-								<!-- 				탭1 자주묻는질문 -->
-								<div class="tab-content">
-									<!-- 						탭2 1:1메일문의		 -->
-									<div class="tab-pane fade show active" id="csnotice">
-										
-										<div class="row w-100 m-0">
-											<div class="col-12">
-												<form action="/searchNotice.cscenter">
-													<select class="form-select" aria-label="Default select example" name="searchCategory">
-															<option value="0">선택</option>
-															<option value="1">제목</option>
-															<option value="2">내용</option>
-													</select>
-													<input type="text" placeholder="검색하실 내용을 입력하세요" name="searchTarget">
-													<input type="submit" value="검색">
-												</form>
-											</div>
-											
-										</div>
-										<c:forEach var="i" items="${list}">
-											<a href="/detailNotice.cscenter?seq=${i.seq}" >		
-												<div class="row w-100 m-0">
-													<div class="col-8">제목 ${i.title }</div>
-													<div class="col-4">작성자 ${i.writer }</div>
-													<div class="col-4"></div>
-													<div class="col-4">작성일 ${i.write_date }</div>
-													<div class="col-4">조회수 ${i.view_count }</div>
-												</div>
-											</a>
-										</c:forEach>
-										<div class="row w-100 m-0 noticePageNavi">
-											<div class="col-12">${navi}</div>
-										</div>
-										<div class="col-12" style="text-align:right">
-											<c:if test="${loginID=='admin'}">
-												<input type="button" id="write" value="글쓰기">
-											</c:if>
-										</div>
+								<div class="row w-100 m-0">
+									<div class="col-12">
+										<input type="text" name="title" maxlength="30" id="title" placeholder="제목은 최대 30자 까지 입력가능합니다." value="${dto.title}">
+									</div>
+									<div class="col-12" id="note_content">
+										<textarea name="contents" id="contents" style="resize: none" maxlength="1200">${dto.contents}</textarea>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-12" style="text-align:right;">
+										<button type="submit" class="write" id="submit">작성하기</button>
+										<button type="button" class="write" id="back">취소하기</button>
 									</div>
 								</div>
 							</div>
 						</div>
+						</form>
+						
 					</div>
-				</div>			
+				</div>
 			</div>
-		</div>					
+		</div>
+		
 		<div class="row w-100 m-0" id="footer" style="background-color: #A2BAAC; font-weight: bold;">
 			<div class="col-12 p-0 d-lg-none">
 				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
@@ -187,61 +144,34 @@
 				<img src="/img/footerLogo.png" style="width:70%;margin-right:10px;margin-top:10%">
 			</div>
 		</div>
-	</div>							
-									
 <script>
-	$(".nonMember").on("click",function(){ // 로그인 하지 않고 게시판 1,2 클릭 시 팝업
-		Swal.fire({
-	  	icon: 'info',
-	  	text: '로그인 후 사용 가능합니다.'
-		})
-	})
 
-	$("#write").on("click",function(){
-		location.href="/cscenter/writeNotice.jsp";
-	})
-		
+//--작성버튼
+$( document ).ready(function(){
+	if(${!loginNN=='admin'}){
+		alert("관리자 권한이 필요합니다.")
+		location.href="/index.jsp"
+	}
+}
+
+$("#submit").on("click", function(){
 	
-	//로그아웃 관련 공통기능
-
-      	// SDK를 초기화. 사용할 앱의 JavaScript 키
-      	Kakao.init('b956cab5ef7dbe5bc1f861614a4b2061');
-	    //console.log(Kakao.isInitialized());
-	    
-	    //item을 localStorage에 저장하는 메소드
-	    function saveToDos(token) { 
-    		typeof(Storage) !== 'undefined' && sessionStorage.setItem('AccessKEY', JSON.stringify(token)); 
-		};
-
-
-		  $(".bi-box-arrow-right").on("click",function(){
-			  if (!Kakao.Auth.getAccessToken()) {
-			  Swal.fire({
-				  text: '로그아웃 하시겠습니까?',
-				  showCancelButton: true,
-				  confirmButtonText: '로그아웃',
-				  cancelButtonText: '취소',
-				}).then((result) => {
-				  if (result.isConfirmed) {				
-				    location.href="/logout.member";				  
-				  } 
-				})
-				return
-			  }
-			// -- 로그아웃 버튼 클릭시 카카오톡으로 로그인한 사용자의 토큰을 반납.
-			let result = confirm("로그아웃 하시겠습니까?");
-			if(!result){
-				return false;
-			} else {
-			  Kakao.Auth.logout(function() {
-	      			alert("로그아웃 되었습니다.");
-	      			location.href="/logout.member";
-	   		 	})
-			}
-		  })
+    let title= $("#title").val().trim();
+    let contents = $("#contents").val().trim();
+    
+    console.log(title);
+    console.log(contents);
 	
+	if(title==''||contents==''){
+   	 	alert("입력하지 않은 항목이 있습니다.");
+   	 return false;
+    }
+})
 
-</script>												
-
+// --취소버튼
+$("#back").on("click", function(){
+	location.href="/csnotice.cscenter";
+})
+</script>
 </body>
 </html>
