@@ -31,12 +31,14 @@ public class Board1_ReplyController extends HttpServlet {
 		
 		try {
 			if(uri.equals("/write.brd1_reply")) {
+				String id = (String) session.getAttribute("loginID");
+
 				String writer = request.getParameter("nickname");
 				String contents = request.getParameter("contents");
 				String agree = request.getParameter("agree");
 				int parent_Seq = Integer.parseInt(request.getParameter("parent_seq"));
 				//1. 댓글 테이블 저장
-				rdao.insert(new Board1_ReplyDTO(0,writer,contents,null,0,agree,parent_Seq));
+				rdao.insert(new Board1_ReplyDTO(0,writer,contents,null,0,agree,parent_Seq,id));
 				//2. 찬반여부 Board1 테이블에 저장
 				dao.addAgree(agree,parent_Seq);		
 				//3. 댓글 수 추가
@@ -81,10 +83,11 @@ public class Board1_ReplyController extends HttpServlet {
 			}else if(uri.equals("/good.brd1_reply")) {
 				int board1_Seq = Integer.parseInt(request.getParameter("board1_Seq"));
 				int reply_Seq = Integer.parseInt(request.getParameter("reply1_Seq"));
-				String nickname = (String) session.getAttribute("loginNN");
+				String id = (String) session.getAttribute("loginID");
+				String nickname = dao.selectNicknameById(id);
 				
 				//1.good(좋아요) 테이블에 데이터 넣기
-				rdao.insertGood(nickname, board1_Seq, reply_Seq);
+				rdao.insertGood(nickname, board1_Seq, reply_Seq,id);
 				
 				//2.board1_reply 테이블에 좋아요+1
 				rdao.addGoodBySeq(reply_Seq);
@@ -101,10 +104,10 @@ public class Board1_ReplyController extends HttpServlet {
 			}else if(uri.equals("/cancelGood.brd1_reply")) {
 				int board1_Seq = Integer.parseInt(request.getParameter("board1_Seq"));
 				int reply_Seq = Integer.parseInt(request.getParameter("reply1_Seq"));
-				String nickname = (String) session.getAttribute("loginNN");
+				String id = (String) session.getAttribute("loginID");
 				
 				//1.good(좋아요) 테이블의 데이터 빼기
-				rdao.deleteGood(nickname,reply_Seq);
+				rdao.deleteGood(id,reply_Seq);
 				
 				//2.board1_reply 테이블에 좋아요-1
 				rdao.subtractGoodBySeq(reply_Seq);

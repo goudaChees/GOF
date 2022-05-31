@@ -44,7 +44,10 @@ public class Board1Controller extends HttpServlet {
 		try {
 			if(uri.equals("/write.brd1")) {//게사판 글 쓰기
 				//1. 파일 업데이트
-
+				
+				String id = (String)session.getAttribute("loginID");
+				request.setAttribute("loginID", id);
+				
 				int maxSize = 1024*1024*10;//파일 사이즈
 				String savePath =request.getServletContext().getRealPath("files");//파일 경로 설정
 				File file = new File(savePath);
@@ -72,15 +75,21 @@ public class Board1Controller extends HttpServlet {
 				}
 
 				//2. 글 업데이트
-				String writer = (String)session.getAttribute("loginNN");
+	
+				
+				
+				String writer = dao.selectNicknameById(id);
 				String title = multi.getParameter("title");
 				String item = multi.getParameter("item");
 				long item_price = Long.parseLong(multi.getParameter("item_price"));
 				String contents = multi.getParameter("contents");
-				dao.insert(new Board1DTO(parent_Seq,writer,title,contents,null,item,item_price,0,0,0,sys_Name,0));
+				dao.insert(new Board1DTO(parent_Seq,writer,title,contents,null,item,item_price,0,0,0,sys_Name,0,id));
 				response.sendRedirect("list.brd1?cpage=1");
 
 			}else if(uri.equals("/list.brd1")){
+				
+				String id = (String)session.getAttribute("loginID");
+				request.setAttribute("loginID", id);
 
 				int cpage = Integer.parseInt(request.getParameter("cpage"));
 				session.setAttribute("cpage", cpage);
@@ -88,6 +97,7 @@ public class Board1Controller extends HttpServlet {
 				List<Board1DTO> list = dao.selectByPage(cpage);//한 페이지당 리스트 출력
 				request.setAttribute("list", list);//게시글 리스트 저장
 				request.setAttribute("glist", g.toJson(list));
+				
 				
 				int searchCategory = 0;//검색 카테고리 기본(Board1DAO의 getNavi()에서 각 카테고리 별로 sql문이 다름)
 				String searchTarget = null;//null이어야 처음부터 모든 항목이 검색된다.
@@ -97,6 +107,10 @@ public class Board1Controller extends HttpServlet {
 				request.setAttribute("navi", navi);
 				request.getRequestDispatcher("/board1/board1_List.jsp").forward(request, response);	
 			}else if(uri.equals("/search.brd1")) {
+				
+				String id = (String)session.getAttribute("loginID");
+				request.setAttribute("loginID", id);
+				
 				int cpage =1;//cpage는 1로 설정
 
 				int searchCategory = Integer.parseInt(request.getParameter("searchCategory"));//검색 카테고리
@@ -114,9 +128,12 @@ public class Board1Controller extends HttpServlet {
 				request.getRequestDispatcher("/board1/board1_List.jsp?cpage=1").forward(request, response);
 
 			}else if(uri.equals("/detail.brd1")) {//게시글 보기
+				
+				String id = (String)session.getAttribute("loginID");
+				request.setAttribute("loginID", id);
+				
 				int seq =  Integer.parseInt(request.getParameter("seq"));//게시글 seq 가져오기
-				String nickname = (String) session.getAttribute("loginNN");//닉네임 가져오기
-				String id = (String) session.getAttribute("loginID");//아이디 가져오기
+				String nickname = dao.selectNicknameById(id);//닉네임 가져오기
 				
 				//1.전 페이지 참고해서 view_Count 올리기
 				String referer = request.getHeader("referer");
@@ -134,8 +151,9 @@ public class Board1Controller extends HttpServlet {
 				list.add(0,rdto);
 				request.setAttribute("list", list);//댓글 목록 list에 담기
 				request.setAttribute("glist", g.toJson(list));
+
 				
-				boolean didIDwrite = rdao.didIDwrite(seq,nickname);//해당 게시글에 댓글을 달았는지 검사
+				boolean didIDwrite = rdao.didIDwrite(seq,id);//해당 게시글에 댓글을 달았는지 검사
 				
 				//4. 차트를 위한 결과값 뽑기
 
@@ -167,7 +185,6 @@ public class Board1Controller extends HttpServlet {
 				request.setAttribute("nickname", nickname);
 				request.setAttribute("dto", dto);
 				request.setAttribute("didIDwrite", didIDwrite);
-				request.setAttribute("id", id);
 				
 
 
@@ -175,8 +192,12 @@ public class Board1Controller extends HttpServlet {
 
 			}else if(uri.equals("/toModifyForm.brd1")) {
 				//--------------------------------------수정 폼으로 가기
+				
+				String id = (String)session.getAttribute("loginID");
+				request.setAttribute("loginID", id);
+				
 				int seq = Integer.parseInt(request.getParameter("seq"));
-				String nickname = (String)session.getAttribute("loginNN");
+				String nickname = dao.selectNicknameById(id);
 				Board1DTO dto = dao.selectBySeq(seq);
 				request.setAttribute("nickname", nickname);
 				request.setAttribute("dto", dto);
@@ -184,6 +205,10 @@ public class Board1Controller extends HttpServlet {
 
 
 			}else if(uri.equals("/modify.brd1")) {
+				
+				String id = (String)session.getAttribute("loginID");
+				request.setAttribute("loginID", id);
+				
 				//----------------------------------파일 수정
 				int maxSize = 1024*1024*10;//최대 사이즈
 				String savePath = request.getServletContext().getRealPath("files");//해당 프로젝트 서버 안의 파일 저장소인 files 지정
@@ -234,18 +259,22 @@ public class Board1Controller extends HttpServlet {
 				}
 
 				//-----------------------------------------글 수정
-
-				String writer = multi.getParameter("writer");
+				
+				String writer = dao.selectNicknameById(id);
 				String title = multi.getParameter("title");
 				String contents = multi.getParameter("contents");
 				String item = multi.getParameter("item");
 				long item_price = Long.parseLong(multi.getParameter("item_price"));
 
-				dao.modify(new Board1DTO(seq,writer,title,contents,null,item,item_price,0,0,0,null,0));
+				dao.modify(new Board1DTO(seq,writer,title,contents,null,item,item_price,0,0,0,null,0,id));
 
 				response.sendRedirect("/list.brd1?cpage=1");
 
 			}else if(uri.equals("/delete.brd1")) {
+				
+				String id = (String)session.getAttribute("loginID");
+				request.setAttribute("loginID", id);
+				
 				int seq = Integer.parseInt(request.getParameter("seq"));//seq 값 불러오기
 				//1. 파일 삭제
 				String deleteFile = pdao.selectImgBySeq(seq);//seq에 따른 sys_Name 불러오기
@@ -265,10 +294,12 @@ public class Board1Controller extends HttpServlet {
 				}
 				response.sendRedirect("/list.brd1?cpage=1");
 			}else if(uri.equals("/isGoodChecked.brd1")) {//해당 게시물에 사용자가 좋아요 누른 댓글 시퀀스 배열로 반환
-				String nickname = (String) session.getAttribute("loginNN");
+				String id = (String)session.getAttribute("loginID");
+				request.setAttribute("loginID", id);
+
 				int board1_Seq = Integer.parseInt(request.getParameter("board1_Seq"));
 				//해당 게시글의 좋아요 목록 출력
-				List<Board1_GoodDTO> list = rdao.selectGoodBySeq(board1_Seq, nickname);
+				List<Board1_GoodDTO> list = rdao.selectGoodBySeq(board1_Seq,id);
 				PrintWriter pw = response.getWriter();
 				pw.append(g.toJson(list));
 			}
