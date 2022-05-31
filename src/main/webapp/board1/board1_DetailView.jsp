@@ -164,8 +164,8 @@
 														</div>
 														<div class="col-8">
 															<div class="writer" id="r${i.seq }"> ${i.writer } </div>
-															<input type="text" name="reply_contents"
-																value='${i.contents }' readonly maxlength=300> 
+															<div>${i.contents }</div>
+															<textarea name="reply_contents" maxlength=300 style="display:none">${i.contents }</textarea>
 															<input type="hidden" name="replySeqToUpdate" value=${i.seq }>
 															<input type="hidden" name="parent_seq2" value=${dto.seq }>
 															<div id="w${i.seq }" class="reply_time"></div>
@@ -306,7 +306,7 @@
 			
 			
 			// 로드시 좋아요 한 댓글 검정색 처리	
-			if(${nickname==null}){
+			if(${loginID==null}){
 				location.href="/index.jsp"
 			}
 			$.ajax({
@@ -345,14 +345,14 @@
 			location.href="/list.brd1?cpage=1";
 		})
 		$("#modify").on("click",function(){//수정하기
-			if(${nickname==null}){
+			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");
 				location.href="/index.jsp"
 			}
 			location.href="/toModifyForm.brd1?seq=${dto.seq}";
 		})
 		$("#delete").on("click",function(){
-			if(${nickname==null}){
+			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");
 				location.href="/index.jsp"
 			}
@@ -367,7 +367,7 @@
 
 //		댓글 작성	
 		$("#reply").on("click",function(){	
-			if(${nickname==null}){
+			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");
 				location.href="/index.jsp"
 			}
@@ -385,14 +385,15 @@
 	
 //			3. 댓글 수정 기능
 		$(".modify_btn").on("click",function(){
-			if(${nickname==null}){
+			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");
 				location.href="/index.jsp"
 			}
 			$(this).css('display','none');//수정 버튼 none처리
 			$(this).next().css('display','none');//삭제 버튼 none처리
-			$(this).parent().parent().prev().children().eq(1).attr('readonly',false);
+			$(this).parent().parent().prev().children().eq(2).css('display','block');
 			//댓글창 text창 활성화
+			$(this).parent().parent().prev().children().eq(1).css('display','none');
 			//disable은 parameter로 안 넘어가서 readonly 이용 
 			let agreeRadio = $(this).parent().parent().prev().prev().children().eq(1);
 			agreeRadio.css('display','inline-block');
@@ -431,11 +432,11 @@
 			});
 			
 			ok.on("click",function(){//댓글 공백 제한 처리
-				if(${nickname==null}){
+				if(${loginID==null}){
 					alert("로그인 후 이용가능합니다.");
 					location.href="/index.jsp"
 				}
-				if($(this).parent().parent().prev().children().eq(1).val().trim()==''){
+				if($(this).parent().parent().prev().children().eq(2).val().trim()==''){
 					alert("댓글 내용을 입력해주세요.");
 					return false;
 				}
@@ -444,30 +445,30 @@
 		})
 //			4. 댓글 삭제 기능
 		$(".delete_btn").on("click",function(){
-			if(${nickname==null}){
+			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");
 				location.href="/index.jsp"
 			}
 			
 			result = confirm("댓글을 정말로 삭제하시겠습니까?")
 			if(result){
-				let seq = $(this).parent().parent().prev().children().eq(2).val();
-				let board_Seq = $(this).parent().parent().prev().children().eq(3).val(); 
+				let seq = $(this).parent().parent().prev().children().eq(3).val();
+				let board_Seq = $(this).parent().parent().prev().children().eq(4).val(); 
 				location.href="/delete.brd1_reply?seq="+seq+"&board_Seq="+board_Seq;	
 			}
 
 		})
 //			5. 댓글 좋아요 기능		
 		$(".good_path").on("click",function(){	
-			if(${nickname==null}){
+			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");
 				location.href="/index.jsp"
 			}
 			$.ajax({
 				url:"/good.brd1_reply",
 				data:{
-					board1_Seq : $(this).parent().parent().prev().children().eq(3).val(),
-					reply1_Seq : $(this).parent().parent().prev().children().eq(2).val()
+					board1_Seq : $(this).parent().parent().prev().children().eq(4).val(),
+					reply1_Seq : $(this).parent().parent().prev().children().eq(3).val()
 				},
 				dataType:"json"
 			}).done(function(resp){
@@ -480,15 +481,15 @@
 //			6. 댓글 좋아요 취소 기능
 
 			$(".goodcencel_path").on("click",function(){
-				if(${nickname==null}){
+				if(${loginID==null}){
 					alert("로그인 후 이용가능합니다.");
 					location.href="/index.jsp"
 				}		
 			$.ajax({
 				url:"/cancelGood.brd1_reply",
 				data:{
-					board1_Seq : $(this).parent().parent().prev().children().eq(3).val(),
-					reply1_Seq : $(this).parent().parent().prev().children().eq(2).val()
+					board1_Seq : $(this).parent().parent().prev().children().eq(4).val(),
+					reply1_Seq : $(this).parent().parent().prev().children().eq(3).val()
 				},
 				dataType:"json"
 			}).done(function(resp){

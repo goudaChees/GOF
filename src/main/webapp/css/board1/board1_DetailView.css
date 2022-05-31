@@ -249,6 +249,12 @@
 	border-right:2px dashed #F4ACB7;
 }
 
+.replyViewcontainer .col-8 textarea{
+	width:100%;
+	height:100px;
+	resize:none;	
+}
+
 .replyViewcontainer .writer{
 	text-align:left;
 	display:inline;
