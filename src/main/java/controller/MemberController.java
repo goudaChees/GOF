@@ -45,8 +45,8 @@ public class MemberController extends HttpServlet {
 				if(isLoginOk) {
 					HttpSession session = request.getSession();
 					session.setAttribute("loginID", id); // 로그인
-					String nickname = dao.getNickname(id);
-					session.setAttribute("loginNN", nickname);
+//					String nickname = dao.getNickname(id);
+//					session.setAttribute("loginNN", nickname);
 				}
 				
 			}else if(uri.equals("/joinform.member")) { // 회원가입 클릭시 회원가입폼으로 보냄
@@ -119,23 +119,23 @@ public class MemberController extends HttpServlet {
 				response.sendRedirect("/mypage.member");
 			
 			}else if(uri.equals("/myWriting.member")) {	// 내 글 보기 클릭시
-				String nickname = (String) request.getSession().getAttribute("loginNN");
+				String id = (String) request.getSession().getAttribute("loginID");
 				int boardNum = Integer.parseInt(request.getParameter("board"));
 				int page=Integer.parseInt(request.getParameter("page"));
-				String pageList = dao.PageList(nickname, boardNum, page);
+				String pageList = dao.PageList(id, boardNum, page);
 				String link = dao.getLink(boardNum);
-				List<MyWritingDTO> list = dao.SelectPage(nickname, boardNum, page);
+				List<MyWritingDTO> list = dao.SelectPage(id, boardNum, page);
 				request.setAttribute("list", list);
 				request.setAttribute("pageList", pageList);
 				request.setAttribute("link",link);
 				request.getRequestDispatcher("/member/myWriting.jsp").forward(request, response);
 			
 			}else if(uri.equals("/myReply.member")) {	// 내 댓글 보기 클릭시
-				String nickname = (String) request.getSession().getAttribute("loginNN");
+				String id = (String) request.getSession().getAttribute("loginID");
 				int boardNum = Integer.parseInt(request.getParameter("board"));
 				int page=Integer.parseInt(request.getParameter("page"));
-				String pageList = dao.reply_PageList(nickname, boardNum, page);
-				List<MyReplyDTO> replyList = dao.reply_SelectPage(nickname, boardNum, page);
+				String pageList = dao.reply_PageList(id, boardNum, page);
+				List<MyReplyDTO> replyList = dao.reply_SelectPage(id, boardNum, page);
 				String link = dao.getLink(boardNum);
 				request.setAttribute("replyList", replyList);
 				request.setAttribute("pageList", pageList);
@@ -167,8 +167,8 @@ public class MemberController extends HttpServlet {
 				if(isLoginOk) {
 					HttpSession session = request.getSession();
 					session.setAttribute("loginID", id); // 로그인
-					String nickname = dao.getNickname(id);
-					session.setAttribute("loginNN", nickname);
+//					String nickname = dao.getNickname(id);
+//					session.setAttribute("loginNN", nickname);
 				}
 				response.sendRedirect("/index.jsp");
 			
