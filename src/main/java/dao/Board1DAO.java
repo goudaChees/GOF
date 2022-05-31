@@ -307,7 +307,7 @@ public class Board1DAO {
 	}
 
 	public int modify(Board1DTO dto)throws Exception {
-		String sql = "update board1 set title=?,contents=?,item=?,item_price=? where seq=?";
+		String sql = "update board1 set title=?,contents=?,item=?,item_price=?, writer=? where seq=?";
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
@@ -316,7 +316,8 @@ public class Board1DAO {
 			pstat.setString(2, dto.getContents());
 			pstat.setString(3, dto.getItem());
 			pstat.setLong(4, dto.getItem_price());
-			pstat.setInt(5,dto.getSeq());
+			pstat.setString(3, dto.getWriter());
+			pstat.setInt(6,dto.getSeq());
 
 			int result = pstat.executeUpdate();
 			con.commit();

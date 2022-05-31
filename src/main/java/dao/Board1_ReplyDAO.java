@@ -92,15 +92,16 @@ public class Board1_ReplyDAO {
 		}
 	}
 	
-	public int modifyReply(int seq,String agree,String contents)throws Exception {//댓글 수정 기능
-		String sql = "update board1_reply set agree=?, contents=? where seq =? ";
+	public int modifyReply(int seq,String agree,String contents,String writer)throws Exception {//댓글 수정 기능
+		String sql = "update board1_reply set agree=?, contents=?, writer=? where seq =? ";
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
 			pstat.setString(1, agree);
 			pstat.setString(2, contents);
-			pstat.setInt(3, seq);
+			pstat.setString(3, writer);
+			pstat.setInt(4, seq);
 			
 			int result = pstat.executeUpdate();
 			return result;
