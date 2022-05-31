@@ -164,8 +164,8 @@
 														</div>
 														<div class="col-8">
 															<div class="writer" id="r${i.seq }"> ${i.writer } </div>
-															<div>${i.contents }</div>
-															<textarea name="reply_contents" maxlength=300 style="display:none">${i.contents }</textarea>
+															<div style="text-align:left;">${i.contents }</div>
+															<textarea name="reply_contents" maxlength=300 style="display:none;border:1px solid #FFC4A9;overflow:auto;">${i.contents }</textarea>
 															<input type="hidden" name="replySeqToUpdate" value=${i.seq }>
 															<input type="hidden" name="parent_seq2" value=${dto.seq }>
 															<div id="w${i.seq }" class="reply_time"></div>
