@@ -188,18 +188,18 @@ private static MemberDAO instance = null;
 
 
 	// 내 글보기 - 페이지별 게시글 선택
-	public List<MyWritingDTO> SelectPage(String nickname,int boardNum, int page) throws Exception{ 
+	public List<MyWritingDTO> SelectPage(String id,int boardNum, int page) throws Exception{ 
 		int startNum = page*10-9;
 		int endNum = page*10;
 		
 		String sql="";
 		if(boardNum==1) {
 			sql = "select * from( select rownum as num, mywriting.* from"
-				+ "(select seq, title, write_date from board1 where writer=? order by 3 desc)mywriting)"
+				+ "(select seq, title, write_date from board1 where id=? order by 3 desc)mywriting)"
 				+ "where num between ? and ?";
 		}else if(boardNum==2) {
 			sql = "select * from( select rownum as num, mywriting.* from"
-				+ "(select seq, title, write_date from board2 where writer=? order by 3 desc)mywriting)"
+				+ "(select seq, title, write_date from board2 where id=? order by 3 desc)mywriting)"
 				+ "where num between ? and ?";
 		}
 		
@@ -207,7 +207,7 @@ private static MemberDAO instance = null;
 
 		try(Connection con = this.getConnection();
 			PreparedStatement pstat = con.prepareStatement(sql);){
-			pstat.setString(1, nickname);
+			pstat.setString(1, id);
 			pstat.setInt(2, startNum);
 			pstat.setInt(3, endNum);
 			try(ResultSet rs = pstat.executeQuery();){
@@ -223,17 +223,17 @@ private static MemberDAO instance = null;
 	}
 	
 	// 내 글보기-총 게시글 수
-	private int getTotalCount(String nickname,int boardNum) throws Exception{
+	private int getTotalCount(String id,int boardNum) throws Exception{
 		
 		String sql = "";
 		if(boardNum==1) {
-			sql="select count(*) from (select * from board1 where writer=?)";
+			sql="select count(*) from (select * from board1 where id=?)";
 		}else if(boardNum==2) {
-			sql="select count(*) from (select * from board2 where writer=?)";
+			sql="select count(*) from (select * from board2 where id=?)";
 		}
 		try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
-				pstat.setString(1, nickname);
+				pstat.setString(1, id);
 				try(ResultSet rs = pstat.executeQuery()){
 				rs.next();
 				return rs.getInt(1);
@@ -242,9 +242,9 @@ private static MemberDAO instance = null;
 	}
 
 	// 내 글보기 - pagination
-	public String PageList(String nickname,int boardNum, int page) throws Exception{
+	public String PageList(String id,int boardNum, int page) throws Exception{
 		
-		int recordTotalCount = this.getTotalCount(nickname,boardNum);
+		int recordTotalCount = this.getTotalCount(id,boardNum);
 		int recordCountPerPage = 10; 
 		int naviCountPerPage= 10; 
 		int pageTotalCount = (int)Math.ceil(recordTotalCount/(double)recordCountPerPage);
@@ -292,18 +292,18 @@ private static MemberDAO instance = null;
 	
 	
 	// 내 댓글보기 - 페이지별 게시글 선택
-		public List<MyReplyDTO> reply_SelectPage(String nickname,int boardNum, int page) throws Exception{ 
+		public List<MyReplyDTO> reply_SelectPage(String id,int boardNum, int page) throws Exception{ 
 			int startNum = page*10-9;
 			int endNum = page*10;
 			
 			String sql="";
 			if(boardNum==1) {
 				sql = "select * from( select rownum as num, myreply.* from"
-					+ "(select seq,parent_seq,contents,write_date from board1_reply where writer=? order by 4 desc)myreply)"
+					+ "(select seq,parent_seq,contents,write_date from board1_reply where id=? order by 4 desc)myreply)"
 					+ "where num between ? and ?";
 			}else if(boardNum==2) {
 				sql = "select * from( select rownum as num, myreply.* from"
-					+ "(select seq,parent_seq,contents,write_date from board2_reply where writer=? order by 4 desc)myreply)"
+					+ "(select seq,parent_seq,contents,write_date from board2_reply where id=? order by 4 desc)myreply)"
 					+ "where num between ? and ?";
 			}
 			
@@ -311,7 +311,7 @@ private static MemberDAO instance = null;
 
 			try(Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);){
-				pstat.setString(1, nickname);
+				pstat.setString(1, id);
 				pstat.setInt(2, startNum);
 				pstat.setInt(3, endNum);
 				try(ResultSet rs = pstat.executeQuery();){
@@ -328,17 +328,17 @@ private static MemberDAO instance = null;
 		}
 		
 		// 내 댓글보기-총 댓글 수
-		private int reply_getTotalCount(String nickname,int boardNum) throws Exception{
+		private int reply_getTotalCount(String id,int boardNum) throws Exception{
 			
 			String sql = "";
 			if(boardNum==1) {
-				sql="select count(*) from (select * from board1_reply where writer=?)";
+				sql="select count(*) from (select * from board1_reply where id=?)";
 			}else if(boardNum==2) {
-				sql="select count(*) from (select * from board2_reply where writer=?)";
+				sql="select count(*) from (select * from board2_reply where id=?)";
 			}
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(sql);){
-					pstat.setString(1, nickname);
+					pstat.setString(1, id);
 					try(ResultSet rs = pstat.executeQuery()){
 					rs.next();
 					return rs.getInt(1);
@@ -347,9 +347,9 @@ private static MemberDAO instance = null;
 		}
 
 		// 내 댓글보기 - pagination
-		public String reply_PageList(String nickname,int boardNum, int page) throws Exception{
+		public String reply_PageList(String id,int boardNum, int page) throws Exception{
 			
-			int recordTotalCount = this.reply_getTotalCount(nickname,boardNum);
+			int recordTotalCount = this.reply_getTotalCount(id,boardNum);
 			int recordCountPerPage = 10; 
 			int naviCountPerPage= 10; 
 			int pageTotalCount = (int)Math.ceil(recordTotalCount/(double)recordCountPerPage);
@@ -487,4 +487,29 @@ private static MemberDAO instance = null;
 					}
 				}
 		}
+		
+		// -- 회원탈퇴시 내 글 모두 삭제
+		public int deleteAllContents(String id) throws Exception {
+			String seq = "delete * from board1, board2 where id=?";
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(seq);){
+				pstat.setString(1, id);
+				int result = pstat.executeUpdate();
+				con.commit();
+				return result;
+			}
+		}
+		
+		// -- 회원탈퇴시 내 댓글 모두 삭제
+		public int deleteAllReplys(String id) throws Exception {
+			String seq = "delete * from board1_reply,board2_reply board2 where id=?";
+			try(Connection con = this.getConnection();
+					PreparedStatement pstat = con.prepareStatement(seq);){
+				pstat.setString(1, id);
+				int result = pstat.executeUpdate();
+				con.commit();
+				return result;
+			}
+		}
+
 }

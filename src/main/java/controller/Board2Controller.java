@@ -50,11 +50,12 @@ public class Board2Controller extends HttpServlet {
 			} else if (uri.equals("/write.brd2")) {
 				response.sendRedirect("/board2/board2_Write.jsp");
 			} else if (uri.equals("/board2/write2.brd2")) {
-				String nickname = (String) session.getAttribute("loginNN");
+				String id = request.getParameter("id");
+				String nickname = dao.getNN(id);
 				String title = request.getParameter("title");
 				String contents = request.getParameter("contents");
 				String item = request.getParameter("item");
-				dao.insert(new Board2DTO(0, nickname, title, contents, item, "0", 0, 0));
+				dao.insert(new Board2DTO(0, nickname, title, contents, item, "0", 0, 0,id));
 				response.sendRedirect("/list.brd2?cpage=1");
 			} else if (uri.equals("/modi.brd2")) {
 				int seq = Integer.parseInt(request.getParameter("seq"));
@@ -73,7 +74,8 @@ public class Board2Controller extends HttpServlet {
 			else if (uri.equals("/read.brd2")) {
 				int seq = Integer.parseInt(request.getParameter("seq"));
 				String loginID = (String) session.getAttribute("loginID");
-				String loginNN = (String) session.getAttribute("loginNN");
+				String loginNN = dao.getNN(loginID);
+				
 				Board2DTO dto = dao.contents(seq);
 				 
 				request.setAttribute("dto", dto);
@@ -83,6 +85,7 @@ public class Board2Controller extends HttpServlet {
 				ArrayList<Board2_replyDTO> rdto = rdao.list(seq);
 				request.setAttribute("rdto", rdto);
 				// 댓글보기
+				
 				request.setAttribute("loginID", loginID);
 				request.setAttribute("loginNN", loginNN);
 				
@@ -98,6 +101,7 @@ public class Board2Controller extends HttpServlet {
 					Board2_replyDTO crdto = rdao.choiceReply(seq);
 					request.setAttribute("crdto", crdto);
 				}
+			
 				request.setAttribute("timeover", timeover);
 				request.setAttribute("cck", cck);
 				request.setAttribute("wck", wck);
