@@ -32,6 +32,7 @@ public class Board1_ReplyController extends HttpServlet {
 		try {
 			if(uri.equals("/write.brd1_reply")) {
 				String id = (String) session.getAttribute("loginID");
+
 				String writer = request.getParameter("nickname");
 				String contents = request.getParameter("contents");
 				String agree = request.getParameter("agree");

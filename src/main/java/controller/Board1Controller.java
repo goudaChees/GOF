@@ -260,7 +260,7 @@ public class Board1Controller extends HttpServlet {
 
 				//-----------------------------------------글 수정
 				
-				String writer = multi.getParameter("writer");
+				String writer = dao.selectNicknameById(id);
 				String title = multi.getParameter("title");
 				String contents = multi.getParameter("contents");
 				String item = multi.getParameter("item");
