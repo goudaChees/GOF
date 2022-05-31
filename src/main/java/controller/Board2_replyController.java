@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
+import dao.Board2DAO;
 import dao.Board2_replyDAO;
 import dto.Board2_replyDTO;
 
@@ -18,7 +19,8 @@ import dto.Board2_replyDTO;
 @WebServlet("*.brd2_reply")
 public class Board2_replyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    Board2_replyDAO dao = new Board2_replyDAO();    
+    Board2_replyDAO dao = new Board2_replyDAO();
+    Board2DAO bdao = new Board2DAO();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String uri = request.getRequestURI();
@@ -29,11 +31,12 @@ public class Board2_replyController extends HttpServlet {
 		Gson gs = new Gson();
 		try{
 			if(uri.equals("/write.brd2_reply")) {
-			String nickname = (String) session.getAttribute("loginNN");
+			String id =	(String) session.getAttribute("loginID");
+			String nickname = bdao.getNN(id);
 			int pseq = Integer.parseInt(request.getParameter("pseq"));
 			String contents = request.getParameter("contents");
 			Long price =  Long.parseLong(request.getParameter("price"));
-			dao.insert(new Board2_replyDTO(0,nickname,pseq,price,contents,"0",'Y'));
+			dao.insert(new Board2_replyDTO(0,nickname,pseq,price,contents,"0",'Y',id));
 			response.sendRedirect("/read.brd2?seq="+pseq);
 		}else if(uri.equals("/choice.brd2_reply")) {
 			int seq = Integer.parseInt(request.getParameter("rseq"));
@@ -54,8 +57,7 @@ public class Board2_replyController extends HttpServlet {
 			e.printStackTrace();
 			response.sendRedirect("/error.html");
 		}
-		
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

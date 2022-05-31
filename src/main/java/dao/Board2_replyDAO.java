@@ -96,13 +96,14 @@ public class Board2_replyDAO {
 	}
 	// 선택된 댓글 반환 매서드
 	public int insert(Board2_replyDTO dto) throws Exception {
-		String sql = "insert into board2_reply(seq,writer,parent_seq,price,contents,write_date) values(reply2_seq.nextval,?,?,?,?,default)";
+		String sql = "insert into board2_reply(seq,writer,parent_seq,price,contents,write_date,id) values(reply2_seq.nextval,?,?,?,?,default,?)";
 		int result = 0;
 		try (Connection con = this.getConnection(); PreparedStatement stat = con.prepareStatement(sql);) {
 			stat.setString(1, dto.getNickname());
 			stat.setInt(2, dto.getParent_seq());
 			stat.setLong(3, dto.getPrice());
 			stat.setString(4, dto.getContents());
+			stat.setString(5, dto.getId());
 			result = stat.executeUpdate();
 			con.commit();
 		}
@@ -145,10 +146,11 @@ public class Board2_replyDAO {
 					String contents = rs.getString("contents");
 					Long price = rs.getLong("price");
 					String date = rs.getString("write_date");
+					String id = rs.getString("id");
 					if (!(rs.getString("choice") == null)) {
 						check = rs.getString("choice").charAt(0);
 					}
-					arr.add(new Board2_replyDTO(seq, writer, parent_seq,price, contents, date, check));
+					arr.add(new Board2_replyDTO(seq, writer, parent_seq,price, contents, date, check,id));
 				}
 			}
 		}

@@ -104,10 +104,10 @@
 											<a href="list.brd2" style="color: #9D8189;">목록보기</a>
 										</button>
 										<c:if
-											test="${(dto.nickname == loginNN && cck== false)||(loginID == 'admin')}">
+											test="${(dto.id == loginID && cck== false)||(loginID == 'admin')}">
 											<button type="button" id="modi" class=write>수정하기</button>
 										</c:if>
-										<c:if test="${dto.nickname == loginNN || loginID == 'admin'}">	
+										<c:if test="${dto.id == loginID || loginID == 'admin'}">	
 											<button type="button" id="del" class=write>삭제하기</button>
 										</c:if>
 									</div>
@@ -184,20 +184,20 @@
 												<div class="col-12  contents">
 													<div class="row">
 														<div class="col-12 incontents">
-															<textarea class="content_editable" disabled >${i.contents}</textarea>
+															<textarea class="content_editable" disabled maxlength="100">${i.contents}</textarea>
 														</div>
 													</div>
 												</div>
 												<div class="col-12  p-0 text2 writingEtc">
 													<div style="float:right;">
-													<c:if test="${(i.nickname == loginNN && cck== false)||(loginID == 'admin')}">
+													<c:if test="${(i.id == loginID && cck== false)||(loginID == 'admin')}">
 														<button class="modibtn write">수정</button>
 													</c:if>
-													<c:if test="${(i.nickname == loginNN) || (loginID == 'admin')}">
+													<c:if test="${(i.id == loginID) || (loginID == 'admin')}">
 														<button class="delbtn write" value="${i.seq}" >삭제</button>	
 													</c:if>
 													</div>
-													<c:if test="${loginNN == dto.nickname && cck == false}">
+													<c:if test="${loginID == dto.id && cck == false}">
 														<input type="radio" name="choice" value="${i.seq}" class="choice" style="margin-left: 10px; margin-top:3px;"><span>선택</span>
 													</c:if>
 												</div>
@@ -373,7 +373,7 @@
 				url : "/modi.brd2_reply",
 				dataType:"json",
 				data:{
-					rseq:$($(this).parent().siblings().siblings().children()[1]).val(),
+					rseq:$($(this).parent().children()[1]).val(),
 					price:$(this).parent().parent().parent().siblings(".reply").children(".price").children()[1].value,
 					contents:$(this).parent().parent().siblings(".contents").children().children(".incontents").children()[0].value
 				}
@@ -416,7 +416,7 @@
 		}
 	        let time = $("#wtime").text();
 	        let dateObj = new Date(time);
-	        dateObj.setMinutes(dateObj.getMinutes() +30);
+	        dateObj.setMinutes(dateObj.getMinutes() +5);
 			countDownTimer("limit", dateObj);
 			
 			

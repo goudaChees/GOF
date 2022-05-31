@@ -8,8 +8,10 @@ public class Board2_replyDTO {
 	private String contents;
 	private String write_date;
 	private char choice;
+	private String id;
+	
 	public Board2_replyDTO(int seq, String nickname, int parent_seq, Long price, String contents, String write_date,
-			char choice) {
+			char choice, String id) {
 		super();
 		this.seq = seq;
 		this.nickname = nickname;
@@ -18,7 +20,17 @@ public class Board2_replyDTO {
 		this.contents = contents;
 		this.write_date = write_date;
 		this.choice = choice;
+		this.id = id;
 	}
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public Board2_replyDTO() {
 		super();
 	}

@@ -346,7 +346,7 @@
 		</div>
 	</div>
 	<script>
-	setTimeout(function(){ map.relayout(); }, 1500);
+	setTimeout(function(){ map.relayout(); }, 2000);
 		function relayout() {    
 		    // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
 		    // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 

@@ -30,12 +30,13 @@ public class Board2DAO {
 	};
 
 	public int insert(Board2DTO dto) throws Exception {
-		String sql = "insert into board2 values(Board2_seq.nextval,?,?,?,default,?,default,default)";
+		String sql = "insert into board2 values(Board2_seq.nextval,?,?,?,default,?,default,default,?)";
 		try (Connection con = this.getConnection(); PreparedStatement stat = con.prepareStatement(sql);) {
 			stat.setString(1, dto.getNickname());
 			stat.setString(2, dto.getTitle());
 			stat.setString(3, dto.getContents());
 			stat.setString(4, dto.getItem());
+			stat.setString(5, dto.getId());
 			int result = stat.executeUpdate();
 			con.commit();
 			return result;
@@ -57,7 +58,8 @@ public class Board2DAO {
 				String item = rs.getString("item");
 				int count = rs.getInt("view_count");
 				int reply = rs.getInt("reply");
-				arr.add(new Board2DTO(seq, writer, title, contents, item, date, count,reply));
+				String id = rs.getString("id");
+				arr.add(new Board2DTO(seq, writer, title, contents, item, date, count,reply,id));
 			}
 		}
 		return arr;
@@ -101,7 +103,7 @@ public class Board2DAO {
 		Date overdate = new Date();
 		
 		long diffMin = (overdate.getTime() - wdate.getTime()) / 60000; //분 차이
-		if(diffMin>30) {
+		if(diffMin>5) {
 			return true;
 		}
 		return false;
@@ -209,7 +211,8 @@ public class Board2DAO {
 					String item = rs.getString("item");
 					int count = rs.getInt("view_count");
 					int reply = rs.getInt("reply");
-					arr.add(new Board2DTO(seq, writer, title, contents, date, item, count,reply));
+					String id = rs.getString("id");
+					arr.add(new Board2DTO(seq, writer, title, contents, date, item, count,reply,id));
 				}
 			}
 		}
@@ -242,6 +245,7 @@ public class Board2DAO {
 				dto.setWrite_date(rs.getString("write_date"));
 				dto.setItem(rs.getString("item"));
 				dto.setView_count(rs.getInt("view_count"));
+				dto.setId(rs.getString("id"));
 				return dto;
 			}
 		}
@@ -276,7 +280,8 @@ public class Board2DAO {
 					String item = rs.getString("item");
 					int count = rs.getInt("view_count");
 					int reply = rs.getInt("reply");
-					arr.add(new Board2DTO(seq, writer, title, contents, date, item, count,reply));
+					String id = rs.getString("id");
+					arr.add(new Board2DTO(seq, writer, title, contents, date, item, count,reply,id));
 				}
 			}
 		}
@@ -364,4 +369,15 @@ public class Board2DAO {
 
 	}
 
+	public String getNN(String id) throws Exception{
+		String sql = "select * from member where id = ?";
+		try(Connection con = this.getConnection(); 
+			PreparedStatement stat = con.prepareStatement(sql);){
+			stat.setString(1, id);
+			try(ResultSet rs = stat.executeQuery();){
+				rs.next();
+				return rs.getString("nickname");
+			}
+		}
+	}
 }
