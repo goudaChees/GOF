@@ -94,7 +94,7 @@ public class Board2Controller extends HttpServlet {
 				
 				boolean cck = rdao.ischoice(seq);
 				// 선택체크 선택되어 있다면 true
-				boolean wck = rdao.iswrite(seq,loginNN);
+				boolean wck = rdao.iswrite(seq,loginID);
 				// 작성여부 체크 작성한적이 있다면 true
 				boolean timeover = dao.istimeover(dto);
 				if(cck) {
