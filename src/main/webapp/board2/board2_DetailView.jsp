@@ -272,7 +272,10 @@
 			$("#w"+seq).text(moneyForm);
 		}		
 	}
-	
+	if(${loginID==null}){
+		alert("로그인 후 이용 가능합니다.")
+		location.href="/index.jsp"
+	}
 	if(${timeover}){
 		$("#btn1").attr("disabled","true");
 		$("#btn1").text('마감');
