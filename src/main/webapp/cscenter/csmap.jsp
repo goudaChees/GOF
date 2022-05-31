@@ -210,13 +210,13 @@
 	    // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
 	    map.relayout();
 	}
-var container = document.getElementById('map');
-var options = { 
-	center: new kakao.maps.LatLng(37.56792863494778, 126.98304380248652), //지도의 중심좌표.
-	level: 3 
-	};
-var map = new kakao.maps.Map(container, options);
-//지도 api 스크립트
+	var container = document.getElementById('map');
+	var options = { 
+		center: new kakao.maps.LatLng(37.56792863494778, 126.98304380248652), //지도의 중심좌표.
+		level: 3 
+		};
+	var map = new kakao.maps.Map(container, options);
+	//지도 api 스크립트
 
 	setTimeout(function(){ map.relayout(); }, 1500);
 		function relayout() {    
