@@ -140,7 +140,7 @@ function openPopup(url) {
 												<div class="col-2">제목</div>
 												<div class="col-10">
 													<input type=text name="emailTitle" id="emailTitleBox"
-														placeholder="제목을 작성해 주세요">
+														placeholder="제목을 작성해 주세요" >
 												</div>
 												<div class="col-2">내용</div>
 												<div class="col-10">
@@ -163,7 +163,7 @@ function openPopup(url) {
 											<div class="row w-100 m-0"><br><br></div>
 											<div class="row w-100 m-0">
 												<div class="col-12">
-													<button type=button id="sendbtn" onclick="mailConfirm()">Send Email</button>
+													<button type=button id="sendbtn" onclick="mailConfirm()" disabled>Send Email</button>
 												</div>
 											</div>
 										</form>
@@ -220,6 +220,88 @@ function openPopup(url) {
 			  text: '로그인 후 사용 가능합니다.'
 			})
 		})
+		
+		let isTitleOk = false;
+		let isContentsOk = false;
+		let isMailOk = false;
+		
+		$("#emailTitleBox").on("focusout", function(){
+			let mailTitle = $("#emailTitleBox").val();
+			if (mailTitle == ""){
+				Swal.fire({
+					  icon: 'info',
+					  text: '메일 제목을 작성해주세요'
+				})
+				isTitleOk = false;
+				$("#sendbtn").attr("disabled", "true");
+				return false;
+			}else {
+				isTitleOk = true;
+				
+				if (${loginID == null}){
+					if(isTitleOk && isContentsOk && isMailOk){
+						$("#sendbtn").removeAttr("disabled");
+					}
+				}else {
+					if(isTitleOk && isContentsOk){
+						$("#sendbtn").removeAttr("disabled");
+					}
+				}
+			}
+		})
+		
+		$("#emailContentsBox").on("focusout", function(){
+			let mailContents = $("#emailContentsBox").val();
+			if (mailContents == ""){
+				Swal.fire({
+					  icon: 'info',
+					  text: '메일 내용을 작성해주세요'
+				})
+				isTitleOk = false;
+				$("#sendbtn").attr("disabled", "true");
+				return false;
+			}else {
+				isContentsOk = true;
+				
+				if (${loginID == null}){
+					if(isTitleOk && isContentsOk && isMailOk){
+						$("#sendbtn").removeAttr("disabled");
+					}
+				}else {
+					if(isTitleOk && isContentsOk){
+						$("#sendbtn").removeAttr("disabled");
+					}
+				}
+			}
+		})
+		
+		
+		$("#emailAddrBox").on("focusout", function(){
+			let mailAddr = $("#emailAddrBox").val();
+			if(mailAddr == ""){
+				Swal.fire({
+					  icon: 'info',
+					  text: '메일 주소를 작성해주세요'
+				})
+				isTitleOk = false;
+				$("#sendbtn").attr("disabled", "true");
+				return false;
+			}else {
+				isMailOk = true;
+				
+				if (${loginID == null}){
+					if(isTitleOk && isContentsOk && isMailOk){
+						$("#sendbtn").removeAttr("disabled");
+					}
+				}else {
+					if(isTitleOk && isContentsOk){
+						$("#sendbtn").removeAttr("disabled");
+					}
+				}
+			}
+		})
+		
+		
 		
 		  function mailConfirm(){
 			  if (${loginID != null}) {
