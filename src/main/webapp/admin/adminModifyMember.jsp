@@ -90,6 +90,7 @@ input:focus {
 		}).done(function(resp){
 			if (resp == "false"){
 				alert("올바른 비밀번호를 입력해 주십시오.");
+				window.opener.location.reload();
 				window.close();
 			}else {
 				let result = confirm("확인 되었습니다.");

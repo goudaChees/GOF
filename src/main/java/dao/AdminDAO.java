@@ -35,8 +35,16 @@ private static AdminDAO instance = null;
 	
 	// 관리자 권한으로 멤버 아이디 넣어 추방 
 	public int deleteById(String id) throws Exception {
+		
+		this.delByIdB1Write(id);
+		this.delByIdB2Write(id);
+		this.delByIdB1RWrite(id);
+		this.delByIdB2RWrite(id);
+		
 		String sql = "delete member where id=?";
-		try(Connection con = this.getConnection();
+		
+		try(
+				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
 			pstat.setString(1,id);
@@ -45,6 +53,63 @@ private static AdminDAO instance = null;
 			return result;
 		}
 	}
+	
+	// 관리자 권한으로 추방시 글 삭제
+	
+	public int delByIdB1Write(String id) throws Exception {
+		String sql = "delete board1 where id=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, id);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
+	public int delByIdB2Write(String id) throws Exception {
+		String sql = "delete board2 where id=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, id);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
+	// 관리자 권한으로 추방시 댓글 삭제
+	
+	public int delByIdB1RWrite(String id) throws Exception {
+		String sql = "delete board1_reply where id=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, id);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
+	public int delByIdB2RWrite(String id) throws Exception {
+		String sql = "delete board2_reply where id=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, id);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	
 	
 	// 관리자 권한으로 멤버 아이디 넣어 수정 
 	public MemberDTO selectById(String pid) throws Exception{
@@ -69,6 +134,8 @@ private static AdminDAO instance = null;
 			}
 		}
 	}
+
+	
 	
 	// 관리자 확인
 	public boolean isAdminOk (String pw) throws Exception {
