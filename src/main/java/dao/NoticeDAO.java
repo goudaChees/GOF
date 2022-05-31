@@ -53,7 +53,6 @@ public class NoticeDAO {
 					return dto;
 				}
 		}
-			
 	}
 	
 	// 글쓰기
