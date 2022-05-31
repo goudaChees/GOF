@@ -171,7 +171,7 @@
 															<div id="w${i.seq }" class="reply_time"></div>
 														</div>
 														<div class="col-2">
-															<c:if test="${i.writer==nickname || id=='admin'}">
+															<c:if test="${i.id==loginID|| loginID=='admin'}">
 																<div class="reply_btns">
 																	<input type="hidden" value=${i.contents }>
 																	<input type="hidden" value=${i.seq }>
@@ -211,7 +211,7 @@
 						<div class="row w-100 m-0" id="writingFooter">
 							<div class="col-12">
 								<input type="button" id="toList" value="목록으로">
-								<c:if test="${nickname==dto.writer || id=='admin'}">
+								<c:if test="${loginID==dto.id || loginID=='admin'}">
 									<input type="button" id="modify" value="수정하기">
 									<input type="button" id="delete" value="삭제하기">
 								</c:if>
@@ -306,7 +306,7 @@
 			
 			
 			// 로드시 좋아요 한 댓글 검정색 처리	
-			if(${nickname==null}){
+			if(${loginID==null}){
 				location.href="/index.jsp"
 			}
 			$.ajax({
@@ -345,14 +345,14 @@
 			location.href="/list.brd1?cpage=1";
 		})
 		$("#modify").on("click",function(){//수정하기
-			if(${nickname==null}){
+			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");
 				location.href="/index.jsp"
 			}
 			location.href="/toModifyForm.brd1?seq=${dto.seq}";
 		})
 		$("#delete").on("click",function(){
-			if(${nickname==null}){
+			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");
 				location.href="/index.jsp"
 			}
@@ -367,7 +367,7 @@
 
 //		댓글 작성	
 		$("#reply").on("click",function(){	
-			if(${nickname==null}){
+			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");
 				location.href="/index.jsp"
 			}
@@ -385,7 +385,7 @@
 	
 //			3. 댓글 수정 기능
 		$(".modify_btn").on("click",function(){
-			if(${nickname==null}){
+			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");
 				location.href="/index.jsp"
 			}
@@ -444,7 +444,7 @@
 		})
 //			4. 댓글 삭제 기능
 		$(".delete_btn").on("click",function(){
-			if(${nickname==null}){
+			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");
 				location.href="/index.jsp"
 			}
@@ -459,7 +459,7 @@
 		})
 //			5. 댓글 좋아요 기능		
 		$(".good_path").on("click",function(){	
-			if(${nickname==null}){
+			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");
 				location.href="/index.jsp"
 			}
@@ -480,7 +480,7 @@
 //			6. 댓글 좋아요 취소 기능
 
 			$(".goodcencel_path").on("click",function(){
-				if(${nickname==null}){
+				if(${loginID==null}){
 					alert("로그인 후 이용가능합니다.");
 					location.href="/index.jsp"
 				}		

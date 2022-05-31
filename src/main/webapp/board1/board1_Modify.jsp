@@ -173,7 +173,7 @@
 	     
 
 	     $("#delete").on("click",function(){
-				if(${nickname==null}){
+				if(${loginID==null}){
 					alert("로그인 후 이용가능합니다.");
 					location.href="/index.jsp"
 				}
@@ -182,7 +182,7 @@
 	     })
 		
 	  	$("#goToList").on("click",function(){
-			if(${nickname==null}){
+			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");
 				location.href="/index.jsp"
 			}
@@ -190,7 +190,7 @@
 	     })
 	     
 		$("#submit").on("click",function(){
-			if(${nickname==null}){
+			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");
 				location.href="/index.jsp";
 			}

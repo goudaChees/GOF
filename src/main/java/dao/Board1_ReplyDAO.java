@@ -31,7 +31,7 @@ public class Board1_ReplyDAO {
 		return ds.getConnection();
 	}
 	public int insert(Board1_ReplyDTO dto)throws Exception {//댓글 작성 기능
-		String sql = "insert into board1_reply values(board1reply_seq.nextval,?,?,default,0,?,?)";
+		String sql = "insert into board1_reply values(board1reply_seq.nextval,?,?,default,0,?,?,?)";
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
@@ -40,6 +40,7 @@ public class Board1_ReplyDAO {
 			pstat.setString(2, dto.getContents());
 			pstat.setString(3, dto.getAgree());
 			pstat.setInt(4, dto.getParent_Seq());
+			pstat.setString(5, dto.getId());
 			
 			int result = pstat.executeUpdate();
 			con.commit();
@@ -64,8 +65,9 @@ public class Board1_ReplyDAO {
 					Timestamp write_date = rs.getTimestamp("write_date");
 					int good = rs.getInt("good");
 					String agree = rs.getString("agree");
+					String id = rs.getString("id");
 					
-					Board1_ReplyDTO dto = new Board1_ReplyDTO(seq,writer,contents,write_date,good,agree,parent_Seq);
+					Board1_ReplyDTO dto = new Board1_ReplyDTO(seq,writer,contents,write_date,good,agree,parent_Seq,id);
 					list.add(dto);
 				}
 				
@@ -146,14 +148,14 @@ public class Board1_ReplyDAO {
 		}
 	}
 	
-	public boolean didIDwrite(int seq,String nickname)throws Exception {
-		String sql = "select * from board1_reply where parent_seq=? and writer=?";
+	public boolean didIDwrite(int seq,String id)throws Exception {
+		String sql = "select * from board1_reply where parent_seq=? and id=?";
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
 			pstat.setInt(1, seq);
-			pstat.setString(2, nickname);
+			pstat.setString(2, id);
 			try(
 				ResultSet rs = pstat.executeQuery();
 					){
@@ -165,8 +167,8 @@ public class Board1_ReplyDAO {
 			}
 		}
 	}
-	public int insertGood(String nickname,int board1_Seq, int reply1_Seq)throws Exception {
-		String sql = "insert into good_board1 values(good_seq.nextval,?,?,?)";
+	public int insertGood(String nickname,int board1_Seq, int reply1_Seq, String id)throws Exception {
+		String sql = "insert into good_board1 values(good_seq.nextval,?,?,?,?)";
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
@@ -174,6 +176,7 @@ public class Board1_ReplyDAO {
 			pstat.setString(1, nickname);
 			pstat.setInt(2, board1_Seq);
 			pstat.setInt(3, reply1_Seq);
+			pstat.setString(4, id);
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;
@@ -207,13 +210,13 @@ public class Board1_ReplyDAO {
 		}
 	}
 	
-	public int deleteGood(String nickname,int reply_Seq)throws Exception {
-		String sql = "delete from good_board1 where nickname=? and reply_seq=?";
+	public int deleteGood(String id,int reply_Seq)throws Exception {
+		String sql = "delete from good_board1 where id=? and reply_seq=?";
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
-			pstat.setString(1, nickname);
+			pstat.setString(1, id);
 			pstat.setInt(2, reply_Seq);
 			int result = pstat.executeUpdate();
 			con.commit();
@@ -238,19 +241,20 @@ public class Board1_ReplyDAO {
 				int good = rs.getInt("good");				
 				String agree = rs.getString("agree");
 				int parent_Seq = rs.getInt("parent_seq");
+				String id = rs.getString("id");
 				
-				return new Board1_ReplyDTO(seq,writer,contents,write_date,good,agree,parent_Seq);
+				return new Board1_ReplyDTO(seq,writer,contents,write_date,good,agree,parent_Seq,id);
 			}
 		}
 	}
 	
-	public List<Board1_GoodDTO> selectGoodBySeq(int board1_Seq,String nickname)throws Exception{
-		String sql = "select * from good_board1 where  nickname=? and board_seq=? ";
+	public List<Board1_GoodDTO> selectGoodBySeq(int board1_Seq, String id)throws Exception{
+		String sql = "select * from good_board1 where  id=? and board_seq=? ";
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
 				){
-			pstat.setString(1, nickname);
+			pstat.setString(1, id);
 			pstat.setInt(2, board1_Seq);
 			try(
 				ResultSet rs = pstat.executeQuery();	
@@ -259,8 +263,9 @@ public class Board1_ReplyDAO {
 				while(rs.next()) {
 					int seq = rs.getInt("seq");
 					int reply_Seq = rs.getInt("reply_seq");
-
-					list.add(new Board1_GoodDTO(seq,nickname,board1_Seq,reply_Seq));
+					String nickname = rs.getString("nickname");
+					
+					list.add(new Board1_GoodDTO(seq,nickname,board1_Seq,reply_Seq,id));
 				}
 				
 				return list;
@@ -286,8 +291,9 @@ public class Board1_ReplyDAO {
 					int good = rs.getInt("good");
 					String agree = rs.getString("agree");
 					int parent_seq = rs.getInt("parent_seq");
+					String id = rs.getString("id");
 					
-					return new Board1_ReplyDTO(seq,writer,contents,write_date,good,agree,parent_seq);			
+					return new Board1_ReplyDTO(seq,writer,contents,write_date,good,agree,parent_seq,id);			
 				}
 					
 					return null;
@@ -316,8 +322,9 @@ public class Board1_ReplyDAO {
 					int good = rs.getInt("good");
 					String agree = rs.getString("agree");
 					int parent_seq = rs.getInt("parent_seq");
+					String id = rs.getString("id");
 					
-					Board1_ReplyDTO dto = new Board1_ReplyDTO(seq,writer,contents,write_date,good,agree,parent_seq);
+					Board1_ReplyDTO dto = new Board1_ReplyDTO(seq,writer,contents,write_date,good,agree,parent_seq,id);
 					list.add(dto);
 				}
 				return list;

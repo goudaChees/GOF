@@ -5,6 +5,7 @@ public class Board1_GoodDTO {
 	private String nickname;
 	private int board_Seq;
 	private int reply_Seq;
+	private String id;
 	public int getSeq() {
 		return seq;
 	}
@@ -29,17 +30,25 @@ public class Board1_GoodDTO {
 	public void setReply_Seq(int reply_Seq) {
 		this.reply_Seq = reply_Seq;
 	}
-	public Board1_GoodDTO(int seq, String nickname, int board_Seq, int reply_Seq) {
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public Board1_GoodDTO(int seq, String nickname, int board_Seq, int reply_Seq, String id) {
 		super();
 		this.seq = seq;
 		this.nickname = nickname;
 		this.board_Seq = board_Seq;
 		this.reply_Seq = reply_Seq;
+		this.id = id;
 	}
 	public Board1_GoodDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
+
 
 }
