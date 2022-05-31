@@ -9,15 +9,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>myPage</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/css/member/myWriting.css">
@@ -84,6 +79,7 @@
 						</div>
 						<div class="row w-100 m-0" id="mywriting">
 							<div class="col-12">
+								<form action="/send.letter" id="letterForm" method="post">
 								<span id="headTitle">메세지 보내기</span>
 								<div id="msg_Box">
 									<div class="row w-80 m-0">
@@ -92,8 +88,15 @@
 										</div>
 										<div class="col-12 infoWrapper">
 											<div class="info">받는 사람</div>
-											<input type="text" id="receiver" class="inputBox" placeholder="보낼 사람 검색">
-											<input type="button" value="검색" id="searchBtn">
+											<c:choose>
+												<c:when test='${receiver!=null }'>
+													${receiver }
+												</c:when>
+												<c:otherwise>
+													<input type="text" id="receiver" class="inputBox" name="receiver" placeholder="받을 사람의 닉네임 검색" readonly>
+													<input type="button" value="검색" id="searchBtn">	
+												</c:otherwise>
+											</c:choose>
 										</div>
 										<div class="col-12 infoWrapper">
 											<div class="info">제목</div>
@@ -110,6 +113,7 @@
 										</div>
 									</div>
 								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -165,13 +169,34 @@
 				</div>
 			</div>
 		<script>
-		$("#toBoard1").on("click",function(){
-			location.href="/myWriting.member?board=1&page=1";
-		})
+			
+			function openSearchNN(){
+				window.name = "parentForm";
+				
+				searchPop = window.open("/letter/letter_Search.jsp", "",
+						"top=100,left=200,width=550,height=350");
+			}
 		
-		$("#toBoard2").on("click",function(){
-			location.href="/myWriting.member?board=2&page=1";
-		})
+			$("#searchBtn").on("click",function(){
+				openSearchNN();
+			})
+			
+			$("#msg_Submit").on("click",function(){
+				Swal.fire({
+				  title: '작성하신 쪽지를 보내시겠습니까?',
+				  showCancelButton: true,
+				  confirmButtonText: '보내기',
+				  cancelButtonText: '취소'
+				}).then((result) => {
+					if (result.isConfirmed) {
+					  $("#letterForm").submit();
+					}
+				})
+			})
+			
+			$("#msg_Cancel").on("click",function(){
+				location.href="/list.letter"
+			})
 		
 		
 			//로그아웃 관련 공통기능
