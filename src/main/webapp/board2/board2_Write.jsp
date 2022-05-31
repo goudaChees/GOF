@@ -159,7 +159,7 @@
 		alert("로그인 후 이용 가능합니다.")
 		location.href="/index.jsp"
 	}
-	}
+	})
 		$('#summernote').summernote({
 		  placeholder: '구매하고 싶은 상품정보를 입력해주세요. 최대 1300자까지 입력가능합니다.',
 		  tabsize: 2,
