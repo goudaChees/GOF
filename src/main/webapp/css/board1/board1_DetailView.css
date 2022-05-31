@@ -5,7 +5,7 @@
 }
 
 #header{
-	border-bottom: 5px solid #A2BAAC;
+	border-bottom: 5px solid #C5B8CD;
 }
 
 #content{
@@ -14,7 +14,7 @@
 	padding-bottom: 3%;
 	min-height: 100vh;
 	max-width: 100%; 
-	background-color:#D8E2DC;
+	background-color:#E4E0E6;
 	position: relative;
 }
 
