@@ -65,14 +65,21 @@ public class Board2DAO {
 		return arr;
 	}
 
-	public int del(int seq) throws Exception {
+	public void del(int seq) throws Exception {
 		String sql = "delete from board2 where seq=?";
 		try (Connection con = this.getConnection(); PreparedStatement stat = con.prepareStatement(sql);) {
 			stat.setInt(1, seq);
-			int result = stat.executeUpdate();
+			stat.executeUpdate();
 			con.commit();
-			return result;
 		}
+		String sql2 = "delete from board2_reply where parent_seq=?";
+		try(Connection con = this.getConnection(); PreparedStatement stat = con.prepareStatement(sql2);){
+			stat.setInt(1, seq);
+			stat.executeUpdate();
+			con.commit();
+		}
+		
+		
 	}
 
 	public int update(String title, String contents, int seq) throws Exception {
