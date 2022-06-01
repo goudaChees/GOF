@@ -27,7 +27,7 @@ function getCookie(name) {
         for ( var index in cookie_array) {
             var cookie_name = cookie_array[index].split("=");
             
-            if (cookie_name[0] == "popupYN") {
+            if (cookie_name[0] == "popupYN1") {
                 return cookie_name[1];
             }
         }
@@ -36,7 +36,7 @@ function getCookie(name) {
 }
 
 function openPopup1(url) { 
-    var cookieCheck = getCookie("popupYN");
+    var cookieCheck = getCookie("popupYN1");
     console.log(cookieCheck);
     if (cookieCheck != "N")
         window.open(url, '', 'width=300,height=500,left=450,top=200')

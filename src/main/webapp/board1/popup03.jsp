@@ -32,7 +32,7 @@
 	}
     function closePopup() {
         if (document.getElementById("check").value) {
-            setCookie("popupYN", "N", 1);
+            setCookie("popupYN1", "N", 1);
             self.close();
         }
     }
