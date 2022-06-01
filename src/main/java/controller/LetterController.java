@@ -24,6 +24,7 @@ public class LetterController extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		response.setCharacterEncoding("utf-8");
 		request.setCharacterEncoding("utf-8");
+		Gson g = new Gson();
 		
 		String uri = request.getRequestURI();
 		LetterDAO ldao = LetterDAO.getInstance();
@@ -35,12 +36,12 @@ public class LetterController extends HttpServlet {
 				String nickname = ldao.getNickname(id);
 				System.out.println(nickname);
 				request.setAttribute("nickname", nickname);
-				response.sendRedirect("/letter/letter_Write.jsp");
-			
+				request.getRequestDispatcher("/letter/letter_Write.jsp").forward(request, response);
+
 			
 			}else if(uri.equals("/send.letter")) { // 쪽지보내기
 				int seq = ldao.getNextSeq();
-				String id = (String) request.getSession().getAttribute("loginID");
+				String id = (String)request.getSession().getAttribute("loginID");
 				String nickname = ldao.getNickname(id);
 				String receiver = request.getParameter("receiver");
 				String receiverId = ldao.getId(receiver);
@@ -54,7 +55,6 @@ public class LetterController extends HttpServlet {
 				
 			
 			}else if(uri.equals("/searchNN.letter")) { // 팝업창에서 닉네임 검색
-				Gson g = new Gson();
 				String id = (String) request.getSession().getAttribute("loginID");
 				String nickname = ldao.getNickname(id);
 				String target = request.getParameter("target");
@@ -93,6 +93,7 @@ public class LetterController extends HttpServlet {
 				request.setAttribute("list", list);
 				request.setAttribute("pageList", pageList);
 				request.setAttribute("newLetter", newLetter);
+
 				request.getRequestDispatcher("/letter/list.jsp").forward(request, response);
 			
 				

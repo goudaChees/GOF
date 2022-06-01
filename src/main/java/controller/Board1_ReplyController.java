@@ -58,8 +58,7 @@ public class Board1_ReplyController extends HttpServlet {
 				int parent_Seq = Integer.parseInt(request.getParameter("parent_seq2"));				
 				//이전의 승인, 불가 여부와 비교하기 위해 seq에 따른 바뀌기 전 agree 뽑기
 				String preAgree = rdao.getAgreeByseq(seq); 
-				int result = 
-				
+
 				if(id.equals("admin")) {
 					rdao.modifyReply_admin(seq,agree,contents);
 				}else {
