@@ -17,6 +17,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/css/board1/board1_List.css">
 <link rel="stylesheet" href="/css/common.css">
+
 <script>
 function getCookie(name) {
     var cookie = document.cookie;
@@ -34,7 +35,7 @@ function getCookie(name) {
     return ;
 }
 
-function openPopup(url) { 
+function openPopup1(url) { 
     var cookieCheck = getCookie("popupYN");
     console.log(cookieCheck);
     if (cookieCheck != "N")
@@ -44,7 +45,7 @@ function openPopup(url) {
 
 </script>
 </head>
-<body onload="javascript:openPopup('popup01.jsp')">
+<body onload="javascript:openPopup1('/board1/popup03.jsp')">
 	<div class="container w-100">
 		<div class="row w-100 m-0" id="header">
 			<div class="col-12 p-0">

@@ -35,7 +35,7 @@ function getCookie(name) {
     return ;
 }
 
-function openPopup(url) { 
+function openPopup2(url) { 
     var cookieCheck = getCookie("popupYN2");
     console.log(cookieCheck);
     if (cookieCheck != "N")
@@ -46,7 +46,7 @@ function openPopup(url) {
 </script>
 
 </head>
-<body onload="javascript:openPopup('popup02.jsp')">
+<body onload="javascript:openPopup2('/board2/popup02.jsp')">
 	<div class="container">
 		<div class="row w-100 m-0" id="header">
 			<div class="col-12 p-0">
