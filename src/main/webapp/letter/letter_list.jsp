@@ -100,14 +100,23 @@
 										<c:choose>
 											<c:when test="${type=='r' }">
 												<div class="row w-100 m-0 listHeader">
-													<div class="col-12 col-lg-8">받은 메세지함</div>
-													<div class="col-12" style="text-align:left" id="newletter"></div>
+													<div class="col-12" id="newletter"></div>
+													<div class="col-6 d-none d-lg-block">제목</div>
+													<div class="col-3 d-none d-lg-block">보낸 사람</div>
+													<div class="col-3 d-none d-lg-block">수신일자</div>
 												</div>
 												<c:forEach var='i' items="${list }">
 													<a href='/read.letter?type=r&seq=${i.seq }'>
 														<div class="row w-100 m-0">
-															<div class="col-8 p-0 d-none d-lg-block">${i.writer }</div>
-															<div class="col-4 p-0 d-none d-lg-block">${i.write_date }</div>
+															<div class="col-6 d-none d-lg-block" style="text-align:left; padding-left:10px;">
+															<c:if test="${i.read==0 }">
+																<span id="new${i.seq }" style="display:none;">
+																	<img src="/img/new.gif" style="width:25px;">
+																</span>
+															</c:if>
+															${i.title }</div>
+															<div class="col-3 p-0 d-none d-lg-block">${i.writer }</div>
+															<div class="col-3 p-0 d-none d-lg-block">${i.formed_WriteDate }</div>
 															<div class="col-12 p-0 d-block d-lg-none">
 															<c:if test="${i.read==0 }">
 																<span id="new${i.seq }" style="display:none;">
@@ -121,13 +130,17 @@
 											</c:when>
 											<c:otherwise>
 												<div class="row w-100 m-0 listHeader">
-													<div class="col-12 col-lg-8">보낸 메세지함</div>
+													<div class="col-12">보낸 메세지함</div>
+													<div class="col-6 d-none d-lg-block">제목</div>
+													<div class="col-3 d-none d-lg-block">받은 사람</div>
+													<div class="col-3 d-none d-lg-block">송신일자</div>
 												</div>
 												<c:forEach var='i' items="${list }">
 													<a href='/read.letter?type=s&seq=${i.seq }'>
 														<div class="row w-100 m-0">
-															<div class="col-8 p-0 d-none d-lg-block">${i.receiver }</div>
-															<div class="col-4 p-0 d-none d-lg-block">${i.write_date }</div>
+															<div class="col-6 d-none d-lg-block" style="text-align:left;padding-left:10px;">${i.title }</div>
+															<div class="col-3 p-0 d-none d-lg-block">${i.receiver }</div>
+															<div class="col-3 p-0 d-none d-lg-block">${i.formed_WriteDate }</div>
 															<div class="col-12 p-0 d-block d-lg-none">${i.title }</div>
 														</div>
 													</a>
@@ -205,7 +218,7 @@
 				url:"/newLetter.letter",
 				dataType:"json"
 			}).done(function(res){
-				$("#newletter").append("새 메세지 : "+res+"건")
+				$("#newletter").append("받은 메세지함 (새 메세지 : "+res+"건)")
 			})			
 			
 			$.ajax({

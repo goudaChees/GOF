@@ -121,6 +121,7 @@ public class LetterController extends HttpServlet {
 					ldto=ldao.readSBySeq(seq);
 				}
 				
+				request.setAttribute("type", type);
 				request.setAttribute("ldto", ldto);
 				request.getRequestDispatcher("/letter/readLetter.jsp").forward(request, response);
 			
