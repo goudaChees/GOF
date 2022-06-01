@@ -184,7 +184,7 @@
 												<div class="col-12  contents">
 													<div class="row">
 													<div class="col-12 incontents">
-														${dto.contents}
+														
 													<%--<pre class="content_editable" disabled style="white-space: normal;">
 															<c:out value="${dto.contents}" escapeXml="false"/>
 														</pre>--%>
