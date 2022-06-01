@@ -39,14 +39,14 @@ function openPopup(url) {
     var cookieCheck = getCookie("popupYN2");
     console.log(cookieCheck);
     if (cookieCheck != "N")
-        window.open(url, '', 'width=500,height=750,left=500,top=200')
+        window.open(url, '', 'width=300,height=500,left=450,top=200')
 }
 
 
 </script>
 
 </head>
-<body onload="javascript:openPopup('popup2.jsp')">
+<body onload="javascript:openPopup('popup02.jsp')">
 	<div class="container">
 		<div class="row w-100 m-0" id="header">
 			<div class="col-12 p-0">

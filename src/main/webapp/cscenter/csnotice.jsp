@@ -116,6 +116,7 @@
 										<form action="/searchnotice.cscenter?board=1&page=1" method="post">
 											<select class="form-select" aria-label="Default select example"
 												name="searchCategory">
+												<option value="0">선택</option>
 												<option value="1">제목</option>
 												<option value="2">내용</option>
 											</select>

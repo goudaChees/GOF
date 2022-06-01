@@ -60,50 +60,5 @@
 
 
 
-<script>
-// $(document).ready(function () {
-// 	  $('.popup').show();
-// 	  cookiedata = document.cookie;
-// 	  console.log(document.cookie);
-// 	  if ( cookiedata.indexOf("popup_1=done") < 0 ){ //쿠키 변경 여부 불러오기
-// 	  	document.all['popup_1'].style.visibility = "visible";
-// 	  }
-// 	  else {
-// 	  	document.all['popup_1'].style.display = "none";
-// 	  }
-// 	  PopupBgDisplay();
-// 	});
-
-// 	function PopupNoDisplay_1() {
-// 	  setCookie ("popup_1", "done", 1); //쿠키값 변경
-// 	  PopupHide();
-// 	  window.close();
-// 	}
-
-// 	function PopupHide() { //팝업창 지우기
-// 	  $('#popup_1').hide();
-// 	  PopupBgDisplay(); 
-// 	  window.close();
-// 	}
-
-// 	function PopupBgDisplay() {	//팝업창이 없어진 경우 배경(popupbg) 지우기
-// 	  cookiedata1 = document.cookie;
-// 	  if (cookiedata1.indexOf("popup_1=done") > 0)
-// 	  {
-// 	  	$("#popupWrap").hide();
-// 	  }
-// 	}
-	
-// 	  function setCookie(name, value, expiredays) {
-// 		    var todayDate = new Date();
-// 		    todayDate.setDate(todayDate.getDate() + expiredays);
-// 		    document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";"
-// 		  }
-	
-
-
-</script>
-
-
 </body>
 </html>
