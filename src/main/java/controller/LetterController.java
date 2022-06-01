@@ -24,6 +24,7 @@ public class LetterController extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		response.setCharacterEncoding("utf-8");
 		request.setCharacterEncoding("utf-8");
+		Gson g = new Gson();
 		
 		String uri = request.getRequestURI();
 		LetterDAO ldao = LetterDAO.getInstance();
@@ -35,11 +36,11 @@ public class LetterController extends HttpServlet {
 				String nickname = ldao.getNickname(id);
 				request.setAttribute("nickname", nickname);
 				request.getRequestDispatcher("/letter/letter_Write.jsp").forward(request, response);
-			
+
 			
 			}else if(uri.equals("/send.letter")) { // 쪽지보내기
 				int seq = ldao.getNextSeq();
-				String id = (String) request.getSession().getAttribute("loginID");
+				String id = (String)request.getSession().getAttribute("loginID");
 				String nickname = ldao.getNickname(id);
 				String receiver = request.getParameter("receiver");
 				String receiverId = ldao.getId(receiver);
@@ -53,7 +54,6 @@ public class LetterController extends HttpServlet {
 				
 			
 			}else if(uri.equals("/searchNN.letter")) { // 팝업창에서 닉네임 검색
-				Gson g = new Gson();
 				String id = (String) request.getSession().getAttribute("loginID");
 				String nickname = ldao.getNickname(id);
 				String target = request.getParameter("target");
@@ -77,7 +77,7 @@ public class LetterController extends HttpServlet {
 				
 				String pageList = "";
 				List<LetterDTO> list = null;
-				int newLetter = 0;
+//				int newLetter = 0;
 				
 				if(type.equals("r")){
 					pageList = ldao.rPageList(id, page);
@@ -98,7 +98,6 @@ public class LetterController extends HttpServlet {
 			}else if(uri.equals("/newLetter.letter")) { // 새로 받은 메세지 수 (비동기)				
 				String id = (String) request.getSession().getAttribute("loginID");
 				int newLetter = ldao.newLetter(id);
-				Gson g = new Gson();
 				PrintWriter pw = response.getWriter();
 				pw.append(g.toJson(newLetter));
 				
@@ -106,7 +105,6 @@ public class LetterController extends HttpServlet {
 			}else if(uri.equals("/newLetterList.letter")){ // 새로 받은 메세지 seq list (비동기)	
 				String id = (String) request.getSession().getAttribute("loginID");
 				List<Integer> newLetterList = ldao.newLetterList(id);
-				Gson g = new Gson();
 				PrintWriter pw = response.getWriter();
 				pw.append(g.toJson(newLetterList));
 				

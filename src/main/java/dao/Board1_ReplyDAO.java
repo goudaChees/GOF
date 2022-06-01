@@ -334,7 +334,7 @@ public class Board1_ReplyDAO {
 	}
 	
 	public int modifyReply_admin(int seq,String agree,String contents)throws Exception {
-		String sql = "update board1_reply set agree=?, contents=?,where seq =? ";
+		String sql = "update board1_reply set agree=?, contents=? where seq =? ";
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);

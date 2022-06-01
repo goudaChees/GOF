@@ -54,7 +54,6 @@ public class NoticeDAO {
 					return dto;
 				}
 		}
-			
 	}
 	
 	// 글쓰기
@@ -252,6 +251,7 @@ public class NoticeDAO {
 	}
 	
 	// 공지사항 검색하기
+
 	public List<NoticeDTO> searchNotice(String target, int searchCategory, int cpage) throws Exception{
 		String sql = null;
 		
@@ -404,4 +404,5 @@ public class NoticeDAO {
 			return result;
 		}
 	}
+
 }

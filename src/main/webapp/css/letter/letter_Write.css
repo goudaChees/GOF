@@ -24,6 +24,11 @@
 	font-size:15px;
 }
 
+#writer{
+	font-weight:bold;
+	font-size:15px;
+}
+
 .infoWrapper{
 	margin-top:15px;
 }
@@ -92,4 +97,12 @@ infoWrapper > div{
 #headTitle{
 	font-weight:bolder;
 	font-size:20px;
+}
+
+.infor-m{
+	width:100%
+}
+
+.inputBox-m{
+	width:80%
 }

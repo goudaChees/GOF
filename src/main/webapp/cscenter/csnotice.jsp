@@ -9,8 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>고객센터</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed298afa01dbe436406160c176a6dde2"></script>
-<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e3b2ec1cbf323959f82484d3c09baa42"></script> -->
+<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed298afa01dbe436406160c176a6dde2"></script> -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e3b2ec1cbf323959f82484d3c09baa42"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" href="/css/cscenter/csmain.css">
+<link rel="stylesheet" href="/css/cscenter/csnotice.css">
 <link rel="stylesheet" href="/css/common.css">
 
 </head>
@@ -95,7 +95,7 @@
 									<li class="nav-item"><a class="nav-link active"
 										data-toggle="tab" href="#csnotice">공지 사항</a></li>
 									<li class="nav-item"><a class="nav-link"
-										data-toggle="tab" href="/csmain.cscenter">자주 묻는 질문</a></li>
+										href="/csmain.cscenter">자주 묻는 질문</a></li>
 									<li class="nav-item"><a class="nav-link" 
 										href="/csemail.cscenter">1:1 문의하기</a></li>
 									<li class="nav-item" id="mapck"><a class="nav-link" 
@@ -103,54 +103,69 @@
 								</ul>
 							</div>
 						</div>
-						<div class="row w-100 m-0" id="CsArea">
+						
+						<div class="row w-100 m-0" id="noticeArea">
 							<div class="col-12">
-								<!-- 				탭1 자주묻는질문 -->
-								<div class="tab-content">
-									<!-- 						탭2 1:1메일문의		 -->
-									<div class="tab-pane fade show active" id="csnotice">
-										
-										<div class="row w-100 m-0">
-											<div class="col-12">
-												<form action="/searchNotice.cscenter">
-													<select class="form-select" aria-label="Default select example" name="searchCategory">
-															<option value="0">선택</option>
-															<option value="1">제목</option>
-															<option value="2">내용</option>
-													</select>
-													<input type="text" placeholder="검색하실 내용을 입력하세요" name="searchTarget">
-													<input type="submit" value="검색">
-												</form>
-											</div>
-											
-										</div>
-										<c:forEach var="i" items="${list}">
-											<a href="/detailNotice.cscenter?seq=${i.seq}" >		
-												<div class="row w-100 m-0">
-													<div class="col-8">제목 ${i.title }</div>
-													<div class="col-4">작성자 ${i.writer }</div>
-													<div class="col-4"></div>
-													<div class="col-4">작성일 ${i.write_date }</div>
-													<div class="col-4">조회수 ${i.view_count }</div>
-												</div>
-											</a>
-										</c:forEach>
-										<div class="row w-100 m-0 noticePageNavi">
-											<div class="col-12">${navi}</div>
-										</div>
-										<div class="col-12" style="text-align:right">
-											<c:if test="${loginID=='admin'}">
-												<input type="button" id="write" value="글쓰기">
-											</c:if>
+								<div class="row w-100 m-0">
+									<div class="col-12" id="noticelistHeader">☆ N O T I C E ☆</div>
+									<div class="col-12"></div>
+								</div>
+								
+								<div class="row w-100 m-0">
+									<div class="col-12 p-0" id="searchBar">								
+										<form action="/searchnotice.cscenter?board=1&page=1" method="post">
+											<select class="form-select" aria-label="Default select example"
+												name="searchCategory">
+												<option value="1">제목</option>
+												<option value="2">내용</option>
+											</select>
+											<input type="text" placeholder="검색하실 내용을 입력하세요"
+												name="toSearch">
+											<input type="submit" value="검색">
+										</form>
+										<div class="row w-100 m-0"><br>
+
 										</div>
 									</div>
+								</div>	
+								
+								<div class="row w-100 m-0" id="noticeHeader">
+									<div class="d-none d-lg-block col-8">Title</div>
+									<div class="d-none d-lg-block col-4">Name</div>
+								</div>
+								<c:forEach var="i" items="${list}">
+									<a href="/detailNotice.cscenter?seq=${i.seq}" >		
+									<div class="row w-100 m-0 noticeinfo">												
+										<div class="col-8 listTT">${i.title }</div>
+										<div class="col-4">${i.id }</div>
+										<div class="col-4 d-none d-md-block"></div>
+										<div class="col-8 d-none d-md-block" style="text-align:right">${i.write_date }</div>
+										
+									</div>
+									</a>
+								</c:forEach>
+								
+								<div class="col-12" style="text-align:right" id="writebtnBox">
+									<c:if test="${loginID == 'admin'}">
+										<input type="button" id="write" value="글쓰기" 
+										style="color:white; font-size:min(15px,3vw); border:2px solid #B4C8BC; border-radius:5px;
+												width:60px; line-height:25px; background-color:#FFBE46; ">
+									</c:if>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>			
+				
+								
+					<div class="row w-100 m-0 noticePageNavi">
+						<div class="col-12">${navi}</div>
+					</div>
+								
+					</div>
+				</div>
 			</div>
-		</div>					
+		</div>			
+					
 		<div class="row w-100 m-0" id="footer" style="background-color: #A2BAAC; font-weight: bold;">
 			<div class="col-12 p-0 d-lg-none">
 				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">

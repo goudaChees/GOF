@@ -99,8 +99,10 @@ public class CSCenterController extends HttpServlet {
 				String title = request.getParameter("title");
 				String contents = request.getParameter("contents");
 				String loginID = (String) request.getSession().getAttribute("loginID");
+
 				String nickname = ndao.findNicknameById(loginID);
 				ndao.insert(new NoticeDTO(0, nickname, title, contents, null, 0, loginID));
+
 				response.sendRedirect("/csnotice.cscenter");
 			
 				// 공지사항 글 삭제

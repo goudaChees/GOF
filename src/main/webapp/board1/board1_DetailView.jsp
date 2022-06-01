@@ -173,7 +173,7 @@
 														<div class="col-2">
 															<c:if test="${i.id==loginID|| loginID=='admin'}">
 																<div class="reply_btns">
-																	<input type="hidden" value=${i.contents }>
+																	<input type="hidden" value=${i.contents } maxlength=300>
 																	<input type="hidden" value=${i.seq }>
 																	<input type="hidden" name="preAgree" value=${i.agree }>
 																	<input type="button" value="수정" class="modify_btn">
