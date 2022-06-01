@@ -28,7 +28,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" href="/css/cscenter/csmain.css">
+<link rel="stylesheet" href="/css/cscenter/csdetail.css">
 <link rel="stylesheet" href="/css/common.css">
 
 </head>
@@ -123,38 +123,43 @@
 								</ul>
 							</div>
 						</div>
-						<div class="row w-100 m-0" id="CsArea">
+						<div class="row w-100 m-0" id="noticeArea">
 							<div class="col-12">
-								<!-- 				탭1 자주묻는질문 -->
-								<div class="tab-content">
-									<!-- 						탭2 1:1메일문의		 -->
-									<div class="tab-pane fade show active" id="csnoticeDetail">
-
-										<div class="row w-100 m-0">
+								<form action="udtNotice.cscenter" method="post">
+								<div class="row w-100 m-0" id="noticePageArea">
+									<div class="col-12">
+										<div class="row">
+											<div class="col-12" id="noticeHeader">
+												<input type="text" value="${dto.title}" class="editable" name="title" id="titleTD" disabled>
+											</div>
+											<input type="hidden" value="${dto.seq }" name="seq">
+										</div>
+										
+										<div class="row" style="border-bottom:1px solid #516D5C;">
+											<div class="col-1"></div>
+											<div class="col-4 d-none d-md-block" style="text-align:left;">${dto.write_date}</div>
+											<div class="col-2"></div>
+											<div class="col-4 d-none d-md-block" style="text-align:right;">${dto.view_count}</div>
+											<div class="col-1"></div>
+										</div>
+										<div class="row">
 											<div class="col-12"></div>
-
 										</div>
-										<!-- 										dto로 내용 받아 오는 곳 -->
-										<!-- 										dto.writer , dto.title, dto.contents, dto.write_date, dto.view_count									 -->
-										<!-- 											name 과 form 활용 -->
-										<div class="row w-100 m-0">
-											<div class="col-12">${dto.title}</div>
-											<div class="col-12">작성자 : ${dto.writer} 작성일 :
-												${dto.write_date}</div>
-											<div claa="col-12">${dto.contents }</div>
+										<div class="row" align=center id="contentsBox">
+											<div class="col-12 editable" name="contents" id="contentsTD" disabled>${dto.contents}
+											</div>
 										</div>
 
-
-
-										<div class="row w-100 m-0" id="writingFooter">
-											<div class="col-12">
+										<div class="row w-100 m-0" id="NoticeFooter">
+											<div class="col-12" id="btns">
 												<input type="button" id="toList" value="목록으로">
-												<c:if test="${id=='admin'}">
+												<c:if test="${loginID=='admin'}">
 													<input type="button" id="modify" value="수정하기">
-													<input type="button" id="delete" value="삭제하기">
+													<input type="button" id="delete" value="삭제하기" >
 												</c:if>
 											</div>
 										</div>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -228,11 +233,21 @@ $("#modify").on("click", function() {
 	
 	let ok = $("<button>");
 	ok.text("수정완료");
+	ok.css("background-color", "white");
+	ok.css("color", "#FFBE46");
+	ok.css("font-size","min(15px,3vw)");
+	ok.css("border-radius", "5px")
+	ok.css("border","2px solid #FFBE46");
 
 	let cancel = $("<button>");
 	cancel.text("수정취소");
 	cancel.attr("type", "button");
-	cancel.css("margin-left", "5px")
+	cancel.css("margin-right", "5px");
+	cancel.css("background-color","white");
+	cancel.css("color", "#516D5C");
+	cancel.css("font-size", "min(15px,3vw)");
+	cancel.css("border-radius", "5px");
+	cancel.css("border","2px solid #B4C8BC");
 	cancel.attr("id","canbtn");
 	cancel.on("click", function() {
 		location.reload();
@@ -246,14 +261,7 @@ $("#modify").on("click", function() {
 $("#delete").on("click", function(){
 	let result = confirm("정말 삭제하시겟습니까?");
 	if(result){
-		$.ajax({
-			type: "post",
-			url:"/deleteNotice.cscenter",
-			dataType:"json",
-			data:{seq:${dto.seq}}
-		}).done(function(){
-			location.reload();
-		})
+		location.href="/deleteNotice.cscenter?seq=${dto.seq}";
 	}
 })
 
