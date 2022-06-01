@@ -92,3 +92,7 @@
 .inputBox-m{
 	width:90%;
 }
+
+#contents{
+	resize:none;
+}
