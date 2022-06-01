@@ -42,7 +42,7 @@
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="/list.brd2" style="color: #664E55">최저가경매</a></li>
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/csmain.cscenter"
+									aria-current="page" href="/csnotice.cscenter"
 									style="color: #664E55">고객센터</a></li>
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="/mypage.member"
@@ -153,13 +153,17 @@
 				<div class="col-12 p-0 d-lg-none">
 					<div
 						style="padding-top: 20px; padding-bottom: 10px; text-align: center; font-size: min(14px, 3.5vw);">
-						<a href="/csmain.cscenter" class="footerLink"> <span>자주
-								묻는 질문</span></a> <span style="margin-left: 20px" class="footerBar">|</span>
-						<a href="/csemail.cscenter" class="footerLink"> <span
-							style="margin-left: 20px">1 : 1 문의</span></a> <span
-							style="margin-left: 20px" class="footerBar">|</span> <a
-							href="/csmap.cscenter" class="footerLink"> <span
-							style="margin-left: 20px;">찾아오시는 길</span></a><br>
+					<a href="/csnotice.cscenter" class="footerLink">
+						<span>공지사항</span></a>
+					<span style="margin-left: 20px" class="footerBar">|</span>
+					<a href="/csmain.cscenter" class="footerLink">
+						<span style="margin-left: 20px">자주 묻는 질문</span></a>
+					<span style="margin-left: 20px" class="footerBar">|</span> 
+					<a href="/csemail.cscenter" class="footerLink">
+						<span style="margin-left: 20px">1 : 1 문의</span></a>
+					<span style="margin-left: 20px" class="footerBar">|</span> 
+					<a href="/csmap.cscenter" class="footerLink">
+						<span style="margin-left: 20px;">찾아오시는 길</span></a><br>
 						<div style="margin-top: 15px; text-align: center">
 							<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩
 								2층, 3층</span><br> <span class="footerLetter">대 표 전 화 : 4989
@@ -173,13 +177,10 @@
 				</div>
 				<div class="d-none d-lg-block col-lg-9">
 					<div style="margin-left: 40px; margin-top: 20px; text-align: left">
-						<a href="/csmain.cscenter" class="footerLink"><span>자주
-								묻는 질문</span></a><span style="margin-left: 20px" class="footerBar">|</span>
-						<a href="/csemail.cscenter" class="footerLink"><span
-							style="margin-left: 20px">1 : 1 문의</span></a><span
-							style="margin-left: 20px" class="footerBar">|</span> <a
-							href="/csmap.cscenter" class="footerLink"><span
-							style="margin-left: 20px">찾아오시는 길</span></a><br>
+					<a href="/csnotice.cscenter" class="footerLink"><span>공지사항</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csmain.cscenter" class="footerLink"><span style="margin-left:20px">자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csemail.cscenter" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csmap.cscenter" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
 						<div
 							style="margin-top: 30px; text-align: left; margin-bottom: 15px">
 							<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩

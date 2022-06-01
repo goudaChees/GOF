@@ -211,11 +211,17 @@
 
 .writing .col-4,.col-8,.col-6{
  	font-size:min(15px,3vw);	
+ 	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .writing .col-5,.col-7,.col-11 {
 	font-size:min(15px,3vw);
 	text-align : center;
+	text-overflow:ellipsis;
+	overflow:hidden;
+	white-space:nowrap;
 }
 
 .writing .col-9{

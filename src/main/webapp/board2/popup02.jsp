@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>고객센터</title>
+<title>최저가경매</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed298afa01dbe436406160c176a6dde2"></script> -->
 <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e3b2ec1cbf323959f82484d3c09baa42"></script> -->
@@ -32,7 +32,7 @@
 	}
     function closePopup() {
         if (document.getElementById("check").value) {
-            setCookie("popupYN", "N", 1);
+            setCookie("popupYN2", "N", 1);
             self.close();
         }
     }
@@ -47,7 +47,7 @@
 <aside class="popup" id="popupWrap">
   <div class="inner" id="popup_1">
     <div class="area">
-      <img src="/img/frontpig.png" alt="배너이미지1">
+      <img src="/img/popup02.png" alt="배너이미지1">
     </div>
     <input type="checkbox" id="check" onClick="closePopup();"><span>하루동안 보지않기</span>
     <button type="button" onClick="window.close();">[닫기]</button>
@@ -56,53 +56,6 @@
   <div class="popupbg" style="background:gray;"></div>
 </aside>
 
-
-
-
-
-<script>
-// $(document).ready(function () {
-// 	  $('.popup').show();
-// 	  cookiedata = document.cookie;
-// 	  console.log(document.cookie);
-// 	  if ( cookiedata.indexOf("popup_1=done") < 0 ){ //쿠키 변경 여부 불러오기
-// 	  	document.all['popup_1'].style.visibility = "visible";
-// 	  }
-// 	  else {
-// 	  	document.all['popup_1'].style.display = "none";
-// 	  }
-// 	  PopupBgDisplay();
-// 	});
-
-// 	function PopupNoDisplay_1() {
-// 	  setCookie ("popup_1", "done", 1); //쿠키값 변경
-// 	  PopupHide();
-// 	  window.close();
-// 	}
-
-// 	function PopupHide() { //팝업창 지우기
-// 	  $('#popup_1').hide();
-// 	  PopupBgDisplay(); 
-// 	  window.close();
-// 	}
-
-// 	function PopupBgDisplay() {	//팝업창이 없어진 경우 배경(popupbg) 지우기
-// 	  cookiedata1 = document.cookie;
-// 	  if (cookiedata1.indexOf("popup_1=done") > 0)
-// 	  {
-// 	  	$("#popupWrap").hide();
-// 	  }
-// 	}
-	
-// 	  function setCookie(name, value, expiredays) {
-// 		    var todayDate = new Date();
-// 		    todayDate.setDate(todayDate.getDate() + expiredays);
-// 		    document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";"
-// 		  }
-	
-
-
-</script>
 
 
 </body>
