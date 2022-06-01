@@ -22,7 +22,7 @@
 	display:inline-block;
 	width : 25%;
 	font-weight:bold;
-	font-size:min(15px,3vw); /* 수정된 부분 */
+	font-size:min(15px,3vw); 
 	margin-right: 8px;
 }
 
@@ -35,7 +35,7 @@
 	margin-top:15px;
 }
 
-.infoWrapper span{ /* 추가된 부분 */
+.infoWrapper span{
 	font-size:min(15px,3vw);
 }
 
@@ -56,7 +56,7 @@
 	margin-left:1%;
 	color: white;
 	font-weight:bold;
-	font-size:min(16px,3.5vw); /* 수정된 부분 */
+	font-size:min(16px,3.5vw);
 	line-height:23px;
 	background-color: #F193A190;	
 	border: 3px solid #F193A199;
@@ -126,7 +126,7 @@
 	width:65%;
 	border-radius:5px;
 	margin-top:5px;
-	font-size:min(15px,3vw); /* 수정된 부분 */
+	font-size:min(15px,3vw);
 }
 
 #msgContents{

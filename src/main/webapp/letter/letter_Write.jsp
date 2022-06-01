@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -79,150 +80,107 @@
 									<li class="nav-item"><a class="nav-link"
 										href="/myReply.member?board=1&page=1">내 댓글 보기</a></li>
 									<li class="nav-item"><a class="nav-link active"
-										aria-current="page" href="/list.letter?type=r&page=1">메세지</a></li>
+										aria-current="page" href="/list.letter?type=r">메세지</a></li>
 								</ul>
 							</div>
 						</div>
 						<div class="row w-100 m-0" id="mywriting">
-							<div class="d-none d-lg-block col-lg-12">
+							<div class="col-12">
 								<form action="/send.letter" id="letterForm" method="post">
 									<span id="headTitle">메세지 보내기</span>
 									<div id="msg_Box">
 										<div class="row w-80 m-0">
-											<div class="col-12 infoWrapper" style="width: 100%">
-												<div id="writer">
-													<span>보내는 사람 ${nickname}</span>
-												</div>
-												<div class="col-12 infoWrapper">
-													<div class="info">받는 사람</div>
-													<c:choose>
-														<c:when test='${receiver!=null }'>
-													${receiver }
-												</c:when>
-														<c:otherwise>
-															<input type="text" id="receiver" class="inputBox"
-																name="receiver" placeholder="닉네임을 검색하세요" readonly>
-															<input type="button" value="검색" id="searchBtn"
-																class="searchBtn">
-														</c:otherwise>
-													</c:choose>
-												</div>
-												<div class="col-12 infoWrapper">
-													<div class="info">제목</div>
-													<input type="text" id="title" class="inputBox" name="title"
-														placeholder="제목을 입력해주세요">
-												</div>
-												<div class="col-12 infoWrapper" id="contents_Box">
-													<div class="info" id="contents_Info">내용</div>
-													<textarea id="contents" class="inputBox" name="contents"
-														placeholder="내용을 입력해주세요" style="margin-left: 2px"></textarea>
-												</div>
-												<div class="col-12" id="mbtns">
-													<input type="button" id="msg_Submit" class="msg_btn"
-														value="보내기"> <input type="button" id="msg_Cancel"
-														class="msg_btn" value="취소">
-												</div>
+											<div class="col-12 infoWrapper">
+												<div class="info-m">보내는 사람 ${nickname }</div>
+											</div>
+											<div class="col-12 infoWrapper">
+												<div class="info-m">받는 사람</div>
+												<c:choose>
+													<c:when test='${receiver!=null }'>
+														${receiver }
+													</c:when>
+													<c:otherwise>
+														<input type="text" id="receiver" class="inputBox-m"
+															name="receiver" placeholder="닉네임 검색" readonly>
+														<input type="button" value="검색" id="searchBtn"
+															class="searchBtn">
+													</c:otherwise>
+												</c:choose>
+											</div>
+											<div class="col-12 infoWrapper">
+												<div class="info-m">제목</div>
+												<input type="text" id="title" class="inputBox-m" name="title"
+													placeholder="제목을 입력해주세요">
+											</div>
+											<div class="col-12 infoWrapper" id="contents_Box">
+												<div class="info-m" id="contents_Info" style="width: 100%">내용</div>
+												<textarea id="contents" class="inputBox-m" name="contents"
+													placeholder="내용을 입력해주세요" style="margin-left: 2px"></textarea>
+											</div>
+											<div class="col-12" id="mbtns">
+												<input type="button" id="msg_Submit" class="msg_btn" value="보내기"> 
+												<input type="button" id="msg_Cancel" class="msg_btn" value="취소">
 											</div>
 										</div>
 									</div>
 								</form>
 							</div>
 						</div>
-						<div class="col-12 d-block d-lg-none">
-							<form action="/send.letter" id="mletterForm" method="post">
-								<span id="headTitle">메세지 보내기</span>
-								<div id="msg_Box">
-									<div class="row w-80 m-0">
-										<div class="col-12 infoWrapper">
-											<div class="info-m">보내는 사람 ${nickname }</div>
-										</div>
-										<div class="col-12 infoWrapper">
-											<div class="info-m">받는 사람</div>
-											<c:choose>
-												<c:when test='${receiver!=null }'>
-													${receiver }
-												</c:when>
-												<c:otherwise>
-													<input type="text" id="receiver" class="inputBox-m"
-														name="receiver" placeholder="닉네임 검색" readonly>
-													<input type="button" value="검색" id="searchBtn"
-														class="searchBtn">
-												</c:otherwise>
-											</c:choose>
-										</div>
-										<div class="col-12 infoWrapper">
-											<div class="info-m">제목</div>
-											<input type="text" id="title" class="inputBox-m" name ="title"
-												placeholder="제목을 입력해주세요">
-										</div>
-										<div class="col-12 infoWrapper" id="contents_Box">
-											<div class="info-m" id="contents_Info" style="width: 100%">내용</div>
-											<textarea id="contents" class="inputBox-m" name ="contents"
-											placeholder="내용을 입력해주세요" style="margin-left: 2px"></textarea>
-										</div>
-										<div class="col-12" id="mbtns">
-											<input type="button" id="msg_Submit" class="msg_btn"
-												value="보내기"> <input type="button" id="msg_Cancel"
-												class="msg_btn" value="취소">
-										</div>
-									</div>
-								</div>
-							</form>
-						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	
-	<div class="row w-100 m-0" id="footer"
-		style="background-color: #A2BAAC; font-weight: bold;">
-		<div class="col-12 p-0 d-lg-none">
-			<div
-				style="padding-top: 20px; padding-bottom: 10px; text-align: center; font-size: min(14px, 3.5vw);">
-				<a href="/csmain.cscenter" class="footerLink"> <span>자주
-						묻는 질문</span></a> <span style="margin-left: 20px" class="footerBar">|</span> <a
-					href="/csemail.cscenter" class="footerLink"> <span
-					style="margin-left: 20px">1 : 1 문의</span></a> <span
-					style="margin-left: 20px" class="footerBar">|</span> <a
-					href="/csmap.cscenter" class="footerLink"> <span
-					style="margin-left: 20px;">찾아오시는 길</span></a><br>
-				<div style="margin-top: 15px; text-align: center">
-					<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층,
-						3층</span><br> <span class="footerLetter">대 표 전 화 : 4989 -
-						4284</span> <span style="margin-left: 10px; margin-right: 10px"
-						class="footerLetter">|</span> <span class="footerLetter">E-MAIL
-						: ttaengerang@gmail.com </span><br> <span
-						style="color: #FFF2CC; font-size: min(15px, 4vw); line-height: 40px;">COPYRIGHT
-						BY PHOENIX </span>
+
+		<div class="row w-100 m-0" id="footer"
+			style="background-color: #A2BAAC; font-weight: bold;">
+			<div class="col-12 p-0 d-lg-none">
+				<div
+					style="padding-top: 20px; padding-bottom: 10px; text-align: center; font-size: min(14px, 3.5vw);">
+					<a href="/csmain.cscenter" class="footerLink"> <span>자주
+							묻는 질문</span></a> <span style="margin-left: 20px" class="footerBar">|</span>
+					<a href="/csemail.cscenter" class="footerLink"> <span
+						style="margin-left: 20px">1 : 1 문의</span></a> <span
+						style="margin-left: 20px" class="footerBar">|</span> <a
+						href="/csmap.cscenter" class="footerLink"> <span
+						style="margin-left: 20px;">찾아오시는 길</span></a><br>
+					<div style="margin-top: 15px; text-align: center">
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩
+							2층, 3층</span><br> <span class="footerLetter">대 표 전 화 : 4989
+							- 4284</span> <span style="margin-left: 10px; margin-right: 10px"
+							class="footerLetter">|</span> <span class="footerLetter">E-MAIL
+							: ttaengerang@gmail.com </span><br> <span
+							style="color: #FFF2CC; font-size: min(15px, 4vw); line-height: 40px;">COPYRIGHT
+							BY PHOENIX </span>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="d-none d-lg-block col-lg-9">
-			<div style="margin-left: 40px; margin-top: 20px; text-align: left">
-				<a href="/csmain.cscenter" class="footerLink"><span>자주 묻는
-						질문</span></a><span style="margin-left: 20px" class="footerBar">|</span> <a
-					href="/csemail.cscenter" class="footerLink"><span
-					style="margin-left: 20px">1 : 1 문의</span></a><span
-					style="margin-left: 20px" class="footerBar">|</span> <a
-					href="/csmap.cscenter" class="footerLink"><span
-					style="margin-left: 20px">찾아오시는 길</span></a><br>
-				<div style="margin-top: 30px; text-align: left; margin-bottom: 15px">
-					<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층,
-						3층</span><br> <span class="footerLetter">대 표 전 화 : 4989 -
-						4284</span><span style="margin-left: 20px" class="footerLetter">|</span><span
-						style="margin-left: 20px" class="footerLetter">E-MAIL :
-						ttaengerang@gmail.com </span><br> <span style="color: #FFF2CC">COPYRIGHT
-						BY YUNJI AYEONG WOOHYENG JEONGYOEN HEESEUNG IN PHOENIX </span>
+			<div class="d-none d-lg-block col-lg-9">
+				<div style="margin-left: 40px; margin-top: 20px; text-align: left">
+					<a href="/csmain.cscenter" class="footerLink"><span>자주
+							묻는 질문</span></a><span style="margin-left: 20px" class="footerBar">|</span> <a
+						href="/csemail.cscenter" class="footerLink"><span
+						style="margin-left: 20px">1 : 1 문의</span></a><span
+						style="margin-left: 20px" class="footerBar">|</span> <a
+						href="/csmap.cscenter" class="footerLink"><span
+						style="margin-left: 20px">찾아오시는 길</span></a><br>
+					<div
+						style="margin-top: 30px; text-align: left; margin-bottom: 15px">
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩
+							2층, 3층</span><br> <span class="footerLetter">대 표 전 화 : 4989
+							- 4284</span><span style="margin-left: 20px" class="footerLetter">|</span><span
+							style="margin-left: 20px" class="footerLetter">E-MAIL :
+							ttaengerang@gmail.com </span><br> <span style="color: #FFF2CC">COPYRIGHT
+							BY YUNJI AYEONG WOOHYENG JEONGYOEN HEESEUNG IN PHOENIX </span>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="d-none d-lg-block col-lg-3" style="text-align: right">
-			<img src="/img/footerLogo.png"
-				style="width: 70%; margin-right: 10px; margin-top: 10%">
+			<div class="d-none d-lg-block col-lg-3" style="text-align: right">
+				<img src="/img/footerLogo.png"
+					style="width: 70%; margin-right: 10px; margin-top: 10%">
+			</div>
 		</div>
 	</div>
-</div>
-<script>
+	<script>
          
          function openSearchNN(){
             window.name = "parentForm";
@@ -254,6 +212,7 @@
 					}
 				})
 			})
+
          
          $("#msg_Cancel").on("click",function(){
             location.href="/list.letter?type=r&page=1";
@@ -261,7 +220,6 @@
       
       
          //로그아웃 관련 공통기능
-
          // SDK를 초기화. 사용할 앱의 JavaScript 키
          Kakao.init('b956cab5ef7dbe5bc1f861614a4b2061');
        //console.log(Kakao.isInitialized());
@@ -270,8 +228,6 @@
        function saveToDos(token) { 
           typeof(Storage) !== 'undefined' && sessionStorage.setItem('AccessKEY', JSON.stringify(token)); 
       };
-
-
         $(".bi-box-arrow-right").on("click",function(){
            if (!Kakao.Auth.getAccessToken()) {
            Swal.fire({
@@ -297,7 +253,6 @@
                 })
          }
         })
-
         
    </script>
 </body>

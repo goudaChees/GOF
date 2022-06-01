@@ -174,7 +174,6 @@
 	
 		$("#msg_Reply").on("click",function(){
 			let seq = $("#letterSeq").val();
-			console.log(seq);
 			location.href="/reply.letter?seq="+seq;
 		})
 		

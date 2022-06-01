@@ -77,10 +77,10 @@
 							<div class="col-12 round_title" style="border-bottom: 2px dashed #FFC4A9;" align=center>${dto.title}</div>
 						</div>
 						<div class="row w-100 my-2">
-							<div class="col-6 col-md-2">글번호 : ${dto.seq }</div>
-							<div class="col-6 col-md-4">작성자 : ${dto.nickname }</div>
-							<div class="col-6 col-md-4" id="wtime">작성일 : ${dto.write_date}</div>
-							<div class="col-6 col-md-2">조회수 : ${dto.view_count}</div>
+							<div class="col-6 col-md-3 p-0">글번호 : ${dto.seq }</div>
+							<div class="col-6 col-md-2 p-0">조회수 : ${dto.view_count}</div>
+							<div class="col-6 col-md-3 p-0">${dto.nickname }</div>
+							<div class="col-6 col-md-4 p-0" id="wtime">${dto.write_date}</div>
 						</div>
 						<div class="row w-100 my-3 mx-0" id="board2List">
 							<div class="col-12" style="text-align:left">제한시간 : <span id="limit">
@@ -131,17 +131,14 @@
 															<textarea placeholder="내용을 입력해주세요.(최대 100글자)" maxlength="100" name="contents" id="contents" required="required"></textarea>
 														</div>
 														<div class="col-12 col-sm-2 p-0 px-1">
-															<c:if test="${wck == false }">
-																<button type="submit" id="btn1">작성</button>
-															</c:if>
-															
+															<button type="submit" id="btn1">작성</button>
 														</div>
 													</div>
-													<hr>
+													
 												</div>
 											</div>
 										</form>
-									<!-- 	댓글 작성 한적이 없거나 선택되지 않았다면 뎃글 작성 가능 -->
+									<!-- 	댓글 작성 한적이 없거나 선택되지 않았다면 댓글 작성 가능 -->
 								</div>
 								<c:if test="${crdto != null}">
 									<div class="row bestcontent">
@@ -151,21 +148,22 @@
 												<div class="col-12 col-sm-6">닉네임 : ${crdto.nickname}</div>
 											</div>
 											<div class="row p-0">
-												<div class="col-12 p-0" id=best><textarea class="best" style="white-space:pre" disabled >${crdto.contents}</textarea></div>
+												<div class="col-12 p-0" id=best><textarea class="best" style="white-space:normal" disabled >${crdto.contents}</textarea></div>
 											</div>				
 										</div>
 										<div class="col-2 p-0" style="margin-top: 10px;"><img src="/img/best2.png" style="width:80px; height:80px; "></div>
 									</div>
-									<hr>
+									
 								</c:if>
+								<%-- 댓글 --%>
 								<div class="row w-100 m-0 " >
-									<div class="col-12 p-0 h-100  ">
+									<div class="col-12 p-0 h-100 backcontents ">
 										<c:forEach var="i" items="${rdto}">
-											<div class="row w-100 m-0 reply ">
+											<div class="row w-100 m-0 pt-2 reply " style = "border-top: 2px dashed #FFC4A9; ">
 										
 												<div class="col-12 d-sm-none d-block writingEtc">
-													작성자 : ${i.nickname } <i class="bi bi-dot"></i>
-													작성일 : ${i.write_date}
+													${i.nickname } <i class="bi bi-dot"></i>
+													${i.write_date}
 												</div>
 												
 												<div class="col-6 col-sm-3 price">
@@ -174,13 +172,13 @@
 												</div>
 												
 												<div class="col-sm-9 d-none d-sm-block writingEtc">
-													작성자 : ${i.nickname } <i class="bi bi-dot"></i>
-													작성일 : ${i.write_date}
+													${i.nickname } <i class="bi bi-dot"></i>
+													${i.write_date}
 												</div>
 												
 												
 											</div>
-											<div class="row w-100 m-0">
+											<div class="row w-100 m-0 pb-1" style="border-bottom: 2px dashed #FFC4A9;">
 												<div class="col-12  contents">
 													<div class="row">
 													<div class="col-12 incontents">
@@ -191,11 +189,11 @@
 													</div>
 														
 													 <div class="col-12 incontents">
-															<textarea class="content_editable" disabled maxlength="100">${i.contents}</textarea>
+															<textarea class="content_editable" style="white-space:normal" disabled maxlength="100">${i.contents}</textarea>
 														</div> 
 													</div>
 												</div>
-												<div class="col-12  p-0 text2 writingEtc">
+												<div class="col-12  p-2 text2 writingEtc">
 													<div style="float:right;">
 													<c:if test="${(i.id == loginID && cck== false)||(loginID == 'admin')}">
 														<button class="modibtn write">수정</button>
@@ -205,10 +203,10 @@
 													</c:if>
 													</div>
 													<c:if test="${loginID == dto.id && cck == false}">
-														<input type="radio" name="choice" value="${i.seq}" class="choice" style="margin-left: 10px; margin-top:3px;"><span>선택</span>
+														<input type="radio" name="choice" value="${i.seq}" class="choice" style="margin-left: 10px; margin-top:3px;"><span>-- 경매시간이 마감되어 선택하실 수 없습니다. --</span>
 													</c:if>
 												</div>
-											
+										
 											</div>
 										</c:forEach>
 									</div>
