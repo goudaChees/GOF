@@ -10,6 +10,7 @@
 	width: 80%;
 	height : 90%;
 	margin:auto;
+	margin-top:10px
 
 }
 
@@ -22,6 +23,7 @@
 	width : 25%;
 	font-weight:bold;
 	font-size:15px;
+	margin-right: 8px;
 }
 
 #writer{
@@ -34,7 +36,7 @@
 }
 
 .infoWrapper > div{
-	float:left
+	display:inline-block;
 }
 
 .inputBox{
@@ -99,11 +101,25 @@
 	font-size:20px;
 }
 
-.infor-m{
-	width:100%
+.info-m{
+	width:100%;
+	font-weight:bold;
 }
 
 .inputBox-m{
 	width:80%
 }
 
+.msgRead-m{
+	background-color:white;
+	width:100%;
+	border-radius:5px;
+	margin-top:5px	
+}
+
+.msgRead{
+	background-color:white;
+	width:65%;
+	border-radius:5px;
+	margin-top:5px	
+}
