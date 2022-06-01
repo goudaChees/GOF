@@ -115,7 +115,7 @@ public class CSCenterController extends HttpServlet {
 			} else if (uri.equals("/udtNotice.cscenter")) {
 				int seq = Integer.parseInt(request.getParameter("seq"));				
 				String title = request.getParameter("title");
-				String contents = request.getParameter("contents");				
+				String contents = request.getParameter("contents");	
 				ndao.udtNotice(seq, title, contents);
 				response.sendRedirect("/detailNotice.cscenter?seq="+seq);
 				

@@ -79,7 +79,7 @@
 									<li class="nav-item"><a class="nav-link"
 										href="/myReply.member?board=1&page=1">내 댓글 보기</a></li>
 									<li class="nav-item"><a class="nav-link active"
-										aria-current="page" href="/list.letter?type=r">메세지</a></li>
+										aria-current="page" href="/list.letter?type=r&page=1">메세지</a></li>
 								</ul>
 							</div>
 						</div>
@@ -91,7 +91,7 @@
 										<div class="row w-80 m-0">
 											<div class="col-12 infoWrapper" style="width: 100%">
 												<div id="writer">
-													보내는 사람 ${nickname}</span>
+													<span>보내는 사람 ${nickname}</span>
 												</div>
 												<div class="col-12 infoWrapper">
 													<div class="info">받는 사람</div>
@@ -124,6 +124,7 @@
 												</div>
 											</div>
 										</div>
+									</div>
 								</form>
 							</div>
 						</div>
@@ -133,7 +134,7 @@
 								<div id="msg_Box">
 									<div class="row w-80 m-0">
 										<div class="col-12 infoWrapper">
-											<div class="info-m">보내는 사람</div>
+											<div class="info-m">보내는 사람 ${nickname }</div>
 										</div>
 										<div class="col-12 infoWrapper">
 											<div class="info-m">받는 사람</div>
@@ -151,13 +152,13 @@
 										</div>
 										<div class="col-12 infoWrapper">
 											<div class="info-m">제목</div>
-											<input type="text" id="title" class="inputBox-m"
+											<input type="text" id="title" class="inputBox-m" name ="title"
 												placeholder="제목을 입력해주세요">
 										</div>
 										<div class="col-12 infoWrapper" id="contents_Box">
 											<div class="info-m" id="contents_Info" style="width: 100%">내용</div>
-											<textarea id="contents" class="inputBox-m"
-												placeholder="내용을 입력해주세요" style="margin-left: 2px"></textarea>
+											<textarea id="contents" class="inputBox-m" name ="contents"
+											placeholder="내용을 입력해주세요" style="margin-left: 2px"></textarea>
 										</div>
 										<div class="col-12" id="mbtns">
 											<input type="button" id="msg_Submit" class="msg_btn"
@@ -172,7 +173,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	
 	<div class="row w-100 m-0" id="footer"
 		style="background-color: #A2BAAC; font-weight: bold;">
 		<div class="col-12 p-0 d-lg-none">
@@ -220,7 +221,7 @@
 				style="width: 70%; margin-right: 10px; margin-top: 10%">
 		</div>
 	</div>
-	</div>
+</div>
 <script>
          
          function openSearchNN(){
@@ -235,17 +236,24 @@
          })
          
          $("#msg_Submit").on("click",function(){
-            Swal.fire({
-              title: '작성하신 쪽지를 보내시겠습니까?',
-              showCancelButton: true,
-              confirmButtonText: '보내기',
-              cancelButtonText: '취소'
-            }).then((result) => {
-               if (result.isConfirmed) {
-                 $("#letterForm").submit();
-               }
-            })
-         })
+				Swal.fire({
+				  title: '작성하신 쪽지를 보내시겠습니까?',
+				  showCancelButton: true,
+				  confirmButtonText: '보내기',
+				  cancelButtonText: '취소'
+				}).then((result) => {
+					if (result.isConfirmed) {
+						Swal.fire({
+							icon: 'success',
+							title: '메세지 전송 완료'
+						}).then((result2) => {
+							if (result2.isConfirmed) {
+							$("#letterForm").submit();
+							}
+						}
+					}
+				})
+			})
          
          $("#msg_Cancel").on("click",function(){
             location.href="/list.letter?type=r&page=1";

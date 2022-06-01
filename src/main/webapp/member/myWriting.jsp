@@ -68,6 +68,8 @@
 											글 보기</a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="/myReply.member?board=1&page=1">내 댓글 보기</a></li>
+									<li class="nav-item"><a class="nav-link" 
+										href="/list.letter?type=r&page=1">메세지함</a></li>
 								</ul>
 							</div>
 						</div>

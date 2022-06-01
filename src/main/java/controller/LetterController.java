@@ -34,7 +34,6 @@ public class LetterController extends HttpServlet {
 				
 				String id = (String) request.getSession().getAttribute("loginID");
 				String nickname = ldao.getNickname(id);
-				System.out.println(nickname);
 				request.setAttribute("nickname", nickname);
 				request.getRequestDispatcher("/letter/letter_Write.jsp").forward(request, response);
 
@@ -51,7 +50,7 @@ public class LetterController extends HttpServlet {
 				ldao.insertRLetter(new LetterDTO(seq, nickname, receiver, title, contents, null,0,id,receiverId));
 				ldao.insertSLetter(new LetterDTO(seq, nickname, receiver, title, contents, null,0,id,receiverId));
 				
-				response.sendRedirect("/letter/list.jsp");
+				response.sendRedirect("/letter/read.letter?type=s&seq="+seq);
 				
 			
 			}else if(uri.equals("/searchNN.letter")) { // 팝업창에서 닉네임 검색
@@ -60,7 +59,7 @@ public class LetterController extends HttpServlet {
 				String target = request.getParameter("target");
 				List<String> list = ldao.searchNN(target,nickname);
 				PrintWriter pw = response.getWriter();
-				pw.append(g.toJson(list));			
+				pw.append(g.toJson(list));
 			
 				
 			}else if(uri.equals("/reply.letter")) { // 답장하기 클릭 시 받을 사람의 닉네임 전달
@@ -68,7 +67,7 @@ public class LetterController extends HttpServlet {
 				String receiverid = ldao.getReceiver(seq);
 				String receiver = ldao.getNickname(receiverid);
 				request.setAttribute("receiver", receiver);
-				response.sendRedirect("/letter/letter_Write.jsp");
+				request.getRequestDispatcher("/letter/letter_Write.jsp").forward(request, response);
 			
 				
 			}else if(uri.equals("/list.letter")) { //메세지 목록보기
@@ -78,12 +77,12 @@ public class LetterController extends HttpServlet {
 				
 				String pageList = "";
 				List<LetterDTO> list = null;
-				int newLetter = 0;
+//				int newLetter = 0;
 				
 				if(type.equals("r")){
 					pageList = ldao.rPageList(id, page);
 					list = ldao.rSelectPage(id, page);
-					newLetter = ldao.newLetter(id);
+//					newLetter = ldao.newLetter(id);
 				}else if(type.equals("s")) {
 					pageList = ldao.sPageList(id, page);
 					list = ldao.sSelectPage(id, page);
@@ -92,10 +91,22 @@ public class LetterController extends HttpServlet {
 				request.setAttribute("type", type);
 				request.setAttribute("list", list);
 				request.setAttribute("pageList", pageList);
-				request.setAttribute("newLetter", newLetter);
-
-				request.getRequestDispatcher("/letter/list.jsp").forward(request, response);
-			
+//				request.setAttribute("newLetter", newLetter);
+				request.getRequestDispatcher("/letter/letter_list.jsp").forward(request, response);
+				
+				
+			}else if(uri.equals("/newLetter.letter")) { // 새로 받은 메세지 수 (비동기)				
+				String id = (String) request.getSession().getAttribute("loginID");
+				int newLetter = ldao.newLetter(id);
+				PrintWriter pw = response.getWriter();
+				pw.append(g.toJson(newLetter));
+				
+				
+			}else if(uri.equals("/newLetterList.letter")){ // 새로 받은 메세지 seq list (비동기)	
+				String id = (String) request.getSession().getAttribute("loginID");
+				List<Integer> newLetterList = ldao.newLetterList(id);
+				PrintWriter pw = response.getWriter();
+				pw.append(g.toJson(newLetterList));
 				
 				
 			}else if(uri.equals("/read.letter")) { // 메세지 읽기
@@ -110,6 +121,7 @@ public class LetterController extends HttpServlet {
 					ldto=ldao.readSBySeq(seq);
 				}
 				
+				request.setAttribute("type", type);
 				request.setAttribute("ldto", ldto);
 				request.getRequestDispatcher("/letter/readLetter.jsp").forward(request, response);
 			
