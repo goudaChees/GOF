@@ -126,6 +126,12 @@
 	padding-top:5%;
 }
 
+#contentsTD {
+	width: 100%;
+	height: 90%;
+	resize: none;
+}
+
 #noticePageArea .col-8{
 	text-align:center;
 	line-height:35px;
