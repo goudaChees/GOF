@@ -146,7 +146,9 @@
 											<div class="col-12"></div>
 										</div>
 										<div class="row" align=center id="contentsBox">
-											<div class="col-12 editable" name="contents" id="contentsTD" disabled>${dto.contents}
+											 <%--<div class="col-12 editable" name="contents" id="contentsTD" disabled>${dto.contents}</div> --%> 
+											<div class="col-12">
+												<input type="text"  style=" text-align:center; width: 100%; height: 90%; border:none;" value="${dto.contents}" class="editable" name="contents" id="contentsTD" disabled> 
 											</div>
 										</div>
 
@@ -255,6 +257,8 @@ $("#modify").on("click", function() {
 	
 	$("#btns").prepend(ok);
 	$("#btns").prepend(cancel);
+	
+	
 })
 
 
