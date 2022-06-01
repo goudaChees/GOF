@@ -389,4 +389,19 @@ public class NoticeDAO {
 			}
 		}
 	}
+	
+	
+	// 조회수 증가
+	public int addViewCount(int seq)throws Exception {
+		String sql = "update notice set view_count=view_count+1 where seq=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, seq);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
 }
