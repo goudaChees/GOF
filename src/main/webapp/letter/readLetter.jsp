@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="/css/member/myWriting.css">
 <link rel="stylesheet" href="/css/common.css">
 <link rel="stylesheet" href="/css/letter/letter_list.css">
-<link rel="stylesheet" href="/css/letter/letter_Write.css">
+<link rel="stylesheet" href="/css/letter/letter_Read.css">
 </head>
 <body>
 	<div class="container w-100">
@@ -62,7 +62,6 @@
 				</nav>
 			</div>
 		</div>
-
 		<div class="row w-100 m-0" id="content">
 			<div class="d-none d-lg-block col-3"></div>
 			<div class="col-12 col-lg-6">
@@ -84,85 +83,70 @@
 							</div>
 						</div>
 						<div class="row w-100 m-0" id="mywriting">
-							<div class="d-none d-lg-block col-lg-12">
+							<div class="d-none d-md-block col-md-12">
 								<form action="/send.letter" id="letterForm" method="post">
-									<span id="headTitle">메세지 보내기</span>
+									<span id="headTitle">받은 메세지</span>
 									<div id="msg_Box">
 										<div class="row w-80 m-0">
-											<div class="col-12 infoWrapper" style="width: 100%">
-												<div id="writer">
-													보내는 사람 ${nickname}</span>
+											<div class="col-12 Wrapper" style="width: 100%">
+												<div class="col-12 infoWrapper">
+													<span class="info">보낸 사람</span> <span>보낸사람
+														위치입니다.</span>
 												</div>
 												<div class="col-12 infoWrapper">
-													<div class="info">받는 사람</div>
-													<c:choose>
-														<c:when test='${receiver!=null }'>
-													${receiver }
-												</c:when>
-														<c:otherwise>
-															<input type="text" id="receiver" class="inputBox"
-																name="receiver" placeholder="닉네임을 검색하세요" readonly>
-															<input type="button" value="검색" id="searchBtn"
-																class="searchBtn">
-														</c:otherwise>
-													</c:choose>
+													<span class="info">작성 일자</span> <span>작성일자
+														위치입니다.</span>
 												</div>
 												<div class="col-12 infoWrapper">
-													<div class="info">제목</div>
-													<input type="text" id="title" class="inputBox"
-														placeholder="제목을 입력해주세요">
+													<div class="info" >제목</div>
+													<div class="msgRead">
+														제목 위치입니다.
+													</div>
 												</div>
-												<div class="col-12 infoWrapper" id="contents_Box">
-													<div class="info" id="contents_Info">내용</div>
-													<textarea id="contents" class="inputBox"
-														placeholder="내용을 입력해주세요" style="margin-left: 2px"></textarea>
+												<div class="col-12 infoWrapper">
+													<div class="info" >내용</div>
+													<div class="msgRead">
+														내용 위치입니다.
+													</div>
 												</div>
 												<div class="col-12" id="mbtns">
-													<input type="button" id="msg_Submit" class="msg_btn"
-														value="보내기"> <input type="button" id="msg_Cancel"
-														class="msg_btn" value="취소">
+													<input type="button" id="msg_Reply" class="msg_btn"
+														value="답장"><input type="button" id="msg_Delete"
+														class="msg_btn" value="삭제"> <input type="button"
+														id="msg_Cancel" class="msg_btn" value="목록">
 												</div>
 											</div>
 										</div>
+									</div>
 								</form>
 							</div>
 						</div>
-						<div class="col-12 d-block d-lg-none">
+						<div class="col-12 d-block d-md-none">
 							<form action="/send.letter" id="letterForm" method="post">
-								<span id="headTitle">메세지함</span>
+								<span id="headTitle">받은 메세지</span>
 								<div id="msg_Box">
 									<div class="row w-80 m-0">
 										<div class="col-12 infoWrapper">
-											<div class="info-m">보내는 사람</div>
+											<span class="info-m" style="margin-right: 8px">보낸 사람</span> <span>보낸사람
+												위치입니다.</span>
 										</div>
 										<div class="col-12 infoWrapper">
-											<div class="info-m">받는 사람</div>
-											<c:choose>
-												<c:when test='${receiver!=null }'>
-													${receiver }
-												</c:when>
-												<c:otherwise>
-													<input type="text" id="receiver" class="inputBox-m"
-														name="receiver" placeholder="닉네임 검색" readonly>
-													<input type="button" value="검색" id="searchBtn"
-														class="searchBtn">
-												</c:otherwise>
-											</c:choose>
+											<span class="info-m" style="margin-right: 8px">받은 시간</span> <span>시간
+												위치입니다.</span>
 										</div>
 										<div class="col-12 infoWrapper">
 											<div class="info-m">제목</div>
-											<input type="text" id="title" class="inputBox-m"
-												placeholder="제목을 입력해주세요">
+											<div class="msgRead-m">제목이 있을 자리입니다.</div>
 										</div>
 										<div class="col-12 infoWrapper" id="contents_Box">
 											<div class="info-m" id="contents_Info" style="width: 100%">내용</div>
-											<textarea id="contents" class="inputBox-m"
-												placeholder="내용을 입력해주세요" style="margin-left: 2px"></textarea>
+											<div class="msgRead-m">내용이 있을 자리입니다.</div>
 										</div>
 										<div class="col-12" id="mbtns">
-											<input type="button" id="msg_Submit" class="msg_btn"
-												value="답장하기"> <input type="button" id="msg_Cancel"
-												class="msg_btn" value="취소">
+											<input type="button" id="msg_Reply" class="msg_btn"
+												value="답장"> <input type="button" id="msg_Delete"
+												class="msg_btn" value="삭제"> <input type="button"
+												id="msg_Cancel" class="msg_btn" value="목록">
 										</div>
 									</div>
 								</div>
