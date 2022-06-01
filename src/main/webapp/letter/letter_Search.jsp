@@ -95,6 +95,15 @@ body {
 					
 					$("#nicknameList").append(row);
 				}
+			}else {
+				let row = $("<div class=row>");
+				
+				let col1=$("<div class='col-12'>");
+				col1.append("검색 결과가 존재하지 않습니다.")
+				
+				row.append(col1);
+				
+				$("#nicknameList").append(row);
 			}
 		})
 	})

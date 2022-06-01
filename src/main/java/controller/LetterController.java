@@ -33,9 +33,8 @@ public class LetterController extends HttpServlet {
 				
 				String id = (String) request.getSession().getAttribute("loginID");
 				String nickname = ldao.getNickname(id);
-				System.out.println(nickname);
 				request.setAttribute("nickname", nickname);
-				response.sendRedirect("/letter/letter_Write.jsp");
+				request.getRequestDispatcher("/letter/letter_Write.jsp").forward(request, response);
 			
 			
 			}else if(uri.equals("/send.letter")) { // 쪽지보내기
@@ -50,7 +49,7 @@ public class LetterController extends HttpServlet {
 				ldao.insertRLetter(new LetterDTO(seq, nickname, receiver, title, contents, null,0,id,receiverId));
 				ldao.insertSLetter(new LetterDTO(seq, nickname, receiver, title, contents, null,0,id,receiverId));
 				
-				response.sendRedirect("/letter/list.jsp");
+				response.sendRedirect("/letter/read.letter?type=s&seq="+seq);
 				
 			
 			}else if(uri.equals("/searchNN.letter")) { // 팝업창에서 닉네임 검색
@@ -60,7 +59,7 @@ public class LetterController extends HttpServlet {
 				String target = request.getParameter("target");
 				List<String> list = ldao.searchNN(target,nickname);
 				PrintWriter pw = response.getWriter();
-				pw.append(g.toJson(list));			
+				pw.append(g.toJson(list));
 			
 				
 			}else if(uri.equals("/reply.letter")) { // 답장하기 클릭 시 받을 사람의 닉네임 전달
@@ -68,7 +67,7 @@ public class LetterController extends HttpServlet {
 				String receiverid = ldao.getReceiver(seq);
 				String receiver = ldao.getNickname(receiverid);
 				request.setAttribute("receiver", receiver);
-				response.sendRedirect("/letter/letter_Write.jsp");
+				request.getRequestDispatcher("/letter/letter_Write.jsp").forward(request, response);
 			
 				
 			}else if(uri.equals("/list.letter")) { //메세지 목록보기
@@ -93,8 +92,7 @@ public class LetterController extends HttpServlet {
 				request.setAttribute("list", list);
 				request.setAttribute("pageList", pageList);
 				request.setAttribute("newLetter", newLetter);
-				request.getRequestDispatcher("/letter/list.jsp").forward(request, response);
-			
+				request.getRequestDispatcher("/letter/letter_list.jsp").forward(request, response);
 				
 				
 			}else if(uri.equals("/read.letter")) { // 메세지 읽기

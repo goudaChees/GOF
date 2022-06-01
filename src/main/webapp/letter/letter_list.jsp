@@ -17,7 +17,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/css/member/myWriting.css">
 <link rel="stylesheet" href="/css/common.css">
-<link rel="stylesheet" href="/css/message/message_Write.css">
+<link rel="stylesheet" href="/css/letter/letter_list.css">
 </head>
 <body>
 	<div class="container w-100">
@@ -68,53 +68,79 @@
 								<ul class="nav nav-tabs">
 									<li class="nav-item"><a class="nav-link"
 										href="/mypage.member">내 정보 보기</a></li>
-									<li class="nav-item"><a class="nav-link active"
-										aria-current="page" href="/myWriting.member?board=1&page=1">내
+									<li class="nav-item"><a class="nav-link"
+									 href="/myWriting.member?board=1&page=1">내
 											글 보기</a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="/myReply.member?board=1&page=1">내 댓글 보기</a></li>
-									<li class="nav-item"><a class="nav-link" href="#">메세지함</a></li>
+									<li class="nav-item"><a class="nav-link active"
+										aria-current="page" href="/list.letter?type=r&page=1">메세지함</a></li>
 								</ul>
 							</div>
 						</div>
 						<div class="row w-100 m-0" id="mywriting">
-							<div class="col-12">
-								<form action="/send.letter" id="letterForm" method="post">
-								<span id="headTitle">메세지 보내기</span>
-								<div id="msg_Box">
-									<div class="row w-80 m-0">
-										<div class="col-12 infoWrapper">
-											<span class="info">보내는 사람 </span>
-											<span>${nickname } </span>
-										</div>
-										<div class="col-12 infoWrapper">
-											<div class="info">받는 사람</div>
-											<c:choose>
-												<c:when test='${receiver!=null }'>
-													${receiver }
-												</c:when>
-												<c:otherwise>
-													<input type="text" id="receiver" class="inputBox" name="receiver" placeholder="받을 사람의 닉네임 검색" readonly>
-													<input type="button" value="검색" id="searchBtn">	
-												</c:otherwise>
-											</c:choose>
-										</div>
-										<div class="col-12 infoWrapper">
-											<div class="info">제목</div>
-											<input type="text" id="title" class="inputBox" name = "title" placeholder="제목을 입력해주세요">
-										</div>
-										<div class="col-12 infoWrapper" id="contents_Box">
-											<div class="info" id="contents_Info">내용</div>
-											<textarea id="contents" class="inputBox" name = "contents"
-												placeholder="내용을 입력해주세요" style="margin-left: 2px"></textarea>
-										</div>
-										<div class="col-12" id="mbtns">
-									 		<input type="button" id="msg_Submit" class="msg_btn" value="보내기"> 
-											<input type="button" id="msg_Cancel" class="msg_btn" value="취소">
+							<div class="col-12"  id="listWrapper">
+								<div class="row w-100 m-0">
+									<div class="col-12" id="listbtns">
+										<button id="receiveMail">받은메세지</button>
+										<button id="sendMail">보낸메세지</button>
+									</div>
+								</div>
+								<div class="row w-100 m-0" id="letterlist">
+									<div class="col-12 p-0">
+<%-- 											<c:choose> --%>
+<%-- 												<c:when test="${type=='r' }"> --%>
+<!-- 													<div class="col-12 col-lg-8">받은 메세지함</div> -->
+<%-- 												</c:when> --%>
+<%-- 												<c:otherwise> --%>
+<!-- 													<div class="col-12 col-lg-8">보낸 메세지함</div> -->
+<%-- 												</c:otherwise> --%>
+<%-- 											</c:choose> --%>
+										
+										<c:choose>
+											<c:when test="${type=='r' }">
+												<div class="row w-100 m-0 listHeader">
+													<div class="col-12 col-lg-8">받은 메세지함</div>
+													<div class="col-12" style="text-align:left">새 메세지 : ${newLetter }건</div>
+												</div>
+												<c:forEach var='i' items="${list }">
+													<a href='/read.letter?type=r&seq=${i.seq }'>
+														<div class="row w-100 m-0">
+															<div class="col-8 p-0 d-none d-lg-block">${i.writer }</div>
+															<div class="col-4 p-0 d-none d-lg-block">${i.write_date }</div>
+															<div class="col-12 p-0 d-block d-lg-none">
+															<c:if test="${i.read==0 }">
+<%-- 																<span id="new${i.seq }" style="display:none;"> --%>
+																<img src="/img/new.gif" style="width:25px;">
+															</c:if>
+															${i.title }</div>
+														</div>
+													</a>
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
+												<div class="row w-100 m-0 listHeader">
+													<div class="col-12 col-lg-8">보낸 메세지함</div>
+												</div>
+												<c:forEach var='i' items="${list }">
+													<a href='/read.letter?type=s&seq=${i.seq }'>
+														<div class="row w-100 m-0">
+															<div class="col-8 p-0 d-none d-lg-block">${i.receiver }</div>
+															<div class="col-4 p-0 d-none d-lg-block">${i.write_date }</div>
+															<div class="col-12 p-0 d-block d-lg-none">${i.title }</div>
+														</div>
+													</a>
+												</c:forEach>
+											</c:otherwise>
+										</c:choose>										
+										<div class="row w-100 m-0 listFooter">
+											<div class="col-12">${pageList }</div>
 										</div>
 									</div>
 								</div>
-								</form>
+								<div id="sendBtn">
+									<input type="button" value="메세지 보내기" id="toSendBtn">	
+								</div>					
 							</div>
 						</div>
 					</div>
@@ -169,39 +195,20 @@
 						style="width: 70%; margin-right: 10px; margin-top: 10%">
 				</div>
 			</div>
+		</div>
 		<script>
-			
-			function openSearchNN(){
-				window.name = "parentForm";
-				
-				searchPop = window.open("/letter/letter_Search.jsp", "",
-						"top=100,left=200,width=550,height=350");
-			}
 		
-			$("#searchBtn").on("click",function(){
-				openSearchNN();
-			})
-			
-			$("#msg_Submit").on("click",function(){
-				Swal.fire({
-				  title: '작성하신 쪽지를 보내시겠습니까?',
-				  showCancelButton: true,
-				  confirmButtonText: '보내기',
-				  cancelButtonText: '취소'
-				}).then((result) => {
-					if (result.isConfirmed) {
-						Swal.fire(
-						  '메세지 전송 완료',
-						  'success'
-						);
-					  $("#letterForm").submit();
-					}
-				})
-			})
-			
-			$("#msg_Cancel").on("click",function(){
-				location.href="/list.letter?type=r&page=1";
-			})
+		$("#receiveMail").on("click",function(){
+			location.href="/list.letter?type=r&page=1";
+		})
+		
+		$("#sendMail").on("click",function(){
+			location.href="/list.letter?type=s&page=1";
+		})
+		
+		$("#toSendBtn").on("click",function(){
+			location.href="/toSend.letter";
+		})
 		
 		
 			//로그아웃 관련 공통기능
