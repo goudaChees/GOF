@@ -7,7 +7,7 @@
 	border-radius: 15px;
 	background-color: #FEDDE1;
 	position:relative;
-	width: 80%;
+	width: 90%; /* 수정된 부분 */
 	height : 90%;
 	margin:auto;
 	margin-top:10px
@@ -22,7 +22,7 @@
 	display:inline-block;
 	width : 25%;
 	font-weight:bold;
-	font-size:15px;
+	font-size:min(15px,3vw); /* 수정된 부분 */
 	margin-right: 8px;
 }
 
@@ -33,6 +33,10 @@
 
 .infoWrapper{
 	margin-top:15px;
+}
+
+.infoWrapper span{ /* 추가된 부분 */
+	font-size:min(15px,3vw);
 }
 
 .infoWrapper > div{
@@ -52,7 +56,7 @@
 	margin-left:1%;
 	color: white;
 	font-weight:bold;
-	font-size:min(17px,3.5vw);
+	font-size:min(16px,3.5vw); /* 수정된 부분 */
 	line-height:23px;
 	background-color: #F193A190;	
 	border: 3px solid #F193A199;
@@ -121,5 +125,10 @@
 	background-color:white;
 	width:65%;
 	border-radius:5px;
-	margin-top:5px	
+	margin-top:5px;
+	font-size:min(15px,3vw); /* 수정된 부분 */
+}
+
+#msgContents{
+	min-height:80px;	
 }

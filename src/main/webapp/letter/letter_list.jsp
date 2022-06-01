@@ -101,13 +101,13 @@
 											<c:when test="${type=='r' }">
 												<div class="row w-100 m-0 listHeader">
 													<div class="col-12" id="newletter"></div>
-													<div class="col-6 d-none d-lg-block">제목</div>
-													<div class="col-3 d-none d-lg-block">보낸 사람</div>
-													<div class="col-3 d-none d-lg-block">수신일자</div>
+													<div class="col-6 d-none d-lg-block listName">제목</div>
+													<div class="col-3 d-none d-lg-block listName">보낸 사람</div>
+													<div class="col-3 d-none d-lg-block listName">수신일자</div>
 												</div>
 												<c:forEach var='i' items="${list }">
 													<a href='/read.letter?type=r&seq=${i.seq }'>
-														<div class="row w-100 m-0">
+														<div class="row w-100 m-0 letterLine">
 															<div class="col-6 d-none d-lg-block" style="text-align:left; padding-left:10px;">
 															<c:if test="${i.read==0 }">
 																<span id="new${i.seq }" style="display:none;">
@@ -131,13 +131,13 @@
 											<c:otherwise>
 												<div class="row w-100 m-0 listHeader">
 													<div class="col-12">보낸 메세지함</div>
-													<div class="col-6 d-none d-lg-block">제목</div>
-													<div class="col-3 d-none d-lg-block">받은 사람</div>
-													<div class="col-3 d-none d-lg-block">송신일자</div>
+													<div class="col-6 d-none d-lg-block listName">제목</div>
+													<div class="col-3 d-none d-lg-block listName">받은 사람</div>
+													<div class="col-3 d-none d-lg-block listName">송신일자</div>
 												</div>
 												<c:forEach var='i' items="${list }">
 													<a href='/read.letter?type=s&seq=${i.seq }'>
-														<div class="row w-100 m-0">
+														<div class="row w-100 m-0 letterLine">
 															<div class="col-6 d-none d-lg-block" style="text-align:left;padding-left:10px;">${i.title }</div>
 															<div class="col-3 p-0 d-none d-lg-block">${i.receiver }</div>
 															<div class="col-3 p-0 d-none d-lg-block">${i.formed_WriteDate }</div>

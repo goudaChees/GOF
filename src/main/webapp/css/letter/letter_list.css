@@ -11,8 +11,6 @@
 
 }
 
-
-
 #toSendBtn{
 	color: white;
 	font-weight:bold;
@@ -28,6 +26,10 @@
 	cursor:pointer;	
 }
 
+#letterlist a{
+	text-decoration:none;
+}
+
 .listHeader{
 	background-color:#F4ACB7;
 	font-weight:bolder;
@@ -36,13 +38,19 @@
 	color:#5C474D;
 }
 
+.listName{
+	background-color:#FFCAD4;
+}
+
+.letterLine{
+	border-bottom:1px solid #F4ACB7;
+}
+
 #listbtns{
 	position:relative;
 	font-weight:bolder;
 	font-size:14px;
 }
-
-
 
 #newLetter{
 	font-weight:bolder;
@@ -50,4 +58,9 @@
 	position:absolute;
 	left:10px;
 	bottom:0px;
+}
+
+.listFooter a{
+	text-decoration:none;
+	color: #806c71;
 }

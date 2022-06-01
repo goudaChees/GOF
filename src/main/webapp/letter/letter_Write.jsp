@@ -109,12 +109,12 @@
 												</div>
 												<div class="col-12 infoWrapper">
 													<div class="info">제목</div>
-													<input type="text" id="title" class="inputBox"
+													<input type="text" id="title" class="inputBox" name="title"
 														placeholder="제목을 입력해주세요">
 												</div>
 												<div class="col-12 infoWrapper" id="contents_Box">
 													<div class="info" id="contents_Info">내용</div>
-													<textarea id="contents" class="inputBox"
+													<textarea id="contents" class="inputBox" name="contents"
 														placeholder="내용을 입력해주세요" style="margin-left: 2px"></textarea>
 												</div>
 												<div class="col-12" id="mbtns">
@@ -129,7 +129,7 @@
 							</div>
 						</div>
 						<div class="col-12 d-block d-lg-none">
-							<form action="/send.letter" id="letterForm" method="post">
+							<form action="/send.letter" id="mletterForm" method="post">
 								<span id="headTitle">메세지 보내기</span>
 								<div id="msg_Box">
 									<div class="row w-80 m-0">
@@ -250,7 +250,7 @@
 							if (result2.isConfirmed) {
 							$("#letterForm").submit();
 							}
-						}
+						})
 					}
 				})
 			})

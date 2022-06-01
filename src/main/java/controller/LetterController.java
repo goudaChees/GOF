@@ -123,7 +123,7 @@ public class LetterController extends HttpServlet {
 				
 				request.setAttribute("type", type);
 				request.setAttribute("ldto", ldto);
-				request.getRequestDispatcher("/letter/readLetter.jsp").forward(request, response);
+				request.getRequestDispatcher("/letter/letter_Read.jsp").forward(request, response);
 			
 			
 			}else if(uri.equals("/delete.letter")) { // 메세지 삭제하기
