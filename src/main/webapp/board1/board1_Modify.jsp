@@ -77,8 +77,8 @@
 					<div class="col-12">
 						<div class="row w-100 m-0" id="writingHeader">
 							<div class="col-12">
-								<p>살까말까</p>
-								<span>살까말까 고민하고 있니? </span>
+								<a href="/list.brd1?cpage=1"><img src="/img/nametagbrd1.png" id="nametag"></a><br>
+								<span id="brdInfo" style="font-size:16px;margin-left:30px;">살까말까 고민하고 계신가요? </span>
 							</div>
 						</div>
 						<form action="/modify.brd1" enctype="multipart/form-data" method="post">

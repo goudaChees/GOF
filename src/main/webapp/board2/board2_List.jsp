@@ -104,8 +104,8 @@ function openPopup2(url) {
 					<div class="col-12">
 						<div class="row w-100 m-0" id="board2Header">
 							<div class="col-12">
-								<p>최저가 경매</p>
-								<span>최저가 링크를 올려주세요</span>
+								<a href="/list.brd2"><img src="/img/nametagbrd2.png" id="nametag"></a><br>
+								<span id="brdInfo" style="font-size:16px;margin-left:30px;">최저가 정보가 필요하신가요? </span>
 							</div>
 						
 							<div class="col-12">

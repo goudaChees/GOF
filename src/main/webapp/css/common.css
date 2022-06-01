@@ -55,6 +55,12 @@ div {
 	height:45px;
 }
 
+
+#nametag{
+	margin-top:5px;
+	margin-bottom:13px;	
+}
+
 .footerLink{
 	text-decoration: none !important;
 	color:white !important;

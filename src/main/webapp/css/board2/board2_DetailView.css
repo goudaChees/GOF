@@ -35,6 +35,10 @@
 	margin-bottom:5%;
 }
 
+#writingHeader{
+	padding-top:10px;
+}
+
 #replywriter input {
 	border: 2px solid #FFCAD4;
 	border-radius:15px;

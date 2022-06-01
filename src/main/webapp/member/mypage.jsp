@@ -61,7 +61,7 @@
 					<div class="col-12">
 						<div class="row w-100 m-0" id="MyPageHeader">
 							<div class="col-12">
-								<p>My Page</p>
+								<a href="/mypage.member"><img src="/img/nametagmypage.png" id="nametag"></a><br>
 								<ul class="nav nav-tabs">
 									<li class="nav-item selected"><a class="nav-link active"
 										aria-current="page" href="/mypage.member">내 정보 보기</a></li>

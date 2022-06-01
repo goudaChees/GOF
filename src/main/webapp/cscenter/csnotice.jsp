@@ -92,7 +92,7 @@
 					<div class="col-12">
 						<div class="row w-100 m-0" id="CsCenterHeader">
 							<div class="col-12">
-								<p>고객센터</p>
+								<a href="/csnotice.cscenter"><img src="/img/nametagcscenter.png" id="nametag"></a><br>
 								<ul class="nav nav-tabs">
 									<li class="nav-item"><a class="nav-link active"
 										data-toggle="tab" href="#csnotice">공지 사항</a></li>

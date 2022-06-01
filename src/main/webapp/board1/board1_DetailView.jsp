@@ -75,7 +75,12 @@
 			<div class="col-12 col-lg-6">
 				<div class="row w-100 m-0" id="board1Outline">
 					<div class="col-12">
-
+						<div class="row w-100 m-0" id="writingHeader">
+							<div class="col-12" style="text-align:left">
+								<a href="/list.brd1?cpage=1"><img src="/img/nametagbrd1.png" id="nametag"></a><br>
+								<span id="brdInfo" style="font-size:16px;margin-left:30px;">살까? 말까? 골라주세요! </span>
+							</div>
+						</div>
 						<!-- 게시글--------------------------------------------------------------------------------------------- -->
 						<div class="row w-100" id="writingContent">
 							<div class="col-12" id="title">${dto.title }</div>

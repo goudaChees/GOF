@@ -144,8 +144,8 @@ function openPopup1(url) {
 					<div class="col-12">
 						<div class="row w-100 m-0" id="board1Header">
 							<div class="col-12">
-								<p>살까말까</p>
-								<span>살까말까 고민하고 있니? </span>
+								<a href="/list.brd1?cpage=1"><img src="/img/nametagbrd1.png" id="nametag"></a><br>
+								<span id="brdInfo" style="font-size:16px;margin-left:30px;">살까말까 고민하고 계신가요? </span>
 							</div>
 							<div class="col-12">
 								<form action="/search.brd1">
@@ -194,7 +194,7 @@ function openPopup1(url) {
 								<div class="row w-100 m-0">
 									<div class="col-12">${navi}</div>
 									<div class="col-12" style="text-align:right">
-										<input type="button" id="write" value="글쓰기">
+										<input type="button" id="write" value="물어보기">
 									</div>
 								</div>
 							</div>

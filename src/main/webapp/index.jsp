@@ -105,7 +105,7 @@
 									<img src="/img/logoname.png" style="width: 250px;">
 									<h3 style="padding-left: 30px;">당신이 부자가 될 때 까지</h3>
 									<h5 style="padding-left: 30px;" id="hello">
-										<img src='/img/pinkpig_front.png' style='width: 8%'>
+										<img src='/img/pinkpig_front.png' style='width: 8%;color:#735960;'>
 										${loginID }님 환영합니다!
 										<img src='/img/pinkpig_paw.png' style='width: 8%'>
 									</h5>
@@ -123,7 +123,7 @@
 									<a href="/list.brd1?cpage=1">
 									<div class="card">
 										<img src="/img/card_basket.png" class="cardimg px-3">
-										<p>살까말까</p>
+										<p><img src="/img/nametagbrd1.png"></p>
 									</div>
 									</a>
 								</div>
@@ -131,7 +131,7 @@
 									<a href="/list.brd2">
 									<div class="card">
 										<img src="/img/card_shoppingbag.png" class="cardimg px-3">
-										<p>최저가경매</p>
+										<p><img src="/img/nametagbrd2.png"></p>
 									</div>
 									</a>
 								</div>
@@ -139,7 +139,7 @@
 									<a href="/csmain.cscenter">
 									<div class="card">
 										<img src="/img/card_clipboard.png" class="cardimg px-3">
-										<p>고객센터</p>
+										<p><img src="/img/nametagcscenter.png"></p>
 									</div>
 									</a>
 								</div>
@@ -147,7 +147,7 @@
 									<a href="/mypage.member">
 									<div class="card">
 										<img src="/img/card_mypage.png" class="cardimg px-3">
-										<p>마이페이지</p>
+										<p><img src="/img/nametagmypage.png"></p>
 									</div>
 									</a>
 								</div>
@@ -235,6 +235,12 @@
 	</div>
 
 	<script>
+		$("#pw").on("keyup",function(key){
+			if(key.keyCode==13) {             
+				$("#login").click();    
+			}    
+		})
+	
 		$("#findId").on("click",function(){
 			window.open("/member/findid.jsp", "",
 			"top=100,left=200,width=550,height=350");
