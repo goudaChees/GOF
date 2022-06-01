@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+#listWrapper{
+	position:relative;
+}
+
+#sendBtn{
+	position:absolute;
+	bottom:20px;
+	right:20px;
+
+}
+
+
+
+#toSendBtn{
+	color: white;
+	font-weight:bold;
+	font-size:min(17px,3.5vw);
+	line-height:23px;
+	background-color: #F193A190;	
+	border: 3px solid #F193A199;
+	border-radius: 10px;
+}
+
+#toSendBtn:hover{
+	background-color: #F193A1;
+	cursor:pointer;	
+}
+
+.listHeader{
+	background-color:#F4ACB7;
+	font-weight:bolder;
+	font-size:16px;
+	line-height:35px;
+	color:#5C474D;
+}
+
+#listbtns{
+	position:relative;
+	font-weight:bolder;
+	font-size:14px;
+}
+
+#newLetter{
+	font-weight:bolder;
+	font-size:14px;
+	position:absolute;
+	left:10px;
+	bottom:0px;
+}

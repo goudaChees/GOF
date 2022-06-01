@@ -129,7 +129,7 @@
 						</div>
 						<div class="col-12 d-block d-lg-none">
 							<form action="/send.letter" id="letterForm" method="post">
-								<span id="headTitle">메세지 보내기</span>
+								<span id="headTitle">메세지함</span>
 								<div id="msg_Box">
 									<div class="row w-80 m-0">
 										<div class="col-12 infoWrapper">
@@ -161,7 +161,7 @@
 										</div>
 										<div class="col-12" id="mbtns">
 											<input type="button" id="msg_Submit" class="msg_btn"
-												value="보내기"> <input type="button" id="msg_Cancel"
+												value="답장하기"> <input type="button" id="msg_Cancel"
 												class="msg_btn" value="취소">
 										</div>
 									</div>
@@ -221,76 +221,46 @@
 		</div>
 	</div>
 	</div>
-<script>
-         
-         function openSearchNN(){
-            window.name = "parentForm";
-            
-            searchPop = window.open("/letter/letter_Search.jsp", "",
-                  "top=100,left=200,width=550,height=350");
-         }
-      
-         $("#searchBtn").on("click",function(){
-            openSearchNN();
-         })
-         
-         $("#msg_Submit").on("click",function(){
-            Swal.fire({
-              title: '작성하신 쪽지를 보내시겠습니까?',
-              showCancelButton: true,
-              confirmButtonText: '보내기',
-              cancelButtonText: '취소'
-            }).then((result) => {
-               if (result.isConfirmed) {
-                 $("#letterForm").submit();
-               }
-            })
-         })
-         
-         $("#msg_Cancel").on("click",function(){
-            location.href="/list.letter?type=r&page=1";
-         })
-      
-      
-         //로그아웃 관련 공통기능
+	<script>
+			//로그아웃 관련 공통기능
 
-         // SDK를 초기화. 사용할 앱의 JavaScript 키
-         Kakao.init('b956cab5ef7dbe5bc1f861614a4b2061');
-       //console.log(Kakao.isInitialized());
-       
-       //item을 localStorage에 저장하는 메소드
-       function saveToDos(token) { 
-          typeof(Storage) !== 'undefined' && sessionStorage.setItem('AccessKEY', JSON.stringify(token)); 
-      };
+      	// SDK를 초기화. 사용할 앱의 JavaScript 키
+      	Kakao.init('b956cab5ef7dbe5bc1f861614a4b2061');
+	    //console.log(Kakao.isInitialized());
+	    
+	    //item을 localStorage에 저장하는 메소드
+	    function saveToDos(token) { 
+    		typeof(Storage) !== 'undefined' && sessionStorage.setItem('AccessKEY', JSON.stringify(token)); 
+		};
 
 
-        $(".bi-box-arrow-right").on("click",function(){
-           if (!Kakao.Auth.getAccessToken()) {
-           Swal.fire({
-              text: '로그아웃 하시겠습니까?',
-              showCancelButton: true,
-              confirmButtonText: '로그아웃',
-              cancelButtonText: '취소',
-            }).then((result) => {
-              if (result.isConfirmed) {            
-                location.href="/logout.member";              
-              } 
-            })
-            return
-           }
-         // -- 로그아웃 버튼 클릭시 카카오톡으로 로그인한 사용자의 토큰을 반납.
-         let result = confirm("로그아웃 하시겠습니까?");
-         if(!result){
-            return false;
-         } else {
-           Kakao.Auth.logout(function() {
-                  alert("로그아웃 되었습니다.");
-                  location.href="/logout.member";
-                })
-         }
-        })
+		  $(".bi-box-arrow-right").on("click",function(){
+			  if (!Kakao.Auth.getAccessToken()) {
+			  Swal.fire({
+				  text: '로그아웃 하시겠습니까?',
+				  showCancelButton: true,
+				  confirmButtonText: '로그아웃',
+				  cancelButtonText: '취소',
+				}).then((result) => {
+				  if (result.isConfirmed) {				
+				    location.href="/logout.member";				  
+				  } 
+				})
+				return
+			  }
+			// -- 로그아웃 버튼 클릭시 카카오톡으로 로그인한 사용자의 토큰을 반납.
+			let result = confirm("로그아웃 하시겠습니까?");
+			if(!result){
+				return false;
+			} else {
+			  Kakao.Auth.logout(function() {
+	      			alert("로그아웃 되었습니다.");
+	      			location.href="/logout.member";
+	   		 	})
+			}
+		  })
 
-        
-   </script>
+		  
+	</script>
 </body>
 </html>

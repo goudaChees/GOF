@@ -82,7 +82,7 @@
 						<form action="/modify.brd1" enctype="multipart/form-data" method="post">
 							<div class="row w-100 m-0" id="writingArea">
 								<div class="col-12">
-									<input type="text" placeholder="글 제목을 입력해주세요" maxlength=100 name="title" id="title" size="70" value="${dto.title}"><br>
+									<input type="text" placeholder="글 제목을 입력해주세요" maxlength=40 name="title" id="title" size="70" value="${dto.title}"><br>
 									<input type="hidden" name="seq" size="70" value="${dto.seq}">
 								</div>
 								<div class="col-4">
