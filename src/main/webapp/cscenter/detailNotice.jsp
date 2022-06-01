@@ -261,14 +261,7 @@ $("#modify").on("click", function() {
 $("#delete").on("click", function(){
 	let result = confirm("정말 삭제하시겟습니까?");
 	if(result){
-		$.ajax({
-			type: "post",
-			url:"/deleteNotice.cscenter",
-			dataType:"json",
-			data:{seq:${dto.seq}}
-		}).done(function(){
-			location.reload();
-		})
+		location.href="/deleteNotice.cscenter?seq=${dto.seq}";
 	}
 })
 
