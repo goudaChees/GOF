@@ -137,7 +137,7 @@
 								</div>
 								<div class="row w-100 m-0">
 									<div class="col-12">${navi}</div>
-									<div class="col-12" style="text-align:right"><a href="/write.brd2"><button class="write">작성하기</button></a></div>
+									<div class="col-12" style="text-align:right"><a href="/write.brd2"><button class="write">경매하기</button></a></div>
 								</div>
 							</div>
 						</div>

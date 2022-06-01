@@ -214,7 +214,7 @@ p:hover{
        let isPwOk2 = false;
        $("#newpw").on({keyup:function(){
     	   let pw = $("#newpw").val();
-           let pwRegex = /^[a-zA-Z0-9]{8,12}$/gm;
+           let pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,12}$/gm;
            let pwResult = pwRegex.test(pw);
            
     	   if (!pwResult) {
@@ -222,7 +222,7 @@ p:hover{
         	   $("#pwck").css("color", "red");
         	   $("#pwck").css("display","inline");
     			$("#pwck").text(
-    					"영문 소문자, 대문자, 숫자를 사용하여 8~12자로 작성");
+    					"영문 소문자, 대문자, 숫자를 조합하여 8~12자로 작성");
     			isPwOk = false;
            }
     	   if(pwResult){
