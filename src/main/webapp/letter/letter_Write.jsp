@@ -97,10 +97,11 @@
 												<div class="info-m">받는 사람</div>
 												<c:choose>
 													<c:when test='${receiver!=null }'>
-														${receiver }
+														<input type="text" class="inputBox-m" id="receiver" name="receiver"
+															value="${receiver }" readonly>
 													</c:when>
 													<c:otherwise>
-														<input type="text" id="receiver" class="inputBox-m"
+														<input type="text" class="inputBox-m" id="receiver"
 															name="receiver" placeholder="닉네임 검색" readonly>
 														<input type="button" value="검색" id="searchBtn"
 															class="searchBtn">
@@ -110,12 +111,12 @@
 											<div class="col-12 infoWrapper">
 												<div class="info-m">제목</div>
 												<input type="text" id="title" class="inputBox-m" name="title"
-													placeholder="제목을 입력해주세요">
+													placeholder="제목을 입력해주세요" maxlength="30">
 											</div>
 											<div class="col-12 infoWrapper" id="contents_Box">
 												<div class="info-m" id="contents_Info" style="width: 100%">내용</div>
 												<textarea id="contents" class="inputBox-m" name="contents"
-													placeholder="내용을 입력해주세요" style="margin-left: 2px"></textarea>
+													placeholder="내용을 입력해주세요" style="margin-left: 2px" maxlength="300"></textarea>
 											</div>
 											<div class="col-12" id="mbtns">
 												<input type="button" id="msg_Submit" class="msg_btn" value="보내기"> 
@@ -212,7 +213,7 @@
         		return false;
         	 }
         	 
-        	 if($("#receiver").val().length==0){
+        	 if($("#contents").val().length==0){
         		 Swal.fire({
         			icon:'warning',
    				  title: '내용을 입력해주세요.',
