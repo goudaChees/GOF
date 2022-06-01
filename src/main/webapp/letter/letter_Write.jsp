@@ -97,7 +97,7 @@
 												<div class="info-m">받는 사람</div>
 												<c:choose>
 													<c:when test='${receiver!=null }'>
-													${receiver }
+												<div style="width:100%"> 누구 ${receiver }</div>
 												</c:when>
 													<c:otherwise>
 														<input type="text" id="receiver" class="inputBox-m"

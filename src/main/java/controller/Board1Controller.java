@@ -118,6 +118,7 @@ public class Board1Controller extends HttpServlet {
 				List<Board1DTO> list = dao.search(searchTarget, searchCategory, cpage);//리스트 출력
 				
 				request.setAttribute("list", list);//리스트 담기
+				request.setAttribute("glist", g.toJson(list));
 				request.setAttribute("searchCategory", searchCategory);//카테고리 담기
 				request.setAttribute("searchTarget", searchTarget);//리스트 request 넣기
 
