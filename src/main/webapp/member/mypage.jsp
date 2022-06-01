@@ -43,6 +43,8 @@
 									aria-current="page" href="/csnotice.cscenter" style="color:#664E55">고객센터</a></li>
 								<li class="nav-item"><a class="nav-link active" 
 									aria-current="page" href="/mypage.member" style="color:#664E55">마이페이지</a></li>
+								<li class="nav-item"><a class="nav-link active" aria-current="page" href="/list.letter?type=r&page=1">
+											<i class="bi bi-envelope" style="color: #664E55"></i></a></li>
 								<li class="nav-item"><a class="nav-link active"
 								aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
 							</ul>
