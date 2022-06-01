@@ -19,34 +19,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/css/cscenter/csmain.css">
 <link rel="stylesheet" href="/css/common.css">
-<script>
-function getCookie(name) {
-    var cookie = document.cookie;
-    
-    if (document.cookie != "") {
-        var cookie_array = cookie.split("; ");
-        for ( var index in cookie_array) {
-            var cookie_name = cookie_array[index].split("=");
-            
-            if (cookie_name[0] == "popupYN") {
-                return cookie_name[1];
-            }
-        }
-    }
-    return ;
-}
 
-function openPopup(url) { 
-    var cookieCheck = getCookie("popupYN");
-    console.log(cookieCheck);
-    if (cookieCheck != "N")
-        window.open(url, '', 'width=500,height=750,left=500,top=200')
-}
-
-
-</script>
 </head>
-<body onload="javascript:openPopup('popup.jsp')">
+<body>
 
 	<div class="container w-100">
 		<div class="row w-100 m-0" id="header">

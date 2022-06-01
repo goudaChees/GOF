@@ -18,8 +18,35 @@
 <link rel="stylesheet" href="/css/board2/board2_List.css">
 <link rel="stylesheet" href="/css/common.css">
 
+<script>
+function getCookie(name) {
+    var cookie = document.cookie;
+    
+    if (document.cookie != "") {
+        var cookie_array = cookie.split("; ");
+        for ( var index in cookie_array) {
+            var cookie_name = cookie_array[index].split("=");
+            
+            if (cookie_name[0] == "popupYN2") {
+                return cookie_name[1];
+            }
+        }
+    }
+    return ;
+}
+
+function openPopup(url) { 
+    var cookieCheck = getCookie("popupYN2");
+    console.log(cookieCheck);
+    if (cookieCheck != "N")
+        window.open(url, '', 'width=500,height=750,left=500,top=200')
+}
+
+
+</script>
+
 </head>
-<body>
+<body onload="javascript:openPopup('popup2.jsp')">
 	<div class="container">
 		<div class="row w-100 m-0" id="header">
 			<div class="col-12 p-0">
