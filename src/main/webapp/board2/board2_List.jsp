@@ -39,7 +39,7 @@ function openPopup2(url) {
     var cookieCheck = getCookie("popupYN2");
     console.log(cookieCheck);
     if (cookieCheck != "N")
-        window.open(url, '', 'width=300,height=500,left=450,top=200')
+        window.open(url, '', 'width=460,height=615,left=450,top=100')
 }
 
 
