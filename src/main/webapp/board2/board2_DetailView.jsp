@@ -83,7 +83,7 @@
 							<div class="col-6 col-md-4 p-0" id="wtime">${dto.write_date}</div>
 						</div>
 						<div class="row w-100 my-3 mx-0" id="board2List">
-							<div class="col-12" style="text-align:left">제한시간 : <span id="limit">
+							<div class="col-12" style="text-align:left">경매시간 : <span id="limit">
 								<div class="spinner-border spinner-border-sm text-secondary" role="status">
  									 <span class="visually-hidden">Loading...</span>
 								</div>
@@ -130,9 +130,11 @@
 														<div class="col-12 col-sm-7 p-0 px-1">
 															<textarea placeholder="내용을 입력해주세요.(최대 100글자)" maxlength="100" name="contents" id="contents" required="required"></textarea>
 														</div>
+														<c:if test="${wck==false || cck== false}">
 														<div class="col-12 col-sm-2 p-0 px-1">
-															<button type="submit" id="btn1">작성</button>
+															<button type="submit" id="btn1">입찰</button>
 														</div>
+														</c:if>
 													</div>
 													
 												</div>
@@ -203,7 +205,8 @@
 													</c:if>
 													</div>
 													<c:if test="${loginID == dto.id && cck == false}">
-														<input type="radio" name="choice" value="${i.seq}" class="choice" style="margin-left: 10px; margin-top:3px;"><span>-- 경매시간이 마감되어 선택하실 수 없습니다. --</span>
+														<input type="radio" name="choice" value="${i.seq}" class="choice" style="margin-left: 10px; margin-top:3px;">
+														<span class="end">낙찰하기</span>
 													</c:if>
 												</div>
 										
@@ -281,7 +284,6 @@
 	if(${timeover}){
 		$("#btn1").attr("disabled","true");
 		$("#btn1").text('마감');
-
 		$("#modi").css("display","none");
 		$(".choice").css("display","none");
 		$(".choice").children("display","none");
@@ -297,10 +299,11 @@
 			$("#contents").attr("placeholder","댓글은 한 게시물 당 한 개만 작성이 가능합니다.");
 			$("#wprice").attr("disabled",true);
 		}
-		if(${cck}){
-		$("#contents").attr("disabled",true);
-		$("#contents").attr("placeholder","작성자가 댓글을 선택했다면 게시글을 작성할수 없습니다.");
-		$("#wprice").attr("disabled",true);
+ 		if(${cck}){
+ 		$("#contents").attr("disabled",true);
+ 		$("#contents").attr("placeholder","작성자가 댓글을 선택했다면 게시글을 작성할수 없습니다.");
+ 		$("#wprice").attr("disabled",true);
+ 		$(".end").text("낙찰된 경매에는 참여할수 없습니다.");
 		//$(".content_editable").css("display","none");
  		//$("#full_reply").css("display", "inline");
 		

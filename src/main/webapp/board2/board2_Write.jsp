@@ -105,7 +105,7 @@
 						</div>
 						<div class="row">
 									<div class="col-12" style="text-align:right;">
-										<button type="submit" class="write" id="submit">작성하기</button>
+										<button type="submit" class="write" id="submit">경매시작</button>
 										<button type="button" class="write" id="back">취소하기</button>
 									</div>
 								</div>

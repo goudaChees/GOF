@@ -119,12 +119,12 @@ input[type=button]:disabled{
 			return false;
 		}
 		
-		let pwRegex = /^[a-zA-Z0-9]{8,12}$/gm;
+		let pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,12}$/gm;
 		let pwResult = pwRegex.test(newpw);
 		
 		if(!pwResult){
 			$("#pw1").text(
-			"영문 소문자, 대문자, 숫자를 사용하여 8~12자로 작성");
+			"영문 소문자, 대문자, 숫자를 조합하여 8~12자로 작성");
 			$("#pw1").css("color", "red");
 			$("#pw2").text("");
 			$("#pw2").css("color", "red");
