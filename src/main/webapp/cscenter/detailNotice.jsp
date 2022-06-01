@@ -114,7 +114,7 @@
 								<ul class="nav nav-tabs">
 									<li class="nav-item"><a class="nav-link active"
 										data-toggle="tab" href="#csnotice">공지 사항</a></li>
-									<li class="nav-item"><a class="nav-link" data-toggle="tab"
+									<li class="nav-item"><a class="nav-link" 
 										href="/csmain.cscenter">자주 묻는 질문</a></li>
 									<li class="nav-item"><a class="nav-link"
 										href="/csemail.cscenter">1:1 문의하기</a></li>
@@ -125,7 +125,7 @@
 						</div>
 						<div class="row w-100 m-0" id="noticeArea">
 							<div class="col-12">
-								<form action="udtNotice.cscenter" method="post">
+								<form action="/udtNotice.cscenter" method="post">
 								<div class="row w-100 m-0" id="noticePageArea">
 									<div class="col-12">
 										<div class="row">
@@ -145,11 +145,13 @@
 										<div class="row">
 											<div class="col-12"></div>
 										</div>
-										<div class="row" align=center id="contentsBox">
+										<div class="row" align=center id="contentsBox" >
 											<div class="col-12 editable" name="contents" id="contentsTD" disabled>${dto.contents}
 											</div>
 										</div>
-
+										<div class="row" >
+											<div class="col-12"></div>
+										</div>
 										<div class="row w-100 m-0" id="NoticeFooter">
 											<div class="col-12" id="btns">
 												<input type="button" id="toList" value="목록으로">
@@ -233,21 +235,29 @@ $("#modify").on("click", function() {
 	
 	let ok = $("<button>");
 	ok.text("수정완료");
-	ok.css("background-color", "white");
-	ok.css("color", "#FFBE46");
-	ok.css("font-size","min(15px,3vw)");
-	ok.css("border-radius", "5px")
-	ok.css("border","2px solid #FFBE46");
+	ok.css("padding","1%");
+	ok.css("background-color", "#FFBE46");
+	ok.css("line-height", "23px");
+	ok.css("color", "white");
+	ok.css("width","90px");
+	ok.css("font-size","min(17px,3.5vw)");
+	ok.css("border-radius", "20px");
+	ok.css("border","3px solid #ff8000");
+	ok.css("margin-top","2%");
 
 	let cancel = $("<button>");
 	cancel.text("수정취소");
 	cancel.attr("type", "button");
-	cancel.css("margin-right", "5px");
-	cancel.css("background-color","white");
-	cancel.css("color", "#516D5C");
-	cancel.css("font-size", "min(15px,3vw)");
-	cancel.css("border-radius", "5px");
-	cancel.css("border","2px solid #B4C8BC");
+	cancel.css("padding","1%");
+	cancel.css("margin-right", "1%");
+	cancel.css("background-color","#B4C8BC");
+	cancel.css("line-height","23px");
+	cancel.css("color", "white");
+	cancel.css("width","90px");
+	cancel.css("font-size", "min(17px,3.5vw)");
+	cancel.css("border-radius", "20px");
+	cancel.css("border","3px solid #516D5C");
+	cancel.css("margin-top","2%");
 	cancel.attr("id","canbtn");
 	cancel.on("click", function() {
 		location.reload();
