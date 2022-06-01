@@ -7,7 +7,7 @@
 	border-radius: 15px;
 	background-color: #FEDDE1;
 	position:relative;
-	width: 80%;
+	width: 90%;
 	height : 90%;
 	margin:auto;
 
@@ -20,7 +20,7 @@
 
 #writer{
 	font-weight:bold;
-	font-size:15px;
+	font-size:min(15px,3.5vw); 
 }
 
 .infoWrapper{
@@ -34,7 +34,7 @@
 	margin-left:1%;
 	color: white;
 	font-weight:bold;
-	font-size:min(17px,3.5vw);
+	font-size:min(16px,3.5vw);
 	line-height:23px;
 	background-color: #F193A190;	
 	border: 3px solid #F193A199;
@@ -86,8 +86,13 @@
 .info-m{
 	width:100%;
 	font-weight:bold;
+	font-size:min(15px,3.5vw); 
 }
 
 .inputBox-m{
 	width:90%;
+}
+
+#contents{
+	resize:none;
 }

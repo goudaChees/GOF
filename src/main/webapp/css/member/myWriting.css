@@ -10,7 +10,7 @@
 	padding-bottom: 3%;
 	min-height: 100vh;
 	max-width: 100%; 
-	background-color:#FEDDE1;
+	background-color:#FEE3E6;
 	position: relative;
 }
 
@@ -89,6 +89,7 @@
 	margin-left:1%;
 	color: #9D8189;
 	font-size:14px;
+	font-weight:bold;
 	background-color: transparent;	
 	border: 2px solid #F4ACB7;
 	border-radius: 20px;

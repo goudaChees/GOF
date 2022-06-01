@@ -7,11 +7,9 @@
 	border-radius: 15px;
 	background-color: #FEDDE1;
 	position:relative;
-	width: 90%;
-	height : 90%;
+	width: 90%; 
+	min-height : 60%;
 	margin:auto;
-	margin-top:10px
-
 }
 
 #msg_Box div{
@@ -20,9 +18,9 @@
 
 .info{
 	display:inline-block;
-	width : 25%;
+	width:30%;
 	font-weight:bold;
-	font-size:min(15px,3vw); 
+	font-size:min(15px,3.5vw); 
 	margin-right: 8px;
 }
 
@@ -36,7 +34,7 @@
 }
 
 .infoWrapper span{
-	font-size:min(15px,3vw);
+	font-size:min(15px,3.5vw); 
 }
 
 .infoWrapper > div{
@@ -59,7 +57,7 @@
 	font-size:min(16px,3.5vw);
 	line-height:23px;
 	background-color: #F193A190;	
-	border: 3px solid #F193A199;
+	border: 2px solid #F193A199;
 	border-radius: 20px;
 	width:80px;
 	margin-top:30px;
@@ -115,18 +113,18 @@
 }
 
 .msgRead-m{
-	background-color:white;
+	background-color:#ffffff70;
 	width:100%;
 	border-radius:5px;
 	margin-top:5px	
 }
 
 .msgRead{
-	background-color:white;
+	background-color:#ffffff70;
 	width:65%;
 	border-radius:5px;
 	margin-top:5px;
-	font-size:min(15px,3vw);
+	font-size:min(15px,3.5vw); 
 }
 
 #msgContents{

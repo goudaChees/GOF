@@ -11,7 +11,7 @@
 	padding-bottom: 3%;
 	min-height: 100vh;
 	max-width: 100%; 
-	background-color:#FEDDE1;
+	background-color:#FEE3E6;
 	position: relative;
 }
 
@@ -86,6 +86,7 @@
 }
 
 #myreply button{
+	font-weight:bold;
 	padding:1%;
 	margin-left:1%;
 	color: #9D8189;

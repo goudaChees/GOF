@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -80,7 +79,7 @@
 									<li class="nav-item"><a class="nav-link"
 										href="/myReply.member?board=1&page=1">내 댓글 보기</a></li>
 									<li class="nav-item"><a class="nav-link active"
-										aria-current="page" href="/list.letter?type=r">메세지</a></li>
+										aria-current="page" href="/list.letter?type=r&page=1">메세지함</a></li>
 								</ul>
 							</div>
 						</div>
@@ -91,16 +90,17 @@
 									<div id="msg_Box">
 										<div class="row w-80 m-0">
 											<div class="col-12 infoWrapper">
-												<div class="info-m">보내는 사람 ${nickname }</div>
+												<div class="info-m">보내는 사람 <span style="font-weight:normal"> ${nickname }</span></div>
 											</div>
 											<div class="col-12 infoWrapper">
 												<div class="info-m">받는 사람</div>
 												<c:choose>
 													<c:when test='${receiver!=null }'>
-												<div style="width:100%"> 누구 ${receiver }</div>
-												</c:when>
+														<input type="text" class="inputBox-m" id="receiver" name="receiver"
+															value="${receiver }" readonly>
+													</c:when>
 													<c:otherwise>
-														<input type="text" id="receiver" class="inputBox-m"
+														<input type="text" class="inputBox-m" id="receiver"
 															name="receiver" placeholder="닉네임 검색" readonly>
 														<input type="button" value="검색" id="searchBtn"
 															class="searchBtn">
@@ -109,18 +109,17 @@
 											</div>
 											<div class="col-12 infoWrapper">
 												<div class="info-m">제목</div>
-												<input type="text" id="title" class="inputBox-m"
-													placeholder="제목을 입력해주세요">
+												<input type="text" id="title" class="inputBox-m" name="title"
+													placeholder="제목을 입력해주세요" maxlength="30">
 											</div>
 											<div class="col-12 infoWrapper" id="contents_Box">
 												<div class="info-m" id="contents_Info" style="width: 100%">내용</div>
-												<textarea id="contents" class="inputBox-m"
-													placeholder="내용을 입력해주세요" style="margin-left: 2px"></textarea>
+												<textarea id="contents" class="inputBox-m" name="contents"
+													placeholder="내용을 입력해주세요" style="margin-left: 2px" maxlength="300"></textarea>
 											</div>
 											<div class="col-12" id="mbtns">
-												<input type="button" id="msg_Submit" class="msg_btn"
-													value="보내기"> <input type="button" id="msg_Cancel"
-													class="msg_btn" value="취소">
+												<input type="button" id="msg_Submit" class="msg_btn" value="보내기"> 
+												<input type="button" id="msg_Cancel" class="msg_btn" value="취소">
 											</div>
 										</div>
 									</div>
@@ -187,7 +186,7 @@
             window.name = "parentForm";
             
             searchPop = window.open("/letter/letter_Search.jsp", "",
-                  "top=100,left=200,width=550,height=350");
+                  "top=200,left=400,width=550,height=350");
          }
       
          $("#searchBtn").on("click",function(){
@@ -195,17 +194,52 @@
          })
          
          $("#msg_Submit").on("click",function(){
-            Swal.fire({
-              title: '작성하신 쪽지를 보내시겠습니까?',
-              showCancelButton: true,
-              confirmButtonText: '보내기',
-              cancelButtonText: '취소'
-            }).then((result) => {
-               if (result.isConfirmed) {
-                 $("#letterForm").submit();
-               }
-            })
-         })
+        	 if($("#receiver").val().length==0){
+        		 Swal.fire({
+        			icon:'warning',
+   				  title: '작성자를 입력해주세요.',
+   				  confirmButtonText: '확인'
+   				});
+        		return false;
+        	 }
+        	 
+        	 if($("#title").val().length==0){
+        		 Swal.fire({
+        			icon:'warning',
+   				  title: '제목을 입력해주세요.',
+   				  confirmButtonText: '확인'
+   				});
+        		return false;
+        	 }
+        	 
+        	 if($("#contents").val().length==0){
+        		 Swal.fire({
+        			icon:'warning',
+   				  title: '내용을 입력해주세요.',
+   				  confirmButtonText: '확인'
+   				});
+        		return false;
+        	 }
+        	 
+        	 
+				Swal.fire({
+				  title: '작성하신 쪽지를 보내시겠습니까?',
+				  showCancelButton: true,
+				  confirmButtonText: '보내기',
+				  cancelButtonText: '취소'
+				}).then((result) => {
+					if (result.isConfirmed) {
+						Swal.fire({
+							icon: 'success',
+							title: '메세지 전송 완료'
+						}).then((result2) => {
+							if (result2.isConfirmed) {
+							$("#letterForm").submit();
+							}
+						})
+					}
+				})
+			})
          
          $("#msg_Cancel").on("click",function(){
             location.href="/list.letter?type=r&page=1";

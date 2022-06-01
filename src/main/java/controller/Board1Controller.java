@@ -116,6 +116,7 @@ public class Board1Controller extends HttpServlet {
 				int searchCategory = Integer.parseInt(request.getParameter("searchCategory"));//검색 카테고리
 				String searchTarget = request.getParameter("searchTarget");//검색어
 				List<Board1DTO> list = dao.search(searchTarget, searchCategory, cpage);//리스트 출력
+				request.setAttribute("glist", g.toJson(list));
 				
 				request.setAttribute("list", list);//리스트 담기
 				request.setAttribute("glist", g.toJson(list));
