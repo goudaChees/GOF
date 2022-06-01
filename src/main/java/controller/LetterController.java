@@ -50,7 +50,7 @@ public class LetterController extends HttpServlet {
 				ldao.insertRLetter(new LetterDTO(seq, nickname, receiver, title, contents, null,0,id,receiverId));
 				ldao.insertSLetter(new LetterDTO(seq, nickname, receiver, title, contents, null,0,id,receiverId));
 				
-				response.sendRedirect("/letter/read.letter?type=s&seq="+seq);
+				response.sendRedirect("/read.letter?type=s&seq="+seq);
 				
 			
 			}else if(uri.equals("/searchNN.letter")) { // 팝업창에서 닉네임 검색
@@ -66,6 +66,9 @@ public class LetterController extends HttpServlet {
 				int seq = Integer.parseInt(request.getParameter("seq"));
 				String receiverid = ldao.getReceiver(seq);
 				String receiver = ldao.getNickname(receiverid);
+				String id = (String) request.getSession().getAttribute("loginID");
+				String nickname = ldao.getNickname(id);
+				request.setAttribute("nickname", nickname);
 				request.setAttribute("receiver", receiver);
 				request.getRequestDispatcher("/letter/letter_Write.jsp").forward(request, response);
 			
@@ -123,7 +126,7 @@ public class LetterController extends HttpServlet {
 				
 				request.setAttribute("type", type);
 				request.setAttribute("ldto", ldto);
-				request.getRequestDispatcher("/letter/readLetter.jsp").forward(request, response);
+				request.getRequestDispatcher("/letter/letter_Read.jsp").forward(request, response);
 			
 			
 			}else if(uri.equals("/delete.letter")) { // 메세지 삭제하기
