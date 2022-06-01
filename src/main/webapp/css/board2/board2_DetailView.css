@@ -81,6 +81,10 @@
 	cursor:pointer;	
 }
 
+#btn1:disabled {
+	background-color: #EDDEE1;
+}
+
 .write{
 	color: #9D8189;
 	font-size:1rem;
@@ -110,9 +114,17 @@
 	background-color:#ffffff;
 	margin-top:5px;
 	padding: 1%;
-	margin:0px;
-	border-radius:3px;
-	max-height:25vh;	
+	margin:3px;
+	border-radius:20px;
+	color:#5C474D;
+}
+
+.backcontents{
+	/*background-color:#ffffff;*/
+	margin-top:5px;
+	padding: 1%;
+	margin:3px;
+	border-radius:20px;
 	color:#5C474D;
 }
 
