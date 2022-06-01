@@ -26,6 +26,10 @@
 	cursor:pointer;	
 }
 
+#receiveMail, #sendMail{
+	font-weight:bold;
+}
+
 #letterlist a{
 	text-decoration:none;
 }
@@ -34,16 +38,27 @@
 	background-color:#F4ACB7;
 	font-weight:bolder;
 	font-size:16px;
-	line-height:35px;
+	line-height:40px;
 	color:#5C474D;
 }
 
 .listName{
 	background-color:#FFCAD4;
+	font-weight:normal;
+	line-height:30px;
 }
 
 .letterLine{
 	border-bottom:1px solid #F4ACB7;
+	line-height:30px;
+}
+
+.letterTitle{
+	text-align:left;
+	padding-left:15px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+    white-space:nowrap;
 }
 
 #listbtns{
@@ -55,9 +70,8 @@
 #newLetter{
 	font-weight:bolder;
 	font-size:14px;
-	position:absolute;
-	left:10px;
-	bottom:0px;
+	margin-top: 2vh;
+    margin-bottom: 1.5vh;
 }
 
 .listFooter a{

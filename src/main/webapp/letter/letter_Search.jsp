@@ -15,21 +15,21 @@ body {
 	width: 500px;
 	height: 350px;
 	margin-top: 30px;
-	background-color: #FEDDE1;
+	background-color: #E4E0E690;
 	text-align:center;
 }
 
 #searchBtn{
 	font-weight:bold;
-	background-color:#FEDDE1;
-	color:#F193A1;
-	border:solid 1px #F193A1;
+	background-color:transparent;
+	border:2px solid #C5B8CD;
 	border-radius:5px;
+	line-height:30px;
+	width:50px;
 }
 
 #searchBtn:hover{
-	background-color:#F193A1;
-	color:#FEDDE1;
+	background-color:#C5B8CD80;
 	cursor:focus;
 }
 
@@ -44,13 +44,14 @@ body {
 #nicknameList .row{
 	margin-left:2%;
 	margin-right:2%;
-	border-bottom:2px solid #FFF4EF90;
-	line-height:30px;
+	border-bottom:1.5px solid #C5B8CD;
+	line-height:35px;
 }
 
 .header{
-	background-color:#F4ACB7;
+	background-color:#C5B8CD;
 	font-size: 16px;
+	color:white;
 	font-weight:bold;
 	line-height:30px;
 	border-bottom:0px solid transparent;
@@ -61,6 +62,7 @@ body {
 	color:white;
 	border:0;
 	border-radius:5px;
+	line-height:27px;
 	width:50px;
 }
 

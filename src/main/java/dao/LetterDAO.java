@@ -123,6 +123,9 @@ public class LetterDAO {
 				if(list.contains(nickname)) {
 					list.remove(nickname);
 				}
+				if(list.contains("관리자")) {
+					list.remove("관리자");
+				}
 				return list;
 			}
 		}

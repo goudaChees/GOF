@@ -80,7 +80,7 @@
 									<li class="nav-item"><a class="nav-link"
 										href="/myReply.member?board=1&page=1">내 댓글 보기</a></li>
 									<li class="nav-item"><a class="nav-link active"
-										aria-current="page" href="/list.letter?type=r">메세지</a></li>
+										aria-current="page" href="/list.letter?type=r&page=1">메세지함</a></li>
 								</ul>
 							</div>
 						</div>
@@ -91,7 +91,7 @@
 									<div id="msg_Box">
 										<div class="row w-80 m-0">
 											<div class="col-12 infoWrapper">
-												<div class="info-m">보내는 사람 ${nickname }</div>
+												<div class="info-m">보내는 사람 <span style="font-weight:normal"> ${nickname }</span></div>
 											</div>
 											<div class="col-12 infoWrapper">
 												<div class="info-m">받는 사람</div>
@@ -186,7 +186,7 @@
             window.name = "parentForm";
             
             searchPop = window.open("/letter/letter_Search.jsp", "",
-                  "top=100,left=200,width=550,height=350");
+                  "top=200,left=400,width=550,height=350");
          }
       
          $("#searchBtn").on("click",function(){
@@ -194,6 +194,34 @@
          })
          
          $("#msg_Submit").on("click",function(){
+        	 if($("#receiver").val().length==0){
+        		 Swal.fire({
+        			icon:'warning',
+   				  title: '작성자를 입력해주세요.',
+   				  confirmButtonText: '확인'
+   				});
+        		return false;
+        	 }
+        	 
+        	 if($("#title").val().length==0){
+        		 Swal.fire({
+        			icon:'warning',
+   				  title: '제목을 입력해주세요.',
+   				  confirmButtonText: '확인'
+   				});
+        		return false;
+        	 }
+        	 
+        	 if($("#receiver").val().length==0){
+        		 Swal.fire({
+        			icon:'warning',
+   				  title: '내용을 입력해주세요.',
+   				  confirmButtonText: '확인'
+   				});
+        		return false;
+        	 }
+        	 
+        	 
 				Swal.fire({
 				  title: '작성하신 쪽지를 보내시겠습니까?',
 				  showCancelButton: true,
