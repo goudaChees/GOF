@@ -148,8 +148,8 @@
 								<div class="col-12" style="text-align:right" id="writebtnBox">
 									<c:if test="${loginID == 'admin'}">
 										<input type="button" id="write" value="글쓰기" 
-										style="color:white; font-size:min(15px,3vw); border:2px solid #B4C8BC; border-radius:5px;
-												width:60px; line-height:25px; background-color:#FFBE46; ">
+										style="color:white; font-size:min(17px,3.5vw); border:3px solid #516D5C99; border-radius:20px;
+												width:90px; line-height:23px; background-color:#806c71; font-wright:bold; margin-top:2%;" >
 									</c:if>
 								</div>
 							</div>

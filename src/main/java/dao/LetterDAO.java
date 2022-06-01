@@ -239,6 +239,26 @@ public class LetterDAO {
 		
 	}
 	
+	
+	// 새 메세지 seq list
+		public List<Integer> newLetterList(String id) throws Exception{ 
+			List<Integer> list = new ArrayList<>();
+			String sql = "select seq from rletter where receiverid=? and read=0";
+			
+			try(Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);){
+				pstat.setString(1, id);
+				try(ResultSet rs = pstat.executeQuery()){
+					while(rs.next()) {
+						list.add(rs.getInt(1));
+					}
+					return list;
+				}
+			}
+			
+		}
+		
+	
 	// 보낸메세지함 - 페이지별로 보여줄 메세지 선택
 	public List<LetterDTO> sSelectPage(String id,int page) throws Exception{
 		int startNum = page*10-9;

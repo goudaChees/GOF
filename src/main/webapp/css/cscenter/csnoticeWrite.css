@@ -97,15 +97,15 @@
 }
 
 #noticeHeader{
-	background-color:#516D5C;
+	
+	background-color:white;
 	font-weight:bolder;
 	font-size:16px;
 	line-height:40px;
 	color: white;
 }
-
-#noticeHeader input[type=text]{
-	background-color:#516D5C;
+#titleBox{
+	background-color:#516D5C80;
 	font-weight:bolder;
 	font-size:16px;
 	line-height:40px;
@@ -115,6 +115,41 @@
 	border-style: none;
 	
 }
+#titleBox input[type=text]{
+	background-color:#516D5C80;
+	font-weight:bolder;
+	font-size:16px;
+	line-height:40px;
+	color: white;
+	width: 100%;
+	text-align : center;
+	border-style: none;
+	
+}
+
+#note_content{
+	background-color:white;
+	border : 3px solid #516D5C;
+	border-radius : 20px;
+	font-weight:bolder;
+	font-size:16px;
+	line-height:40px;
+	color: white;
+	width: 90%;
+	height:300px;
+	text-align : center;
+	margin:auto;
+}
+
+#contents{
+	width :100%;
+	height:80%;
+	border-style: none;
+	font-size:16px;
+	line-height:40px;
+	text-align : center;
+}
+
 
 .editable {
 	width:min(165px);
@@ -142,6 +177,26 @@
 }
 
 #btns input[type=button]{
+	color: #516D5C;
+	font-size:min(15px,3vw);
+	background-color: transparent;	
+	border: 2px solid #B4C8BC;
+	border-radius: 5px;
+	width:70px;
+	line-height:25px;
+}
+
+#btns #delete{	
+	font-size:min(15px,3vw);
+	background-color: transparent;	
+	border: 2px solid red;
+	border-radius: 5px;
+	width:70px;
+	line-height:25px;
+	color:red;
+}
+
+.write{
 	padding:1%;
 	margin-left:1%;
 	color: white;
@@ -155,30 +210,12 @@
 	margin-top:2%;
 }
 
-#btns #delete{	
-	padding:1%;
-	margin-left:1%;
-	color: white;
-	font-weight:bold;
-	font-size:min(17px,3.5vw);
-	line-height:23px;
-	background-color: #C0ADB3;
-	border: 3px solid #804040;
-	border-radius: 20px;
-	width:90px;
-	margin-top:2%;
+.write:hover{
+	background-color: #806c71;
+	cursor:pointer;	
 }
 
-#btns #modify{	
-	padding:1%;
-	margin-left:1%;
-	color: white;
-	font-weight:bold;
-	font-size:min(17px,3.5vw);
-	line-height:23px;
-	background-color: #FFBE46;
-	border: 3px solid #ff8000;
-	border-radius: 20px;
-	width:90px;
-	margin-top:2%;
+#back:hover{
+	background-color: #516D5C;
+	cursor:pointer;	
 }

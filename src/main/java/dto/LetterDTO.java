@@ -105,7 +105,7 @@ public class LetterDTO {
 	}
 
 	public String getFormed_WriteDate() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		return sdf.format(this.write_date);
 	}
 	
