@@ -45,7 +45,7 @@
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd2" style="color: #664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter"
+											aria-current="page" href="/csnotice.cscenter"
 											style="color: #664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/adminmain.admin"
@@ -61,7 +61,7 @@
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd2" style="color: #664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter"
+											aria-current="page" href="/csnotice.cscenter"
 											style="color: #664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/mypage.member"
@@ -76,7 +76,7 @@
 										<li class="nav-item nonMember"><a class="nav-link active"
 											aria-current="page" href="#" style="color: #664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter"
+											aria-current="page" href="/csnotice.cscenter"
 											style="color: #664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/joinform.member"
