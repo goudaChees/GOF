@@ -17,12 +17,6 @@
 	text-align:left;
 }
 
-.info{
-	display:inline-block;
-	width : 25%;
-	font-weight:bold;
-	font-size:15px;
-}
 
 #writer{
 	font-weight:bold;
@@ -33,17 +27,7 @@
 	margin-top:15px;
 }
 
-.infoWrapper > div{
-	float:left
-}
 
-.inputBox{
-	width:70%;
-}
-
-#contents_Box>div{
-	float:left;
-}
 
 .msg_btn{
 	padding:1%;
@@ -70,7 +54,7 @@
 	justify-content: center;	
 }
 
-.inputBox{
+.inputBox-m{
 	color: #806c71;
 	background-color:white;
 	border:2px solid #FFC4A970;
@@ -99,11 +83,11 @@
 	font-size:20px;
 }
 
-.infor-m{
-	width:100%
+.info-m{
+	width:100%;
+	font-weight:bold;
 }
 
 .inputBox-m{
-	width:80%
+	width:90%;
 }
-

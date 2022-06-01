@@ -9,15 +9,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>myPage</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/css/member/myWriting.css">
@@ -78,134 +73,137 @@
 									<li class="nav-item"><a class="nav-link"
 										href="/myReply.member?board=1&page=1">내 댓글 보기</a></li>
 									<li class="nav-item"><a class="nav-link active"
-										aria-current="page" href="/list.letter?type=r">메세지</a></li>
+										aria-current="page" href="/list.letter?type=r&page=1">메세지함</a></li>
 								</ul>
 							</div>
 						</div>
 						<div class="row w-100 m-0" id="mywriting">
-							<div class="d-none d-md-block col-md-12">
-								<form action="/send.letter" id="letterForm" method="post">
-									<span id="headTitle">받은 메세지</span>
-									<div id="msg_Box">
-										<div class="row w-80 m-0">
-											<div class="col-12 Wrapper" style="width: 100%">
-												<div class="col-12 infoWrapper">
-													<span class="info">보낸 사람</span> <span>보낸사람
-														위치입니다.</span>
-												</div>
-												<div class="col-12 infoWrapper">
-													<span class="info">작성 일자</span> <span>작성일자
-														위치입니다.</span>
-												</div>
-												<div class="col-12 infoWrapper">
-													<div class="info" >제목</div>
-													<div class="msgRead">
-														제목 위치입니다.
-													</div>
-												</div>
-												<div class="col-12 infoWrapper">
-													<div class="info" >내용</div>
-													<div class="msgRead">
-														내용 위치입니다.
-													</div>
-												</div>
-												<div class="col-12" id="mbtns">
-													<input type="button" id="msg_Reply" class="msg_btn"
-														value="답장"><input type="button" id="msg_Delete"
-														class="msg_btn" value="삭제"> <input type="button"
-														id="msg_Cancel" class="msg_btn" value="목록">
-												</div>
+							<div class="col-12">
+								<span id="headTitle">메세지</span>
+								<div id="msg_Box">
+									<div class="row w-80 m-0">
+										<div class="col-12 Wrapper" style="width: 100%">
+											<div class="col-12 infoWrapper">
+												<span class="info">보낸 사람</span> 
+												<span>${ldto.writer }</span>
+											</div>
+											<div class="col-12 infoWrapper">
+												<span class="info">받는 사람</span> 
+												<span>${ldto.receiver }</span>
+											</div>
+											<div class="col-12 infoWrapper">
+												<span class="info">작성 일자</span> 
+												<span>${ldto.formed_WriteDate }</span>
+											</div>
+											<div class="col-12 infoWrapper">
+												<div class="info">제목</div>
+												<div class="msgRead">${ldto.title }</div>
+											</div>
+											<div class="col-12 infoWrapper">
+												<div class="info">내용</div>
+												<div class="msgRead" id="msgContents">${ldto.contents }</div>
+											</div>
+											<div class="col-12" id="mbtns">
+												<input type="hidden" value="${ldto.seq }" id="letterSeq">
+												<c:if test="${type=='r' }">
+													<input type="button" class="msg_btn" id="msg_Reply" value="답장">
+												</c:if>
+												<input type="button" class="msg_btn" id="msg_Delete" value="삭제"> 
+												<input type="button" class="msg_btn" id="msg_Cancel" value="목록">
 											</div>
 										</div>
 									</div>
-								</form>
-							</div>
-						</div>
-						<div class="col-12 d-block d-md-none">
-							<form action="/send.letter" id="letterForm" method="post">
-								<span id="headTitle">받은 메세지</span>
-								<div id="msg_Box">
-									<div class="row w-80 m-0">
-										<div class="col-12 infoWrapper">
-											<span class="info-m" style="margin-right: 8px">보낸 사람</span> <span>보낸사람
-												위치입니다.</span>
-										</div>
-										<div class="col-12 infoWrapper">
-											<span class="info-m" style="margin-right: 8px">받은 시간</span> <span>시간
-												위치입니다.</span>
-										</div>
-										<div class="col-12 infoWrapper">
-											<div class="info-m">제목</div>
-											<div class="msgRead-m">제목이 있을 자리입니다.</div>
-										</div>
-										<div class="col-12 infoWrapper" id="contents_Box">
-											<div class="info-m" id="contents_Info" style="width: 100%">내용</div>
-											<div class="msgRead-m">내용이 있을 자리입니다.</div>
-										</div>
-										<div class="col-12" id="mbtns">
-											<input type="button" id="msg_Reply" class="msg_btn"
-												value="답장"> <input type="button" id="msg_Delete"
-												class="msg_btn" value="삭제"> <input type="button"
-												id="msg_Cancel" class="msg_btn" value="목록">
-										</div>
-									</div>
 								</div>
-							</form>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="row w-100 m-0" id="footer"
-		style="background-color: #A2BAAC; font-weight: bold;">
-		<div class="col-12 p-0 d-lg-none">
-			<div
-				style="padding-top: 20px; padding-bottom: 10px; text-align: center; font-size: min(14px, 3.5vw);">
-				<a href="/csmain.cscenter" class="footerLink"> <span>자주
-						묻는 질문</span></a> <span style="margin-left: 20px" class="footerBar">|</span> <a
-					href="/csemail.cscenter" class="footerLink"> <span
-					style="margin-left: 20px">1 : 1 문의</span></a> <span
-					style="margin-left: 20px" class="footerBar">|</span> <a
-					href="/csmap.cscenter" class="footerLink"> <span
-					style="margin-left: 20px;">찾아오시는 길</span></a><br>
-				<div style="margin-top: 15px; text-align: center">
-					<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층,
-						3층</span><br> <span class="footerLetter">대 표 전 화 : 4989 -
-						4284</span> <span style="margin-left: 10px; margin-right: 10px"
-						class="footerLetter">|</span> <span class="footerLetter">E-MAIL
-						: ttaengerang@gmail.com </span><br> <span
-						style="color: #FFF2CC; font-size: min(15px, 4vw); line-height: 40px;">COPYRIGHT
-						BY PHOENIX </span>
+
+		<div class="row w-100 m-0" id="footer"
+			style="background-color: #A2BAAC; font-weight: bold;">
+			<div class="col-12 p-0 d-lg-none">
+				<div
+					style="padding-top: 20px; padding-bottom: 10px; text-align: center; font-size: min(14px, 3.5vw);">
+					<a href="/csmain.cscenter" class="footerLink"> <span>자주
+							묻는 질문</span></a> <span style="margin-left: 20px" class="footerBar">|</span>
+					<a href="/csemail.cscenter" class="footerLink"> <span
+						style="margin-left: 20px">1 : 1 문의</span></a> <span
+						style="margin-left: 20px" class="footerBar">|</span> <a
+						href="/csmap.cscenter" class="footerLink"> <span
+						style="margin-left: 20px;">찾아오시는 길</span></a><br>
+					<div style="margin-top: 15px; text-align: center">
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩
+							2층, 3층</span><br> <span class="footerLetter">대 표 전 화 : 4989
+							- 4284</span> <span style="margin-left: 10px; margin-right: 10px"
+							class="footerLetter">|</span> <span class="footerLetter">E-MAIL
+							: ttaengerang@gmail.com </span><br> <span
+							style="color: #FFF2CC; font-size: min(15px, 4vw); line-height: 40px;">COPYRIGHT
+							BY PHOENIX </span>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="d-none d-lg-block col-lg-9">
-			<div style="margin-left: 40px; margin-top: 20px; text-align: left">
-				<a href="/csmain.cscenter" class="footerLink"><span>자주 묻는
-						질문</span></a><span style="margin-left: 20px" class="footerBar">|</span> <a
-					href="/csemail.cscenter" class="footerLink"><span
-					style="margin-left: 20px">1 : 1 문의</span></a><span
-					style="margin-left: 20px" class="footerBar">|</span> <a
-					href="/csmap.cscenter" class="footerLink"><span
-					style="margin-left: 20px">찾아오시는 길</span></a><br>
-				<div style="margin-top: 30px; text-align: left; margin-bottom: 15px">
-					<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩 2층,
-						3층</span><br> <span class="footerLetter">대 표 전 화 : 4989 -
-						4284</span><span style="margin-left: 20px" class="footerLetter">|</span><span
-						style="margin-left: 20px" class="footerLetter">E-MAIL :
-						ttaengerang@gmail.com </span><br> <span style="color: #FFF2CC">COPYRIGHT
-						BY YUNJI AYEONG WOOHYENG JEONGYOEN HEESEUNG IN PHOENIX </span>
+			<div class="d-none d-lg-block col-lg-9">
+				<div style="margin-left: 40px; margin-top: 20px; text-align: left">
+					<a href="/csmain.cscenter" class="footerLink"><span>자주
+							묻는 질문</span></a><span style="margin-left: 20px" class="footerBar">|</span> <a
+						href="/csemail.cscenter" class="footerLink"><span
+						style="margin-left: 20px">1 : 1 문의</span></a><span
+						style="margin-left: 20px" class="footerBar">|</span> <a
+						href="/csmap.cscenter" class="footerLink"><span
+						style="margin-left: 20px">찾아오시는 길</span></a><br>
+					<div
+						style="margin-top: 30px; text-align: left; margin-bottom: 15px">
+						<span class="footerLetter">ADDRESS : 서울 중구 남대문로 120 대일빌딩
+							2층, 3층</span><br> <span class="footerLetter">대 표 전 화 : 4989
+							- 4284</span><span style="margin-left: 20px" class="footerLetter">|</span><span
+							style="margin-left: 20px" class="footerLetter">E-MAIL :
+							ttaengerang@gmail.com </span><br> <span style="color: #FFF2CC">COPYRIGHT
+							BY YUNJI AYEONG WOOHYENG JEONGYOEN HEESEUNG IN PHOENIX </span>
+					</div>
 				</div>
 			</div>
+			<div class="d-none d-lg-block col-lg-3" style="text-align: right">
+				<img src="/img/footerLogo.png"
+					style="width: 70%; margin-right: 10px; margin-top: 10%">
+			</div>
 		</div>
-		<div class="d-none d-lg-block col-lg-3" style="text-align: right">
-			<img src="/img/footerLogo.png"
-				style="width: 70%; margin-right: 10px; margin-top: 10%">
-		</div>
-	</div>
 	</div>
 	<script>
+	
+		$("#msg_Reply").on("click",function(){
+			let seq = $("#letterSeq").val();
+			console.log(seq);
+			location.href="/reply.letter?seq="+seq;
+		})
+		
+		
+		$("#msg_Delete").on("click",function(){
+			let type = '${type}';
+			let seq = $("#letterSeq").val();
+			Swal.fire({
+			  title: '쪽지를 삭제하시겠습니까?',
+			  showCancelButton: true,
+			  confirmButtonText: '삭제',
+			  cancelButtonText: '취소'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					Swal.fire({
+						icon: 'success',
+						title: '메세지 삭제 완료'
+					}).then((result2) => {
+						location.href="/delete.letter?type="+type+"&seq="+seq;	
+					})
+				}
+			})
+		})
+	
+		$("#msg_Cancel").on("click",function(){
+			let type = '${type}';
+			location.href="/list.letter?type="+type+"&page=1";		
+		})
+	
 			//로그아웃 관련 공통기능
 
       	// SDK를 초기화. 사용할 앱의 JavaScript 키
