@@ -101,7 +101,7 @@
 											<c:when test="${type=='r' }">
 												<div class="row w-100 m-0 listHeader">
 													<div class="col-12 col-lg-8">받은 메세지함</div>
-													<div class="col-12" style="text-align:left">새 메세지 : ${newLetter }건</div>
+													<div class="col-12" style="text-align:left" id="newletter"></div>
 												</div>
 												<c:forEach var='i' items="${list }">
 													<a href='/read.letter?type=r&seq=${i.seq }'>
@@ -110,8 +110,9 @@
 															<div class="col-4 p-0 d-none d-lg-block">${i.write_date }</div>
 															<div class="col-12 p-0 d-block d-lg-none">
 															<c:if test="${i.read==0 }">
-<%-- 																<span id="new${i.seq }" style="display:none;"> --%>
-																<img src="/img/new.gif" style="width:25px;">
+																<span id="new${i.seq }" style="display:none;">
+																	<img src="/img/new.gif" style="width:25px;">
+																</span>
 															</c:if>
 															${i.title }</div>
 														</div>
@@ -197,6 +198,25 @@
 			</div>
 		</div>
 		<script>
+		
+		window.onload = function(){
+			
+			$.ajax({
+				url:"/newLetter.letter",
+				dataType:"json"
+			}).done(function(res){
+				$("#newletter").append("새 메세지 : "+res+"건")
+			})			
+			
+			$.ajax({
+				url:"/newLetterList.letter",
+				dataType:"json"
+			}).done(function(res){
+				$(res).each(function(){
+					$("#new"+this).css("display","inline");
+				})
+			})
+		}
 		
 		$("#receiveMail").on("click",function(){
 			location.href="/list.letter?type=r&page=1";

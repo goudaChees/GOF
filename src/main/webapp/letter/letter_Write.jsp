@@ -190,10 +190,10 @@
 				  cancelButtonText: '취소'
 				}).then((result) => {
 					if (result.isConfirmed) {
-						Swal.fire(
-						  '메세지 전송 완료',
-						  'success'
-						);
+						Swal.fire({
+							icon: 'success',
+							title: '메세지 전송 완료'
+						});
 					  $("#letterForm").submit();
 					}
 				})

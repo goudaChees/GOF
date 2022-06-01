@@ -82,7 +82,7 @@ public class LetterController extends HttpServlet {
 				if(type.equals("r")){
 					pageList = ldao.rPageList(id, page);
 					list = ldao.rSelectPage(id, page);
-					newLetter = ldao.newLetter(id);
+//					newLetter = ldao.newLetter(id);
 				}else if(type.equals("s")) {
 					pageList = ldao.sPageList(id, page);
 					list = ldao.sSelectPage(id, page);
@@ -91,8 +91,24 @@ public class LetterController extends HttpServlet {
 				request.setAttribute("type", type);
 				request.setAttribute("list", list);
 				request.setAttribute("pageList", pageList);
-				request.setAttribute("newLetter", newLetter);
+//				request.setAttribute("newLetter", newLetter);
 				request.getRequestDispatcher("/letter/letter_list.jsp").forward(request, response);
+				
+				
+			}else if(uri.equals("/newLetter.letter")) { // 새로 받은 메세지 수 (비동기)				
+				String id = (String) request.getSession().getAttribute("loginID");
+				int newLetter = ldao.newLetter(id);
+				Gson g = new Gson();
+				PrintWriter pw = response.getWriter();
+				pw.append(g.toJson(newLetter));
+				
+				
+			}else if(uri.equals("/newLetterList.letter")){ // 새로 받은 메세지 seq list (비동기)	
+				String id = (String) request.getSession().getAttribute("loginID");
+				List<Integer> newLetterList = ldao.newLetterList(id);
+				Gson g = new Gson();
+				PrintWriter pw = response.getWriter();
+				pw.append(g.toJson(newLetterList));
 				
 				
 			}else if(uri.equals("/read.letter")) { // 메세지 읽기
