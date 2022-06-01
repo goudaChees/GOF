@@ -9,8 +9,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>살까말까</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed298afa01dbe436406160c176a6dde2"></script> -->
-<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e3b2ec1cbf323959f82484d3c09baa42"></script> -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
@@ -47,7 +45,7 @@
 <aside class="popup" id="popupWrap">
   <div class="inner" id="popup_1">
     <div class="area">
-      <img src="/img/popup01.png" alt="배너이미지1">
+      <img src="/img/popup0101.png" alt="배너이미지1">
     </div>
     <input type="checkbox" id="check" onClick="closePopup();"><span>하루동안 보지않기</span>
     <button type="button" onClick="window.close();">[닫기]</button>
