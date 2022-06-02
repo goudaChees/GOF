@@ -282,8 +282,7 @@
 			}
 		})
 		
-		
-		
+
 		  function mailConfirm(){
 			  if (${loginID != null}) {
 				  

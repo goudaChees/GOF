@@ -37,7 +37,7 @@
 <aside class="popup" id="popupWrap">
   <div class="inner" id="popup_1">
     <div class="area">
-      <img src="/img/popup0101.png" alt="배너이미지1">
+      <img src="/img/popup011.png" alt="배너이미지1">
     </div>
     <input type="checkbox" id="check" onclick="closePopup();"><span>하루동안 보지않기</span>
     <button type="button" onclick="window.close();">[닫기]</button>

@@ -21,8 +21,6 @@
 <link rel="stylesheet" href="/css/common.css">
 
 <script>
-
-
 function getCookie(name) {
     var cookie = document.cookie;
     

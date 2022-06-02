@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="/css/board2/board2_List.css">
 <link rel="stylesheet" href="/css/common.css">
 
-<script type="text/javascript">
+<script>
 	function getCookie(name) {
     	var cookie = document.cookie;
     	console.log(cookie);
