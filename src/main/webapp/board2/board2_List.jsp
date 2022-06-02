@@ -12,41 +12,43 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/css/board2/board2_List.css">
 <link rel="stylesheet" href="/css/common.css">
 
-<script>
-function getCookie(name) {
-    var cookie = document.cookie;
-    
-    if (document.cookie != "") {
-        var cookie_array = cookie.split("; ");
-        for ( var index in cookie_array) {
-            var cookie_name = cookie_array[index].split("=");
-            
-            if (cookie_name[0] == "popupYN2") {
-                return cookie_name[1];
-            }
-        }
-    }
-    return ;
-}
+<script type="text/javascript">
+	function getCookie(name) {
+    	var cookie = document.cookie;
+    	console.log(cookie);
+    	if (document.cookie != "") {
+        	var cookie_array = cookie.split("; ");
+        	for ( var index in cookie_array) {
+            	var cookie_name = cookie_array[index].split("=");
+            	console.log(cookie_name[0]);
+            	if (cookie_name[0] == "popupYNYN") {
+                	return cookie_name[1];
+            	}
+        	}
+    	}
+    	return ;
+	}
 
-function openPopup2(url) { 
-    var cookieCheck = getCookie("popupYN2");
-    console.log(cookieCheck);
-    if (cookieCheck != "N")
-        window.open(url, '', 'width=460,height=615,left=450,top=100')
-}
-
+	function openPopup(url) { 
+    	var cookieCheck = getCookie("popupYNYN");
+    	console.log(cookieCheck);
+    	if (cookieCheck != "N") {
+        	window.open(url, '', 'width=480,height=660,left=450,top=200')
+    	}	
+	}
 
 </script>
 
 </head>
-<body onload="javascript:openPopup2('/board2/popup02.jsp')">
+<body onload="javascript:openPopup('/board2/popup02.jsp')">
+
 	<div class="container">
 		<div class="row w-100 m-0" id="header">
 			<div class="col-12 p-0">

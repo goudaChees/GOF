@@ -12,53 +12,16 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="/css/board1/board1_List.css">
 <link rel="stylesheet" href="/css/common.css">
 
 <script>
-function today(){//날짜 반환
-	
-	let today=new Date();//오늘날짜
-	
-	toYear = today.getFullYear();
-	toMonth = today.getMonth()+1;
-	toDate = today.getDate()
 
-	for(let i=0;i<${glist}.length;i++){
-		let seq = ${glist}[i].seq;
-		let write_date = new Date(${glist}[i].write_date);
-		
-		year = write_date.getFullYear();
-		month = write_date.getMonth()+1;
-		date = write_date.getDate();
-		hour = write_date.getHours();
-		minutes = write_date.getMinutes();
-		
-		if(toYear==year&&toMonth==month&&toDate==date){
-			write_date = hour +":"+minutes;
-			$("#w"+seq).text(write_date);
-			$("#n"+seq).css("display","inline-block");
-		}else{
-			let twoYear = year.toString().substring(2,4);
-			write_date = twoYear +"."+month +"."+date;
-			$("#w"+seq).text(write_date);					
-		}
-		
-		if($("#itemName_"+seq).text().length>15){
-			let name = $("#itemName_"+seq).text().substr(0, 15);
-			let content = "[ "+name+"... ]";
-			$("#itemName_"+seq).text(content);
-			
-		}else if($("#itemName_"+seq).text().length<=15){
-			let name = $("#itemName_"+seq).text();
-			let content = "[ "+name+" ]";
-			$("#itemName_"+seq).text(content);
-		}
-	}
-}
 
 function getCookie(name) {
     var cookie = document.cookie;
@@ -67,7 +30,7 @@ function getCookie(name) {
         var cookie_array = cookie.split("; ");
         for ( var index in cookie_array) {
             var cookie_name = cookie_array[index].split("=");
-            
+            console.log(cookie_name[0]);
             if (cookie_name[0] == "popupYN1") {
                 return cookie_name[1];
             }
@@ -76,17 +39,18 @@ function getCookie(name) {
     return ;
 }
 
-function openPopup1(url) { 
+function openPopup(url) { 
     var cookieCheck = getCookie("popupYN1");
     console.log(cookieCheck);
     if (cookieCheck != "N")
-        window.open(url, '', 'width=460,height=615,left=450,top=100')
+        window.open(url, '', 'width=480,height=660,left=450,top=200')
 }
 
-
 </script>
+
 </head>
-<body onload="javascript:openPopup1('/board1/popup03.jsp'), today()">
+<body onload="javascript:openPopup('/board1/popup03.jsp'), today()">
+
 	<div class="container w-100">
 		<div class="row w-100 m-0" id="header">
 			<div class="col-12 p-0">
@@ -245,6 +209,47 @@ function openPopup1(url) {
 	
 	<script>
 
+	function today(){//날짜 반환
+		
+		let today=new Date();//오늘날짜
+		
+		toYear = today.getFullYear();
+		toMonth = today.getMonth()+1;
+		toDate = today.getDate()
+
+		for(let i=0;i<${glist}.length;i++){
+			let seq = ${glist}[i].seq;
+			let write_date = new Date(${glist}[i].write_date);
+			
+			year = write_date.getFullYear();
+			month = write_date.getMonth()+1;
+			date = write_date.getDate();
+			hour = write_date.getHours();
+			minutes = write_date.getMinutes();
+			
+			if(toYear==year&&toMonth==month&&toDate==date){
+				write_date = hour +":"+minutes;
+				$("#w"+seq).text(write_date);
+				$("#n"+seq).css("display","inline-block");
+			}else{
+				let twoYear = year.toString().substring(2,4);
+				write_date = twoYear +"."+month +"."+date;
+				$("#w"+seq).text(write_date);					
+			}
+			
+			if($("#itemName_"+seq).text().length>15){
+				let name = $("#itemName_"+seq).text().substr(0, 15);
+				let content = "[ "+name+"... ]";
+				$("#itemName_"+seq).text(content);
+				
+			}else if($("#itemName_"+seq).text().length<=15){
+				let name = $("#itemName_"+seq).text();
+				let content = "[ "+name+" ]";
+				$("#itemName_"+seq).text(content);
+			}
+		}
+	}
+	
 		$(".list").on("click",function(){
 			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");

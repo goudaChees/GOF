@@ -25,12 +25,12 @@
 	function setCookie( name, value, expiredays ) {
 		var date = new Date();
 		date.setDate(date.getDate() + expiredays);
-		document.cookie = escape(name) + "=" + escape(value) + "; expires=" + date.toUTCString();
+		window.opener.document.cookie = escape(name) + "=" + escape(value) + "; expires=" + date.toUTCString();
 		
 	}
     function closePopup() {
         if (document.getElementById("check").value) {
-            setCookie("popupYN2", "N", 1);
+            setCookie("popupYNYN", "N", 1);
             self.close();
         }
     }
@@ -47,8 +47,8 @@
     <div class="area">
       <img src="/img/popup0202.png" alt="배너이미지1">
     </div>
-    <input type="checkbox" id="check" onClick="closePopup();"><span>하루동안 보지않기</span>
-    <button type="button" onClick="window.close();">[닫기]</button>
+    <input type="checkbox" id="check" onclick="closePopup();"><span>하루동안 보지않기</span>
+    <button type="button" onclick="window.close();">[닫기]</button>
   </div>
 
   <div class="popupbg" style="background:gray;"></div>
