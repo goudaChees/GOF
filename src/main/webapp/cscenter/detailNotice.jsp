@@ -79,6 +79,8 @@
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/mypage.member"
 											style="color: #664E55">마이페이지</a></li>
+										<li class="nav-item"><a class="nav-link active" aria-current="page" href="/list.letter?type=r&page=1">
+											<i class="bi bi-envelope" style="color: #664E55"></i></a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="#"><i
 												class="bi bi-box-arrow-right" style="color: #664E55"></i></a></li>
@@ -110,7 +112,7 @@
 					<div class="col-12">
 						<div class="row w-100 m-0" id="CsCenterHeader">
 							<div class="col-12">
-								<p>고객센터</p>
+								<a href="/csnotice.cscenter"><img src="/img/nametagcscenter.png" id="nametag"></a><br>
 								<ul class="nav nav-tabs">
 									<li class="nav-item"><a class="nav-link active"
 										data-toggle="tab" href="#csnotice">공지 사항</a></li>
