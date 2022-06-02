@@ -295,8 +295,9 @@
 	// 머니폼
 	window.onload = function(){
 		if(${loginID==null}){
-			alert("로그인 후 이용 가능합니다.")
-			location.href="/index.jsp"
+			alert("로그인 후 이용가능합니다.");
+			location.href="/index.jsp";
+			return false;
 		}
 		for(let i=0;i<${jrdto}.length;i++){
 			let seq = ${jrdto}[i].seq;
@@ -306,8 +307,9 @@
 		}		
 	}
 	if(${loginID==null}){
-		alert("로그인 후 이용 가능합니다.")
-		location.href="/index.jsp"
+		alert("로그인 후 이용가능합니다.");
+		location.href="/index.jsp";
+		return false;
 	}
 	if(${timeover}){
 		$("#btn1").attr("disabled","true");
@@ -350,10 +352,20 @@
 		//글 삭제
 	})
 	$("#modi").on("click",function(){
-			location.href = "/modi.brd2?seq="+${dto.seq}
+		if(${loginID==null}){
+			alert("로그인 후 이용가능합니다.");
+			location.href="/index.jsp";
+			return false;
+		}
+		location.href = "/modi.brd2?seq="+${dto.seq}
 		//글 수정
 	})
 	$(".delbtn").on("click",function(){
+		if(${loginID==null}){
+			alert("로그인 후 이용가능합니다.");
+			location.href="/index.jsp";
+			return false;
+		}
 		reulst = window.confirm("정말 삭제하시겠습니까?");
 		if(reulst){
 		$.ajax({
@@ -368,6 +380,11 @@
 	})
 	//댓글 삭제
 	$(".choice").on("click",function(){
+		if(${loginID==null}){
+			alert("로그인 후 이용가능합니다.");
+			location.href="/index.jsp";
+			return false;
+		}
 		result = window.confirm("정말 선택하시겠습니까?");
 		if(result){
 			$.ajax({

@@ -230,7 +230,7 @@ function openPopup(url) {
 	<script>
 
 	function today(){//날짜 반환
-		
+
 		let today=new Date();//오늘날짜
 		
 		toYear = today.getFullYear();
@@ -269,18 +269,13 @@ function openPopup(url) {
 			}
 		}
 	}
-	
-		$(".list").on("click",function(){
-			if(${loginID==null}){
-				alert("로그인 후 이용가능합니다.");
-				location.href="/index.jsp"
-			}
-		})
+
 		
 		$("#write").on("click",function(){
-			if(${loginID==null}){
-				alert("로그인 후 이용가능합니다.")
-				location.href="/index.jsp"
+			if(${loginID == null}){
+				alert("로그인 후 이용 가능합니다.");
+				location.href="/index.jsp";
+				return false;
 			}
 			location.href="/board1/board1_Write.jsp";
 		})	

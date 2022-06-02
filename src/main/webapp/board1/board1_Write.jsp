@@ -202,6 +202,7 @@
 			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");
 				location.href="/index.jsp";
+				return false;
 			}
 			location.href="/list.brd1?cpage=1";
 		})

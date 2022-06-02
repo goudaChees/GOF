@@ -90,10 +90,12 @@ public class Board1Controller extends HttpServlet {
 				
 				String id = (String)session.getAttribute("loginID");
 				request.setAttribute("loginID", id);
-
+					
 				int cpage = Integer.parseInt(request.getParameter("cpage"));
-				session.setAttribute("cpage", cpage);
+
 				
+				session.setAttribute("cpage", cpage);					
+
 				List<Board1DTO> list = dao.selectByPage(cpage);//한 페이지당 리스트 출력
 				request.setAttribute("list", list);//게시글 리스트 저장
 				request.setAttribute("glist", g.toJson(list));
@@ -119,6 +121,7 @@ public class Board1Controller extends HttpServlet {
 				request.setAttribute("glist", g.toJson(list));
 				
 				request.setAttribute("list", list);//리스트 담기
+				request.setAttribute("glist", g.toJson(list));
 				request.setAttribute("searchCategory", searchCategory);//카테고리 담기
 				request.setAttribute("searchTarget", searchTarget);//리스트 request 넣기
 
