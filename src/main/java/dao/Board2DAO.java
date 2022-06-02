@@ -110,7 +110,7 @@ public class Board2DAO {
 		Date overdate = new Date();
 		
 		long diffMin = (overdate.getTime() - wdate.getTime()) / 60000; //분 차이
-		if(diffMin>5) {
+		if(diffMin>4) {
 			return true;
 		}
 		return false;

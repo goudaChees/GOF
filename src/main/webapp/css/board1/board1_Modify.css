@@ -143,9 +143,9 @@ textarea:focus{
 	text-align:center;
 }
 
-#delete:hover{
-	background-color: #F193A150;
-	cursor:pointer;
+#delete:hover,#cancel_Btn:hover{
+   background-color: #F193A150;
+   cursor:pointer;
 }
 
 #title{

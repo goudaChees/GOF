@@ -213,7 +213,7 @@
 													<div class="row">
 													<div class="col-12 incontents">
 														
-													<%--<pre class="content_editable" disabled style="white-space: normal;">
+													<%-- <pre class="content_editable" disabled style="white-space: normal;">
 															<c:out value="${dto.contents}" escapeXml="false"/>
 														</pre>--%>
 													</div>
@@ -309,7 +309,7 @@
 	if(${loginID==null}){
 		alert("로그인 후 이용가능합니다.");
 		location.href="/index.jsp";
-		return false;
+// 		return false;
 	}
 	if(${timeover}){
 		$("#btn1").attr("disabled","true");
