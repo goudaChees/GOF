@@ -232,6 +232,7 @@
 			$("#banish").css("display", "none");
 			let ok = $("<button>");
 			ok.text("수정완료");
+			ok.attr("disabled", true);
 		
 			let cancel = $("<button>");
 			cancel.text("취소");
@@ -252,6 +253,7 @@
 		openChild();
 		
 	})
+	
 
 		//로그아웃 관련 공통기능
 
