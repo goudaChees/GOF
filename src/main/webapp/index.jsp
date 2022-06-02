@@ -102,9 +102,9 @@
 						<div class="col-12 col-sm-8" align=left>
 							<div class="row">
 								<div class="col-12" style="text-align: left">
-									<img src="/img/logoname.png" style="width: 250px;">
-									<h3 style="padding-left: 30px;">당신이 부자가 될 때 까지</h3>
-									<h5 style="padding-left: 30px;" id="hello">
+									<img src="/img/logoname.png" style="width: 250px;"><br>
+									<img src="/img/subTitle.png" style="margin-left: 30px;">
+									<h5 style="padding-left: 30px;font-weight:bold" id="hello">
 										<img src='/img/pinkpig_front.png' style='width: 8%;color:#735960;'>
 										${loginID }님 환영합니다!
 										<img src='/img/pinkpig_paw.png' style='width: 8%'>
@@ -143,14 +143,16 @@
 									</div>
 									</a>
 								</div>
-								<div class="col-6 col-md-3">
-									<a href="/mypage.member">
-									<div class="card">
-										<img src="/img/card_mypage.png" class="cardimg px-3">
-										<p><img src="/img/nametagmypage.png"></p>
+								<c:if test="${loginID!='admin' }">
+									<div class="col-6 col-md-3">
+										<a href="/mypage.member">
+										<div class="card">
+											<img src="/img/card_mypage.png" class="cardimg px-3">
+											<p><img src="/img/nametagmypage.png"></p>
+										</div>
+										</a>
 									</div>
-									</a>
-								</div>
+								</c:if>
 							</div>
 						</div>
 					</div>
