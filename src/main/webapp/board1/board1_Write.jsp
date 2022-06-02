@@ -125,7 +125,7 @@
 										maxlength=10
 										oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /><br>
 									<input type="button" id="cancel_Btn" style="display: none"
-										value="파일 취소"> <label for="upload_file" id="forFile">파일
+										value="첨부 취소"> <label for="upload_file" id="forFile">사진
 										첨부</label> <input type="file" name="file" id="upload_file"
 										accept="image/*" onchange=isFileImg(this)>
 								</div>
