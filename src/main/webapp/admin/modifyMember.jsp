@@ -141,8 +141,8 @@ div {
 	</c:choose>
 	<div class="container">
 		<div class="row">
-			<div class="col">
-				<p>Admin Page</p>
+			<div class="col-12">
+				<a href="/adminmain.admin"><img src="/img/nametagadmin.png" id="nametag"></a><br>
 				<ul class="nav nav-tabs">
 					<li class="nav-item"><a class="nav-link active"
 						data-toggle="tab" href="#memberManagement">회원 정보 관리</a></li>

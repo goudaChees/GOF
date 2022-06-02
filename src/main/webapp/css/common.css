@@ -48,10 +48,17 @@ div {
 
 #header a{
 	font-family: 'nanumB';
+	margin-right:5px;
 }
 
 #logo{
 	height:45px;
+}
+
+
+#nametag{
+	margin-top:5px;
+	margin-bottom:13px;	
 }
 
 .footerLink{

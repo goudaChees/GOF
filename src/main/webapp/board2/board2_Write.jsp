@@ -32,7 +32,8 @@
 			<div class="col-12 p-0">
 				<nav class="navbar navbar-expand-md navbar-light bg-light">
 					<div class="container-fluid">
-						<a class="navbar-brand" href="/index.jsp" style="color:#664E55"><img src="/img/logo.png" id="logo"></a>
+						<a class="navbar-brand" href="/index.jsp" style="color: #664E55"><img
+							src="/img/logo.png" id="logo"></a>
 						<button class="navbar-toggler" type="button"
 							data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
 							aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -45,27 +46,48 @@
 								<c:choose>
 									<c:when test="${loginID =='admin'}">
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
+											aria-current="page" href="/list.brd1?cpage=1"
+											style="color: #664E55">살까말까</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
+											aria-current="page" href="/list.brd2" style="color: #664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csnotice.cscenter" style="color:#664E55">고객센터</a></li>
+											aria-current="page" href="/csnotice.cscenter"
+											style="color: #664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/adminmain.admin" style="color:#664E55">관리자페이지</a></li>
+											aria-current="page" href="/adminmain.admin"
+											style="color: #664E55">관리자페이지</a></li>
 										<li class="nav-item"><a class="nav-link active"
-										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
+											aria-current="page" href="#"><i
+												class="bi bi-box-arrow-right" style="color: #664E55"></i></a></li>
+									</c:when>
+									<c:when test="${loginID !=null}">
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/list.brd1?cpage=1"
+											style="color: #664E55">살까말까</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/list.brd2" style="color: #664E55">최저가경매</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/csnotice.cscenter"
+											style="color: #664E55">고객센터</a></li>
+										<li class="nav-item"><a class="nav-link active"
+											aria-current="page" href="/mypage.member"
+											style="color: #664E55">마이페이지</a></li>
+										<li class="nav-item"><a class="nav-link active" aria-current="page" href="/list.letter?type=r&page=1">
+											<i class="bi bi-envelope" style="color: #664E55"></i></a></li>	
+										<li class="nav-item"><a class="nav-link active" aria-current="page" href="#">
+											<i class="bi bi-box-arrow-right" style="color: #664E55"></i></a></li>
 									</c:when>
 									<c:otherwise>
+										<li class="nav-item nonMember"><a class="nav-link active"
+											aria-current="page" href="#" style="color: #664E55">살까말까</a></li>
+										<li class="nav-item nonMember"><a class="nav-link active"
+											aria-current="page" href="#" style="color: #664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd1?cpage=1" style="color:#664E55">살까말까</a></li>
+											aria-current="page" href="/csnotice.cscenter"
+											style="color: #664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
-										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csnotice.cscenter" style="color:#664E55">고객센터</a></li>
-										<li class="nav-item"><a class="nav-link active" 
-											aria-current="page" href="/mypage.member" style="color:#664E55">마이페이지</a></li>
-										<li class="nav-item"><a class="nav-link active"
-										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
+											aria-current="page" href="/joinform.member"
+											style="color: #664E55">회원가입</a></li>
 									</c:otherwise>
 								</c:choose>
 							</ul>
@@ -80,9 +102,9 @@
 				<div class="row w-100 m-0" id="board2Outline">
 					<div class="col-12">
 						<div class="row w-100 m-0" id="header_title">
-							<div class="col-12">
-								<p>최저가 경매</p>
-								<span>최저가 링크를 올려주세요</span>
+							<div class="col-12" style="padding-top:10px;">
+								<a href="/list.brd2"><img src="/img/nametagbrd2.png" id="nametag"></a><br>
+								<span id="brdInfo" style="font-size:16px;margin-left:30px;">최저가 정보가 필요하신가요? </span>
 							</div>
 						</div>
 						<div class="row w-100 m-0" id=board2List>

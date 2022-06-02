@@ -66,9 +66,10 @@
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/mypage.member"
 											style="color: #664E55">마이페이지</a></li>
-										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="#"><i
-												class="bi bi-box-arrow-right" style="color: #664E55"></i></a></li>
+										<li class="nav-item"><a class="nav-link active" aria-current="page" href="/list.letter?type=r&page=1">
+											<i class="bi bi-envelope" style="color: #664E55"></i></a></li>	
+										<li class="nav-item"><a class="nav-link active" aria-current="page" href="#">
+											<i class="bi bi-box-arrow-right" style="color: #664E55"></i></a></li>
 									</c:when>
 									<c:otherwise>
 										<li class="nav-item nonMember"><a class="nav-link active"
@@ -101,10 +102,10 @@
 						<div class="col-12 col-sm-8" align=left>
 							<div class="row">
 								<div class="col-12" style="text-align: left">
-									<img src="/img/logoname.png" style="width: 250px;">
-									<h3 style="padding-left: 30px;">당신이 부자가 될 때 까지</h3>
-									<h5 style="padding-left: 30px;" id="hello">
-										<img src='/img/pinkpig_front.png' style='width: 8%'>
+									<img src="/img/logoname.png" style="width: 250px;"><br>
+									<img src="/img/subTitle.png" style="margin-left: 30px;">
+									<h5 style="padding-left: 30px;font-weight:bold" id="hello">
+										<img src='/img/pinkpig_front.png' style='width: 8%;color:#735960;'>
 										${loginID }님 환영합니다!
 										<img src='/img/pinkpig_paw.png' style='width: 8%'>
 									</h5>
@@ -122,7 +123,7 @@
 									<a href="/list.brd1?cpage=1">
 									<div class="card">
 										<img src="/img/card_basket.png" class="cardimg px-3">
-										<p>살까말까</p>
+										<p><img src="/img/nametagbrd1.png"></p>
 									</div>
 									</a>
 								</div>
@@ -130,7 +131,7 @@
 									<a href="/list.brd2">
 									<div class="card">
 										<img src="/img/card_shoppingbag.png" class="cardimg px-3">
-										<p>최저가경매</p>
+										<p><img src="/img/nametagbrd2.png"></p>
 									</div>
 									</a>
 								</div>
@@ -138,18 +139,20 @@
 									<a href="/csmain.cscenter">
 									<div class="card">
 										<img src="/img/card_clipboard.png" class="cardimg px-3">
-										<p>고객센터</p>
+										<p><img src="/img/nametagcscenter.png"></p>
 									</div>
 									</a>
 								</div>
-								<div class="col-6 col-md-3">
-									<a href="/mypage.member">
-									<div class="card">
-										<img src="/img/card_mypage.png" class="cardimg px-3">
-										<p>마이페이지</p>
+								<c:if test="${loginID!='admin' }">
+									<div class="col-6 col-md-3">
+										<a href="/mypage.member">
+										<div class="card">
+											<img src="/img/card_mypage.png" class="cardimg px-3">
+											<p><img src="/img/nametagmypage.png"></p>
+										</div>
+										</a>
 									</div>
-									</a>
-								</div>
+								</c:if>
 							</div>
 						</div>
 					</div>
@@ -187,6 +190,7 @@
 							</div>
 						</form>
 					</div>
+					
 				</div>
 			</c:otherwise>
 		</c:choose>
@@ -234,6 +238,14 @@
 	</div>
 
 	<script>
+
+		$("#pw").on("keyup",function(key){
+			if(key.keyCode==13) {             
+				$("#login").click();    
+			}    
+		})
+
+	
 		$("#findId").on("click",function(){
 			window.open("/member/findid.jsp", "",
 			"top=100,left=200,width=550,height=350");
@@ -271,12 +283,13 @@
     	
       	// SDK를 초기화. 사용할 앱의 JavaScript 키
       	Kakao.init('b956cab5ef7dbe5bc1f861614a4b2061');
-	    //console.log(Kakao.isInitialized());
+	    console.log(Kakao.isInitialized());
 	    
 	    //item을 localStorage에 저장하는 메소드
 	    function saveToDos(token) { 
     		typeof(Storage) !== 'undefined' && sessionStorage.setItem('AccessKEY', JSON.stringify(token)); 
 		};
+		
 	    $("#kakao-login-btn").on("click", function(){
 	    //1. 로그인 시도
 	    Kakao.Auth.login({
@@ -339,6 +352,8 @@
 	   		 	})
 			}
 		  })
+ 
+		  
     </script>
 </body>
 </html>

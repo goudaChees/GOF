@@ -58,7 +58,7 @@
 						<div class="col-12">
 							<div class="row w-100 m-0" id="Board1Header">
 							<div class="col-12">
-							<p>Admin Page</p>
+							<a href="/adminmain.admin"><img src="/img/nametagadmin.png" id="nametag"></a><br>
 							<ul class="nav nav-tabs">
 								<li class="nav-item"><a class="nav-link"
 									href="/adminmain.admin">회원 정보 관리</a></li>
