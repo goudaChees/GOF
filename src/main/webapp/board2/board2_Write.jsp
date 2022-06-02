@@ -49,7 +49,7 @@
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+											aria-current="page" href="/csnotice.cscenter" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/adminmain.admin" style="color:#664E55">관리자페이지</a></li>
 										<li class="nav-item"><a class="nav-link active"
@@ -61,9 +61,11 @@
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+											aria-current="page" href="/csnotice.cscenter" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active" 
 											aria-current="page" href="/mypage.member" style="color:#664E55">마이페이지</a></li>
+										<li class="nav-item"><a class="nav-link active" aria-current="page" href="/list.letter?type=r&page=1">
+											<i class="bi bi-envelope" style="color: #664E55"></i></a></li>
 										<li class="nav-item"><a class="nav-link active"
 										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
 									</c:otherwise>
@@ -80,9 +82,9 @@
 				<div class="row w-100 m-0" id="board2Outline">
 					<div class="col-12">
 						<div class="row w-100 m-0" id="header_title">
-							<div class="col-12">
-								<p>최저가 경매</p>
-								<span>최저가 링크를 올려주세요</span>
+							<div class="col-12" style="padding-top:10px;">
+								<a href="/list.brd2"><img src="/img/nametagbrd2.png" id="nametag"></a><br>
+								<span id="brdInfo" style="font-size:16px;margin-left:30px;">최저가 정보가 필요하신가요? </span>
 							</div>
 						</div>
 						<div class="row w-100 m-0" id=board2List>
@@ -105,7 +107,7 @@
 						</div>
 						<div class="row">
 									<div class="col-12" style="text-align:right;">
-										<button type="submit" class="write" id="submit">작성하기</button>
+										<button type="submit" class="write" id="submit">경매시작</button>
 										<button type="button" class="write" id="back">취소하기</button>
 									</div>
 								</div>
@@ -116,8 +118,11 @@
 		<div class="row w-100 m-0" id="footer" style="background-color: #A2BAAC; font-weight: bold;">
 			<div class="col-12 p-0 d-lg-none">
 				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
+					<a href="/csnotice.cscenter" class="footerLink">
+						<span>공지사항</span></a>
+					<span style="margin-left: 20px" class="footerBar">|</span>
 					<a href="/csmain.cscenter" class="footerLink">
-						<span>자주 묻는 질문</span></a>
+						<span style="margin-left: 20px">자주 묻는 질문</span></a>
 					<span style="margin-left: 20px" class="footerBar">|</span> 
 					<a href="/csemail.cscenter" class="footerLink">
 						<span style="margin-left: 20px">1 : 1 문의</span></a>
@@ -135,7 +140,8 @@
 			</div>
 			<div class="d-none d-lg-block col-lg-9">
 				<div style="margin-left:40px ; margin-top:20px;text-align:left">
-					<a href="/csmain.cscenter" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csnotice.cscenter" class="footerLink"><span>공지사항</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csmain.cscenter" class="footerLink"><span style="margin-left:20px">자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
 					<a href="/csemail.cscenter" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
 					<a href="/csmap.cscenter" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
 					<div style="margin-top:30px ; text-align:left; margin-bottom:15px">

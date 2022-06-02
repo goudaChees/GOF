@@ -108,6 +108,7 @@
 }
 
 #MyPage button{
+	font-weight:bold;
 	padding:1%;
 	margin-left:1%;
 	color: #9D8189;

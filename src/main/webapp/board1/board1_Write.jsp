@@ -49,7 +49,7 @@
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd2" style="color: #664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter"
+											aria-current="page" href="/csnotice.cscenter"
 											style="color: #664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/adminmain.admin"
@@ -65,11 +65,13 @@
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd2" style="color: #664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter"
+											aria-current="page" href="/csnotice.cscenter"
 											style="color: #664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/mypage.member"
 											style="color: #664E55">마이페이지</a></li>
+										<li class="nav-item"><a class="nav-link active" aria-current="page" href="/list.letter?type=r&page=1">
+											<i class="bi bi-envelope" style="color: #664E55"></i></a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="#"><i
 												class="bi bi-box-arrow-right" style="color: #664E55"></i></a></li>
@@ -89,8 +91,8 @@
 					<div class="col-12">
 						<div class="row w-100 m-0" id="writingHeader">
 							<div class="col-12">
-								<p>살까말까</p>
-								<span>살까말까 고민하고 있니? </span>
+								<a href="/list.brd1?cpage=1"><img src="/img/nametagbrd1.png" id="nametag"></a><br>
+								<span id="brdInfo" style="font-size:16px;margin-left:30px;">살까말까 고민하고 계신가요? </span>
 							</div>
 						</div>
 						<form action="/write.brd1" enctype="multipart/form-data"
@@ -122,7 +124,7 @@
 								</div>
 								<div class="col-12">
 									<input type="button" value="목록으로" id="toList"
-										class="writingBtns"> <input type="submit" value="저장하기"
+										class="writingBtns"> <input type="submit" value="물어보기"
 										id="submit" class="writingBtns">
 								</div>
 							</div>
@@ -134,8 +136,11 @@
 		<div class="row w-100 m-0" id="footer" style="background-color: #A2BAAC; font-weight: bold;">
 			<div class="col-12 p-0 d-lg-none">
 				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
+					<a href="/csnotice.cscenter" class="footerLink">
+						<span>공지사항</span></a>
+					<span style="margin-left: 20px" class="footerBar">|</span>
 					<a href="/csmain.cscenter" class="footerLink">
-						<span>자주 묻는 질문</span></a>
+						<span style="margin-left: 20px">자주 묻는 질문</span></a>
 					<span style="margin-left: 20px" class="footerBar">|</span> 
 					<a href="/csemail.cscenter" class="footerLink">
 						<span style="margin-left: 20px">1 : 1 문의</span></a>
@@ -153,7 +158,8 @@
 			</div>
 			<div class="d-none d-lg-block col-lg-9">
 				<div style="margin-left:40px ; margin-top:20px;text-align:left">
-					<a href="/csmain.cscenter" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csnotice.cscenter" class="footerLink"><span>공지사항</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csmain.cscenter" class="footerLink"><span style="margin-left:20px">자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
 					<a href="/csemail.cscenter" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
 					<a href="/csmap.cscenter" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
 					<div style="margin-top:30px ; text-align:left; margin-bottom:15px">

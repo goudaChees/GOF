@@ -18,8 +18,35 @@
 <link rel="stylesheet" href="/css/board2/board2_List.css">
 <link rel="stylesheet" href="/css/common.css">
 
+<script>
+function getCookie(name) {
+    var cookie = document.cookie;
+    
+    if (document.cookie != "") {
+        var cookie_array = cookie.split("; ");
+        for ( var index in cookie_array) {
+            var cookie_name = cookie_array[index].split("=");
+            
+            if (cookie_name[0] == "popupYN2") {
+                return cookie_name[1];
+            }
+        }
+    }
+    return ;
+}
+
+function openPopup2(url) { 
+    var cookieCheck = getCookie("popupYN2");
+    console.log(cookieCheck);
+    if (cookieCheck != "N")
+        window.open(url, '', 'width=460,height=615,left=450,top=100')
+}
+
+
+</script>
+
 </head>
-<body>
+<body onload="javascript:openPopup2('/board2/popup02.jsp')">
 	<div class="container">
 		<div class="row w-100 m-0" id="header">
 			<div class="col-12 p-0">
@@ -42,7 +69,7 @@
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+											aria-current="page" href="/csnotice.cscenter" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/adminmain.admin" style="color:#664E55">관리자페이지</a></li>
 										<li class="nav-item"><a class="nav-link active"
@@ -54,9 +81,11 @@
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+											aria-current="page" href="/csnotice.cscenter" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active" 
 											aria-current="page" href="/mypage.member" style="color:#664E55">마이페이지</a></li>
+										<li class="nav-item"><a class="nav-link active" aria-current="page" href="/list.letter?type=r&page=1">
+											<i class="bi bi-envelope" style="color: #664E55"></i></a></li>
 										<li class="nav-item"><a class="nav-link active"
 										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
 									</c:otherwise>
@@ -75,8 +104,8 @@
 					<div class="col-12">
 						<div class="row w-100 m-0" id="board2Header">
 							<div class="col-12">
-								<p>최저가 경매</p>
-								<span>최저가 링크를 올려주세요</span>
+								<a href="/list.brd2"><img src="/img/nametagbrd2.png" id="nametag"></a><br>
+								<span id="brdInfo" style="font-size:16px;margin-left:30px;">최저가 정보가 필요하신가요? </span>
 							</div>
 						
 							<div class="col-12">
@@ -137,7 +166,7 @@
 								</div>
 								<div class="row w-100 m-0">
 									<div class="col-12">${navi}</div>
-									<div class="col-12" style="text-align:right"><a href="/write.brd2"><button class="write">작성하기</button></a></div>
+									<div class="col-12" style="text-align:right"><a href="/write.brd2"><button class="write">경매하기</button></a></div>
 								</div>
 							</div>
 						</div>
@@ -148,8 +177,11 @@
 		<div class="row w-100 m-0" id="footer" style="background-color: #A2BAAC; font-weight: bold;">
 			<div class="col-12 p-0 d-lg-none">
 				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
+					<a href="/csnotice.cscenter" class="footerLink">
+						<span>공지사항</span></a>
+					<span style="margin-left: 20px" class="footerBar">|</span>
 					<a href="/csmain.cscenter" class="footerLink">
-						<span>자주 묻는 질문</span></a>
+						<span style="margin-left: 20px">자주 묻는 질문</span></a>
 					<span style="margin-left: 20px" class="footerBar">|</span> 
 					<a href="/csemail.cscenter" class="footerLink">
 						<span style="margin-left: 20px">1 : 1 문의</span></a>
@@ -167,7 +199,8 @@
 			</div>
 			<div class="d-none d-lg-block col-lg-9">
 				<div style="margin-left:40px ; margin-top:20px;text-align:left">
-					<a href="/csmain.cscenter" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csnotice.cscenter" class="footerLink"><span>공지사항</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csmain.cscenter" class="footerLink"><span style="margin-left:20px">자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
 					<a href="/csemail.cscenter" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
 					<a href="/csmap.cscenter" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
 					<div style="margin-top:30px ; text-align:left; margin-bottom:15px">

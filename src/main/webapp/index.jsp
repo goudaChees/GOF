@@ -66,9 +66,10 @@
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/mypage.member"
 											style="color: #664E55">마이페이지</a></li>
-										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="#"><i
-												class="bi bi-box-arrow-right" style="color: #664E55"></i></a></li>
+										<li class="nav-item"><a class="nav-link active" aria-current="page" href="/list.letter?type=r&page=1">
+											<i class="bi bi-envelope" style="color: #664E55"></i></a></li>	
+										<li class="nav-item"><a class="nav-link active" aria-current="page" href="#">
+											<i class="bi bi-box-arrow-right" style="color: #664E55"></i></a></li>
 									</c:when>
 									<c:otherwise>
 										<li class="nav-item nonMember"><a class="nav-link active"
@@ -104,7 +105,7 @@
 									<img src="/img/logoname.png" style="width: 250px;">
 									<h3 style="padding-left: 30px;">당신이 부자가 될 때 까지</h3>
 									<h5 style="padding-left: 30px;" id="hello">
-										<img src='/img/pinkpig_front.png' style='width: 8%'>
+										<img src='/img/pinkpig_front.png' style='width: 8%;color:#735960;'>
 										${loginID }님 환영합니다!
 										<img src='/img/pinkpig_paw.png' style='width: 8%'>
 									</h5>
@@ -122,7 +123,7 @@
 									<a href="/list.brd1?cpage=1">
 									<div class="card">
 										<img src="/img/card_basket.png" class="cardimg px-3">
-										<p>살까말까</p>
+										<p><img src="/img/nametagbrd1.png"></p>
 									</div>
 									</a>
 								</div>
@@ -130,7 +131,7 @@
 									<a href="/list.brd2">
 									<div class="card">
 										<img src="/img/card_shoppingbag.png" class="cardimg px-3">
-										<p>최저가경매</p>
+										<p><img src="/img/nametagbrd2.png"></p>
 									</div>
 									</a>
 								</div>
@@ -138,7 +139,7 @@
 									<a href="/csmain.cscenter">
 									<div class="card">
 										<img src="/img/card_clipboard.png" class="cardimg px-3">
-										<p>고객센터</p>
+										<p><img src="/img/nametagcscenter.png"></p>
 									</div>
 									</a>
 								</div>
@@ -146,7 +147,7 @@
 									<a href="/mypage.member">
 									<div class="card">
 										<img src="/img/card_mypage.png" class="cardimg px-3">
-										<p>마이페이지</p>
+										<p><img src="/img/nametagmypage.png"></p>
 									</div>
 									</a>
 								</div>
@@ -195,8 +196,11 @@
 		<div class="row w-100 m-0" id="footer" style="background-color: #A2BAAC; font-weight: bold;">
 			<div class="col-12 p-0 d-lg-none">
 				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
+					<a href="/csnotice.cscenter" class="footerLink">
+						<span>공지사항</span></a>
+					<span style="margin-left: 20px" class="footerBar">|</span>
 					<a href="/csmain.cscenter" class="footerLink">
-						<span>자주 묻는 질문</span></a>
+						<span style="margin-left: 20px">자주 묻는 질문</span></a>
 					<span style="margin-left: 20px" class="footerBar">|</span> 
 					<a href="/csemail.cscenter" class="footerLink">
 						<span style="margin-left: 20px">1 : 1 문의</span></a>
@@ -214,7 +218,8 @@
 			</div>
 			<div class="d-none d-lg-block col-lg-9">
 				<div style="margin-left:40px ; margin-top:20px;text-align:left">
-					<a href="/csmain.cscenter" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csnotice.cscenter" class="footerLink"><span>공지사항</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csmain.cscenter" class="footerLink"><span style="margin-left:20px">자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
 					<a href="/csemail.cscenter" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
 					<a href="/csmap.cscenter" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
 					<div style="margin-top:30px ; text-align:left; margin-bottom:15px">
@@ -231,21 +236,13 @@
 	</div>
 
 	<script>
-	 
-	  $("#log").on("click", function(){
-		  function kakaoLogout() {
-	            if (!Kakao.Auth.getAccessToken()) {
-	                console.log('Not logged in.');
-	                return;
-	            }
-	            Kakao.Auth.logout(function(response) {
-	                alert(response +' logout');
-	                window.location.href='/'
-	            });
-	        };
-	  })
-	
-	
+
+		$("#pw").on("keyup",function(key){
+			if(key.keyCode==13) {             
+				$("#login").click();    
+			}    
+		})
+
 	
 		$("#findId").on("click",function(){
 			window.open("/member/findid.jsp", "",

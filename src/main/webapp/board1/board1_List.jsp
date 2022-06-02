@@ -18,8 +18,75 @@
 <link rel="stylesheet" href="/css/board1/board1_List.css">
 <link rel="stylesheet" href="/css/common.css">
 
+<script>
+function today(){//날짜 반환
+	
+	let today=new Date();//오늘날짜
+	
+	toYear = today.getFullYear();
+	toMonth = today.getMonth()+1;
+	toDate = today.getDate()
+
+	for(let i=0;i<${glist}.length;i++){
+		let seq = ${glist}[i].seq;
+		let write_date = new Date(${glist}[i].write_date);
+		
+		year = write_date.getFullYear();
+		month = write_date.getMonth()+1;
+		date = write_date.getDate();
+		hour = write_date.getHours();
+		minutes = write_date.getMinutes();
+		
+		if(toYear==year&&toMonth==month&&toDate==date){
+			write_date = hour +":"+minutes;
+			$("#w"+seq).text(write_date);
+			$("#n"+seq).css("display","inline-block");
+		}else{
+			let twoYear = year.toString().substring(2,4);
+			write_date = twoYear +"."+month +"."+date;
+			$("#w"+seq).text(write_date);					
+		}
+		
+		if($("#itemName_"+seq).text().length>15){
+			let name = $("#itemName_"+seq).text().substr(0, 15);
+			let content = "[ "+name+"... ]";
+			$("#itemName_"+seq).text(content);
+			
+		}else if($("#itemName_"+seq).text().length<=15){
+			let name = $("#itemName_"+seq).text();
+			let content = "[ "+name+" ]";
+			$("#itemName_"+seq).text(content);
+		}
+	}
+}
+
+function getCookie(name) {
+    var cookie = document.cookie;
+    
+    if (document.cookie != "") {
+        var cookie_array = cookie.split("; ");
+        for ( var index in cookie_array) {
+            var cookie_name = cookie_array[index].split("=");
+            
+            if (cookie_name[0] == "popupYN1") {
+                return cookie_name[1];
+            }
+        }
+    }
+    return ;
+}
+
+function openPopup1(url) { 
+    var cookieCheck = getCookie("popupYN1");
+    console.log(cookieCheck);
+    if (cookieCheck != "N")
+        window.open(url, '', 'width=460,height=615,left=450,top=100')
+}
+
+
+</script>
 </head>
-<body>
+<body onload="javascript:openPopup1('/board1/popup03.jsp'), today()">
 	<div class="container w-100">
 		<div class="row w-100 m-0" id="header">
 			<div class="col-12 p-0">
@@ -42,7 +109,7 @@
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+											aria-current="page" href="/csnotice.cscenter" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/adminmain.admin" style="color:#664E55">관리자페이지</a></li>
 										<li class="nav-item"><a class="nav-link active"
@@ -54,9 +121,11 @@
 										<li class="nav-item"><a class="nav-link active"
 											aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
 										<li class="nav-item"><a class="nav-link active"
-											aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+											aria-current="page" href="/csnotice.cscenter" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active" 
 											aria-current="page" href="/mypage.member" style="color:#664E55">마이페이지</a></li>
+										<li class="nav-item"><a class="nav-link active" aria-current="page" href="/list.letter?type=r&page=1">
+											<i class="bi bi-envelope" style="color: #664E55"></i></a></li>
 										<li class="nav-item"><a class="nav-link active"
 										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
 									</c:otherwise>
@@ -75,8 +144,8 @@
 					<div class="col-12">
 						<div class="row w-100 m-0" id="board1Header">
 							<div class="col-12">
-								<p>살까말까</p>
-								<span>살까말까 고민하고 있니? </span>
+								<a href="/list.brd1?cpage=1"><img src="/img/nametagbrd1.png" id="nametag"></a><br>
+								<span id="brdInfo" style="font-size:16px;margin-left:30px;">살까말까 고민하고 계신가요? </span>
 							</div>
 							<div class="col-12">
 								<form action="/search.brd1">
@@ -125,7 +194,7 @@
 								<div class="row w-100 m-0">
 									<div class="col-12">${navi}</div>
 									<div class="col-12" style="text-align:right">
-										<input type="button" id="write" value="글쓰기">
+										<input type="button" id="write" value="물어보기">
 									</div>
 								</div>
 							</div>
@@ -137,8 +206,11 @@
 		<div class="row w-100 m-0" id="footer" style="background-color: #A2BAAC; font-weight: bold;">
 			<div class="col-12 p-0 d-lg-none">
 				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
+					<a href="/csnotice.cscenter" class="footerLink">
+						<span>공지사항</span></a>
+					<span style="margin-left: 20px" class="footerBar">|</span>
 					<a href="/csmain.cscenter" class="footerLink">
-						<span>자주 묻는 질문</span></a>
+						<span style="margin-left: 20px">자주 묻는 질문</span></a>
 					<span style="margin-left: 20px" class="footerBar">|</span> 
 					<a href="/csemail.cscenter" class="footerLink">
 						<span style="margin-left: 20px">1 : 1 문의</span></a>
@@ -156,7 +228,8 @@
 			</div>
 			<div class="d-none d-lg-block col-lg-9">
 				<div style="margin-left:40px ; margin-top:20px;text-align:left">
-					<a href="/csmain.cscenter" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csnotice.cscenter" class="footerLink"><span>공지사항</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csmain.cscenter" class="footerLink"><span style="margin-left:20px">자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
 					<a href="/csemail.cscenter" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
 					<a href="/csmap.cscenter" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
 					<div style="margin-top:30px ; text-align:left; margin-bottom:15px">
@@ -173,48 +246,7 @@
 	</div>
 	
 	<script>
-		
-		window.onload=function(){//날짜 반환
-			
-			let today=new Date();//오늘날짜
-			
-			toYear = today.getFullYear();
-			toMonth = today.getMonth()+1;
-			toDate = today.getDate()
 
-			for(let i=0;i<${glist}.length;i++){
-				let seq = ${glist}[i].seq;
-				let write_date = new Date(${glist}[i].write_date);
-				
-				year = write_date.getFullYear();
-				month = write_date.getMonth()+1;
-				date = write_date.getDate();
-				hour = write_date.getHours();
-				minutes = write_date.getMinutes();
-				
-				if(toYear==year&&toMonth==month&&toDate==date){
-					write_date = hour +":"+minutes;
-					$("#w"+seq).text(write_date);
-					$("#n"+seq).css("display","inline-block");
-				}else{
-					let twoYear = year.toString().substring(2,4);
-					write_date = twoYear +"."+month +"."+date;
-					$("#w"+seq).text(write_date);					
-				}
-				
-				if($("#itemName_"+seq).text().length>15){
-					let name = $("#itemName_"+seq).text().substr(0, 15);
-					let content = "[ "+name+"... ]";
-					$("#itemName_"+seq).text(content);
-					
-				}else if($("#itemName_"+seq).text().length<=15){
-					let name = $("#itemName_"+seq).text();
-					let content = "[ "+name+" ]";
-					$("#itemName_"+seq).text(content);
-				}
-			}
-		}	
-		
 		$(".list").on("click",function(){
 			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");

@@ -39,7 +39,7 @@
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="/list.brd2" style="color:#664E55">최저가경매</a></li>
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/csmain.cscenter" style="color:#664E55">고객센터</a></li>
+									aria-current="page" href="/csnotice.cscenter" style="color:#664E55">고객센터</a></li>
 								<li class="nav-item"><a class="nav-link active"
 									aria-current="page" href="/adminmain.admin" style="color:#664E55">관리자페이지</a></li>
 								<li class="nav-item"><a class="nav-link active"
@@ -58,7 +58,7 @@
 						<div class="col-12">
 							<div class="row w-100 m-0" id="Board1Header">
 							<div class="col-12">
-							<p>Admin Page</p>
+							<a href="/adminmain.admin"><img src="/img/nametagadmin.png" id="nametag"></a><br>
 							<ul class="nav nav-tabs">
 								<li class="nav-item"><a class="nav-link"
 									href="/adminmain.admin">회원 정보 관리</a></li>
@@ -100,7 +100,7 @@
 								<div class="row w-100 m-0" id="board1List">
 									<div class="col-12 p-0">
 										<c:forEach var="i" items="${listR2 }">
-											<div class="row w-100 writing">
+											<div class="row w-100 writing" style="height:90px">
 												<a href ="/read.brd2?seq=${i.parent_seq}">
 
 												<div class="col-12 parentLink" style="text-align:center;">
@@ -112,7 +112,8 @@
 												</div>
 											<div class="row w-100">
 												<div class="col-5 d-sm-3"><b>${i.nickname}</b></div>
-												<div class="col-7 d-sm-3">${i.contents }</div>
+												<div class="col-7 d-sm-3" style="text-overflow: ellipsis; overflow: hidden;
+													white-space: nowrap;">${i.contents }</div>
 												<div class="col-11 d-sm-3">제시된 가격 : ${i.price} 원</div>
 											</div>
 												</a>
@@ -136,8 +137,11 @@
 		<div class="row w-100 m-0" id="footer" style="background-color: #A2BAAC; font-weight: bold;">
 			<div class="col-12 p-0 d-lg-none">
 				<div style="padding-top: 20px; padding-bottom:10px; text-align: center; font-size:min(14px,3.5vw);">
+					<a href="/csnotice.cscenter" class="footerLink">
+						<span>공지사항</span></a>
+					<span style="margin-left: 20px" class="footerBar">|</span>
 					<a href="/csmain.cscenter" class="footerLink">
-						<span>자주 묻는 질문</span></a>
+						<span style="margin-left: 20px">자주 묻는 질문</span></a>
 					<span style="margin-left: 20px" class="footerBar">|</span> 
 					<a href="/csemail.cscenter" class="footerLink">
 						<span style="margin-left: 20px">1 : 1 문의</span></a>
@@ -155,7 +159,8 @@
 			</div>
 			<div class="d-none d-lg-block col-lg-9">
 				<div style="margin-left:40px ; margin-top:20px;text-align:left">
-					<a href="/csmain.cscenter" class="footerLink"><span>자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csnotice.cscenter" class="footerLink"><span>공지사항</span></a><span style="margin-left:20px" class="footerBar">|</span>
+					<a href="/csmain.cscenter" class="footerLink"><span style="margin-left:20px">자주 묻는 질문</span></a><span style="margin-left:20px" class="footerBar">|</span>
 					<a href="/csemail.cscenter" class="footerLink"><span style="margin-left:20px">1 : 1 문의</span></a><span style="margin-left:20px" class="footerBar">|</span>
 					<a href="/csmap.cscenter" class="footerLink"><span style="margin-left:20px">찾아오시는 길</span></a><br>
 					<div style="margin-top:30px ; text-align:left; margin-bottom:15px">
