@@ -26,6 +26,10 @@
 	background-color: #FFF4EF;
 }
 
+#writingHeader{
+	padding-top:10px;
+}
+
 #writingContent{
 	margin-top:20px;
 	margin-left:0;

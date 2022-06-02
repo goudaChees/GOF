@@ -57,6 +57,8 @@
 											aria-current="page" href="/csnotice.cscenter" style="color:#664E55">고객센터</a></li>
 										<li class="nav-item"><a class="nav-link active" 
 											aria-current="page" href="/mypage.member" style="color:#664E55">마이페이지</a></li>
+										<li class="nav-item"><a class="nav-link active" aria-current="page" href="/list.letter?type=r&page=1">
+											<i class="bi bi-envelope" style="color: #664E55"></i></a></li>
 										<li class="nav-item"><a class="nav-link active"
 										aria-current="page" href="#"><i class="bi bi-box-arrow-right" style="color:#664E55"></i></a></li>
 									</c:otherwise>
@@ -72,6 +74,10 @@
 			<div class="d-none d-lg-block col-3"></div>
 			<div class="col-12 col-lg-6">
 				<div class="row w-100 m-0" id="board2Outline">
+					<div class="col-12" style="padding-top:10px;padding-left:25px;text-align:left">
+							<a href="/list.brd2"><img src="/img/nametagbrd2.png" id="nametag"></a><br>
+							<span id="brdInfo" style="font-size:16px;margin-left:30px;">최저가 정보를 올려주세요! </span>
+						</div>
 					<div class="col-12">
 						<div class="row w-100 m-0">
 							<div class="col-12 round_title" style="border-bottom: 2px dashed #FFC4A9;" align=center>${dto.title}</div>

@@ -43,7 +43,7 @@
 }
 
 .listName{
-	background-color:#FFCAD4;
+	background-color:#FED7DC;
 	font-weight:normal;
 	line-height:30px;
 }
@@ -77,4 +77,5 @@
 .listFooter a{
 	text-decoration:none;
 	color: #806c71;
+	padding-top:1%;
 }
