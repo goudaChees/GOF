@@ -111,7 +111,7 @@
 									<div id="img_Box" class="thumbnail">
 										<c:choose>
 											<c:when test="${dto.fileName==null }">
-												<img src="/img/pig2.png"  id="i${dto.seq}">
+												<img src="/img/pig2.png" class="img_section"  id="i${dto.seq}">
 											</c:when>
 											<c:otherwise>
 												<img src="files/${dto.fileName }"  id="i${dto.seq}">
@@ -123,6 +123,7 @@
 								<div class="col-8">
 									<input type="text" placeholder="물건명을 입력해주세요" name="item" id="item" value="${dto.item }" maxlength=30><br>
             						<input type="text" placeholder="가격을 입력해주세요" name="item_price" value="${dto.item_price }" id="item_price" maxlength=9 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /><br>
+					            	<input type="button" id="cancel_Btn" style="display: none" value="업로드 취소">
 					            	<c:if test="${dto.fileName!=null}">
 				            			<input type="button" value="파일 제거" id="delete">
 				            		</c:if>
@@ -289,16 +290,28 @@
 					$("#img_section").attr("src","/img/pig2.png");	  
 				  }
 				 alert("이미지 파일만 등록이 가능합니다.");
-// 				 parentObj = obj.parentNode;
-// 				 node = parentObj.replaceChild(obj.cloneNode(true),obj);
-					console.log($("#upload_file").val())
 					$("#upload_file").val("");
-					console.log($("#upload_file").val())
 				 return false;
 			  }
+			  
 
-
+			  
+			  if(uploadFile!=null){
+				  $("#cancel_Btn").css("display","inline-block");
+			  }else{
+				  $("#cancel_Btn").css("display","none");
+			  }
 	  			}
+		  	
+			  $("#cancel_Btn").on("click",function(){
+				  if(${dto.fileName!=null}){
+				   	$("#i"+${dto.seq}).attr("src","files/${dto.fileName }");				  
+				  }else{
+					  $("#i"+${dto.seq}).attr("src","/img/pig2.png");					  
+				  }
+					$("#upload_file").val("");
+			    	 $("#isImgDeleted").val("N");
+			  })
        
 	 </script>
 </body>
