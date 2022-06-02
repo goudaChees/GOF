@@ -281,7 +281,7 @@
     	
       	// SDK를 초기화. 사용할 앱의 JavaScript 키
       	Kakao.init('b956cab5ef7dbe5bc1f861614a4b2061');
-	    //console.log(Kakao.isInitialized());
+	    console.log(Kakao.isInitialized());
 	    
 	    //item을 localStorage에 저장하는 메소드
 	    function saveToDos(token) { 
