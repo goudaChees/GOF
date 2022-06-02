@@ -367,7 +367,7 @@
 			} else {
 				$.ajax({
 					url : "/nnDuplCheck.member",
-					data : {nickname : $("#nickname").val()}
+					data : {nickname : $("#nicknameTD").val()}
 				}).done(function(resp) {
 					let result = JSON.parse(resp);
 					if (result) {

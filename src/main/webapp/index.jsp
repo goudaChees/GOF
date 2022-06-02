@@ -136,7 +136,7 @@
 									</a>
 								</div>
 								<div class="col-6 col-md-3">
-									<a href="/csmain.cscenter">
+									<a href="/csnotice.cscenter">
 									<div class="card">
 										<img src="/img/card_clipboard.png" class="cardimg px-3">
 										<p><img src="/img/nametagcscenter.png"></p>
