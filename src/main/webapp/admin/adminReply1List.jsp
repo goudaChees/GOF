@@ -106,10 +106,9 @@
 													
 												</div>
 											
-											<div class="row w-100" style="height:90px">
+											<div class="row w-100" style="height:100%">
 												<div class="col-4 d-sm-3"><b>${i.writer}</b></div>
-												<div class="col-8 d-sm-3" style="text-overflow: ellipsis; overflow: hidden;
-													white-space: nowrap;">${i.contents}</div>
+												<div class="col-8 d-sm-3" style="text-overflow: ellipsis; overflow: hidden;	white-space: nowrap;">${i.contents}</div>
 												<div class="col-11 d-sm-3 d-none d-sm-block">${i.write_date }</div>
 												
 											</div>
