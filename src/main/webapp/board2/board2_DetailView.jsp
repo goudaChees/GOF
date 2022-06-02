@@ -131,7 +131,9 @@
 															<textarea placeholder="내용을 입력해주세요.(최대 100글자)" maxlength="100" name="contents" id="contents" required="required"></textarea>
 														</div>
 														<div class="col-12 col-sm-2 p-0 px-1">
+															
 															<button type="submit" id="btn1">작성</button>
+																
 														</div>
 													</div>
 													

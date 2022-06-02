@@ -489,8 +489,9 @@ private static MemberDAO instance = null;
 		}
 		
 		// -- 회원탈퇴시 내 글 모두 삭제
+		
 		public int deleteBoard1Contents(String id) throws Exception {
-			String seq = "delete * from board1 where id=?";
+			String seq = "delete from board1 where id=?";
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(seq);){
 				pstat.setString(1, id);
@@ -501,7 +502,7 @@ private static MemberDAO instance = null;
 		}
 		
 		public int deleteBoard2Contents(String id) throws Exception {
-			String seq = "delete * from board2 where id=?";
+			String seq = "delete from board2 where id=?";
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(seq);){
 				pstat.setString(1, id);
@@ -513,7 +514,7 @@ private static MemberDAO instance = null;
 		
 		// -- 회원탈퇴시 내 댓글 모두 삭제
 		public int deleteBoard1Replys(String id) throws Exception {
-			String seq = "delete * from board1_reply,board2_reply board2 where id=?";
+			String seq = "delete from board1_reply where id=?";
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(seq);){
 				pstat.setString(1, id);
@@ -524,7 +525,7 @@ private static MemberDAO instance = null;
 		}
 		
 		public int deleteBoard2Replys(String id) throws Exception {
-			String seq = "delete * from board1_reply,board2_reply board2 where id=?";
+			String seq = "delete from board2_reply where id=?";
 			try(Connection con = this.getConnection();
 					PreparedStatement pstat = con.prepareStatement(seq);){
 				pstat.setString(1, id);

@@ -187,6 +187,7 @@
 							</div>
 						</form>
 					</div>
+					
 				</div>
 			</c:otherwise>
 		</c:choose>
@@ -230,6 +231,22 @@
 	</div>
 
 	<script>
+	 
+	  $("#log").on("click", function(){
+		  function kakaoLogout() {
+	            if (!Kakao.Auth.getAccessToken()) {
+	                console.log('Not logged in.');
+	                return;
+	            }
+	            Kakao.Auth.logout(function(response) {
+	                alert(response +' logout');
+	                window.location.href='/'
+	            });
+	        };
+	  })
+	
+	
+	
 		$("#findId").on("click",function(){
 			window.open("/member/findid.jsp", "",
 			"top=100,left=200,width=550,height=350");
@@ -273,6 +290,7 @@
 	    function saveToDos(token) { 
     		typeof(Storage) !== 'undefined' && sessionStorage.setItem('AccessKEY', JSON.stringify(token)); 
 		};
+		
 	    $("#kakao-login-btn").on("click", function(){
 	    //1. 로그인 시도
 	    Kakao.Auth.login({
@@ -335,6 +353,8 @@
 	   		 	})
 			}
 		  })
+ 
+		  
     </script>
 </body>
 </html>
