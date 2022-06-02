@@ -123,11 +123,11 @@
 								<div class="col-8">
 									<input type="text" placeholder="물건명을 입력해주세요" name="item" id="item" value="${dto.item }" maxlength=30><br>
             						<input type="text" placeholder="가격을 입력해주세요" name="item_price" value="${dto.item_price }" id="item_price" maxlength=9 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /><br>
-					            	<input type="button" id="cancel_Btn" style="display: none" value="업로드 취소">
+					            	<input type="button" id="cancel_Btn" style="display: none" value="첨부 취소">
 					            	<c:if test="${dto.fileName!=null}">
-				            			<input type="button" value="파일 제거" id="delete">
+				            			<input type="button" value="사진 제거" id="delete">
 				            		</c:if>
-				            		<label for="upload_file">파일 첨부</label>
+				            		<label for="upload_file">사진 첨부</label>
 				            		<input type="file" name="file" id="upload_file" accept="image/*" onchange="isFileImg(this)">
 								</div>
 								<div class="col-12">
