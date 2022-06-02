@@ -131,7 +131,7 @@ textarea:focus{
 	cursor:pointer;
 }
 
-#delete{
+#delete, #cancel_Btn{
 	padding:1%;
 	margin-bottom:10px;
 	color: #806c71;
