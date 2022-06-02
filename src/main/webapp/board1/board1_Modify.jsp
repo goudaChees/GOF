@@ -179,7 +179,8 @@
 	     $("#delete").on("click",function(){
 				if(${loginID==null}){
 					alert("로그인 후 이용가능합니다.");
-					location.href="/index.jsp"
+					location.href="/index.jsp";
+					return false;
 				}
 	    	 $("#i"+${dto.seq}).attr("src","/img/pig2.png");//삭제 버튼 클릭 시 이미지 바꿈
 	    	 $("#isImgDeleted").val("Y");//이미지 삭제 하는 경우
@@ -188,7 +189,8 @@
 	  	$("#goToList").on("click",function(){
 			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");
-				location.href="/index.jsp"
+				location.href="/index.jsp";
+				return false;
 			}
 	    	 location.href="/list.brd1?cpage=1";
 	     })
@@ -197,6 +199,7 @@
 			if(${loginID==null}){
 				alert("로그인 후 이용가능합니다.");
 				location.href="/index.jsp";
+				return false;
 			}
 			
          let item_price = $("#item_price").val().trim();

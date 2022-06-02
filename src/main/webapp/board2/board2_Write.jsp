@@ -190,8 +190,9 @@
 		
 		$("#submit").on("click",function(){
 			if(${loginID==null}){
-				alert("로그인 후 이용 가능합니다.")
-				location.href="/index.jsp"
+				alert("로그인 후 이용가능합니다.");
+				location.href="/index.jsp";
+				return false;
 			}
 			if($("#summernote").val()=='' || $("#title").val()==''){
 				alert("제목, 내용은 필수 입력 사항입니다.");
