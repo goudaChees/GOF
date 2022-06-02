@@ -188,6 +188,7 @@
 							</div>
 						</form>
 					</div>
+					
 				</div>
 			</c:otherwise>
 		</c:choose>
@@ -235,11 +236,13 @@
 	</div>
 
 	<script>
+
 		$("#pw").on("keyup",function(key){
 			if(key.keyCode==13) {             
 				$("#login").click();    
 			}    
 		})
+
 	
 		$("#findId").on("click",function(){
 			window.open("/member/findid.jsp", "",
@@ -284,6 +287,7 @@
 	    function saveToDos(token) { 
     		typeof(Storage) !== 'undefined' && sessionStorage.setItem('AccessKEY', JSON.stringify(token)); 
 		};
+		
 	    $("#kakao-login-btn").on("click", function(){
 	    //1. 로그인 시도
 	    Kakao.Auth.login({
@@ -346,6 +350,8 @@
 	   		 	})
 			}
 		  })
+ 
+		  
     </script>
 </body>
 </html>

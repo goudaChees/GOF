@@ -138,7 +138,9 @@
 														</div>
 														<c:if test="${wck==false || cck== false}">
 														<div class="col-12 col-sm-2 p-0 px-1">
+
 															<button type="submit" id="btn1">입찰</button>
+
 														</div>
 														</c:if>
 													</div>

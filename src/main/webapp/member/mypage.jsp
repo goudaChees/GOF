@@ -130,6 +130,8 @@
 											<button id="modify" type="button">수정하기</button>
 											<button id="pw_modify" type="button">비밀번호 수정</button>
 											<button id="member_out" type="button">탈퇴하기</button>
+											<button onclick="kakaoLogout()" type="button">로그아웃하기</button>
+											
 										</div>
 									</div>
 								</form>
@@ -408,12 +410,22 @@
 			if(!result){
 				return false;
 			} else {
-			  Kakao.Auth.logout(function() {
-	      			alert("로그아웃 되었습니다.");
-	      			location.href="/logout.member";
-	   		 	})
+				Kakao.Auth.logout(function(response) {
+	                alert(response +' logout');
+	            });
 			}
 		  })
+		  
+		  function kakaoLogout() {
+            if (!Kakao.Auth.getAccessToken()) {
+                console.log('Not logged in.');
+                return;
+            }
+            Kakao.Auth.logout(function(response) {
+                alert(response +' logout');
+                location.href="/logout.member";	
+            });
+        };
 		
 		
 </script>
