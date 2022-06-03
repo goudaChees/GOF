@@ -115,7 +115,7 @@
 								
 								<div class="row w-100 m-0">
 									<div class="col-12 p-0" id="searchBar">								
-										<form action="/searchnotice.cscenter?board=1&page=1" method="post">
+										<form action="/searchNotice.cscenter?&page=1" method="post">
 											<select class="form-select" aria-label="Default select example"
 												name="searchCategory">
 												<option value="0">선택</option>
@@ -123,7 +123,7 @@
 												<option value="2">내용</option>
 											</select>
 											<input type="text" placeholder="검색하실 내용을 입력하세요"
-												name="toSearch">
+												name="searchTarget">
 											<input type="submit" value="검색">
 										</form>
 										<div class="row w-100 m-0"><br>
